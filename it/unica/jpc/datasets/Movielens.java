@@ -5,14 +5,15 @@ import it.unica.jpc.datasets.Dataset;
 /**
  * Provides methods to use the freely available movielens dataset.
  *
- * @author Fabio Colella <fcole90@gmail.com>
+ * @author Fabio Colella
  */
 public class Movielens extends Dataset
 {
+
     /**
      * Empty constructor.
      */
-    public Dataset()
+    public Movielens()
     {
         //Empty
     }
@@ -20,9 +21,9 @@ public class Movielens extends Dataset
     /**
      * Constructs a movielens from the specified file.
      *
-     * @param sourceFile
+     * {@inheritDoc}
      */
-    public Dataset(String sourceFile)
+    public Movielens(String sourceFile)
     {
         //Use loadDataset
     }

@@ -6,12 +6,11 @@ import junit.framework.TestCase;
 /**
  * Tests the Predictions class.
  *
- * @author: Fabio Colella <fcole90@gmail.com>
+ * @author: Fabio Colella
 */
-public class PredictionTest extends TestCase {
-  public void testTrue() {
-    assertTrue(true);
-  }
+public class PredictionTest
+{
+    //Empty
 }
 
 

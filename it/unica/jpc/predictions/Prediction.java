@@ -3,7 +3,7 @@ package it.unica.jpc.predictions;
 /**
  * Makes predictions on the empty values of a vector.
  *
- * @author Fabio Colella <fcole90@gmail.com>
+ * @author Fabio Colella
  */
 public abstract class Prediction {
 	private int neighborsAmount;
@@ -12,13 +12,23 @@ public abstract class Prediction {
 	private String predictionsPath;
 
 	/**
-     * Empty constructor.
+     * Initializes the object with defaults.
+	 *
+	 * The neighborsAmount is set to 0, the other
+	 * values are set to null.
      */
-    public Prediction() {
+    public Prediction()
+	{
+		this.neighborsAmount = 0;
 	}
 
     /**
-     * Constructor.
+     * Initializes the object with the received parameters.
+	 *
+	 * @param neighborsAmount the number of neighbors
+	 * @param trainingSet the training set to use
+	 * @param networkPath the path of the network
+	 * @param predictionsPath the path of the predictions
      */
     public Prediction(int neighborsAmount,
 					  String trainingSet,

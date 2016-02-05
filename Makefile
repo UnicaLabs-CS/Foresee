@@ -29,6 +29,9 @@ all:
 clean:
 	for p in $(clean_path); do rm -v $$p/*.class; done;
 
+doc:
+	javadoc -version -author -d docs -subpackages it
+
 # Libraries
 # =========
 test-libs:
@@ -46,3 +49,6 @@ prediction: $(path)/predictions/Prediction.java
 # ========
 triple: $(path)/datasets/Triple.java
 	javac $(path)/datasets/Triple.java
+	
+dataset: $(path)/datasets/Dataset.java triple
+	javac $(path)/datasets/Dataset.java

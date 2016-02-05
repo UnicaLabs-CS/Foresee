@@ -2,6 +2,8 @@ package it.unica.jpc.datasets;
 
 /**
  * Defines a tuple of three elements.
+ *
+ * @author Fabio Colella
  */
 public class Triple implements Comparable <Triple>
 {
@@ -10,11 +12,13 @@ public class Triple implements Comparable <Triple>
     private double trd;
 
     /**
-     * Empty constructor
+     * Constructs a triple (0, 0, 0.0)
      */
     public Triple()
     {
-
+        this.fst = 0;
+        this.snd = 0;
+        this.trd = 0.0;
     }
 
     /**
