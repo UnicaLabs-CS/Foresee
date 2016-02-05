@@ -52,10 +52,15 @@ prediction: $(path)/predictions/Prediction.java
 # Datasets
 # ========
 datasets: $(datasets_path)/Triple.class \
-          $(datasets_path)/Dataset.class
+          $(datasets_path)/Dataset.class \
+          $(datasets_path)/Movielens.class
 
 $(datasets_path)/Triple.class: $(path)/datasets/Triple.java
-	javac $(path)/datasets/Triple.java
+	javac $(datasets_path)/Triple.java
 	
 $(datasets_path)/Dataset.class: $(path)/datasets/Dataset.java $(datasets_path)/Triple.class
-	javac $(path)/datasets/Dataset.java
+	javac $(datasets_path)/Dataset.java
+
+$(datasets_path)/Movielens.class: $(datasets_path)/Movielens.java $(datasets_path)/Dataset.class
+	javac $(datasets_path)/Movielens.java
+

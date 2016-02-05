@@ -1,7 +1,10 @@
 package it.unica.jpc.datasets;
 
-import java.util.ArrayList;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.TreeSet;
+
 
 /**
  * Represents a generic collection of data.
@@ -23,20 +26,30 @@ public abstract class Dataset
     /**
      * Amount of movie rates.
      */
-    int movieRatesAmount;
+    int moviesAmount;
 
     /**
      * Amount of user rates.
      */
-    int userRatesAmount;
+    int usersAmount;
+
+    /**
+     * List of users.
+     */
+    TreeSet<Integer> usersSet;
+
+    /**
+     * List of movies.
+     */
+    TreeSet<Integer> moviesSet;
 
     /**
      * Creates a dataset with default values.
      */
     public Dataset()
     {
-        this.movieRatesAmount = 0;
-        this.userRatesAmount = 0;
+        this.moviesAmount = 0;
+        this.usersAmount = 0;
     }
 
     /**
@@ -44,7 +57,7 @@ public abstract class Dataset
      *
      * @param sourceFile the file from which to load the data
      */
-    public abstract Dataset(File sourceFile)
+    public Dataset(File sourceFile) throws FileNotFoundException
     {
         this.loadDataset(sourceFile);
     }
@@ -53,9 +66,8 @@ public abstract class Dataset
      * Loads data from a specified source.
      *
      * @param sourceFile the file from which to load the data
-     * @return true if the loading completed without errors
      */
-    public abstract boolean loadDataset(File sourceFile);
+    public abstract void loadDataset(File sourceFile) throws FileNotFoundException;
 
     /**
      * Gets the test set of a k-fold cross-validation.
@@ -68,7 +80,11 @@ public abstract class Dataset
      *                      {@literal (Precondition: testPercentage >= 0) }
      * @return the elements contained in the test set
      */
-    public abstract ArrayList<String> getTestSet(int layersAmount, double testPecentage);
+    public ArrayList<Triple> getTestSet(int layersAmount, double testPecentage)
+    {
+        //Fill
+        return new ArrayList<>();
+    }
 
     /**
      * Gets the partition of the dataset.
@@ -86,7 +102,11 @@ public abstract class Dataset
      *                     stratified k-fold.
      * @return an array of partitions
      */
-    public abstract ArrayList<Triple>[] getDatasetPartition(int k, int layersAmount);
+    public ArrayList<Triple>[] getDatasetPartition(int k, int layersAmount)
+    {
+        //Fill
+        return new ArrayList[0];
+    }
 
     /**
      * Saves all the partitions in the given directory.
@@ -97,5 +117,8 @@ public abstract class Dataset
      * @param savePath the path where the partitions are going to be saved
      *                 A null path is intended as the current working directory.
      */
-    public abstract void savePartitions(int testSetIndex, String savePath);
+    public void savePartitions(int testSetIndex, String savePath)
+    {
+        // Fill
+    }
 }
