@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
-//import java.util.IllegalStateException;
 import java.util.Scanner;
 import java.util.TreeSet;
 
@@ -72,7 +71,7 @@ public class Movielens extends Dataset
 
         Scanner dataSource = new Scanner(sourceFile);
 
-        int lineNumber = 0; //follows the line number in the file
+        int lineNumber = 1; //follows the line number in the file
         int userID;
         int movieID;
         int rating;
@@ -105,15 +104,15 @@ public class Movielens extends Dataset
 
             // Check the correctness of the data
             if (userID < 1) {
-                throw new InputMismatchException("userID < 1 at line" + lineNumber);
+                throw new InputMismatchException("userID < 1 at line " + lineNumber);
             }
 
             if (movieID < 1) {
-                throw new InputMismatchException("userID < 1 at line" + lineNumber);
+                throw new InputMismatchException("movieID < 1 at line " + lineNumber);
             }
 
             if (rating < 1) {
-                throw new InputMismatchException("userID < 1 at line" + lineNumber);
+                throw new InputMismatchException("rating < 1 at line " + lineNumber);
             }
 
             dRating = (double) rating;
@@ -126,6 +125,8 @@ public class Movielens extends Dataset
 
             this.usersAmount = this.usersSet.size();
             this.moviesAmount = this.moviesSet.size();
+
+            lineNumber++;
         }
 
         if (this.usersAmount < 20)

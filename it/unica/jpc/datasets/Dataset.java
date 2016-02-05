@@ -21,27 +21,27 @@ public abstract class Dataset
      * The use of Vector instead of ArrayList is
      * motivated by it's tread-safeness.
      */
-    ArrayList<Triple> dataset;
+    protected ArrayList<Triple> dataset;
 
     /**
      * Amount of movie rates.
      */
-    int moviesAmount;
+    protected int moviesAmount;
 
     /**
      * Amount of user rates.
      */
-    int usersAmount;
+    protected int usersAmount;
 
     /**
      * List of users.
      */
-    TreeSet<Integer> usersSet;
+    protected TreeSet<Integer> usersSet;
 
     /**
      * List of movies.
      */
-    TreeSet<Integer> moviesSet;
+    protected TreeSet<Integer> moviesSet;
 
     /**
      * Creates a dataset with default values.
