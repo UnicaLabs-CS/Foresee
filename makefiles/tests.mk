@@ -1,13 +1,13 @@
 # Tests Compiling
 # ===============
-all-tests: triple-test
+all-tests: $(tests_path)/TripleTest.class
 
-triple-test: $(tests_path)/TripleTest.java triple
+$(tests_path)/TripleTest.class: $(tests_path)/TripleTest.java $(datasets_path)/Triple.class
 	javac -cp .:$(junit) $(tests_path)/TripleTest.java
 
 # Tests Running
 # =============
-all-tests-run: triple-test
+all-tests-run: all-tests run-TripleTest
 
-triple-test-run:
+run-TripleTest:
 	java -cp .:$(junit):$(hamcrest) org.junit.runner.JUnitCore $(tests_pack).TripleTest

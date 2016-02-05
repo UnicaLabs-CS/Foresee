@@ -1,6 +1,7 @@
 package it.unica.jpc.datasets;
 
-import it.unica.jpc.datasets.Dataset;
+import java.util.ArrayList;
+import java.io.File;
 
 /**
  * Provides methods to use the freely available movielens dataset.
@@ -15,7 +16,7 @@ public class Movielens extends Dataset
      */
     public Movielens()
     {
-        //Empty
+        super();
     }
 
     /**

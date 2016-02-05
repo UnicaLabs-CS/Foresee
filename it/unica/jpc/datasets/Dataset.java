@@ -44,7 +44,7 @@ public abstract class Dataset
      *
      * @param sourceFile the file from which to load the data
      */
-    public Dataset(File sourceFile)
+    public abstract Dataset(File sourceFile)
     {
         this.loadDataset(sourceFile);
     }

@@ -9,9 +9,13 @@ pack = it.unica.$(proj)
 tests_path = $(path)/tests
 tests_pack = $(pack).tests
 
+# Path for the dataset
+datasets_path = $(path)/datasets
+
 # Path(s) to clean
 clean_path = $(path)/predictions \
-			 $(path)/tests
+             $(datasets_path)
+             $(test_path)
 
 # Path to makefiles (.mk) to be included
 mk_path = makefiles
@@ -47,8 +51,11 @@ prediction: $(path)/predictions/Prediction.java
 
 # Datasets
 # ========
-triple: $(path)/datasets/Triple.java
+datasets: $(datasets_path)/Triple.class \
+          $(datasets_path)/Dataset.class
+
+$(datasets_path)/Triple.class: $(path)/datasets/Triple.java
 	javac $(path)/datasets/Triple.java
 	
-dataset: $(path)/datasets/Dataset.java triple
+$(datasets_path)/Dataset.class: $(path)/datasets/Dataset.java $(datasets_path)/Triple.class
 	javac $(path)/datasets/Dataset.java
