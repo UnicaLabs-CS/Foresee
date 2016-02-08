@@ -3,7 +3,9 @@ package it.unica.jpc.datasets;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.TreeSet;
+import java.util.TreeMap;
 
 
 /**
@@ -18,8 +20,7 @@ public abstract class Dataset
     /**
      * Stores the dataset.
      *
-     * The use of Vector instead of ArrayList is
-     * motivated by it's tread-safeness.
+     * int user, int movie, int rating
      */
     protected ArrayList<Triple> dataset;
 
@@ -32,6 +33,16 @@ public abstract class Dataset
      * Amount of user rates.
      */
     protected int usersAmount;
+
+    /**
+     * Max rate.
+     */
+    protected final double MAX_RATE = 5.0;
+
+    /**
+     * Min rate.
+     */
+    protected final double MIN_RATE = 1.0;
 
     /**
      * List of users.
@@ -104,7 +115,64 @@ public abstract class Dataset
      */
     public ArrayList<Triple>[] getDatasetPartition(int k, int layersAmount)
     {
-        //Fill
+        int[] ratesPerUser = new int[this.usersAmount];
+        int[] ratesPerMovie = new int[this.moviesAmount];
+
+        /* Get the movies with highest and lowest rate amount. */
+        int maxMovieRatesAmount = 0;
+        int minMovieRatesAmount = 0;
+
+
+        /* Fill the array with the number of rates and update the max amount of rates per movie. */
+        for (Triple item : dataset) {
+            ratesPerUser[item.getFst()]++;
+            ratesPerMovie[item.getSnd()]++;
+            if (ratesPerMovie[item.getSnd()] > maxMovieRatesAmount) {
+                maxMovieRatesAmount = ratesPerMovie[item.getSnd()];
+            }
+        }
+
+        /* --- Stratification by movie rate amount. --- */
+
+        /* Amplitude of the range of each layer. */
+        double layerRange = (maxMovieRatesAmount - minMovieRatesAmount) / (layersAmount);
+
+        /*
+         * Place the movies in the respective layers.
+         *
+         * In each loop take a movie and try to put it in each layer from the first until the last layer is reached.
+         * If the last layer is reached, add the element in it without further checks.
+         */
+        TreeMap[] layers = new TreeMap[layersAmount];
+
+        for (int movieIndex = 0; movieIndex < this.moviesAmount; movieIndex++)
+        {
+            /* Reset the high range. */
+            double highRange = minMovieRatesAmount + layerRange;
+
+            for (TreeMap<Integer, Integer> layer: layers)
+            {
+                /* Initialize the ArrayList if required */
+                if (layer == null)
+                {
+                    layer = new TreeMap<>();
+                }
+
+                /* We're on the last layer, add here. */
+                if (layer.equals(layers[layersAmount - 1]))
+                {
+                    layer.put(movieIndex, ratesPerMovie[movieIndex]);
+                }
+                else if (ratesPerMovie[movieIndex] < highRange)
+                {
+                    layer.put(movieIndex, ratesPerMovie[movieIndex]);
+                }
+                /* Update the range. */
+                highRange += layerRange;
+            }
+        }
+
+        /* Edit this! */
         return new ArrayList[0];
     }
 
