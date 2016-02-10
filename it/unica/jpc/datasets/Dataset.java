@@ -4,8 +4,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.TreeSet;
+import java.util.Map;
+import java.util.Random;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 
 /**
@@ -27,12 +29,22 @@ public abstract class Dataset
     /**
      * Amount of movie rates.
      */
-    protected int moviesAmount;
+    private int moviesAmount;
 
     /**
      * Amount of user rates.
      */
-    protected int usersAmount;
+    private int usersAmount;
+
+    /**
+     * Highest user ID
+     */
+    protected int maxUserID;
+
+    /**
+     * Highest movie ID
+     */
+    protected int maxMovieID;
 
     /**
      * Max rate.
@@ -53,6 +65,70 @@ public abstract class Dataset
      * List of movies.
      */
     protected TreeSet<Integer> moviesSet;
+
+    /**
+     * Inner class to handle pairs (movie * ratesAmount)
+     */
+    public class MovieRatesAmountPair
+    {
+        private int movie;
+        private int ratesAmount;
+
+        public MovieRatesAmountPair()
+        {
+            this.movie = 0;
+            this.ratesAmount = 0;
+        }
+
+        public MovieRatesAmountPair(int movie, int ratesAmount)
+        {
+            this.movie = movie;
+            this.ratesAmount = ratesAmount;
+        }
+
+        public int getMovie() {
+            return this.movie;
+        }
+
+        public int getRatesAmount() {
+            return this.ratesAmount;
+        }
+
+        public void setMovie(int movie) {
+            this.movie = movie;
+        }
+
+        public void setRatesAmount(int ratesAmount) {
+            this.ratesAmount = ratesAmount;
+        }
+
+        public String toString()
+        {
+            return this.movie + "::" + this.ratesAmount;
+        }
+    }
+
+    /* Methods */
+
+    public ArrayList<Triple> getDataset() {
+        return dataset;
+    }
+
+    public int getMoviesAmount() {
+        return moviesAmount;
+    }
+
+    public int getUsersAmount() {
+        return usersAmount;
+    }
+
+    public void setMoviesAmount(int moviesAmount) {
+        this.moviesAmount = moviesAmount;
+    }
+
+    public void setUsersAmount(int usersAmount) {
+        this.usersAmount = usersAmount;
+    }
 
     /**
      * Creates a dataset with default values.
@@ -113,22 +189,31 @@ public abstract class Dataset
      *                     stratified k-fold.
      * @return an array of partitions
      */
-    public ArrayList<Triple>[] getDatasetPartition(int k, int layersAmount)
+    public ArrayList<MovieRatesAmountPair>[] getPartitions(int k, int layersAmount)
     {
-        int[] ratesPerUser = new int[this.usersAmount];
-        int[] ratesPerMovie = new int[this.moviesAmount];
-
         /* Get the movies with highest and lowest rate amount. */
         int maxMovieRatesAmount = 0;
         int minMovieRatesAmount = 0;
 
+        TreeMap <Integer, Integer> ratesPerMovie = new TreeMap<>();
 
         /* Fill the array with the number of rates and update the max amount of rates per movie. */
-        for (Triple item : dataset) {
-            ratesPerUser[item.getFst()]++;
-            ratesPerMovie[item.getSnd()]++;
-            if (ratesPerMovie[item.getSnd()] > maxMovieRatesAmount) {
-                maxMovieRatesAmount = ratesPerMovie[item.getSnd()];
+        for (Triple item : dataset)
+        {
+            /* Increment the value if already present */
+            if (ratesPerMovie.containsKey(item.getSnd()))
+            {
+                ratesPerMovie.put(item.getSnd(), ratesPerMovie.get(item.getSnd()) + 1);
+            }
+            else /* Add the value otherwise */
+            {
+                ratesPerMovie.put(item.getSnd(), 1);
+            }
+
+            /* Keep the maximum amount of ratings for a single movie updated */
+            if (ratesPerMovie.get(item.getSnd()) > maxMovieRatesAmount)
+            {
+                maxMovieRatesAmount = ratesPerMovie.get(item.getSnd());
             }
         }
 
@@ -140,40 +225,80 @@ public abstract class Dataset
         /*
          * Place the movies in the respective layers.
          *
-         * In each loop take a movie and try to put it in each layer from the first until the last layer is reached.
+         * In each loop take a movie and try to put it in a layer from the first until the last is reached.
          * If the last layer is reached, add the element in it without further checks.
          */
-        TreeMap[] layers = new TreeMap[layersAmount];
+        ArrayList<MovieRatesAmountPair>[] layers = (ArrayList<MovieRatesAmountPair>[]) new ArrayList[layersAmount];
 
-        for (int movieIndex = 0; movieIndex < this.moviesAmount; movieIndex++)
+        /* Initialize the ArrayList */
+        for (int i = 0; i < layers.length; i++)
+        {
+            layers[i] = new ArrayList<>();
+        }
+
+        for (Map.Entry<Integer, Integer> movie : ratesPerMovie.entrySet())
         {
             /* Reset the high range. */
             double highRange = minMovieRatesAmount + layerRange;
 
-            for (TreeMap<Integer, Integer> layer: layers)
+            /* Movies with no rating should not appear. */
+            if (movie.getValue() <= 0)
             {
-                /* Initialize the ArrayList if required */
-                if (layer == null)
-                {
-                    layer = new TreeMap<>();
-                }
+                throw new IllegalStateException("Only rated movies should be considered.");
+            }
 
-                /* We're on the last layer, add here. */
+            for (ArrayList<MovieRatesAmountPair> layer: layers)
+            {
+                /* We're on the last layer, add here the movie here. */
                 if (layer.equals(layers[layersAmount - 1]))
                 {
-                    layer.put(movieIndex, ratesPerMovie[movieIndex]);
+                    layer.add(new MovieRatesAmountPair(movie.getKey(), movie.getValue()));
+                    break; //Do not continue to check for a layer after it has been found
                 }
-                else if (ratesPerMovie[movieIndex] < highRange)
+                else if (movie.getValue() < highRange)
                 {
-                    layer.put(movieIndex, ratesPerMovie[movieIndex]);
+                    layer.add(new MovieRatesAmountPair(movie.getKey(), movie.getValue()));
+                    break; //Do not continue to check for a layer after it has been found
                 }
                 /* Update the range. */
                 highRange += layerRange;
             }
         }
 
-        /* Edit this! */
-        return new ArrayList[0];
+        /* Fill the k partitions: k folding */
+        ArrayList<MovieRatesAmountPair>[] partitions = (ArrayList<MovieRatesAmountPair>[]) new ArrayList[k];
+        Random randomizer = new Random();
+
+        /* Initialize the partitions */
+        for (int i = 0; i < partitions.length; i++)
+        {
+            partitions[i] = new ArrayList<>();
+        }
+
+        /* For each layer add random elements to each partition */
+        for (ArrayList<MovieRatesAmountPair> layer : layers)
+        {
+            /* Remove the elements added to the partitions */
+            while (layer.size() > 0)
+            {
+                /* Select a random element and put it in a partition */
+                for (ArrayList<MovieRatesAmountPair> partition : partitions)
+                {
+                    if (layer.size() <= 0)
+                    {
+                        /* Stop looping when the layer is empty */
+                        break;
+                    }
+                    else
+                    {
+                        int randIndex = randomizer.nextInt(layer.size());
+                        partition.add(layer.remove(randIndex));
+                    }
+                }
+            }
+        }
+
+        return partitions;
     }
 
     /**

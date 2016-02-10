@@ -86,12 +86,20 @@ public class Movielens extends Dataset
             // Extract a single line of data
             if (line.hasNextInt()) {
                 userID = line.nextInt();
+                if (userID > this.maxUserID)
+                {
+                    this.maxUserID = userID;
+                }
             } else {
                 throw new InputMismatchException("expected userID at line " + lineNumber);
             }
 
             if (line.hasNextInt()) {
                 movieID = line.nextInt();
+                if (movieID > this.maxMovieID)
+                {
+                    this.maxMovieID = movieID;
+                }
             } else {
                 throw new InputMismatchException("expected movieID at line " + lineNumber);
             }
@@ -123,13 +131,23 @@ public class Movielens extends Dataset
             this.usersSet.add(userID);
             this.moviesSet.add(movieID);
 
-            this.usersAmount = this.usersSet.size();
-            this.moviesAmount = this.moviesSet.size();
-
             lineNumber++;
         }
 
-        if (this.usersAmount < 20)
+        this.setUsersAmount(this.usersSet.size());
+        this.setMoviesAmount(this.moviesSet.size());
+
+        if (this.getUsersAmount() > lineNumber)
+        {
+            throw new IllegalStateException("The amount of users is higher than entries.");
+        }
+
+        if (this.getMoviesAmount() > lineNumber)
+        {
+            throw new IllegalStateException("The amount of movies is higher than entries.");
+        }
+
+        if (this.getUsersAmount() < 20)
         {
             throw new IllegalStateException("The amount of users is lower than 20.");
         }

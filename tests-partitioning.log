@@ -1,0 +1,202 @@
+javac -cp .:libs/junit-4.jar it/unica/jpc/tests/MovielensTest.java
+java -cp .:libs/junit-4.jar:libs/hamcrest.jar org.junit.runner.JUnitCore it.unica.jpc.tests.TripleTest
+JUnit version 4.12
+....
+Time: 0.005
+
+OK (4 tests)
+
+java -cp .:libs/junit-4.jar:libs/hamcrest.jar org.junit.runner.JUnitCore it.unica.jpc.tests.MovielensTest
+JUnit version 4.12
+...Test #1
+#0: -----------------------
+Partition size: 264
+Mean 0: 2.507575757575758
+---------------------------
+
+
+#1: -----------------------
+Partition size: 264
+Mean 1: 2.753787878787879
+---------------------------
+
+
+#2: -----------------------
+Partition size: 264
+Mean 2: 2.621212121212121
+---------------------------
+
+
+#3: -----------------------
+Partition size: 264
+Mean 3: 2.4886363636363638
+---------------------------
+
+
+#4: -----------------------
+Partition size: 263
+Mean 4: 2.3954372623574143
+---------------------------
+
+
+Statistical data:
+Partition:0	 mean:2.507575757575758  	 variance:0.0020934394181079913
+
+Partition:1	 mean:2.753787878787879  	 variance:0.04018341059548835
+
+Partition:2	 mean:2.621212121212121  	 variance:0.00460799911811526
+
+Partition:3	 mean:2.4886363636363638  	 variance:0.004185250634314314
+
+Partition:4	 mean:2.3954372623574143  	 variance:0.02493007766832827
+
+Average mean:           	2.5533298767139074
+Average variance:       	0.01520003548687084
+Partitions:             	5
+Layers (stratification):	1
+
+
+
+....Test #3
+#0: -----------------------
+Partition size: 133
+Mean 0: 2.6090225563909772
+---------------------------
+
+
+#1: -----------------------
+Partition size: 133
+Mean 1: 2.518796992481203
+---------------------------
+
+
+#2: -----------------------
+Partition size: 132
+Mean 2: 2.7803030303030303
+---------------------------
+
+
+#3: -----------------------
+Partition size: 132
+Mean 3: 2.590909090909091
+---------------------------
+
+
+#4: -----------------------
+Partition size: 132
+Mean 4: 2.515151515151515
+---------------------------
+
+
+#5: -----------------------
+Partition size: 132
+Mean 5: 2.5833333333333335
+---------------------------
+
+
+#6: -----------------------
+Partition size: 132
+Mean 6: 2.5757575757575757
+---------------------------
+
+
+#7: -----------------------
+Partition size: 131
+Mean 7: 2.435114503816794
+---------------------------
+
+
+#8: -----------------------
+Partition size: 131
+Mean 8: 2.3969465648854964
+---------------------------
+
+
+#9: -----------------------
+Partition size: 131
+Mean 9: 2.5267175572519083
+---------------------------
+
+
+Statistical data:
+Partition:0	 mean:2.6090225563909772  	 variance:0.0031155692336471688
+
+Partition:1	 mean:2.518796992481203  	 variance:0.0011839297013768728
+
+Partition:2	 mean:2.7803030303030303  	 variance:0.0515733918135022
+
+Partition:3	 mean:2.590909090909091  	 variance:0.0014215779582111472
+
+Partition:4	 mean:2.515151515151515  	 variance:0.0014480884124216376
+
+Partition:5	 mean:2.5833333333333335  	 variance:9.077000780123757E-4
+
+Partition:6	 mean:2.5757575757575757  	 variance:5.08606403506874E-4
+
+Partition:7	 mean:2.435114503816794  	 variance:0.013945429536734548
+
+Partition:8	 mean:2.3969465648854964  	 variance:0.024416783557875524
+
+Partition:9	 mean:2.5267175572519083  	 variance:7.015990340644734E-4
+
+Average mean:           	2.553205272028092
+Average variance:       	0.009922267572935283
+Partitions:             	10
+Layers (stratification):	3
+
+
+
+.Test #2
+#0: -----------------------
+Partition size: 265
+Mean 0: 2.6641509433962263
+---------------------------
+
+
+#1: -----------------------
+Partition size: 265
+Mean 1: 2.569811320754717
+---------------------------
+
+
+#2: -----------------------
+Partition size: 263
+Mean 2: 2.4980988593155895
+---------------------------
+
+
+#3: -----------------------
+Partition size: 263
+Mean 3: 2.3916349809885933
+---------------------------
+
+
+#4: -----------------------
+Partition size: 263
+Mean 4: 2.6425855513307983
+---------------------------
+
+
+Statistical data:
+Partition:0	 mean:2.6641509433962263  	 variance:0.012297615023647327
+
+Partition:1	 mean:2.569811320754717  	 variance:2.74067680574396E-4
+
+Partition:2	 mean:2.4980988593155895  	 variance:0.0030423466999563976
+
+Partition:3	 mean:2.3916349809885933  	 variance:0.026121460830318535
+
+Partition:4	 mean:2.6425855513307983  	 variance:0.007979709576825887
+
+Average mean:           	2.553256331157185
+Average variance:       	0.009943039962264508
+Partitions:             	5
+Layers (stratification):	3
+
+
+
+
+Time: 0.636
+
+OK (8 tests)
+

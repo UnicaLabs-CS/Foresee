@@ -14,8 +14,8 @@ datasets_path = $(path)/datasets
 
 # Path(s) to clean
 clean_path = $(path)/predictions \
-             $(datasets_path)
-             $(test_path)
+             $(datasets_path) \
+             $(tests_path)
 
 # Path to makefiles (.mk) to be included
 mk_path = makefiles
@@ -59,7 +59,7 @@ $(datasets_path)/Triple.class: $(path)/datasets/Triple.java
 	javac $(datasets_path)/Triple.java
 	
 $(datasets_path)/Dataset.class: $(path)/datasets/Dataset.java $(datasets_path)/Triple.class
-	javac $(datasets_path)/Dataset.java
+	javac $(datasets_path)/Dataset.java -Xlint
 
 $(datasets_path)/Movielens.class: $(datasets_path)/Movielens.java $(datasets_path)/Dataset.class
 	javac $(datasets_path)/Movielens.java
