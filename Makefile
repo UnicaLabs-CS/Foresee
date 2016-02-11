@@ -13,7 +13,8 @@ tests_pack = $(pack).tests
 datasets_path = $(path)/datasets
 
 # Path(s) to clean
-clean_path = $(path)/predictions \
+clean_path = $(path) \
+             $(path)/predictions \
              $(datasets_path) \
              $(tests_path)
 
@@ -43,6 +44,13 @@ test-libs:
 
 # Tests makefile
 include $(mk_path)/tests.mk
+
+# Main
+# ====
+main: $(path)/JPC.class
+
+$(path)/JPC.class:
+	javac $(path)/JPC.java
 
 # Predictions
 # ===========

@@ -156,6 +156,7 @@ public abstract class Dataset
      */
     public abstract void loadDataset(File sourceFile) throws FileNotFoundException;
 
+    /* #TODO: do we need this method?
     /**
      * Gets the test set of a k-fold cross-validation.
      *
@@ -167,11 +168,13 @@ public abstract class Dataset
      *                      {@literal (Precondition: testPercentage >= 0) }
      * @return the elements contained in the test set
      */
+    /*
     public ArrayList<Triple> getTestSet(int layersAmount, double testPecentage)
     {
         //Fill
         return new ArrayList<>();
     }
+    */
 
     /**
      * Gets the partition of the dataset.
