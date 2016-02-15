@@ -27,4 +27,13 @@ public class Tools
     {
         System.out.println("Warning: " + msg);
     }
+
+    /**
+     * Prints a log message.
+     * @param msg the log message
+     */
+    public static void log(String msg)
+    {
+        System.out.println("Log: " + msg);
+    }
 }

@@ -1,7 +1,12 @@
 package it.unica.jpc;
 
+import it.unica.jpc.parsers.Parser;
 import static it.unica.jpc.utils.Tools.err;
+import static it.unica.jpc.utils.Tools.log;
 import static it.unica.jpc.utils.Tools.warn;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 
 /**
  * Main class to run the JPC framework.
@@ -46,6 +51,9 @@ public class JPC
 
         /* Exit status */
         int exitStatus = 0;
+
+        /* The parser for the instructions */
+        Parser p = null;
 
         /* Parsing loop */
         for (int i = 0; i < args.length; i++)
@@ -101,6 +109,7 @@ public class JPC
                 if (verbose == false)
                 {
                     verbose = true;
+                    log("Enabling verbose mode: brace yourself");
                 }
                 else
                 {
@@ -123,14 +132,33 @@ public class JPC
 
             /* Interactive mode */
             case 'i':
-                warn("interactive mode not yet implemented, verbose=" + verbose);
+                if(verbose){log("Loading interactive mode...");}
+                try
+                {
+                    p = new Parser(verbose);
+                    exitStatus = p.parse();
+                }
+                catch (FileNotFoundException e)
+                {
+                    err(e.getMessage());
+                    exitStatus = 1;
+                }
                 break;
 
             /* Path: load instruction files at <path> */
             case 'p':
-                warn("path not yet implemented, path <" +
-                        instructionsPath +
-                        ">, verbose=" + verbose);
+                if(verbose){log("Loading file " + instructionsPath + "...");}
+                try
+                {
+                    File instructionsFile = new File(instructionsPath);
+                    p = new Parser(instructionsFile, verbose);
+                    exitStatus = p.parse();
+                }
+                catch (FileNotFoundException e)
+                {
+                    err("file not found: " + instructionsPath);
+                    exitStatus = 1;
+                }
                 break;
 
             /* No option specified */
