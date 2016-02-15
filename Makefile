@@ -12,16 +12,21 @@ tests_pack = $(pack).tests
 # Path for the dataset
 datasets_path = $(path)/datasets
 
+# Path for the parser
+parsers_path = $(path)/parsers
+
 # Path(s) to clean
 clean_path = $(path) \
+             $(path)/utils \
              $(path)/predictions \
              $(datasets_path) \
+             $(parsers_path) \
              $(tests_path)
 
-# Path to makefiles (.mk) to be included
+# Path of the makefiles (.mk) to be included
 mk_path = makefiles
 
-# Path to jUnit jar file
+# Path of jUnit jar file
 libs_path = libs
 junit = $(libs_path)/junit-4.jar
 hamcrest = $(libs_path)/hamcrest.jar
@@ -49,8 +54,22 @@ include $(mk_path)/tests.mk
 # ====
 main: $(path)/JPC.class
 
-$(path)/JPC.class:
+$(path)/JPC.class: utils
 	javac $(path)/JPC.java
+
+# Utils
+# =====
+utils: $(path)/utils/Tools.class
+
+$(path)/utils/Tools.class:
+	javac $(path)/utils/Tools.java
+
+# Parsers
+# =======
+parsers: $(parsers_path)/Parser.class
+
+$(parsers_path)/Parser.class: datasets utils
+	javac $(parsers_path)/Parser.java
 
 # Predictions
 # ===========

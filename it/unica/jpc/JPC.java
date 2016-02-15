@@ -1,10 +1,14 @@
 package it.unica.jpc;
 
+import static it.unica.jpc.utils.Tools.err;
+import static it.unica.jpc.utils.Tools.warn;
+
 /**
  * Main class to run the JPC framework.
  */
 public class JPC
 {
+
     /**
      * Main function to load the program.
      * @param args command line parameters.
@@ -26,9 +30,10 @@ public class JPC
          *  -   0: no selection
          *  - "!": invalid argument
          */
+        boolean verbose;
 
         /* Flag to enable verbose output */
-        boolean verbose = false;
+        verbose = false;
 
         /* Argument selected */
         char selection = 0;
@@ -145,31 +150,13 @@ public class JPC
     }
 
     /**
-     * Prints an error message.
-     * @param msg the error message
-     */
-    public static void err(String msg)
-    {
-        System.out.println("Error: " + msg);
-    }
-
-    /**
-     * Prints a warning message.
-     * @param msg the warning message
-     */
-    public static void warn(String msg)
-    {
-        System.out.println("Warning: " + msg);
-    }
-
-    /**
      * Prints a useful help message.
      */
     public static void help()
     {
         System.out.println("" +
                 "JPC - Java Predict and Cluster" +
-                "\nA software for clustering and data mining from the University of Cagliari.");
+                "\nA software for clustering and data mining by the University of Cagliari.");
 
         /* Display usage*/
         System.out.println("" +

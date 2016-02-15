@@ -1,4 +1,6 @@
 it.unica.jpc
 it.unica.jpc.datasets
+it.unica.jpc.parsers
 it.unica.jpc.predictions
 it.unica.jpc.tests
+it.unica.jpc.utils
