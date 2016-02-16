@@ -66,10 +66,18 @@ $(path)/utils/Tools.class:
 
 # Parsers
 # =======
-parsers: $(parsers_path)/Parser.class
+parsers: $(parsers_path)/Semantic.class \
+         $(parsers_path)/JPCParser.class \
+         $(parsers_path)/ARTParser.class
 
-$(parsers_path)/Parser.class: datasets utils
-	javac $(parsers_path)/Parser.java
+$(parsers_path)/Semantic.class: $(parsers_path)/Semantic.java
+	javac $(parsers_path)/Semantic.java
+
+$(parsers_path)/JPCParser.class: datasets utils
+	javac $(parsers_path)/JPCParser.java
+
+$(parsers_path)/ARTParser.class: datasets utils $(parsers_path)/JPCParser.class
+	javac $(parsers_path)/ARTParser.java
 
 # Predictions
 # ===========

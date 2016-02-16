@@ -1,0 +1,10 @@
+#Test: NewPearsonTest
+#Date: 05/14/2014
+#--- --- --- --- --- #
+#
+#
+workdir ./EXPERIMENTS
+#forcek 0
+loaddataset bart_dataset.txt
+initsets calculate
+initnetwork calculate newpearson
