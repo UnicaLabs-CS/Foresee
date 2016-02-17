@@ -8,22 +8,73 @@ import static it.unica.jpc.utils.Tools.warn;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.regex.Pattern;
 import java.util.Scanner;
 import java.util.TreeMap;
 
 /**
  * Class to parse the instructions of the program.
+ *
+ * This class represents a simple parser for the instructions of the framework. It can be invoked to execute
+ * an instruction file or to take commands from an interactive shell.
+ * <p>
+ * To make a new parser that checks for a different set of commands it's suggested to extend this class
+ * and override the {@link #loadCommandsSemantic()} method, which is the one responsible for the
+ * binding between commands and semantics and for adding them to the {@link #command} variable.
+ * <p>
+ * Each command is represented as a pair ({@link String}, {@link Semantic}), contained in the command variable.
+ * The String is the command name, which will be looked for by the parser.
+ * The Semantic is an interface containing the method {@link Semantic#exec}, which is the one
+ * that will contain the command instructions.
+ *
+ * The exec function can use the variables declared in the {@link #env} variable,
+ * which is an instance of {@link Env}.
+ * <p>
+ * Follows an example code which uses the above mentioned technique.
+ * <pre>
+ * {@code
+ *  this.command.put("mycommand", new Semantic(){
+ *      public void exec(String args)
+ *      {
+ *          warn("You're now running the " + env.current_command + "command!";
+ *      }
+ *  });
+ * }
+ * </pre>
+ * This example is quite simple but shows everything needed to add a new command.
  */
 public class JPCParser
 {
+    /**
+     * Pattern to check if there's any double quotes in the string.
+     */
+    public final Pattern CHECK_STRING_START = Pattern.compile("[ ]*\".*");
+
+    /**
+     * Pattern to check if there are matching double quotes, in the string.
+     *
+     * Skips escaped quotes (i.e. \").
+     */
+    public final Pattern CHECK_STRING_MATCHING_DELIMITERS = Pattern.compile("[ ]*\".*[^\\\\]\"");
+
+    /**
+     * Pattern to find pieces of strings surrounded by quotes.
+     *
+     * Skips escaped quotes (i.e. \").
+     */
+    public final Pattern FIND_WHOLE_STRING = Pattern.compile("[ ]*\"[^\"[\\\\\"]]*[^\\\\]\"");
+
+
     /**
      * recognized instructions and their semantic
      */
     protected TreeMap<String, Semantic> command;
 
     /**
-     * the environment
+     * the environment of the parser
+     * , see {@link Env}
      */
     protected Env env;
 
@@ -101,7 +152,7 @@ public class JPCParser
     }
 
     /**
-     * Function that creates a binding between each command name
+     * Creates a binding between each command name
      * and its meaning.
      *
      * If you want to extend the recognized grammar, override this function or
@@ -113,7 +164,7 @@ public class JPCParser
 
         // addpersonaldata
         this.command.put("addpersonaldata", new Semantic(){
-            public void exec(Scanner args)
+            public void exec(String[] args)
             {
                 warn("command not yet implemented");
             }
@@ -121,7 +172,7 @@ public class JPCParser
 
         // clustering
         this.command.put("clustering", new Semantic(){
-            public void exec(Scanner args)
+            public void exec(String[] args)
             {
                 warn("command not yet implemented");
             }
@@ -139,21 +190,37 @@ public class JPCParser
              *
              * @param args the command arguments
              */
-            public void exec(Scanner args)
+            public void exec(String[] args)
             {
-                if (args.hasNextInt())
+                switch (args.length)
                 {
-                    env.exit_status = args.nextInt();
+                    case 1:
+                        try
+                        {
+                            env.exit_status = Integer.parseInt(args[0]);
+                        }
+                        catch (NumberFormatException e)
+                        {
+                            warn("argument is not an integer");
+                        }
+                        /* continue to case 0 */
+
+                    case 0:
+                        if(env.verb){log("Calling exit command...");}
+                        env.force_exit = true;
+                        log("Goodbye!");
+                        break;
+
+                    default:
+                        warn("too many arguments");
                 }
-                if(env.verb){log("Calling exit command...");}
-                env.force_exit = true;
-                log("Goodbye!");
+
             }
         });
 
         // forcek
         this.command.put("forcek", new Semantic(){
-            public void exec(Scanner args)
+            public void exec(String[] args)
             {
                 warn("command not yet implemented");
             }
@@ -161,7 +228,7 @@ public class JPCParser
 
         // initcommunities
         this.command.put("initcommunities", new Semantic(){
-            public void exec(Scanner args)
+            public void exec(String[] args)
             {
                 warn("command not yet implemented");
             }
@@ -169,7 +236,7 @@ public class JPCParser
 
         // initmodeling
         this.command.put("initcommunities", new Semantic(){
-            public void exec(Scanner args)
+            public void exec(String[] args)
             {
                 warn("command not yet implemented");
             }
@@ -177,7 +244,7 @@ public class JPCParser
 
         // initsets
         this.command.put("initsets", new Semantic(){
-            public void exec(Scanner args)
+            public void exec(String[] args)
             {
                 warn("command not yet implemented");
             }
@@ -185,7 +252,7 @@ public class JPCParser
 
         // initnetwork
         this.command.put("initnetwork", new Semantic(){
-            public void exec(Scanner args)
+            public void exec(String[] args)
             {
                 warn("command not yet implemented");
             }
@@ -203,41 +270,48 @@ public class JPCParser
              *
              * @param args the command arguments
              */
-            public void exec(Scanner args)
+            public void exec(String[] args)
             {
-                if (args.hasNext())
+                switch (args.length)
                 {
-                    String filePath = args.next();
-                    try
-                    {
-                        File datasetFile = new File(filePath);
-                        env.dataset = new Movielens(datasetFile);
-                        if(env.verb){log("dataset " + filePath + " loaded");}
-                    }
-                    catch (FileNotFoundException e)
-                    {
-                        err("dataset file not found: " + filePath);
-                        env.exit_status = 1;
-                    }
-                    catch (InputMismatchException e)
-                    {
-                        err(e.getMessage() + " in " + filePath);
-                    }
-                    catch (IllegalStateException e)
-                    {
-                        err(e.getMessage() + " in " + filePath);
-                    }
-                }
-                else
-                {
-                    warn("missing operand: <dataset_file>");
+                    case 0:
+                        warn("missing operand: <dataset_file>");
+                        break;
+
+                    case 1:
+                        String filePath = args[0];
+                        try
+                        {
+                            File datasetFile = new File(filePath);
+                            env.dataset = new Movielens(datasetFile);
+                            if(env.verb){log("dataset " + filePath + " loaded");}
+                        }
+                        catch (FileNotFoundException e)
+                        {
+                            err("dataset file not found: " + filePath);
+                            env.exit_status = 1;
+                        }
+                        catch (InputMismatchException e)
+                        {
+                            err(e.getMessage() + " in " + filePath);
+                        }
+                        catch (IllegalStateException e)
+                        {
+                            err(e.getMessage() + " in " + filePath);
+                        }
+                        break;
+
+                    default:
+                        warn("too many arguments");
+                        break;
+
                 }
             }
         });
 
         // personalpredictions
         this.command.put("personalpredictions", new Semantic(){
-            public void exec(Scanner args)
+            public void exec(String[] args)
             {
                 warn("command not yet implemented");
             }
@@ -255,26 +329,29 @@ public class JPCParser
              *
              * @param args the command arguments
              */
-            public void exec(Scanner args)
-            {
-                if (args.hasNext())
-                {
-                    String path = args.next();
+            public void exec(String[] args) {
+                switch (args.length) {
+                    case 0:
+                        warn("missing operand: <directory>");
+                        break;
 
-                    File folder = new File(workdir(path));
-                    if (!folder.exists())
-                    {
-                        warn("folder does not exist: " + path);
-                    }
-                    else
-                    {
-                        env.work_directory = path;
-                        if(env.verb){log("Changed workdir: " + path);}
-                    }
-                }
-                else
-                {
-                    warn("missing operand: <directory>");
+                    case 1:
+                        String path = args[0];
+
+                        File folder = new File(workdir(path));
+                        if (!folder.exists()) {
+                            warn("folder does not exist: " + path);
+                        } else {
+                            env.work_directory = path;
+                            if (env.verb) {
+                                log("Changed workdir: " + path);
+                            }
+                        }
+                        break;
+
+                    default:
+                        warn("too many arguments: " + args[0] + ", " + args[1]);
+                        break;
                 }
             }
         });
@@ -282,7 +359,10 @@ public class JPCParser
     }
 
     /**
-     * Helper class to use the current work directory.
+     * Helper function to use the current work directory.
+     *
+     * If you need a path to be in the work directory, just use {@code workdir(path)} to
+     * retrieve the path relative to the work directory.
      *
      * @param path the path to a file or folder
      * @return a path relative to the current work directory
@@ -293,7 +373,7 @@ public class JPCParser
     }
 
     /**
-     * Parse the given instructions.
+     * Parses the given instructions.
      *
      * @return the exit status
      */
@@ -348,9 +428,9 @@ public class JPCParser
     }
 
     /**
-     * Execute a single instruction.
+     * Executes a single instruction.
      *
-     * @param statement the instruction to execute
+     * @param instruction the instruction to execute
      */
     protected void execute(String instruction)
     {
@@ -364,7 +444,42 @@ public class JPCParser
             if (this.command.containsKey(command))
             {
                 env.current_command = command;
-                this.command.get(command).exec(instructionReader);
+
+                /* Parse arguments */
+                ArrayList<String> args = new ArrayList<>();
+                while (instructionReader.hasNext())
+                {
+                    /*
+                     * Searching strings:
+                     * 1 - Check if there's an open " symbol
+                     * 2 - Check if the " symbols match (i.e. are paired)
+                     * 3 - If those checks are passed take the resulting string as a whole
+                     * 4 - Remove the " symbols from the string
+                     */
+                    /* If token starts with " */
+                    if(instructionReader.hasNext(CHECK_STRING_START))
+                    {
+                        /* and ends with " */
+                        instructionReader.useDelimiter("\n");
+                        if(instructionReader.hasNext(CHECK_STRING_MATCHING_DELIMITERS))
+                        {
+                            /* Take the text within " as a whole argument */
+                            args.add(instructionReader.findInLine(FIND_WHOLE_STRING));
+                        }/* else it's a malformed string */
+                        else
+                        {
+                            warn("missing closing \"");
+                            break;
+                        }
+                        instructionReader.useDelimiter("\\p{javaWhitespace}+");
+                    }/* if there's no " character take it as literal */
+                    else
+                    {
+                        args.add(instructionReader.next());
+                    }
+                }
+                /* Convert the ArrayList to a String array */
+                this.command.get(command).exec(args.toArray(new String[0]));
             }
             else
             {

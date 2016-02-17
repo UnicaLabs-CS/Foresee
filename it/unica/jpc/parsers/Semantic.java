@@ -12,5 +12,5 @@ public interface Semantic
      *
      * @param args options of the command
      */
-    public void exec(Scanner args);
+    public void exec(String[] args);
 }

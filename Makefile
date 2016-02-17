@@ -33,8 +33,7 @@ hamcrest = $(libs_path)/hamcrest.jar
 
 # Generic
 # =======
-all:
-	echo "Work in progress.."
+all: main
 
 clean:
 	for p in $(clean_path); do rm -v $$p/*.class; done;
@@ -52,7 +51,7 @@ include $(mk_path)/tests.mk
 
 # Main
 # ====
-main: $(path)/JPC.class
+main: $(path)/JPC.class parsers
 
 $(path)/JPC.class: utils
 	javac $(path)/JPC.java
