@@ -1,5 +1,5 @@
 # Project name
-proj = jpc
+proj = foresee
 
 # Main path of the project
 path = it/unica/$(proj)
@@ -13,14 +13,14 @@ tests_pack = $(pack).tests
 datasets_path = $(path)/datasets
 
 # Path for the parser
-parsers_path = $(path)/parsers
+interpreters_path = $(path)/interpreters
 
 # Path(s) to clean
 clean_path = $(path) \
              $(path)/utils \
              $(path)/predictions \
              $(datasets_path) \
-             $(parsers_path) \
+             $(interpreters_path) \
              $(tests_path)
 
 # Path of the makefiles (.mk) to be included
@@ -28,8 +28,6 @@ mk_path = makefiles
 
 # Path of jUnit jar file
 libs_path = libs
-junit = $(libs_path)/junit-4.jar
-hamcrest = $(libs_path)/hamcrest.jar
 
 # Generic
 # =======
@@ -51,10 +49,10 @@ include $(mk_path)/tests.mk
 
 # Main
 # ====
-main: $(path)/JPC.class parsers
+main: $(path)/Foresee.class
 
-$(path)/JPC.class: utils
-	javac $(path)/JPC.java
+$(path)/Foresee.class: utils interpreters
+	javac $(path)/Foresee.java
 
 # Utils
 # =====
@@ -63,20 +61,36 @@ utils: $(path)/utils/Tools.class
 $(path)/utils/Tools.class:
 	javac $(path)/utils/Tools.java
 
-# Parsers
-# =======
-parsers: $(parsers_path)/Semantic.class \
-         $(parsers_path)/JPCParser.class \
-         $(parsers_path)/ARTParser.class
+# Interpreters
+# ============
+interpreters: $(interpreters_path)/Env.class \
+         $(interpreters_path)/Semantic.class \
+         $(interpreters_path)/CommandList.class \
+         $(interpreters_path)/Interpreter.class \
+         $(interpreters_path)/FSCommandList.class \
+         $(interpreters_path)/ARTCommandList.class
 
-$(parsers_path)/Semantic.class: $(parsers_path)/Semantic.java
-	javac $(parsers_path)/Semantic.java
+$(interpreters_path)/Env.class:
+	javac $(interpreters_path)/Env.java
 
-$(parsers_path)/JPCParser.class: datasets utils
-	javac $(parsers_path)/JPCParser.java
+$(interpreters_path)/Semantic.class: $(interpreters_path)/Semantic.java
+	javac $(interpreters_path)/Semantic.java
 
-$(parsers_path)/ARTParser.class: datasets utils $(parsers_path)/JPCParser.class
-	javac $(parsers_path)/ARTParser.java
+$(interpreters_path)/Interpreter.class: datasets \
+                                        utils \
+                                        $(interpreters_path)/CommandList.class
+	javac $(interpreters_path)/Interpreter.java
+
+$(interpreters_path)/CommandList.class: $(interpreters_path)/Semantic.class
+	javac $(interpreters_path)/CommandList.java
+
+$(interpreters_path)/ARTCommandList.class: $(interpreters_path)/FSCommandList.class
+	javac $(interpreters_path)/ARTCommandList.java
+
+$(interpreters_path)/FSCommandList.class: datasets \
+                                           utils \
+                                           $(interpreters_path)/Interpreter.class
+	javac $(interpreters_path)/FSCommandList.java
 
 # Predictions
 # ===========

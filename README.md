@@ -1,6 +1,5 @@
-JPC
-===
-Java Predict and Cluster
+Foresee
+=======
 
 This is a Java porting of the original ART C++ framework from the University of
 Cagliari.
@@ -11,7 +10,7 @@ Cagliari.
 |- README.md
 |- .gitignore
 |- .idea/
-|- it/unica/jpc/
+|- it/unica/foresee/
 |   |- predictions
 |   |- tests
 |- docs/
@@ -22,10 +21,11 @@ Cagliari.
 - jUnit 4
 - Movielens dataset
 
-
-## Contributors of the original version
+## Research and improvements
 - Ludovico Boratto <ludovico.boratto@unica.it>
 - Salvatore Carta <salvatore@unica.it>
+
+## Contributors of the original version
 - Mattia Cadeddu <mattia.cadeddu@gmail.com>
 
 ## Java Porting contributor

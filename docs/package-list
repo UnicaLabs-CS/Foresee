@@ -1,6 +1,6 @@
-it.unica.jpc
-it.unica.jpc.datasets
-it.unica.jpc.parsers
-it.unica.jpc.predictions
-it.unica.jpc.tests
-it.unica.jpc.utils
+it.unica.foresee
+it.unica.foresee.datasets
+it.unica.foresee.interpreters
+it.unica.foresee.predictions
+it.unica.foresee.tests
+it.unica.foresee.utils
