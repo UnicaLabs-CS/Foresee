@@ -1,0 +1,3 @@
+Manifest-Version: 0.1
+Created-By: Università degli Studi di Cagliari, dipartimento di Informatica
+Main-Class: it.unica.foresee.Foresee
