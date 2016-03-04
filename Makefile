@@ -5,6 +5,13 @@ proj = foresee
 path = it/unica/$(proj)
 pack = it.unica.$(proj)
 
+paths_list = $(path) \
+             $(path)/utils \
+             $(path)/predictions \
+             $(datasets_path) \
+             $(interpreters_path) \
+             
+
 # Path for the tests
 tests_path = $(path)/tests
 tests_pack = $(pack).tests
@@ -16,12 +23,8 @@ datasets_path = $(path)/datasets
 interpreters_path = $(path)/interpreters
 
 # Path(s) to clean
-clean_path = $(path) \
-             $(path)/utils \
-             $(path)/predictions \
-             $(datasets_path) \
-             $(interpreters_path) \
-             $(tests_path)
+clean_path = $(tests_path) \
+             $(paths_list)
 
 # Path of the makefiles (.mk) to be included
 mk_path = makefiles
@@ -34,10 +37,13 @@ libs_path = libs
 all: main
 
 clean:
-	for p in $(clean_path); do rm -v $$p/*.class; done;
+	for p in $(clean_path); do rm -v $$p/*.class; done; rm $(proj).jar
 
 doc:
 	javadoc -version -author -d docs -subpackages it
+
+jar: main
+	jar -cvfm $(proj).jar Manifest.txt `for p in $(paths_list); do echo $$p/*.class; done;`
 
 # Libraries
 # =========

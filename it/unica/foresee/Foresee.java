@@ -3,6 +3,7 @@ package it.unica.foresee;
 import it.unica.foresee.interpreters.ARTCommandList;
 import it.unica.foresee.interpreters.FSCommandList;
 import it.unica.foresee.interpreters.Interpreter;
+import it.unica.foresee.Settings;
 
 import static it.unica.foresee.utils.Tools.err;
 import static it.unica.foresee.utils.Tools.log;
