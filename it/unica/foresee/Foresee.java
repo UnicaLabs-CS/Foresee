@@ -10,6 +10,7 @@ import static it.unica.foresee.utils.Tools.log;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -39,16 +40,6 @@ public class Foresee
 {
 
     /**
-     * Selection special value for unknown arguments
-     */
-    public final static char INCONSISTENT_STATE = '!';
-
-    /**
-     * Selection default value
-     */
-    public final static char DEFAULT_ARG = 0;
-
-    /**
      * Main function to load the program.
      *
      * @param args command line parameters.
@@ -59,39 +50,10 @@ public class Foresee
         System.exit(exitStatus);
     }
 
-    /**
-     * Actual main method which runs the program.
-     *
-     * @param args command line arguments
-     * @return exit status
-     */
-    public static int mainHelper(String[] args)
+    public static Settings parseArguments(String[] args)
     {
-         /*
-         * Special selections:
-         *  -   0: no selection
-         *  - "!": invalid argument
-         */
-        boolean verbose;
-        boolean legacy;
-
-        /* Instructions file */
-        File instructionsFile;
-
-        /* Flag to enable verbose output */
-        verbose = false;
-
-        /* Flag to enable legacy ART parser */
-        legacy = false;
-
-        /* Argument selected */
-        char selection = DEFAULT_ARG;
-
-        /* Options */
-        String instructionsPath = null;
-
-        /* Exit status */
-        int exitStatus = 0;
+        Settings s = new Settings();
+        boolean modeHasBeenSelected = false;
 
         /* Loop to check arguments */
         for (int i = 0; i < args.length; i++)
@@ -99,135 +61,153 @@ public class Foresee
             /* Help */
             if (args[i].equals("-h")  || args[i].equals("--help"))
             {
-                if (selection == DEFAULT_ARG)
+                if (!modeHasBeenSelected)
                 {
-                    selection = 'h';
+                    modeHasBeenSelected = true;
+                    s.setHelpMode(true);
                 }
                 else
                 {
-                    selection = INCONSISTENT_STATE;
+                    throw new IllegalStateException(args[i]);
                 }
-            }/* Interactive */
+            }/* Interactive shell mode */
             else if (args[i].equals("-i")  || args[i].equals("--interactive"))
             {
-                if (selection == DEFAULT_ARG)
+                if (!modeHasBeenSelected)
                 {
-                    selection = 'i';
+                    modeHasBeenSelected = true;
+                    s.setInteractive(true);
                 }
                 else
                 {
-                    selection = INCONSISTENT_STATE;
+                    throw new IllegalStateException(args[i]);
                 }
             }/* Path */
             else if (args[i].equals("-p")  || args[i].equals("--path"))
             {
-                if (selection == DEFAULT_ARG)
+                if (!modeHasBeenSelected)
                 {
-                    selection = 'p';
+                    modeHasBeenSelected = true;
 
-                    try
+                    /* Look at the following argument */
+                    if (i+1 < args.length)
                     {
                         i++;
-                        instructionsPath = args[i];
+                        s.setInstructionPath(args[i]);
                     }
-                    catch (ArrayIndexOutOfBoundsException e)
+                    else
                     {
                         err("option -p, --path requires <path>");
-                        help();
-                        exitStatus = 1;
-                        selection = INCONSISTENT_STATE;
+                        throw new IllegalStateException(args[i]);
                     }
                 }
                 else
                 {
-                    selection = INCONSISTENT_STATE;
+                    throw new InputMismatchException("argument " + args[i] + "not recognized.");
                 }
             }/* Verbose */
             else if (args[i].equals("-v")  || args[i].equals("--verbose"))
             {
-                if (!verbose)
+                if (!s.isVerbose())
                 {
-                    verbose = true;
+                    s.setVerbose(true);
                     log("Enabling verbose mode: brace yourself");
                 }
                 else
                 {
-                    selection = INCONSISTENT_STATE;
+                    throw new IllegalStateException(args[i]);
                 }
             }/* Legacy mode*/
             else if (args[i].equals("-l")  || args[i].equals("--legacy"))
             {
-                if (!legacy)
+                if (!s.isLegacy())
                 {
-                    legacy = true;
+                    s.setLegacy(true);
                 }
                 else
                 {
-                    selection = INCONSISTENT_STATE;
+                    throw new IllegalStateException(args[i]);
                 }
             }/* The argument is not among those recognized */
             else
             {
-                selection = '!';
-                err("Argument '" + args[i] + "' not recognized");
+                throw new InputMismatchException("argument " + args[i] + " not recognized.");
             }
         }
 
-        /* Execution */
-        switch (selection)
+        return s;
+    }
+
+    /**
+     * Actual main method which runs the program.
+     *
+     * While having this method and the #main() may seem redundant,
+     * this choice is done to make testing the methods of this class easier.
+     *
+     * @param args command line arguments
+     * @return exit status
+     */
+    public static int mainHelper(String[] args)
+    {
+        int exitStatus = 0;
+        /* Obtain the settings for the application */
+        Settings s;
+        try
         {
-            /* Show help */
-            case 'h':
-                help();
-                break;
+            s = parseArguments(args);
+        }
+        catch (IllegalStateException e)
+        {
+            err("Multiple modes selected or missing parameter while parsing argument " + e.getMessage());
+            return 1;
+        }
+        catch (InputMismatchException e)
+        {
+            err(e.getMessage());
+            return 1;
+        }
 
-            /* No option specified */
-            case DEFAULT_ARG:
-                log("no argument specified, defaulting on interactive mode");
 
-            /* Interactive shell mode */
-            case 'i':
-                if(verbose){log("Loading interactive mode...");}
-                exitStatus = loadInterpreter(legacy, verbose, null);
-                break;
+        if (s.isHelpMode())
+        {
+            help();
+            return exitStatus;
+        }
 
-            /* Path: load instruction files at <path> */
-            case 'p':
-                if (instructionsPath != null)
-                {
-                    instructionsFile = new File(instructionsPath);;
-                        /* If the path is a folder make the user
-                        select one file in the folder, otherwise just load the file */
-                    if (instructionsFile.isDirectory())
-                    {
-                        /* Returns null if no file is available */
-                        instructionsFile = askFileToLoad(verbose, instructionsFile);
-                    }
+        if (s.isInteractive())
+        {
+            if(s.isVerbose()){log("Loading interactive mode...");}
+            return loadInterpreter(s.isLegacy(), s.isVerbose(), null);
+        }
+        else if (s.isInstructionPathSet())
+        {
+            File instructionsFile = new File(s.getInstructionPath());
 
-                    /* Check if a file has actually been selected */
-                    if (instructionsFile != null)
-                    {
-                        /* Call the interpreter */
-                        exitStatus = loadInterpreter(legacy, verbose, instructionsFile);
-                    }
-                    else
-                    {
-                        err("Sorry no file found or invalid selection");
-                        exitStatus = 1;
-                    }
-                    break;
-                }
-                else
-                {
-                    throw new IllegalStateException("Instructions path has not been initialized");
-                }
+            /* If the path is a folder make the user
+            select one file in the folder, otherwise just load the file */
+            if (instructionsFile.isDirectory())
+            {
+                /* Returns null if no file is available */
+                instructionsFile = askFileToLoad(s.isVerbose(), instructionsFile);
+            }
 
-            /* Wrong option specified */
-            case INCONSISTENT_STATE:
-                err("incorrect argument specified");
+            /* Check if a file has actually been selected */
+            if (instructionsFile != null)
+            {
+                /* Call the interpreter */
+                exitStatus = loadInterpreter(s.isLegacy(), s.isVerbose(), instructionsFile);
+            }
+            else
+            {
+                err("Sorry no file found or invalid selection");
                 exitStatus = 1;
-                break;
-
+            }
+        }
+        else /* No valid selection has been done */
+        {
+            log("no argument specified, defaulting on interactive mode");
+            if(s.isVerbose()){log("Loading interactive mode...");}
+            return loadInterpreter(s.isLegacy(), s.isVerbose(), null);
         }
 
         return exitStatus;

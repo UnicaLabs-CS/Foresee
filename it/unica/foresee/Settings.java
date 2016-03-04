@@ -5,35 +5,54 @@ package it.unica.foresee;
  */
 public class Settings
 {
-    private boolean commandListSet;
+    /**
+     * Shows an help message.
+     */
+    private boolean helpMode = false;
 
-    private boolean instructionPathSet;
+    /**
+     * Enables the interactive shell mode.
+     */
+    private boolean interactive = false;
 
-    private boolean interactive;
+    /**
+     * Enables the compatibility mode with the legacy ART interpreter.
+     */
+    private boolean legacy = false;
 
-    private boolean legacy;
-
-    private boolean verbose;
+    /**
+     * Enables the verbose mode.
+     */
+    private boolean verbose = false;
 
     /**
      * The name of the commandList to use.
      */
     private String commandList;
 
-
     /**
      * The path to the instruction file.
      */
     private String instructionPath;
 
+    /**
+     * Initializes all the flags to false and #selection to its default value.
+     */
     public Settings(){}
 
+
+    /*----------- Getter -----------*/
+
     public boolean isCommandListSet() {
-        return commandListSet;
+        return commandList != null;
+    }
+
+    public boolean isHelpMode() {
+        return helpMode;
     }
 
     public boolean isInstructionPathSet() {
-        return instructionPathSet;
+        return instructionPath != null;
     }
 
     public boolean isInteractive() {
@@ -56,20 +75,19 @@ public class Settings
         return instructionPath;
     }
 
+
+    /*----------- Setter -----------*/
+
     public void setCommandList(String commandList) {
         this.commandList = commandList;
     }
 
-    public void setCommandListSet(boolean commandListSet) {
-        this.commandListSet = commandListSet;
+    public void setHelpMode(boolean helpMode) {
+        this.helpMode = helpMode;
     }
 
     public void setInstructionPath(String instructionPath) {
         this.instructionPath = instructionPath;
-    }
-
-    public void setInstructionPathSet(boolean instructionPathSet) {
-        this.instructionPathSet = instructionPathSet;
     }
 
     public void setInteractive(boolean interactive) {
@@ -83,4 +101,5 @@ public class Settings
     public void setVerbose(boolean verbose) {
         this.verbose = verbose;
     }
+
 }

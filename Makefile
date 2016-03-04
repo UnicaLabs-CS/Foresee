@@ -57,8 +57,11 @@ include $(mk_path)/tests.mk
 # ====
 main: $(path)/Foresee.class
 
-$(path)/Foresee.class: utils interpreters
+$(path)/Foresee.class: utils interpreters $(path)/Settings.class
 	javac $(path)/Foresee.java
+
+$(path)/Settings.class:
+	javac $(path)/Settings.java
 
 # Utils
 # =====
