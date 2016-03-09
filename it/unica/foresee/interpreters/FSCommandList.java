@@ -157,16 +157,10 @@ public class FSCommandList implements CommandList
         TreeMap<String, Semantic> command = new TreeMap<>();
 
         // addpersonaldata
-        command.put("addpersonaldata", (args, env) -> {
-            warn("command not yet implemented");
-            return env;
-        });
+        command.put("addpersonaldata", this::commandNotYetImplemented);
 
         // clustering
-        command.put("clustering", (args, env) -> {
-            warn("command not yet implemented");
-            return env;
-        });
+        command.put("clustering", this::commandNotYetImplemented);
 
         // exit
         command.put("exit", new Semantic(){
@@ -199,34 +193,19 @@ public class FSCommandList implements CommandList
         });
 
         // forcek
-        command.put("forcek", (args, env) -> {
-            warn("command not yet implemented");
-            return env;
-        });
+        command.put("forcek", this::commandNotYetImplemented);
 
         // initcommunities
-        command.put("initcommunities", (args, env) -> {
-            warn("command not yet implemented");
-            return env;
-        });
+        command.put("initcommunities", this::commandNotYetImplemented);
 
         // initmodeling
-        command.put("initmodeling", (args, env) -> {
-            warn("command not yet implemented");
-            return env;
-        });
+        command.put("initmodeling", this::commandNotYetImplemented);
 
         // initsets
-        command.put("initsets", (args, env) -> {
-            warn("command not yet implemented");
-            return env;
-        });
+        command.put("initsets", this::commandNotYetImplemented);
 
         // initnetwork
-        command.put("initnetwork", (args, env) -> {
-            warn("command not yet implemented");
-            return env;
-        });
+        command.put("initnetwork", this::commandNotYetImplemented);
 
         // loaddataset
         command.put("loaddataset", new Semantic(){
@@ -281,10 +260,7 @@ public class FSCommandList implements CommandList
         });
 
         // personalpredictions
-        command.put("personalpredictions", (args, env) -> {
-            warn("command not yet implemented");
-            return env;
-        });
+        command.put("personalpredictions", this::commandNotYetImplemented);
 
         // workdir
         command.put("workdir", new Semantic(){
@@ -327,5 +303,11 @@ public class FSCommandList implements CommandList
             }
         });
         return command;
+    }
+
+    public Env commandNotYetImplemented(String[] args, Env env)
+    {
+        warn("command not yet implemented");
+        return env;
     }
 }

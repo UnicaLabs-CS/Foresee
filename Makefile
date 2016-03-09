@@ -29,7 +29,7 @@ clean_path = $(tests_path) \
 # Path of the makefiles (.mk) to be included
 mk_path = makefiles
 
-# Path of jUnit jar file
+# Path of the libraries
 libs_path = libs
 
 # Generic
@@ -39,8 +39,17 @@ all: main
 clean:
 	for p in $(clean_path); do rm -v $$p/*.class; done; rm $(proj).jar
 
-doc:
-	javadoc -version -author -d docs -subpackages it
+predoc:
+	echo '<body>' >  README.html; \
+	pandoc README.md --to=HTML5 >> README.html; \
+	echo '</body>' >> README.html;
+	
+
+#-doclet org.umlgraph.markdown.doclet.UmlGraphDoc
+doc: predoc
+	javadoc -docletpath $(libs_path)/md-doclet.jar \
+	-overview README.html \
+	-version -author -d docs -subpackages it
 
 jar: main
 	jar -cvfm $(proj).jar Manifest.txt `for p in $(paths_list); do echo $$p/*.class; done;`

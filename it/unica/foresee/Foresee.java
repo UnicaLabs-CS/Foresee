@@ -6,6 +6,7 @@ import it.unica.foresee.interpreters.Interpreter;
 import it.unica.foresee.Settings;
 
 import static it.unica.foresee.utils.Tools.err;
+import static it.unica.foresee.utils.Tools.warn;
 import static it.unica.foresee.utils.Tools.log;
 
 import java.io.File;
@@ -332,5 +333,18 @@ public class Foresee
                 "\n\nOptions:" +
                 "\n-v, --verbose     \tEnable verbose output." +
                 "\n-l, --legacy      \tEnable the legacy mode, backwards compatible with ART framework.");
+    }
+
+    /**
+     * Loads user settings from a file.
+     *
+     * @param s current settings to update with those in the file
+     * @param f file containing the settings
+     * @return updated settings
+     */
+    public static Settings loadSettingsFile(Settings s, File f)
+    {
+        warn("loadSettingsFile is not yet implemented");
+        return s;
     }
 }

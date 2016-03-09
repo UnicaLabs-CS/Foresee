@@ -1,7 +1,12 @@
 package it.unica.foresee;
 
 /**
- * Created by fabio on 04/03/16.
+ * Core of the framework.
+ *
+ * This class is a sort of manager, responsible for allowing all the other
+ * classes to work together.
  */
-public class Core {
+public class Core
+{
+
 }

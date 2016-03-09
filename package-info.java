@@ -1,7 +1,8 @@
-/**
-* Java Predict and Cluster.
-*
-* @version 0.1
-* @author Fabio Colella
-*/
-package it.unica.jpc;
+ /**
+  * Foresee Framework for Machine Learning
+  * @version 0.2
+  *
+  */
+ package it.unica.foresee;
+
+
