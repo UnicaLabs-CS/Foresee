@@ -1,5 +1,6 @@
 package it.unica.foresee.datasets;
 
+import it.unica.foresee.datasets.interfaces.DataVector;
 import it.unica.foresee.utils.Triple;
 
 /**
@@ -7,7 +8,7 @@ import it.unica.foresee.utils.Triple;
  *
  * @author Fabio Colella
  */
-public class MovieUserRate extends Triple<Integer, Integer, Double> implements Comparable <MovieUserRate>
+public class MovieUserRate extends Triple<Integer, Integer, Double>
 {
     /**
      * Constructs a triple (0, 0, 0.0)

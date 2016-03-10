@@ -1,9 +1,8 @@
 package it.unica.foresee;
 
-import it.unica.foresee.interpreters.ARTCommandList;
-import it.unica.foresee.interpreters.FSCommandList;
-import it.unica.foresee.interpreters.Interpreter;
-import it.unica.foresee.Settings;
+import it.unica.foresee.commandlists.ARTCommandList;
+import it.unica.foresee.commandlists.FSCommandList;
+import it.unica.foresee.core.Interpreter;
 
 import static it.unica.foresee.utils.Tools.err;
 import static it.unica.foresee.utils.Tools.warn;
@@ -11,6 +10,7 @@ import static it.unica.foresee.utils.Tools.log;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -51,12 +51,54 @@ public class Foresee
         System.exit(exitStatus);
     }
 
+    /**
+     * Expands agglomerated arguments into separate arguments.
+     * (e.g. -ivl becomes -i -v -l)
+     *
+     * @param args the application arguments
+     * @return the expanded arguments
+     */
+    public static String[] expandArguments(String[] args)
+    {
+        ArrayList<String> argsList = new ArrayList<>();
+        for (int i = 0; i < args.length; i++)
+        {
+            /* Check if it's a string argument or a char argument with only
+             * two characters (the dash and the char).
+             */
+            if (args[i].startsWith("--") || args[i].length() == 2)
+            {
+                argsList.add(args[i]);
+            }
+            else /* multiple chars aggregated (eg. -ivl) */
+            {
+                /* add the first two characters */
+                argsList.add(args[i].substring(0, 2));
+
+                /* start just after the aforementioned chars */
+                for (int j = 2; j < args[i].length(); j++)
+                {
+                    /* add each character as if it was prefixed by a dash */
+                    argsList.add("-" + args[i].substring(j, 1));
+                }
+            }
+        }
+        return argsList.toArray(args);
+    }
+
+    /**
+     * Parses the application arguments to obtain the
+     * settings for the current run.
+     *
+     * @param args the application arguments
+     * @return the settings for the current run
+     */
     public static Settings parseArguments(String[] args)
     {
         Settings s = new Settings();
         boolean modeHasBeenSelected = false;
 
-        /* Loop to check arguments */
+        /* Loop to parse the arguments */
         for (int i = 0; i < args.length; i++)
         {
             /* Help */
@@ -153,6 +195,8 @@ public class Foresee
         int exitStatus = 0;
         /* Obtain the settings for the application */
         Settings s;
+        /* args like -ivs become -i -v -s */
+        args = expandArguments(args);
         try
         {
             s = parseArguments(args);
@@ -167,7 +211,6 @@ public class Foresee
             err(e.getMessage());
             return 1;
         }
-
 
         if (s.isHelpMode())
         {

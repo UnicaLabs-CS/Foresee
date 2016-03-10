@@ -41,9 +41,9 @@ clean:
 
 # Make the doc inside a body
 predoc:
-	echo '<body>' >  README.html; \
-	pandoc README.md --to=HTML5 >> README.html; \
-	echo '</body>' >> README.html;
+	echo '<body>' >  docs/README.html; \
+	pandoc README.md --to=HTML5 >> docs/README.html; \
+	echo '</body>' >> docs/README.html;
 	
 
 # Generate the documentation

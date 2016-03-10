@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./FileDatasetLoader.html" title="it.unica.foresee.datasets.interfaces.FileDatasetLoader" alt="" coords="15,115,142,159"/>
+<area shape="rect" id="node2_1" href="./Dataset.html" title="it.unica.foresee.datasets.interfaces.Dataset" alt="" coords="177,11,263,55"/>
+<area shape="rect" id="node3_2" href="./DatasetLoader.html" title="it.unica.foresee.datasets.interfaces.DatasetLoader" alt="" coords="26,11,131,55"/>
+<area shape="rect" id="node4_3" href="./DataVector.html" title="it.unica.foresee.datasets.interfaces.DataVector" alt="" coords="308,11,393,55"/>
+</map>

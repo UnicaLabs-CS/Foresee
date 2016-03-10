@@ -9,20 +9,20 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// it.unica.foresee.interpreters.FSCommandList
-	c496 [label=<<table title="it.unica.foresee.interpreters.FSCommandList" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FSCommandList.html">
+	// it.unica.foresee.core.FSCommandList
+	c496 [label=<<table title="it.unica.foresee.core.FSCommandList" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FSCommandList.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> FSCommandList </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// it.unica.foresee.interpreters.CommandList
-	c499 [label=<<table title="it.unica.foresee.interpreters.CommandList" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./CommandList.html">
+	// it.unica.foresee.core.CommandList
+	c499 [label=<<table title="it.unica.foresee.core.CommandList" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./CommandList.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> CommandList </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	//it.unica.foresee.interpreters.FSCommandList implements it.unica.foresee.interpreters.CommandList
+	//it.unica.foresee.core.FSCommandList implements it.unica.foresee.core.CommandList
 	c499:p -> c496:p [dir=back,arrowtail=empty,style=dashed];
 }
 

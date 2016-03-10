@@ -1,9 +1,9 @@
 package it.unica.foresee.tests;
 
-import it.unica.foresee.interpreters.CommandList;
-import it.unica.foresee.interpreters.Env;
-import it.unica.foresee.interpreters.Interpreter;
-import it.unica.foresee.interpreters.Semantic;
+import it.unica.foresee.commandlists.interfaces.CommandList;
+import it.unica.foresee.core.Env;
+import it.unica.foresee.core.Interpreter;
+import it.unica.foresee.commandlists.interfaces.Semantic;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -18,7 +18,7 @@ import org.junit.Test;
 /**
  * Tests the {@link Interpreter} class.
  *
- * Note: this test tests only the Interpreter, to test a specific {@link it.unica.foresee.interpreters.CommandList}
+ * Note: this test tests only the Interpreter, to test a specific {@link CommandList}
  * please refer to the associated CommandList test.
  */
 public class InterpreterTest
