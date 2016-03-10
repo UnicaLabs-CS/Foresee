@@ -48,8 +48,9 @@ predoc:
 
 # Generate the documentation
 doc: predoc
-	javadoc -overview README.html \
-	-stylesheetfile stylesheet.css -docletpath $(libs_path)/md-doclet.jar \
+	javadoc -overview docs/README.html \
+	-stylesheetfile javadoc-style/stylesheet.css \
+	-docletpath javadoc-style/md-doclet.jar \
 	-doclet org.umlgraph.markdown.doclet.UmlGraphDoc \
 	-version -author -d docs -subpackages it
 
