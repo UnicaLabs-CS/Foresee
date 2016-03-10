@@ -1,5 +1,6 @@
 package it.unica.foresee.interpreters;
 
+import java.util.Map;
 import java.util.TreeMap;
 
 /**
@@ -30,7 +31,7 @@ import java.util.TreeMap;
  * </pre>
  * This example is very simple but shows everything needed to add a new command.
  */
-public interface CommandList
+public interface CommandList extends Map<String, Semantic>
 {
     /**
      * Creates a binding between each command name
@@ -38,5 +39,5 @@ public interface CommandList
      *
      * If you want to extend the recognized command list, override this function.
      */
-    TreeMap<String, Semantic> loadCommandsSemantic();
+    CommandList loadCommandsSemantic();
 }

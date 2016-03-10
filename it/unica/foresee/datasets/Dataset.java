@@ -3,7 +3,6 @@ package it.unica.foresee.datasets;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Map;
 import java.util.Random;
 import java.util.TreeMap;
@@ -24,7 +23,7 @@ public abstract class Dataset
      *
      * int user, int movie, int rating
      */
-    protected ArrayList<Triple> dataset;
+    protected ArrayList<MovieUserRate> dataset;
 
     /**
      * Amount of movie rates.
@@ -110,7 +109,7 @@ public abstract class Dataset
 
     /* Methods */
 
-    public ArrayList<Triple> getDataset() {
+    public ArrayList<MovieUserRate> getDataset() {
         return dataset;
     }
 
@@ -169,7 +168,7 @@ public abstract class Dataset
      * @return the elements contained in the test set
      */
     /*
-    public ArrayList<Triple> getTestSet(int layersAmount, double testPecentage)
+    public ArrayList<MovieUserRate> getTestSet(int layersAmount, double testPecentage)
     {
         //Fill
         return new ArrayList<>();
@@ -201,7 +200,7 @@ public abstract class Dataset
         TreeMap <Integer, Integer> ratesPerMovie = new TreeMap<>();
 
         /* Fill the array with the number of rates and update the max amount of rates per movie. */
-        for (Triple item : dataset)
+        for (MovieUserRate item : dataset)
         {
             /* Increment the value if already present */
             if (ratesPerMovie.containsKey(item.getSnd()))

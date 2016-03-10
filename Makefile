@@ -39,16 +39,18 @@ all: main
 clean:
 	for p in $(clean_path); do rm -v $$p/*.class; done; rm $(proj).jar
 
+# Make the doc inside a body
 predoc:
 	echo '<body>' >  README.html; \
 	pandoc README.md --to=HTML5 >> README.html; \
 	echo '</body>' >> README.html;
 	
 
-#-doclet org.umlgraph.markdown.doclet.UmlGraphDoc
+# Generate the documentation
 doc: predoc
-	javadoc -docletpath $(libs_path)/md-doclet.jar \
-	-overview README.html \
+	javadoc -overview README.html \
+	-stylesheetfile stylesheet.css -docletpath $(libs_path)/md-doclet.jar \
+	-doclet org.umlgraph.markdown.doclet.UmlGraphDoc \
 	-version -author -d docs -subpackages it
 
 jar: main
@@ -117,14 +119,14 @@ prediction: $(path)/predictions/Prediction.java
 
 # Datasets
 # ========
-datasets: $(datasets_path)/Triple.class \
+datasets: $(datasets_path)/MovieUserRate.class \
           $(datasets_path)/Dataset.class \
           $(datasets_path)/Movielens.class
 
-$(datasets_path)/Triple.class: $(path)/datasets/Triple.java
-	javac $(datasets_path)/Triple.java
+$(datasets_path)/MovieUserRate.class: $(path)/datasets/MovieUserRate.java
+	javac $(datasets_path)/MovieUserRate.java
 	
-$(datasets_path)/Dataset.class: $(path)/datasets/Dataset.java $(datasets_path)/Triple.class
+$(datasets_path)/Dataset.class: $(path)/datasets/Dataset.java $(datasets_path)/MovieUserRate.class
 	javac $(datasets_path)/Dataset.java -Xlint
 
 $(datasets_path)/Movielens.class: $(datasets_path)/Movielens.java $(datasets_path)/Dataset.class

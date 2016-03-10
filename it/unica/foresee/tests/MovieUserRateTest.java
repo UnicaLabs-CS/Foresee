@@ -1,17 +1,18 @@
 package it.unica.foresee.tests;
 
-import it.unica.foresee.datasets.Triple;
+import it.unica.foresee.datasets.MovieUserRate;
+
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 /**
- * Tests the Triple class.
+ * Tests the MovieUserRate class.
  *
  * @author: Fabio Colella
  */
-public class TripleTest 
+public class MovieUserRateTest
 {
 
     protected int a;
@@ -24,7 +25,7 @@ public class TripleTest
 	@Test
     public void testNotNull()
     {
-        assertNotNull("Should not be null.", new Triple(9, 3, 5.1));
+        assertNotNull("Should not be null.", new MovieUserRate(9, 3, 5.1));
     }
 
     /**
@@ -33,9 +34,9 @@ public class TripleTest
     @Test
     public void testOrder()
     {
-    	Triple t1 = new Triple(9, 3, 5.1);
-    	Triple t2 = new Triple(9, 4, 5.1);
-    	Triple t3 = new Triple(10, 3, 5.1);
+    	MovieUserRate t1 = new MovieUserRate(9, 3, 5.1);
+    	MovieUserRate t2 = new MovieUserRate(9, 4, 5.1);
+    	MovieUserRate t3 = new MovieUserRate(10, 3, 5.1);
     	
     	assertTrue("Triples with greater first number come first.", t3.compareTo(t2) > 0);
     	assertTrue("Triples with even first number but greater second number come first.", t2.compareTo(t1) > 0);
@@ -47,8 +48,8 @@ public class TripleTest
     @Test
     public void testEquality()
     {
-    	Triple t1 = new Triple(9, 3, 5.1);
-    	Triple t2 = new Triple(9, 3, 5.1);
+    	MovieUserRate t1 = new MovieUserRate(9, 3, 5.1);
+    	MovieUserRate t2 = new MovieUserRate(9, 3, 5.1);
     	assertEquals("Two triples with the same elements should be equal.", t1, t2);
     }
 
@@ -58,7 +59,7 @@ public class TripleTest
     @Test
     public void testString()
     {
-    	Triple t1 = new Triple(9, 3, 5.1);
+    	MovieUserRate t1 = new MovieUserRate(9, 3, 5.1);
     	assertEquals("The method toString() should produce an output formatted "
     	+ "in this way: fst::snd::trd.", t1.toString(), "9::3::5.1");	
     }

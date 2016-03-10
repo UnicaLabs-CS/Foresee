@@ -21,8 +21,8 @@ digraph G {
 <tr><td align="center" balign="center"> MovieRatesAmountPair </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// it.unica.foresee.datasets.Triple
-	c23 [label=<<table title="it.unica.foresee.datasets.Triple" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Triple.html">
+	// it.unica.foresee.datasets.MovieUserRate
+	c23 [label=<<table title="it.unica.foresee.datasets.MovieUserRate" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Triple.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Triple </td></tr>
 		</table></td></tr>

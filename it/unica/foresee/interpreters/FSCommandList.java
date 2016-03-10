@@ -12,8 +12,10 @@ import java.util.TreeMap;
 
 /**
  * List of commands for the interpreter and their semantic.
- * <p>
+ *
+ *
  * Follows a list of the available commands in alphabetical order:
+ *
  * <ul>
  *     <li>
  *       <p>

@@ -125,7 +125,7 @@ public class Movielens extends Dataset
 
             dRating = (double) rating;
 
-            Triple t = new Triple(userID, movieID, dRating);
+            MovieUserRate t = new MovieUserRate(userID, movieID, dRating);
 
             this.dataset.add(t);
             this.usersSet.add(userID);

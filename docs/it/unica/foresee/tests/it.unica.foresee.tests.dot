@@ -27,8 +27,8 @@ digraph G {
 <tr><td align="center" balign="center"> InterpreterTest </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// it.unica.foresee.tests.TripleTest
-	c92 [label=<<table title="it.unica.foresee.tests.TripleTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./TripleTest.html">
+	// it.unica.foresee.tests.MovieUserRateTest
+	c92 [label=<<table title="it.unica.foresee.tests.MovieUserRateTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./TripleTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> TripleTest </td></tr>
 		</table></td></tr>
