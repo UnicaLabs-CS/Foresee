@@ -1,8 +1,13 @@
 Foresee
 =======
+*This is a Java porting of the original ART C++ framework from the University of Cagliari.*
 
-This is a Java porting of the original ART C++ framework from the University of
-Cagliari.
+This project is a modular machine learning framework, developed
+by the University of Cagliari.
+
+The project aims at reusability and extensibility of the code,
+allowing third parties to add new functionalities, yet offering
+a selected set of builting functionalities of wide use.
 
 ## Structure
 
@@ -24,7 +29,7 @@ Cagliari.
 ```
 
 ## Requirements
-- Java JDK (Tested on Oracle Java8)
+- Java JDK (Tested on Oracle Java 8)
 - Movielens dataset
 
 ## Research and improvements
