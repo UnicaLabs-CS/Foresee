@@ -10,30 +10,30 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// it.unica.foresee.datasets.Dataset
-	c64 [label=<<table title="it.unica.foresee.datasets.Dataset" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Dataset.html">
+	c73 [label=<<table title="it.unica.foresee.datasets.Dataset" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Dataset.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> Dataset </font></td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.Dataset.MovieRatesAmountPair
-	c65 [label=<<table title="it.unica.foresee.datasets.Dataset.MovieRatesAmountPair" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Dataset.MovieRatesAmountPair.html">
+	c74 [label=<<table title="it.unica.foresee.datasets.Dataset.MovieRatesAmountPair" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Dataset.MovieRatesAmountPair.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MovieRatesAmountPair </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.MovieUserRate
-	c66 [label=<<table title="it.unica.foresee.datasets.MovieUserRate" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MovieUserRate.html">
+	c75 [label=<<table title="it.unica.foresee.datasets.MovieUserRate" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MovieUserRate.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MovieUserRate </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.Movielens
-	c67 [label=<<table title="it.unica.foresee.datasets.Movielens" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Movielens.html">
+	c76 [label=<<table title="it.unica.foresee.datasets.Movielens" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Movielens.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Movielens </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//it.unica.foresee.datasets.Movielens extends it.unica.foresee.datasets.Dataset
-	c64:p -> c67:p [dir=back,arrowtail=empty];
+	c73:p -> c76:p [dir=back,arrowtail=empty];
 }
 

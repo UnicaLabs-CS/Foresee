@@ -1,3 +1,5 @@
 *~
 *.class
 foresee.jar
+makefiles/autogen/*.mk
+Makefile

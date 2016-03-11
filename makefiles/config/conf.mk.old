@@ -32,6 +32,9 @@ mk_path = makefiles
 # Path of the libraries
 libs_path = libs
 
+# Path of the test libraries
+test_libs_path = test-libs
+
 # Generic
 # =======
 all: main
@@ -39,7 +42,7 @@ all: main
 clean:
 	for p in $(clean_path); do rm -v $$p/*.class; done; rm $(proj).jar
 
-# Make the doc inside a body
+# Make the readme inside a body tag
 predoc:
 	echo '<body>' >  docs/README.html; \
 	pandoc README.md --to=HTML5 >> docs/README.html; \
@@ -59,11 +62,11 @@ jar: main
 
 # Libraries
 # =========
-test-libs:
-	cd $(libs_path); make test-libs
+testlibs:
+	cd $(test_libs_path); make all
 
-# Tests makefile
-include $(mk_path)/tests.mk
+libs:
+	cd $(libs_path); make all
 
 # Main
 # ====

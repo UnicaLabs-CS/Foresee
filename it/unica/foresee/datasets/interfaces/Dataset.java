@@ -10,5 +10,5 @@ public interface Dataset extends Iterable<Dataset>
      * @param index the index of the vector
      * @return the requested vector
      */
-    DataVector getDataVector(int index);
+    DatasetVector getDataVector(int index);
 }

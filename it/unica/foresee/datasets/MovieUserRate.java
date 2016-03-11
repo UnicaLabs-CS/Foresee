@@ -1,6 +1,5 @@
 package it.unica.foresee.datasets;
 
-import it.unica.foresee.datasets.interfaces.DataVector;
 import it.unica.foresee.utils.Triple;
 
 /**

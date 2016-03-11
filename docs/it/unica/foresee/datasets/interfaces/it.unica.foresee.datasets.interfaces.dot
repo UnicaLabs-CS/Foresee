@@ -9,35 +9,49 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
+	// it.unica.foresee.datasets.interfaces.DatasetVector
+	c35 [label=<<table title="it.unica.foresee.datasets.interfaces.DatasetVector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatasetVector.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> DatasetVector </td></tr>
+		</table></td></tr>
+		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// it.unica.foresee.datasets.interfaces.DatasetElement
+	c36 [label=<<table title="it.unica.foresee.datasets.interfaces.DatasetElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatasetElement.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> DatasetElement </td></tr>
+		</table></td></tr>
+		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.interfaces.FileDatasetLoader
-	c31 [label=<<table title="it.unica.foresee.datasets.interfaces.FileDatasetLoader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FileDatasetLoader.html">
+	c37 [label=<<table title="it.unica.foresee.datasets.interfaces.FileDatasetLoader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FileDatasetLoader.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> FileDatasetLoader </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// it.unica.foresee.datasets.interfaces.SolutionElement<T>
+	c38 [label=<<table title="it.unica.foresee.datasets.interfaces.SolutionElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SolutionElement.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> SolutionElement&lt;T&gt; </td></tr>
+		</table></td></tr>
+		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.interfaces.Dataset
-	c32 [label=<<table title="it.unica.foresee.datasets.interfaces.Dataset" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Dataset.html">
+	c39 [label=<<table title="it.unica.foresee.datasets.interfaces.Dataset" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Dataset.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Dataset </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.interfaces.DatasetLoader
-	c33 [label=<<table title="it.unica.foresee.datasets.interfaces.DatasetLoader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatasetLoader.html">
+	c40 [label=<<table title="it.unica.foresee.datasets.interfaces.DatasetLoader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatasetLoader.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> DatasetLoader </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// it.unica.foresee.datasets.interfaces.DataVector
-	c34 [label=<<table title="it.unica.foresee.datasets.interfaces.DataVector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DataVector.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> DataVector </td></tr>
-		</table></td></tr>
-		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//it.unica.foresee.datasets.interfaces.FileDatasetLoader implements it.unica.foresee.datasets.interfaces.DatasetLoader
-	c33:p -> c31:p [dir=back,arrowtail=empty,style=dashed];
+	c40:p -> c37:p [dir=back,arrowtail=empty,style=dashed];
 }
 

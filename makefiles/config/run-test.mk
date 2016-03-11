@@ -1,12 +1,3 @@
-# Tests Compiling
-# ===============
-
-# Libs
-# ====
-junit = $(libs_path)/junit-4.jar
-hamcrest = $(libs_path)/hamcrest.jar
-system_rules = $(libs_path)/system-rules.jar
-
 # Running commands
 # ================
 run_junit_test = java -cp .:$(junit):$(hamcrest) org.junit.runner.JUnitCore
@@ -63,4 +54,3 @@ run-ForeseeTest: $(tests_path)/ForeseeTest.class
 
 run-InterpreterTest: $(tests_path)/InterpreterTest.class
 	$(run_junit_test) $(tests_pack).InterpreterTest
-
