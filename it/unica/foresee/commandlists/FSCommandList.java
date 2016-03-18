@@ -3,7 +3,8 @@ package it.unica.foresee.commandlists;
 import it.unica.foresee.commandlists.interfaces.CommandList;
 import it.unica.foresee.commandlists.interfaces.Semantic;
 import it.unica.foresee.core.Env;
-import it.unica.foresee.datasets.Movielens;
+import it.unica.foresee.datasets.*;
+
 import static it.unica.foresee.utils.Tools.err;
 import static it.unica.foresee.utils.Tools.log;
 import static it.unica.foresee.utils.Tools.warn;
@@ -149,26 +150,22 @@ import java.util.TreeMap;
  * </ul>
  *
  */
-public class FSCommandList implements CommandList
+public class FSCommandList extends TreeMap<String, Semantic> implements CommandList
 {
-
     /**
      * Initialize the commands.
      */
-    public TreeMap<String, Semantic> loadCommandsSemantic()
+    public CommandList loadCommandsSemantic()
     {
 
-        /* command list */
-        TreeMap<String, Semantic> command = new TreeMap<>();
-
         // addpersonaldata
-        command.put("addpersonaldata", this::commandNotYetImplemented);
+        this.put("addpersonaldata", this::commandNotYetImplemented);
 
         // clustering
-        command.put("clustering", this::commandNotYetImplemented);
+        this.put("clustering", this::commandNotYetImplemented);
 
         // exit
-        command.put("exit", new Semantic(){
+        this.put("exit", new Semantic(){
             public Env exec(String[] args, Env env)
             {
                 switch (args.length)
@@ -185,7 +182,7 @@ public class FSCommandList implements CommandList
                         /* continue to case 0 */
 
                     case 0:
-                        if(env.verb){log("Calling exit command...");}
+                        if(env.verb){log("Calling exit this...");}
                         env.force_exit = true;
                         log("Goodbye!");
                         break;
@@ -198,22 +195,22 @@ public class FSCommandList implements CommandList
         });
 
         // forcek
-        command.put("forcek", this::commandNotYetImplemented);
+        this.put("forcek", this::commandNotYetImplemented);
 
         // initcommunities
-        command.put("initcommunities", this::commandNotYetImplemented);
+        this.put("initcommunities", this::commandNotYetImplemented);
 
         // initmodeling
-        command.put("initmodeling", this::commandNotYetImplemented);
+        this.put("initmodeling", this::commandNotYetImplemented);
 
         // initsets
-        command.put("initsets", this::commandNotYetImplemented);
+        this.put("initsets", this::commandNotYetImplemented);
 
         // initnetwork
-        command.put("initnetwork", this::commandNotYetImplemented);
+        this.put("initnetwork", this::commandNotYetImplemented);
 
         // loaddataset
-        command.put("loaddataset", new Semantic(){
+        this.put("loaddataset", new Semantic(){
             /**
              * Command to load a dataset.
              *
@@ -237,7 +234,7 @@ public class FSCommandList implements CommandList
                         try
                         {
                             File datasetFile = new File(filePath);
-                            env.dataset = new Movielens(datasetFile);
+                            env.dataset = (new FileDatasetLoader(datasetFile)).loadDataset();
                             if(env.verb){log("dataset " + filePath + " loaded");}
                         }
                         catch (FileNotFoundException e)
@@ -265,10 +262,10 @@ public class FSCommandList implements CommandList
         });
 
         // personalpredictions
-        command.put("personalpredictions", this::commandNotYetImplemented);
+        this.put("personalpredictions", this::commandNotYetImplemented);
 
         // workdir
-        command.put("workdir", new Semantic(){
+        this.put("workdir", new Semantic(){
             /**
              * Command to change the current working directory.
              *
@@ -307,7 +304,7 @@ public class FSCommandList implements CommandList
                 return env;
             }
         });
-        return command;
+        return this;
     }
 
     public Env commandNotYetImplemented(String[] args, Env env)

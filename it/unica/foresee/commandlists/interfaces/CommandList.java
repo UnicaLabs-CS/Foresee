@@ -4,6 +4,7 @@ import it.unica.foresee.core.Env;
 import it.unica.foresee.core.Interpreter;
 
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Interface to implement a list of commands to be used by an {@link Interpreter}.

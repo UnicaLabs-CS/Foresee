@@ -28,15 +28,21 @@ public class FileDatasetLoader<T extends Dataset> implements it.unica.foresee.da
      * @param separator symbol separating the files
      * @param datasetFile file containing the dataset
      */
-    public FileDatasetLoader(String separator, File datasetFile)
+    public FileDatasetLoader(File datasetFile, String separator)
     {
         this.separator = separator;
         this.datasetFile = datasetFile;
     }
 
+    public FileDatasetLoader(File datasetFile)
+    {
+        this.separator = ",";
+        this.datasetFile = datasetFile;
+    }
+
     public FileDatasetLoader()
     {
-        String defaultSeparator = ",";
+        this.separator = ",";
         this.datasetFile = null;
     }
 

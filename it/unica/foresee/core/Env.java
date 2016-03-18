@@ -1,6 +1,6 @@
 package it.unica.foresee.core;
 
-import it.unica.foresee.datasets.Dataset;
+import it.unica.foresee.datasets.interfaces.Dataset;
 
 /**
  * Represents the environment.

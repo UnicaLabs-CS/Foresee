@@ -73,7 +73,7 @@ public class Interpreter
     /**
      * recognized instructions and their semantic
      */
-    protected TreeMap<String, Semantic> command;
+    protected CommandList command;
 
     /**
      * the environment of the parser
