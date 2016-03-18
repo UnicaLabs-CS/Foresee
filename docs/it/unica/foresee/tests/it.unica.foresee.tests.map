@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./MovieUserRateTest.html" title="it.unica.foresee.tests.MovieUserRateTest" alt="" coords="15,16,153,43"/>
+<area shape="rect" id="node2_1" href="./MovielensTest.html" title="it.unica.foresee.tests.MovielensTest" alt="" coords="198,16,303,43"/>
+<area shape="rect" id="node3_2" href="./ForeseeTest.html" title="it.unica.foresee.tests.ForeseeTest" alt="" coords="349,16,443,43"/>
+<area shape="rect" id="node4_3" href="./InterpreterTest.html" title="it.unica.foresee.tests.InterpreterTest" alt="" coords="489,16,594,43"/>
+<area shape="rect" id="node5_4" href="./PredictionTest.html" title="it.unica.foresee.tests.PredictionTest" alt="" coords="640,16,744,43"/>
+</map>

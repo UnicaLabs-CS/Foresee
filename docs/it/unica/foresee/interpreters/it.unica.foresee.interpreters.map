@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./FSCommandList.html" title="it.unica.foresee.core.FSCommandList" alt="" coords="19,120,138,147"/>
+<area shape="rect" id="node6_1" href="./ARTCommandList.html" title="it.unica.foresee.core.ARTCommandList" alt="" coords="15,216,143,243"/>
+<area shape="rect" id="node2_2" href="./Semantic.html" title="it.unica.foresee.core.Semantic" alt="" coords="175,11,260,55"/>
+<area shape="rect" id="node3_3" href="./Interpreter.html" title="it.unica.foresee.core.Interpreter" alt="" coords="305,20,385,47"/>
+<area shape="rect" id="node4_4" href="./CommandList.html" title="it.unica.foresee.core.CommandList" alt="" coords="28,11,129,55"/>
+<area shape="rect" id="node5_5" href="./Env.html" title="it.unica.foresee.core.Env" alt="" coords="434,20,478,47"/>
+</map>

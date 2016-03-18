@@ -1,14 +1,17 @@
 package it.unica.foresee;
 
-import it.unica.foresee.interpreters.ARTCommandList;
-import it.unica.foresee.interpreters.FSCommandList;
-import it.unica.foresee.interpreters.Interpreter;
+import it.unica.foresee.commandlists.ARTCommandList;
+import it.unica.foresee.commandlists.FSCommandList;
+import it.unica.foresee.core.Interpreter;
 
 import static it.unica.foresee.utils.Tools.err;
+import static it.unica.foresee.utils.Tools.warn;
 import static it.unica.foresee.utils.Tools.log;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -38,16 +41,6 @@ public class Foresee
 {
 
     /**
-     * Selection special value for unknown arguments
-     */
-    public final static char INCONSISTENT_STATE = '!';
-
-    /**
-     * Selection default value
-     */
-    public final static char DEFAULT_ARG = 0;
-
-    /**
      * Main function to load the program.
      *
      * @param args command line parameters.
@@ -59,174 +52,206 @@ public class Foresee
     }
 
     /**
+     * Expands agglomerated arguments into separate arguments.
+     * (e.g. -ivl becomes -i -v -l)
+     *
+     * @param args the application arguments
+     * @return the expanded arguments
+     */
+    public static String[] expandArguments(String[] args)
+    {
+        ArrayList<String> argsList = new ArrayList<>();
+        for (int i = 0; i < args.length; i++)
+        {
+            /* Check if it's a string argument or a char argument with only
+             * two characters (the dash and the char).
+             */
+            if (args[i].startsWith("--") || args[i].length() == 2)
+            {
+                argsList.add(args[i]);
+            }
+            else /* multiple chars aggregated (eg. -ivl) */
+            {
+                /* add the first two characters */
+                argsList.add(args[i].substring(0, 2));
+
+                /* start just after the aforementioned chars */
+                for (int j = 2; j < args[i].length(); j++)
+                {
+                    /* add each character as if it was prefixed by a dash */
+                    argsList.add("-" + args[i].substring(j, 1));
+                }
+            }
+        }
+        return argsList.toArray(args);
+    }
+
+    /**
+     * Parses the application arguments to obtain the
+     * settings for the current run.
+     *
+     * @param args the application arguments
+     * @return the settings for the current run
+     */
+    public static Settings parseArguments(String[] args)
+    {
+        Settings s = new Settings();
+        boolean modeHasBeenSelected = false;
+
+        /* Loop to parse the arguments */
+        for (int i = 0; i < args.length; i++)
+        {
+            /* Help */
+            if (args[i].equals("-h")  || args[i].equals("--help"))
+            {
+                if (!modeHasBeenSelected)
+                {
+                    modeHasBeenSelected = true;
+                    s.setHelpMode(true);
+                }
+                else
+                {
+                    throw new IllegalStateException(args[i]);
+                }
+            }/* Interactive shell mode */
+            else if (args[i].equals("-i")  || args[i].equals("--interactive"))
+            {
+                if (!modeHasBeenSelected)
+                {
+                    modeHasBeenSelected = true;
+                    s.setInteractive(true);
+                }
+                else
+                {
+                    throw new IllegalStateException(args[i]);
+                }
+            }/* Path */
+            else if (args[i].equals("-p")  || args[i].equals("--path"))
+            {
+                if (!modeHasBeenSelected)
+                {
+                    modeHasBeenSelected = true;
+
+                    /* Look at the following argument */
+                    if (i+1 < args.length)
+                    {
+                        i++;
+                        s.setInstructionPath(args[i]);
+                    }
+                    else
+                    {
+                        err("option -p, --path requires <path>");
+                        throw new IllegalStateException(args[i]);
+                    }
+                }
+                else
+                {
+                    throw new InputMismatchException("argument " + args[i] + "not recognized.");
+                }
+            }/* Verbose */
+            else if (args[i].equals("-v")  || args[i].equals("--verbose"))
+            {
+                if (!s.isVerbose())
+                {
+                    s.setVerbose(true);
+                    log("Enabling verbose mode: brace yourself");
+                }
+                else
+                {
+                    throw new IllegalStateException(args[i]);
+                }
+            }/* Legacy mode*/
+            else if (args[i].equals("-l")  || args[i].equals("--legacy"))
+            {
+                if (!s.isLegacy())
+                {
+                    s.setLegacy(true);
+                }
+                else
+                {
+                    throw new IllegalStateException(args[i]);
+                }
+            }/* The argument is not among those recognized */
+            else
+            {
+                throw new InputMismatchException("argument " + args[i] + " not recognized.");
+            }
+        }
+
+        return s;
+    }
+
+    /**
      * Actual main method which runs the program.
+     *
+     * While having this method and the #main() may seem redundant,
+     * this choice is done to make testing the methods of this class easier.
      *
      * @param args command line arguments
      * @return exit status
      */
     public static int mainHelper(String[] args)
     {
-         /*
-         * Special selections:
-         *  -   0: no selection
-         *  - "!": invalid argument
-         */
-        boolean verbose;
-        boolean legacy;
-
-        /* Instructions file */
-        File instructionsFile;
-
-        /* Flag to enable verbose output */
-        verbose = false;
-
-        /* Flag to enable legacy ART parser */
-        legacy = false;
-
-        /* Argument selected */
-        char selection = DEFAULT_ARG;
-
-        /* Options */
-        String instructionsPath = null;
-
-        /* Exit status */
         int exitStatus = 0;
-
-        /* Loop to check arguments */
-        for (int i = 0; i < args.length; i++)
+        /* Obtain the settings for the application */
+        Settings s;
+        /* args like -ivs become -i -v -s */
+        args = expandArguments(args);
+        try
         {
-            /* Help */
-            if (args[i].equals("-h")  || args[i].equals("--help"))
-            {
-                if (selection == DEFAULT_ARG)
-                {
-                    selection = 'h';
-                }
-                else
-                {
-                    selection = INCONSISTENT_STATE;
-                }
-            }/* Interactive */
-            else if (args[i].equals("-i")  || args[i].equals("--interactive"))
-            {
-                if (selection == DEFAULT_ARG)
-                {
-                    selection = 'i';
-                }
-                else
-                {
-                    selection = INCONSISTENT_STATE;
-                }
-            }/* Path */
-            else if (args[i].equals("-p")  || args[i].equals("--path"))
-            {
-                if (selection == DEFAULT_ARG)
-                {
-                    selection = 'p';
-
-                    try
-                    {
-                        i++;
-                        instructionsPath = args[i];
-                    }
-                    catch (ArrayIndexOutOfBoundsException e)
-                    {
-                        err("option -p, --path requires <path>");
-                        help();
-                        exitStatus = 1;
-                        selection = INCONSISTENT_STATE;
-                    }
-                }
-                else
-                {
-                    selection = INCONSISTENT_STATE;
-                }
-            }/* Verbose */
-            else if (args[i].equals("-v")  || args[i].equals("--verbose"))
-            {
-                if (!verbose)
-                {
-                    verbose = true;
-                    log("Enabling verbose mode: brace yourself");
-                }
-                else
-                {
-                    selection = INCONSISTENT_STATE;
-                }
-            }/* Legacy mode*/
-            else if (args[i].equals("-l")  || args[i].equals("--legacy"))
-            {
-                if (!legacy)
-                {
-                    legacy = true;
-                }
-                else
-                {
-                    selection = INCONSISTENT_STATE;
-                }
-            }/* The argument is not among those recognized */
-            else
-            {
-                selection = '!';
-                err("Argument '" + args[i] + "' not recognized");
-            }
+            s = parseArguments(args);
+        }
+        catch (IllegalStateException e)
+        {
+            err("Multiple modes selected or missing parameter while parsing argument " + e.getMessage());
+            return 1;
+        }
+        catch (InputMismatchException e)
+        {
+            err(e.getMessage());
+            return 1;
         }
 
-        /* Execution */
-        switch (selection)
+        if (s.isHelpMode())
         {
-            /* Show help */
-            case 'h':
-                help();
-                break;
+            help();
+            return exitStatus;
+        }
 
-            /* No option specified */
-            case DEFAULT_ARG:
-                log("no argument specified, defaulting on interactive mode");
+        if (s.isInteractive())
+        {
+            if(s.isVerbose()){log("Loading interactive mode...");}
+            return loadInterpreter(s.isLegacy(), s.isVerbose(), null);
+        }
+        else if (s.isInstructionPathSet())
+        {
+            File instructionsFile = new File(s.getInstructionPath());
 
-            /* Interactive shell mode */
-            case 'i':
-                if(verbose){log("Loading interactive mode...");}
-                exitStatus = loadInterpreter(legacy, verbose, null);
-                break;
+            /* If the path is a folder make the user
+            select one file in the folder, otherwise just load the file */
+            if (instructionsFile.isDirectory())
+            {
+                /* Returns null if no file is available */
+                instructionsFile = askFileToLoad(s.isVerbose(), instructionsFile);
+            }
 
-            /* Path: load instruction files at <path> */
-            case 'p':
-                if (instructionsPath != null)
-                {
-                    instructionsFile = new File(instructionsPath);;
-                        /* If the path is a folder make the user
-                        select one file in the folder, otherwise just load the file */
-                    if (instructionsFile.isDirectory())
-                    {
-                        /* Returns null if no file is available */
-                        instructionsFile = askFileToLoad(verbose, instructionsFile);
-                    }
-
-                    /* Check if a file has actually been selected */
-                    if (instructionsFile != null)
-                    {
-                        /* Call the interpreter */
-                        exitStatus = loadInterpreter(legacy, verbose, instructionsFile);
-                    }
-                    else
-                    {
-                        err("Sorry no file found or invalid selection");
-                        exitStatus = 1;
-                    }
-                    break;
-                }
-                else
-                {
-                    throw new IllegalStateException("Instructions path has not been initialized");
-                }
-
-            /* Wrong option specified */
-            case INCONSISTENT_STATE:
-                err("incorrect argument specified");
+            /* Check if a file has actually been selected */
+            if (instructionsFile != null)
+            {
+                /* Call the interpreter */
+                exitStatus = loadInterpreter(s.isLegacy(), s.isVerbose(), instructionsFile);
+            }
+            else
+            {
+                err("Sorry no file found or invalid selection");
                 exitStatus = 1;
-                break;
-
+            }
+        }
+        else /* No valid selection has been done */
+        {
+            log("no argument specified, defaulting on interactive mode");
+            if(s.isVerbose()){log("Loading interactive mode...");}
+            return loadInterpreter(s.isLegacy(), s.isVerbose(), null);
         }
 
         return exitStatus;
@@ -351,5 +376,18 @@ public class Foresee
                 "\n\nOptions:" +
                 "\n-v, --verbose     \tEnable verbose output." +
                 "\n-l, --legacy      \tEnable the legacy mode, backwards compatible with ART framework.");
+    }
+
+    /**
+     * Loads user settings from a file.
+     *
+     * @param s current settings to update with those in the file
+     * @param f file containing the settings
+     * @return updated settings
+     */
+    public static Settings loadSettingsFile(Settings s, File f)
+    {
+        warn("loadSettingsFile is not yet implemented");
+        return s;
     }
 }
