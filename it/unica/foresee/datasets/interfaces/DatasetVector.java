@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Vector of data.
  */
-public interface DatasetVector extends List<DatasetElement>, Dataset
+public interface DatasetVector<T extends DatasetElement> extends List<T>, Dataset<T>
 {
 
 }

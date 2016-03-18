@@ -10,7 +10,7 @@ import java.util.Random;
  *
  * {@inheritDoc}
  */
-public class DatasetVector extends ArrayList<DatasetElement> implements it.unica.foresee.datasets.interfaces.DatasetVector
+public class DatasetVector<T extends DatasetElement> extends ArrayList<T> implements it.unica.foresee.datasets.interfaces.DatasetVector<T>
 {
     DatasetVector[] kFoldPartitions;
 
@@ -26,7 +26,7 @@ public class DatasetVector extends ArrayList<DatasetElement> implements it.unica
      * {@inheritDoc}
      */
     @Override
-    public DatasetElement getDatasetElement(int index)
+    public T getDatasetElement(int index)
     {
         return super.get(index);
     }
@@ -35,7 +35,7 @@ public class DatasetVector extends ArrayList<DatasetElement> implements it.unica
      * {@inheritDoc}
      */
     @Override
-    public void setDatasetElement(int index, DatasetElement e)
+    public void setDatasetElement(int index, T e)
     {
         super.set(index, e);
     }

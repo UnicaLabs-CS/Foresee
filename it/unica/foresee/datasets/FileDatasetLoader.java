@@ -3,13 +3,14 @@ package it.unica.foresee.datasets;
 import it.unica.foresee.datasets.interfaces.Dataset;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 
 /**
  * Implementaton of {@link it.unica.foresee.datasets.interfaces.FileDatasetLoader}.
  *
  * {@inheritDoc}
  */
-public class FileDatasetLoader implements it.unica.foresee.datasets.interfaces.FileDatasetLoader
+public class FileDatasetLoader<T extends Dataset> implements it.unica.foresee.datasets.interfaces.FileDatasetLoader
 {
     /**
      * Symbol separating the files.
@@ -41,10 +42,10 @@ public class FileDatasetLoader implements it.unica.foresee.datasets.interfaces.F
 
     /**
      * {@inheritDoc}
-     * @// TODO: 17/03/16 implement this method, but implement Dataset before!
+     * @// TODO: 17/03/16 implement this method, but implement Dataset and DatasetElement before!
      */
     @Override
-    public Dataset loadDataset()
+    public T loadDataset() throws FileNotFoundException
     {
         return null;
     }

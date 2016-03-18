@@ -14,6 +14,28 @@ public class MovielensElement implements DatasetElement<MovieUserRate>
     private double movieAmount;
 
     /**
+     * Initializes the element.
+     * @param m
+     */
+    public MovielensElement(MovieUserRate m)
+    {
+        this.element = m;
+    }
+
+    public MovielensElement(MovieUserRate m, double movieAmount)
+    {
+        this.element = m;
+        this.movieAmount = movieAmount;
+    }
+
+    public MovielensElement(MovieUserRate m, double movieAmount, double valueForMean)
+    {
+        this.element = m;
+        this.movieAmount = movieAmount;
+        this.setValueForMean(valueForMean);
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override

@@ -9,25 +9,33 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// it.unica.foresee.datasets.interfaces.DatasetVector
-	c787 [label=<<table title="it.unica.foresee.datasets.interfaces.DatasetVector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./interfaces/DatasetVector.html">
+	// it.unica.foresee.datasets.interfaces.DatasetVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
+	c809 [label=<<table title="it.unica.foresee.datasets.interfaces.DatasetVector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./interfaces/DatasetVector.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> DatasetVector </td></tr>
+<tr><td align="center" balign="center"> DatasetVector&lt;T extends DatasetElement&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// it.unica.foresee.datasets.DatasetVector
-	c793 [label=<<table title="it.unica.foresee.datasets.DatasetVector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./DatasetVector.html">
+	// it.unica.foresee.datasets.DatasetVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
+	c815 [label=<<table title="it.unica.foresee.datasets.DatasetVector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./DatasetVector.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> DatasetVector </td></tr>
+<tr><td align="center" balign="center"> DatasetVector&lt;T extends DatasetElement&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	//it.unica.foresee.datasets.DatasetVector extends java.util.ArrayList<it.unica.foresee.datasets.interfaces.DatasetElement>
-	c819:p -> c793:p [dir=back,arrowtail=empty];
-	//it.unica.foresee.datasets.DatasetVector implements it.unica.foresee.datasets.interfaces.DatasetVector
-	c787:p -> c793:p [dir=back,arrowtail=empty,style=dashed];
+	// it.unica.foresee.datasets.Movielens
+	c822 [label=<<table title="it.unica.foresee.datasets.Movielens" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Movielens.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> Movielens </td></tr>
+		</table></td></tr>
+		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	//it.unica.foresee.datasets.DatasetVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement> extends java.util.ArrayList<T>
+	c842:p -> c815:p [dir=back,arrowtail=empty];
+	//it.unica.foresee.datasets.DatasetVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement> implements it.unica.foresee.datasets.interfaces.DatasetVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
+	c809:p -> c815:p [dir=back,arrowtail=empty,style=dashed];
+	//it.unica.foresee.datasets.Movielens extends it.unica.foresee.datasets.DatasetVector<it.unica.foresee.datasets.MovielensElement>
+	c815:p -> c822:p [dir=back,arrowtail=empty];
 	// java.util.ArrayList<E>
-	c819 [label=<<table title="java.util.ArrayList" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/ArrayList.html">
+	c842 [label=<<table title="java.util.ArrayList" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/ArrayList.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ArrayList&lt;E&gt; </td></tr>
 		</table></td></tr>

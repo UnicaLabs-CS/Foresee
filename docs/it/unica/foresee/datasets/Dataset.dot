@@ -9,20 +9,20 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// it.unica.foresee.datasets.interfaces.Dataset
-	c862 [label=<<table title="it.unica.foresee.datasets.interfaces.Dataset" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./interfaces/Dataset.html">
+	// it.unica.foresee.datasets.interfaces.Dataset<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
+	c958 [label=<<table title="it.unica.foresee.datasets.interfaces.Dataset" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./interfaces/Dataset.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> Dataset </td></tr>
+<tr><td align="center" balign="center"> Dataset&lt;T extends DatasetElement&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// it.unica.foresee.datasets.Dataset
-	c866 [label=<<table title="it.unica.foresee.datasets.Dataset" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Dataset.html">
+	// it.unica.foresee.datasets.Dataset<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
+	c964 [label=<<table title="it.unica.foresee.datasets.Dataset" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Dataset.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> Dataset </font></td></tr>
+<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> Dataset&lt;T extends DatasetElement&gt; </font></td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	//it.unica.foresee.datasets.Dataset implements it.unica.foresee.datasets.interfaces.Dataset
-	c862:p -> c866:p [dir=back,arrowtail=empty,style=dashed];
+	//it.unica.foresee.datasets.Dataset<T extends it.unica.foresee.datasets.interfaces.DatasetElement> implements it.unica.foresee.datasets.interfaces.Dataset<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
+	c958:p -> c964:p [dir=back,arrowtail=empty,style=dashed];
 }
 

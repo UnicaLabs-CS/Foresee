@@ -3,21 +3,21 @@ package it.unica.foresee.datasets.interfaces;
 /**
  * Represents a generic dataset.
  */
-public interface Dataset extends Iterable<DatasetElement>
+public interface Dataset<T extends DatasetElement> extends Iterable<T>
 {
     /**
      * Get the element at the specified index.
      * @param index the index of the vector
      * @return the requested element
      */
-    DatasetElement getDatasetElement(int index);
+    T getDatasetElement(int index);
 
     /**
      * Set an element at a specified index.
      * @param index the index where to put it
      * @param e the element to set
      */
-    void setDatasetElement(int index, DatasetElement e);
+    void setDatasetElement(int index, T e);
 
     /**
      * Get the partitions obtained using the stratified k-fold algorithm.

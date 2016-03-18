@@ -9,21 +9,21 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// it.unica.foresee.datasets.interfaces.FileDatasetLoader
-	c754 [label=<<table title="it.unica.foresee.datasets.interfaces.FileDatasetLoader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FileDatasetLoader.html">
+	// it.unica.foresee.datasets.interfaces.FileDatasetLoader<T extends it.unica.foresee.datasets.interfaces.Dataset>
+	c775 [label=<<table title="it.unica.foresee.datasets.interfaces.FileDatasetLoader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FileDatasetLoader.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> FileDatasetLoader </td></tr>
+<tr><td align="center" balign="center"> FileDatasetLoader&lt;T extends Dataset&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// it.unica.foresee.datasets.interfaces.DatasetLoader
-	c757 [label=<<table title="it.unica.foresee.datasets.interfaces.DatasetLoader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./DatasetLoader.html">
+	// it.unica.foresee.datasets.interfaces.DatasetLoader<T extends it.unica.foresee.datasets.interfaces.Dataset>
+	c778 [label=<<table title="it.unica.foresee.datasets.interfaces.DatasetLoader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./DatasetLoader.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> DatasetLoader </td></tr>
+<tr><td align="center" balign="center"> DatasetLoader&lt;T extends Dataset&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	//it.unica.foresee.datasets.interfaces.FileDatasetLoader implements it.unica.foresee.datasets.interfaces.DatasetLoader
-	c757:p -> c754:p [dir=back,arrowtail=empty,style=dashed];
+	//it.unica.foresee.datasets.interfaces.FileDatasetLoader<T extends it.unica.foresee.datasets.interfaces.Dataset> implements it.unica.foresee.datasets.interfaces.DatasetLoader<T extends it.unica.foresee.datasets.interfaces.Dataset>
+	c778:p -> c775:p [dir=back,arrowtail=empty,style=dashed];
 }
 

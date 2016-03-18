@@ -1,158 +1,256 @@
 package it.unica.foresee.datasets;
 
-import it.unica.foresee.datasets.interfaces.DatasetElement;
-import it.unica.foresee.datasets.interfaces.DatasetVector;
+import it.unica.foresee.utils.Pair;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * Provides methods to use the freely available movielens dataset.
  *
  * @author Fabio Colella
  */
-public class Movielens extends ArrayList<DatasetElement> implements DatasetVector
-{
+public class Movielens extends DatasetVector<MovielensElement> {
+
+    /**
+     * Amount of movie rates.
+     */
+    private int moviesAmount;
+
+    /**
+     * Amount of user rates.
+     */
+    private int usersAmount;
+
+    /**
+     * Highest user ID
+     */
+    private int maxUserID;
+
+    /**
+     * Highest movie ID
+     */
+    private int maxMovieID;
+
+    /**
+     * Max rate.
+     */
+    public final int MAX_RATE = 5;
+
+    /**
+     * Min rate.
+     */
+    public final int MIN_RATE = 1;
+
+    /**
+     * List of users.
+     */
+    protected TreeSet<Integer> usersSet;
+
+    /**
+     * List of movies.
+     */
+    protected TreeSet<Integer> moviesSet;
 
     /**
      * Empty constructor.
      */
-    public Movielens()
+    public Movielens() {}
+
+    /* Getter */
+
+    public int getMaxMovieID() {
+        return maxMovieID;
+    }
+
+    public int getMaxUserID() {
+        return maxUserID;
+    }
+
+    public int getMoviesAmount() {
+        return moviesAmount;
+    }
+
+    public int getUsersAmount() {
+        return usersAmount;
+    }
+
+    public TreeSet<Integer> getMoviesSet() {
+        return moviesSet;
+    }
+
+    public TreeSet<Integer> getUsersSet() {
+        return usersSet;
+    }
+
+    /* Setter */
+
+    public void setMaxMovieID(int maxMovieID) {
+        this.maxMovieID = maxMovieID;
+    }
+
+    public void setMaxUserID(int maxUserID) {
+        this.maxUserID = maxUserID;
+    }
+
+    public void setMoviesAmount(int moviesAmount) {
+        this.moviesAmount = moviesAmount;
+    }
+
+    public void setMoviesSet(TreeSet<Integer> moviesSet) {
+        this.moviesSet = moviesSet;
+    }
+
+    public void setUsersAmount(int usersAmount) {
+        this.usersAmount = usersAmount;
+    }
+
+    public void setUsersSet(TreeSet<Integer> usersSet) {
+        this.usersSet = usersSet;
+    }
+
+    /* Modifiers */
+    public void incrementMoviesAmount()
     {
-        super();
+        this.moviesAmount++;
+    }
+
+    public void incrementUsersAmount()
+    {
+        this.usersAmount++;
     }
 
     /**
-     * Constructs a movielens from the specified file.
+     * Gets k-fold partitioning based on the rates per movie.
      *
-     * {@inheritDoc}
+     * This method is an implementation of the stratified k-fold cross validation.
+     *
+     * @param k the number of partitons to obtain from the dataset
+     *          {@literal (Precondition: k >= 1) }
+     *          A k value equal to 1 means that no partitioning is being done.
+     *          A good value for k is 10, as determined by various studies.
+     *
+     * @param layersAmount the number of layers for the stratified k-fold algorithm
+     *                     {@literal (Precondition: layersAmount >= 1) }
+     *                     A layerAmount equal to 1 means you're doing a non
+     *                     stratified k-fold.
+     * @return an array of partitions
      */
-    public Movielens(File sourceFile) throws FileNotFoundException
+    public DatasetVector<DatasetElement<Pair<Integer,Integer>>>[] getKFoldMoviePartitions(int k, int layersAmount)
     {
-        super(sourceFile);
+        /* Get the movies with highest and lowest rate amount. */
+        int maxMovieRatesAmount = 0;
+        int minMovieRatesAmount = 0;
+
+        TreeMap<Integer, Integer> ratesPerMovie = new TreeMap<>();
+
+        /* Fill the array with the number of rates and update the max amount of rates per movie. */
+        for (MovielensElement item : this)
+        {
+            /* Increment the value if already present */
+            if (ratesPerMovie.containsKey(item.getElement().getSnd()))
+            {
+                ratesPerMovie.put(item.getElement().getSnd(), ratesPerMovie.get(item.getElement().getSnd()) + 1);
+            }
+            else /* Add the value otherwise */
+            {
+                ratesPerMovie.put(item.getElement().getSnd(), 1);
+            }
+
+            /* Keep the maximum amount of ratings for a single movie updated */
+            if (ratesPerMovie.get(item.getElement().getSnd()) > maxMovieRatesAmount)
+            {
+                maxMovieRatesAmount = ratesPerMovie.get(item.getElement().getSnd());
+            }
+        }
+
+        /* --- Stratification by movie rate amount. --- */
+
+        /* Amplitude of the range of each layer. */
+        double layerRange = (maxMovieRatesAmount - minMovieRatesAmount) / (layersAmount);
+
+        /*
+         * Place the movies in the respective layers.
+         *
+         * In each loop take a movie and try to put it in a layer from the first until the last is reached.
+         * If the last layer is reached, add the element in it without further checks.
+         */
+        DatasetVector<DatasetElement>[] layers = new DatasetVector[layersAmount];
+
+        /* Initialize the array elements */
+        for (int i = 0; i < layers.length; i++)
+        {
+            layers[i] = new DatasetVector<>();
+        }
+
+        /* Stratification loop */
+        for (Map.Entry<Integer, Integer> movie : ratesPerMovie.entrySet())
+        {
+            /* Create the element to add to the dataset */
+            Pair<Integer, Integer> p = new Pair<>(movie.getKey(), movie.getValue());
+            DatasetElement d = new DatasetElement(p, movie.getValue());
+
+            /* Reset the high range. */
+            double highRange = minMovieRatesAmount + layerRange;
+
+            /* Movies with no rating should not appear. */
+            if (movie.getValue() <= 0)
+            {
+                throw new IllegalStateException("Only rated movies should be considered.");
+            }
+
+            for (DatasetVector<DatasetElement> layer: layers)
+            {
+                /* We're on the last layer, add here the movie here. */
+                if (layer.equals(layers[layersAmount - 1]))
+                {
+                    layer.add(d);
+                    break; //Do not continue to check for a layer after it has been found
+                }
+                else if (movie.getValue() < highRange)
+                {
+                    layer.add(d);
+                    break; //Do not continue to check for a layer after it has been found
+                }
+                /* Update the range. */
+                highRange += layerRange;
+            }
+        }
+
+        /* Fill the k partitions: k folding */
+        DatasetVector<DatasetElement<Pair<Integer, Integer>>>[] partitions = new DatasetVector[k];
+        Random randomizer = new Random();
+
+        /* Initialize the partitions */
+        for (int i = 0; i < partitions.length; i++)
+        {
+            partitions[i] = new DatasetVector<>();
+        }
+
+        /* For each layer add random elements to each partition */
+        for (DatasetVector<DatasetElement> layer : layers)
+        {
+            /* Remove the elements added to the partitions */
+            while (layer.size() > 0)
+            {
+                /* Select a random element and put it in a partition */
+                for (DatasetVector<DatasetElement<Pair<Integer, Integer>>> partition : partitions)
+                {
+                    if (layer.size() <= 0)
+                    {
+                        /* Stop looping when the layer is empty */
+                        break;
+                    }
+                    else
+                    {
+                        int randIndex = randomizer.nextInt(layer.size());
+                        partition.add(layer.remove(randIndex));
+                    }
+                }
+            }
+        }
+
+        return partitions;
     }
 
-    /**
-     * Loads data from a specified source.
-     *
-     * A movielens ratings file constains lines in the following form:
-     * {@literal UserID::MovieID::Rating::Timestamp}
-     * <ul>
-     * <li>UserIDs range between 1 and 6040</li>
-     * <li>MovieIDs range between 1 and 3952</li>
-     * <li>Ratings are made on a 5-star scale (whole-star ratings only, 1 to 5)</li>
-     * <li>Timestamp is represented in seconds since the epoch as returned by time(2)</li>
-     * </ul>
-     * Each user has at least 20 ratings.
-     * The Timestamp is discarded, while userID, movieID and rating are stored
-     * in the object itself.
-     *
-     * @param sourceFile the file from which to load the data
-     */
-    @Override
-    public void loadDataset(File sourceFile) throws FileNotFoundException
-    {
-        // Initialize the objects if not already done
-        if (this.dataset == null)
-        {
-            this.dataset = new ArrayList<>();
-        }
-
-        if (this.usersSet == null)
-        {
-            this.usersSet = new TreeSet<>();
-        }
-
-        if (this.moviesSet == null)
-        {
-            this.moviesSet = new TreeSet<>();
-        }
-
-        Scanner dataSource = new Scanner(sourceFile);
-
-        int lineNumber = 1; //follows the line number in the file
-        int userID;
-        int movieID;
-        int rating;
-        double dRating; //rating converted to double
-
-        // Read the file line by line
-        while (dataSource.hasNextLine()) {
-
-            Scanner line = new Scanner(dataSource.nextLine());
-            line.useDelimiter("::");
-
-            // Extract a single line of data
-            if (line.hasNextInt()) {
-                userID = line.nextInt();
-                if (userID > this.maxUserID)
-                {
-                    this.maxUserID = userID;
-                }
-            } else {
-                throw new InputMismatchException("expected userID at line " + lineNumber);
-            }
-
-            if (line.hasNextInt()) {
-                movieID = line.nextInt();
-                if (movieID > this.maxMovieID)
-                {
-                    this.maxMovieID = movieID;
-                }
-            } else {
-                throw new InputMismatchException("expected movieID at line " + lineNumber);
-            }
-
-            if (line.hasNextInt()) {
-                rating = line.nextInt();
-            } else {
-                throw new InputMismatchException("expected rating at line " + lineNumber);
-            }
-
-            // Check the correctness of the data
-            if (userID < 1) {
-                throw new InputMismatchException("userID < 1 at line " + lineNumber);
-            }
-
-            if (movieID < 1) {
-                throw new InputMismatchException("movieID < 1 at line " + lineNumber);
-            }
-
-            if (rating < 1) {
-                throw new InputMismatchException("rating < 1 at line " + lineNumber);
-            }
-
-            dRating = (double) rating;
-
-            MovieUserRate t = new MovieUserRate(userID, movieID, dRating);
-
-            this.dataset.add(t);
-            this.usersSet.add(userID);
-            this.moviesSet.add(movieID);
-
-            lineNumber++;
-        }
-
-        this.setUsersAmount(this.usersSet.size());
-        this.setMoviesAmount(this.moviesSet.size());
-
-        if (this.getUsersAmount() > lineNumber)
-        {
-            throw new IllegalStateException("The amount of users is higher than entries.");
-        }
-
-        if (this.getMoviesAmount() > lineNumber)
-        {
-            throw new IllegalStateException("The amount of movies is higher than entries.");
-        }
-
-        if (this.getUsersAmount() < 20)
-        {
-            throw new IllegalStateException("The amount of users is lower than 20.");
-        }
-    }
 }
+
