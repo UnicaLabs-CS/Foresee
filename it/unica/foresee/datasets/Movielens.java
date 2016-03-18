@@ -1,5 +1,8 @@
 package it.unica.foresee.datasets;
 
+import it.unica.foresee.datasets.interfaces.DatasetElement;
+import it.unica.foresee.datasets.interfaces.DatasetVector;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -12,7 +15,7 @@ import java.util.TreeSet;
  *
  * @author Fabio Colella
  */
-public class Movielens extends Dataset
+public class Movielens extends ArrayList<DatasetElement> implements DatasetVector
 {
 
     /**
@@ -28,7 +31,7 @@ public class Movielens extends Dataset
      *
      * {@inheritDoc}
      */
-    public Movielens(File sourceFile)  throws FileNotFoundException
+    public Movielens(File sourceFile) throws FileNotFoundException
     {
         super(sourceFile);
     }

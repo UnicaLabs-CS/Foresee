@@ -7,14 +7,14 @@ import it.unica.foresee.utils.Triple;
  *
  * @author Fabio Colella
  */
-public class MovieUserRate extends Triple<Integer, Integer, Double>
+public class MovieUserRate extends Triple<Integer, Integer, Integer>
 {
     /**
      * Constructs a triple (0, 0, 0.0)
      */
     public MovieUserRate()
     {
-        super(0, 0, 0.0);
+        super(0, 0, 0);
     }
 
     /**
@@ -23,7 +23,7 @@ public class MovieUserRate extends Triple<Integer, Integer, Double>
      * @param snd second element
      * @param trd third element
      */
-    public MovieUserRate(Integer fst, Integer snd, Double trd)
+    public MovieUserRate(Integer fst, Integer snd, Integer trd)
     {
         setFst(fst);
         setSnd(snd);
@@ -51,7 +51,7 @@ public class MovieUserRate extends Triple<Integer, Integer, Double>
     @Override
     public String toString()
     {
-    	return this.fst + "::" + this.snd + "::" + this.trd;
+    	return getFst() + "::" + getSnd() + "::" + getTrd();
     }
 
     /**
@@ -62,16 +62,15 @@ public class MovieUserRate extends Triple<Integer, Integer, Double>
      *
      * @param t the triple to compare.
      */
-    @Override
     public int compareTo(MovieUserRate t)
     {
-        if (this.fst != t.getFst())
+        if (getFst() != t.getFst())
         {
-            return this.fst - t.getFst();
+            return getSnd() - t.getFst();
         }
         else
         {
-            return this.snd - t.getSnd();
+            return getTrd() - t.getSnd();
         }
     }
 }

@@ -1,4 +1,4 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./Dataset.html" title="it.unica.foresee.datasets.Dataset" alt="" coords="23,16,89,43"/>
-<area shape="rect" id="node2_1" href="./Movielens.html" title="it.unica.foresee.datasets.Movielens" alt="" coords="16,112,96,139"/>
+<area shape="rect" id="node1_0" href="./interfaces/Dataset.html" title="it.unica.foresee.datasets.interfaces.Dataset" alt="" coords="16,11,101,55"/>
+<area shape="rect" id="node2_1" href="./Dataset.html" title="it.unica.foresee.datasets.Dataset" alt="" coords="25,120,92,147"/>
 </map>

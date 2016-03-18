@@ -16,7 +16,7 @@ import java.util.TreeSet;
  *
  * @author Fabio Colella
  */
-public abstract class Dataset
+public abstract class Dataset implements it.unica.foresee.datasets.interfaces.Dataset
 {
     /**
      * Stores the dataset.

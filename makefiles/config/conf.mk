@@ -55,8 +55,8 @@ docs/README.html:
 # Generate the documentation
 doc: docs/README.html javadoc-style/stylesheet.css javadoc-style/md-doclet.jar
 	javadoc -overview docs/README.html \
-	-stylesheetfile javadoc-style/stylesheet.css \
 	-docletpath javadoc-style/md-doclet.jar \
+	-stylesheetfile javadoc-style/stylesheet.css \
 	-doclet org.umlgraph.markdown.doclet.UmlGraphDoc \
 	-version -author -d docs -subpackages it
 

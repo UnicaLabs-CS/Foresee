@@ -10,27 +10,27 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// it.unica.foresee.commandlists.FSCommandList
-	c854 [label=<<table title="it.unica.foresee.commandlists.FSCommandList" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./FSCommandList.html">
+	c1047 [label=<<table title="it.unica.foresee.commandlists.FSCommandList" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./FSCommandList.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> FSCommandList </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.commandlists.ARTCommandList
-	c855 [label=<<table title="it.unica.foresee.commandlists.ARTCommandList" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ARTCommandList.html">
+	c1048 [label=<<table title="it.unica.foresee.commandlists.ARTCommandList" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ARTCommandList.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ARTCommandList </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.commandlists.interfaces.CommandList
-	c857 [label=<<table title="it.unica.foresee.commandlists.interfaces.CommandList" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./interfaces/CommandList.html">
+	c1050 [label=<<table title="it.unica.foresee.commandlists.interfaces.CommandList" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./interfaces/CommandList.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> CommandList </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//it.unica.foresee.commandlists.FSCommandList implements it.unica.foresee.commandlists.interfaces.CommandList
-	c857:p -> c854:p [dir=back,arrowtail=empty,style=dashed];
+	c1050:p -> c1047:p [dir=back,arrowtail=empty,style=dashed];
 	//it.unica.foresee.commandlists.ARTCommandList extends it.unica.foresee.commandlists.FSCommandList
-	c854:p -> c855:p [dir=back,arrowtail=empty];
+	c1047:p -> c1048:p [dir=back,arrowtail=empty];
 }
 
