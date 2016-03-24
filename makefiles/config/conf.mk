@@ -42,8 +42,7 @@ clean:
 	for file in "`find -name *.class`"; \
 		do rm -v $$file; \
 	done; \
-	if -f $(proj).jar; then rm $(proj).jar; fi; \
-	if -f "Makefile"; then rm "Makefile"; fi;
+	if [ -f $(proj).jar ] ; then rm $(proj).jar; fi;
 
 # Make the readme inside a body tag
 docs/README.html:

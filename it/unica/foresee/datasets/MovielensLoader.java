@@ -1,9 +1,6 @@
 package it.unica.foresee.datasets;
 
 
-import it.unica.foresee.datasets.interfaces.*;
-import it.unica.foresee.datasets.interfaces.Dataset;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.InputMismatchException;
@@ -11,7 +8,7 @@ import java.util.Scanner;
 import java.util.TreeSet;
 
 /**
- * Load a Movielens dataset from a movielens file.
+ * Load a Movielens_deprecated dataset from a movielens file.
  */
 public class MovielensLoader extends FileDatasetLoader
 {
@@ -42,9 +39,9 @@ public class MovielensLoader extends FileDatasetLoader
      *
      * @param sourceFile the file from which to load the data
      */
-    public Movielens loadDataset(File sourceFile) throws FileNotFoundException
+    public Movielens_deprecated loadDataset(File sourceFile) throws FileNotFoundException
     {
-        Movielens dataset = new Movielens();
+        Movielens_deprecated dataset = new Movielens_deprecated();
         TreeSet<Integer> usersSet = new TreeSet<>();
         TreeSet<Integer> moviesSet = new TreeSet<>();
 
@@ -143,7 +140,7 @@ public class MovielensLoader extends FileDatasetLoader
      * {@inheritDoc}
      */
     @Override
-    public Movielens loadDataset() throws FileNotFoundException
+    public Movielens_deprecated loadDataset() throws FileNotFoundException
     {
         return loadDataset(this.getDatasetFile());
     }

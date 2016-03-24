@@ -10,33 +10,35 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// it.unica.foresee.datasets.interfaces.DatasetVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
-	c701 [label=<<table title="it.unica.foresee.datasets.interfaces.DatasetVector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatasetVector.html">
+	c798 [label=<<table title="it.unica.foresee.datasets.interfaces.DatasetVector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatasetVector.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> DatasetVector&lt;T extends DatasetElement&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.interfaces.Dataset<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
-	c704 [label=<<table title="it.unica.foresee.datasets.interfaces.Dataset" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Dataset.html">
+	c802 [label=<<table title="it.unica.foresee.datasets.interfaces.Dataset" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Dataset.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Dataset&lt;T extends DatasetElement&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.Dataset<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
-	c710 [label=<<table title="it.unica.foresee.datasets.Dataset" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../Dataset.html">
+	c810 [label=<<table title="it.unica.foresee.datasets.Dataset" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../Dataset.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> Dataset&lt;T extends DatasetElement&gt; </font></td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	//it.unica.foresee.datasets.interfaces.DatasetVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement> implements java.lang.Iterable<T>
+	c834:p -> c798:p [dir=back,arrowtail=empty,style=dashed];
 	//it.unica.foresee.datasets.interfaces.DatasetVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement> implements it.unica.foresee.datasets.interfaces.Dataset<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
-	c704:p -> c701:p [dir=back,arrowtail=empty,style=dashed];
+	c802:p -> c798:p [dir=back,arrowtail=empty,style=dashed];
 	//it.unica.foresee.datasets.interfaces.Dataset<T extends it.unica.foresee.datasets.interfaces.DatasetElement> implements java.lang.Iterable<T>
-	c734:p -> c704:p [dir=back,arrowtail=empty,style=dashed];
+	c834:p -> c802:p [dir=back,arrowtail=empty,style=dashed];
 	//it.unica.foresee.datasets.Dataset<T extends it.unica.foresee.datasets.interfaces.DatasetElement> implements it.unica.foresee.datasets.interfaces.Dataset<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
-	c704:p -> c710:p [dir=back,arrowtail=empty,style=dashed];
+	c802:p -> c810:p [dir=back,arrowtail=empty,style=dashed];
 	// java.lang.Iterable<T>
-	c734 [label=<<table title="java.lang.Iterable" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/Iterable.html">
+	c834 [label=<<table title="java.lang.Iterable" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/Iterable.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Iterable&lt;T&gt; </td></tr>

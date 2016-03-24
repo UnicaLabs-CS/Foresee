@@ -9,7 +9,7 @@ import java.util.*;
  *
  * @author Fabio Colella
  */
-public class Movielens extends DatasetVector<MovielensElement> {
+public class Movielens_deprecated extends DatasetVector<MovielensElement> {
 
     /**
      * Amount of movie rates.
@@ -54,7 +54,7 @@ public class Movielens extends DatasetVector<MovielensElement> {
     /**
      * Empty constructor.
      */
-    public Movielens() {}
+    public Movielens_deprecated() {}
 
     /* Getter */
 

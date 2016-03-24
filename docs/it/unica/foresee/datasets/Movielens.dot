@@ -15,13 +15,13 @@ digraph G {
 <tr><td align="center" balign="center"> DatasetVector&lt;T extends DatasetElement&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// it.unica.foresee.datasets.Movielens
-	c1076 [label=<<table title="it.unica.foresee.datasets.Movielens" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Movielens.html">
+	// it.unica.foresee.datasets.Movielens_deprecated
+	c1076 [label=<<table title="it.unica.foresee.datasets.Movielens_deprecated" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Movielens.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Movielens </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	//it.unica.foresee.datasets.Movielens extends it.unica.foresee.datasets.DatasetVector<it.unica.foresee.datasets.MovielensElement>
+	//it.unica.foresee.datasets.Movielens_deprecated extends it.unica.foresee.datasets.DatasetVector<it.unica.foresee.datasets.MovielensElement>
 	c1069:p -> c1076:p [dir=back,arrowtail=empty];
 }
 

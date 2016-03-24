@@ -1,79 +1,48 @@
 package it.unica.foresee.datasets;
 
 import it.unica.foresee.datasets.interfaces.DatasetElement;
+import it.unica.foresee.utils.Pair;
 
 /**
  * An element of the Movielens dataset.
+ *
+ * A movielens element is a vector of ratings, and it can equally be a vector of ratings given
+ * by the same user on a set of movies or a vector of ratings on the same movies given by a set of
+ * users who rated it.
  */
-public class MovielensElement implements DatasetElement<MovieUserRate>
+public class MovielensElement extends DatasetSparseVector<IntegerElement>
 {
     /**
-     * Internal stored element
+     * Initializes the element from an Integer.
+     * @param key the index of the element
+     * @param value the value of the element at the index position
      */
-    private MovieUserRate element;
-    private double movieAmount;
+    public MovielensElement(Integer key, Integer value)
+    {
+        this.put(key, new IntegerElement(value));
+    }
+
+    /**
+     * Initializes the element from an IntegerElement.
+     * @param key the index of the element
+     * @param value the value of the element at the index position
+     */
+    public MovielensElement(Integer key, IntegerElement value) {this.put(key,value);}
+
+    /**
+     * Initializes the element from a DatasetElement of type Integer.
+     * @param key the index of the element
+     * @param value the value of the element at the index position
+     */
+    public MovielensElement(Integer key, it.unica.foresee.datasets.DatasetElement<Integer> value)
+    {
+        this.put(key, new IntegerElement(value));
+    }
 
     /**
      * Initializes the element.
-     * @param m
+     * @param p a Pair of q key and a value
      */
-    public MovielensElement(MovieUserRate m)
-    {
-        this.element = m;
-    }
+    public MovielensElement(Pair<Integer, Integer> p) {this.put(p.getFst(), new IntegerElement(p.getSnd()));}
 
-    public MovielensElement(MovieUserRate m, double movieAmount)
-    {
-        this.element = m;
-        this.movieAmount = movieAmount;
-    }
-
-    public MovielensElement(MovieUserRate m, double movieAmount, double valueForMean)
-    {
-        this.element = m;
-        this.movieAmount = movieAmount;
-        this.setValueForMean(valueForMean);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public MovieUserRate getElement() {
-        return element;
-    }
-
-    public double getMovieAmount() {
-        return movieAmount;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public double getValueForMean()
-    {
-        return this.movieAmount;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setElement(MovieUserRate element) {
-        this.element = element;
-    }
-
-    public void setMovieAmount(double movieAmount) {
-        this.movieAmount = movieAmount;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setValueForMean(double v)
-    {
-        this.movieAmount = v;
-    }
 }

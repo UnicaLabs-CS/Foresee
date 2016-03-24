@@ -10,36 +10,46 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// it.unica.foresee.datasets.interfaces.DatasetVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
-	c587 [label=<<table title="it.unica.foresee.datasets.interfaces.DatasetVector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./DatasetVector.html">
+	c634 [label=<<table title="it.unica.foresee.datasets.interfaces.DatasetVector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./DatasetVector.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> DatasetVector&lt;T extends DatasetElement&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.interfaces.Dataset<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
-	c590 [label=<<table title="it.unica.foresee.datasets.interfaces.Dataset" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Dataset.html">
+	c638 [label=<<table title="it.unica.foresee.datasets.interfaces.Dataset" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Dataset.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Dataset&lt;T extends DatasetElement&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.DatasetVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
-	c593 [label=<<table title="it.unica.foresee.datasets.DatasetVector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../DatasetVector.html">
+	c640 [label=<<table title="it.unica.foresee.datasets.DatasetVector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../DatasetVector.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DatasetVector&lt;T extends DatasetElement&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	//it.unica.foresee.datasets.interfaces.DatasetVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement> implements java.util.List<E>
-	c621:p -> c587:p [dir=back,arrowtail=empty,style=dashed];
+	// it.unica.foresee.datasets.DatasetSparseVector<T extends it.unica.foresee.datasets.DatasetElement>
+	c645 [label=<<table title="it.unica.foresee.datasets.DatasetSparseVector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../DatasetSparseVector.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> DatasetSparseVector&lt;T extends DatasetElement&gt; </td></tr>
+		</table></td></tr>
+		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	//it.unica.foresee.datasets.interfaces.DatasetVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement> implements java.lang.Iterable<T>
+	c670:p -> c634:p [dir=back,arrowtail=empty,style=dashed];
 	//it.unica.foresee.datasets.interfaces.DatasetVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement> implements it.unica.foresee.datasets.interfaces.Dataset<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
-	c590:p -> c587:p [dir=back,arrowtail=empty,style=dashed];
+	c638:p -> c634:p [dir=back,arrowtail=empty,style=dashed];
+	//it.unica.foresee.datasets.interfaces.Dataset<T extends it.unica.foresee.datasets.interfaces.DatasetElement> implements java.lang.Iterable<T>
+	c670:p -> c638:p [dir=back,arrowtail=empty,style=dashed];
 	//it.unica.foresee.datasets.DatasetVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement> implements it.unica.foresee.datasets.interfaces.DatasetVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
-	c587:p -> c593:p [dir=back,arrowtail=empty,style=dashed];
-	// java.util.List<E>
-	c621 [label=<<table title="java.util.List" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/List.html">
+	c634:p -> c640:p [dir=back,arrowtail=empty,style=dashed];
+	//it.unica.foresee.datasets.DatasetSparseVector<T extends it.unica.foresee.datasets.DatasetElement> implements it.unica.foresee.datasets.interfaces.DatasetVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
+	c634:p -> c645:p [dir=back,arrowtail=empty,style=dashed];
+	// java.lang.Iterable<T>
+	c670 [label=<<table title="java.lang.Iterable" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/Iterable.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> List&lt;E&gt; </td></tr>
+<tr><td align="center" balign="center"> Iterable&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }

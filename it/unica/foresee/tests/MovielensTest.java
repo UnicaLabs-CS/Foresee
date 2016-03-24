@@ -14,7 +14,7 @@ import org.junit.Test;
 
 
 /**
- * Tests the Movielens class.
+ * Tests the Movielens_deprecated class.
  *
  * @author: Fabio Colella
  */
@@ -29,7 +29,7 @@ public class MovielensTest
     public void partitioning(int k, int layers) throws FileNotFoundException
     {
         File testData = new File("test-data/movielens-test-25-users.dat");
-        Movielens ml = new Movielens(testData);
+        Movielens_deprecated ml = new Movielens_deprecated(testData);
 
         ArrayList<Dataset.MovieRatesAmountPair>[] partitions = ml.getPartitions(k, layers);
 
@@ -109,7 +109,7 @@ public class MovielensTest
         File testData = new File("test-data/movielens-test-20-users.dat");
         try
         {
-            Movielens ml = new Movielens(testData);
+            Movielens_deprecated ml = new Movielens_deprecated(testData);
         }
         catch (IllegalStateException e)
         {
@@ -126,7 +126,7 @@ public class MovielensTest
         File testData = new File("test-data/movielens-test-mismatch-less.dat");
         try
         {
-            Movielens ml = new Movielens(testData);
+            Movielens_deprecated ml = new Movielens_deprecated(testData);
         }
         catch (InputMismatchException e)
         {
@@ -143,7 +143,7 @@ public class MovielensTest
         File testData = new File("test-data/movielens-test-mismatch-malformed-line.dat");
         try
         {
-            Movielens ml = new Movielens(testData);
+            Movielens_deprecated ml = new Movielens_deprecated(testData);
         }
         catch (InputMismatchException e)
         {
@@ -185,7 +185,7 @@ public class MovielensTest
     public void checkItemsAmountNoLayering() throws FileNotFoundException
     {
         File testData = new File("test-data/movielens-test-25-users.dat");
-        Movielens ml = new Movielens(testData);
+        Movielens_deprecated ml = new Movielens_deprecated(testData);
         int k = 5;
         int layers = 1;
 
@@ -206,7 +206,7 @@ public class MovielensTest
     public void checkItemsAmountWithLayering() throws FileNotFoundException
     {
         File testData = new File("test-data/movielens-test-25-users.dat");
-        Movielens ml = new Movielens(testData);
+        Movielens_deprecated ml = new Movielens_deprecated(testData);
         int k = 5;
         int layers = 3;
 

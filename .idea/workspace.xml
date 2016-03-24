@@ -2,12 +2,166 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="14b9e43c-e387-49bd-8e09-29e40c5b01f2" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/it/unica/foresee/datasets/DatasetSparseVector.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/it/unica/foresee/datasets/DoubleElement.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/it/unica/foresee/datasets/IntegerElement.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/it/unica/foresee/datasets/Movielens.java" afterPath="$PROJECT_DIR$/it/unica/foresee/datasets/Movielens_deprecated.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/DatasetElement.png" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/DatasetElement.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/DatasetVector.png" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/DatasetVector.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/MovielensElement.png" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/MovielensElement.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/Dataset.png" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/Dataset.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/DatasetElement.png" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/DatasetElement.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/DatasetVector.png" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/DatasetVector.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/it.unica.foresee.datasets.interfaces.png" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/it.unica.foresee.datasets.interfaces.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/it.unica.foresee.datasets.png" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/it.unica.foresee.datasets.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/it/unica/foresee/commandlists/FSCommandList.java" afterPath="$PROJECT_DIR$/it/unica/foresee/commandlists/FSCommandList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/it/unica/foresee/commandlists/interfaces/CommandList.java" afterPath="$PROJECT_DIR$/it/unica/foresee/commandlists/interfaces/CommandList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/it/unica/foresee/core/Env.java" afterPath="$PROJECT_DIR$/it/unica/foresee/core/Env.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/it/unica/foresee/core/Interpreter.java" afterPath="$PROJECT_DIR$/it/unica/foresee/core/Interpreter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/it/unica/foresee/datasets/FileDatasetLoader.java" afterPath="$PROJECT_DIR$/it/unica/foresee/datasets/FileDatasetLoader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Windows/foresee.bat" afterPath="$PROJECT_DIR$/Windows/foresee.bat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/configure.sh" afterPath="$PROJECT_DIR$/configure.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/allclasses-frame.html" afterPath="$PROJECT_DIR$/docs/allclasses-frame.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/allclasses-noframe.html" afterPath="$PROJECT_DIR$/docs/allclasses-noframe.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/constant-values.html" afterPath="$PROJECT_DIR$/docs/constant-values.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/deprecated-list.html" afterPath="$PROJECT_DIR$/docs/deprecated-list.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/help-doc.html" afterPath="$PROJECT_DIR$/docs/help-doc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/index-all.html" afterPath="$PROJECT_DIR$/docs/index-all.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/index.html" afterPath="$PROJECT_DIR$/docs/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/Foresee.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/Foresee.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/Foresee.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/Foresee.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/Settings.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/Settings.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/Settings.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/Settings.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/commandlists/ARTCommandList.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/commandlists/ARTCommandList.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/commandlists/ARTCommandList.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/commandlists/ARTCommandList.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/commandlists/FSCommandList.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/commandlists/FSCommandList.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/commandlists/FSCommandList.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/commandlists/FSCommandList.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/commandlists/interfaces/CommandList.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/commandlists/interfaces/CommandList.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/commandlists/interfaces/CommandList.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/commandlists/interfaces/CommandList.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/commandlists/interfaces/Semantic.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/commandlists/interfaces/Semantic.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/commandlists/interfaces/Semantic.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/commandlists/interfaces/Semantic.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/commandlists/interfaces/it.unica.foresee.commandlists.interfaces.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/commandlists/interfaces/it.unica.foresee.commandlists.interfaces.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/commandlists/interfaces/package-frame.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/commandlists/interfaces/package-frame.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/commandlists/interfaces/package-summary.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/commandlists/interfaces/package-summary.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/commandlists/interfaces/package-tree.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/commandlists/interfaces/package-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/commandlists/it.unica.foresee.commandlists.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/commandlists/it.unica.foresee.commandlists.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/commandlists/package-frame.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/commandlists/package-frame.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/commandlists/package-summary.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/commandlists/package-summary.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/commandlists/package-tree.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/commandlists/package-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/core/Core.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/core/Core.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/core/Core.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/core/Core.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/core/Env.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/core/Env.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/core/Env.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/core/Env.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/core/Interpreter.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/core/Interpreter.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/core/Interpreter.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/core/Interpreter.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/core/interfaces/Core.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/core/interfaces/Core.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/core/interfaces/Core.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/core/interfaces/Core.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/core/interfaces/State.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/core/interfaces/State.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/core/interfaces/State.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/core/interfaces/State.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/core/interfaces/it.unica.foresee.core.interfaces.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/core/interfaces/it.unica.foresee.core.interfaces.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/core/interfaces/package-frame.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/core/interfaces/package-frame.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/core/interfaces/package-summary.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/core/interfaces/package-summary.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/core/interfaces/package-tree.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/core/interfaces/package-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/core/it.unica.foresee.core.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/core/it.unica.foresee.core.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/core/package-frame.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/core/package-frame.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/core/package-summary.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/core/package-summary.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/core/package-tree.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/core/package-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/Dataset.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/Dataset.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/Dataset.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/Dataset.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/DatasetElement.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/DatasetElement.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/DatasetElement.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/DatasetElement.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/DatasetElement.map" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/DatasetElement.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/DatasetVector.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/DatasetVector.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/DatasetVector.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/DatasetVector.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/DatasetVector.map" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/DatasetVector.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/FileDatasetLoader.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/FileDatasetLoader.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/FileDatasetLoader.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/FileDatasetLoader.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/MovieUserRate.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/MovieUserRate.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/MovieUserRate.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/MovieUserRate.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/Movielens.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/Movielens.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/Movielens.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/Movielens.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/Movielens.map" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/Movielens.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/MovielensElement.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/MovielensElement.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/MovielensElement.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/MovielensElement.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/MovielensElement.map" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/MovielensElement.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/MovielensLoader.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/MovielensLoader.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/MovielensLoader.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/MovielensLoader.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/Dataset.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/Dataset.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/Dataset.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/Dataset.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/Dataset.map" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/Dataset.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/DatasetElement.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/DatasetElement.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/DatasetElement.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/DatasetElement.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/DatasetElement.map" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/DatasetElement.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/DatasetLoader.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/DatasetLoader.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/DatasetLoader.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/DatasetLoader.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/DatasetVector.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/DatasetVector.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/DatasetVector.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/DatasetVector.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/DatasetVector.map" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/DatasetVector.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/FileDatasetLoader.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/FileDatasetLoader.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/FileDatasetLoader.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/FileDatasetLoader.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/SolutionElement.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/SolutionElement.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/SolutionElement.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/SolutionElement.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/it.unica.foresee.datasets.interfaces.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/it.unica.foresee.datasets.interfaces.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/it.unica.foresee.datasets.interfaces.map" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/it.unica.foresee.datasets.interfaces.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/package-frame.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/package-frame.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/package-summary.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/package-summary.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/package-tree.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/interfaces/package-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/it.unica.foresee.datasets.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/it.unica.foresee.datasets.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/it.unica.foresee.datasets.map" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/it.unica.foresee.datasets.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/package-frame.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/package-frame.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/package-summary.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/package-summary.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/package-tree.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/datasets/package-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/it.unica.foresee.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/it.unica.foresee.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/libraries/interfaces/Library.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/libraries/interfaces/Library.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/libraries/interfaces/Library.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/libraries/interfaces/Library.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/libraries/interfaces/it.unica.foresee.libraries.interfaces.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/libraries/interfaces/it.unica.foresee.libraries.interfaces.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/libraries/interfaces/package-frame.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/libraries/interfaces/package-frame.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/libraries/interfaces/package-summary.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/libraries/interfaces/package-summary.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/libraries/interfaces/package-tree.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/libraries/interfaces/package-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/modules/interfaces/ModuleLoader.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/modules/interfaces/ModuleLoader.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/modules/interfaces/ModuleLoader.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/modules/interfaces/ModuleLoader.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/modules/interfaces/it.unica.foresee.modules.interfaces.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/modules/interfaces/it.unica.foresee.modules.interfaces.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/modules/interfaces/package-frame.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/modules/interfaces/package-frame.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/modules/interfaces/package-summary.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/modules/interfaces/package-summary.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/modules/interfaces/package-tree.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/modules/interfaces/package-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/package-frame.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/package-frame.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/package-summary.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/package-summary.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/package-tree.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/package-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/predictions/Prediction.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/predictions/Prediction.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/predictions/Prediction.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/predictions/Prediction.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/predictions/it.unica.foresee.predictions.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/predictions/it.unica.foresee.predictions.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/predictions/package-frame.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/predictions/package-frame.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/predictions/package-summary.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/predictions/package-summary.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/predictions/package-tree.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/predictions/package-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/tests/ForeseeTest.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/tests/ForeseeTest.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/tests/ForeseeTest.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/tests/ForeseeTest.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/tests/InterpreterTest.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/tests/InterpreterTest.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/tests/InterpreterTest.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/tests/InterpreterTest.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/tests/MovieUserRateTest.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/tests/MovieUserRateTest.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/tests/MovieUserRateTest.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/tests/MovieUserRateTest.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/tests/MovielensTest.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/tests/MovielensTest.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/tests/MovielensTest.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/tests/MovielensTest.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/tests/PredictionTest.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/tests/PredictionTest.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/tests/PredictionTest.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/tests/PredictionTest.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/tests/it.unica.foresee.tests.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/tests/it.unica.foresee.tests.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/tests/package-frame.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/tests/package-frame.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/tests/package-summary.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/tests/package-summary.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/tests/package-tree.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/tests/package-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/utils/Pair.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/utils/Pair.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/utils/Pair.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/utils/Pair.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/utils/Tools.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/utils/Tools.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/utils/Tools.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/utils/Tools.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/utils/Triple.dot" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/utils/Triple.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/utils/Triple.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/utils/Triple.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/utils/package-frame.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/utils/package-frame.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/utils/package-summary.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/utils/package-summary.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/it/unica/foresee/utils/package-tree.html" afterPath="$PROJECT_DIR$/docs/it/unica/foresee/utils/package-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/overview-frame.html" afterPath="$PROJECT_DIR$/docs/overview-frame.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/overview-summary.html" afterPath="$PROJECT_DIR$/docs/overview-summary.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/overview-tree.html" afterPath="$PROJECT_DIR$/docs/overview-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/serialized-form.html" afterPath="$PROJECT_DIR$/docs/serialized-form.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/it/unica/foresee/datasets/DatasetVector.java" afterPath="$PROJECT_DIR$/it/unica/foresee/datasets/DatasetVector.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/it/unica/foresee/datasets/MovielensElement.java" afterPath="$PROJECT_DIR$/it/unica/foresee/datasets/MovielensElement.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/it/unica/foresee/datasets/MovielensLoader.java" afterPath="$PROJECT_DIR$/it/unica/foresee/datasets/MovielensLoader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/it/unica/foresee/datasets/interfaces/DatasetVector.java" afterPath="$PROJECT_DIR$/it/unica/foresee/datasets/interfaces/DatasetVector.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/it/unica/foresee/tests/MovielensTest.java" afterPath="$PROJECT_DIR$/it/unica/foresee/tests/MovielensTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/makefiles/config/conf.mk" afterPath="$PROJECT_DIR$/makefiles/config/conf.mk" />
     </list>
     <ignored path="Foresee.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,11 +183,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="FileDatasetLoader.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/FileDatasetLoader.java">
+      <file leaf-file-name="DatasetVector.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/interfaces/DatasetVector.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="39" column="38" selection-start-line="39" selection-start-column="38" selection-end-line="39" selection-end-column="38" />
+            <state relative-caret-position="126">
+              <caret line="7" column="73" selection-start-line="7" selection-start-column="73" selection-end-line="7" selection-end-column="73" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FSCommandList.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/it/unica/foresee/commandlists/FSCommandList.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1332">
+              <caret line="262" column="0" selection-start-line="262" selection-start-column="0" selection-end-line="262" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DatasetElement.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/DatasetElement.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MovielensLoader.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/MovielensLoader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="414">
+              <caret line="41" column="11" selection-start-line="41" selection-start-column="11" selection-end-line="41" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -41,82 +225,72 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FSCommandList.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/it/unica/foresee/commandlists/FSCommandList.java">
+      <file leaf-file-name="MovielensElement.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/MovielensElement.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.17565218">
-              <caret line="262" column="0" selection-start-line="262" selection-start-column="0" selection-end-line="262" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="216">
+              <caret line="12" column="73" selection-start-line="12" selection-start-column="73" selection-end-line="12" selection-end-column="73" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#711#712#0" expanded="true" />
+                <element signature="e#767#768#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Core.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/it/unica/foresee/core/interfaces/Core.java">
+      <file leaf-file-name="IntegerElement.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/IntegerElement.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="14" column="72" selection-start-line="14" selection-start-column="72" selection-end-line="14" selection-end-column="72" />
-              <folding />
+            <state relative-caret-position="144">
+              <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="24" selection-end-column="5" />
+              <folding>
+                <element signature="e#274#275#0" expanded="true" />
+                <element signature="e#308#309#0" expanded="true" />
+                <element signature="e#470#471#0" expanded="true" />
+                <element signature="e#528#529#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Core.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/it/unica/foresee/core/Core.java">
+      <file leaf-file-name="DoubleElement.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/DoubleElement.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="342">
+              <caret line="19" column="7" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
+              <folding>
+                <element signature="e#267#268#0" expanded="true" />
+                <element signature="e#301#302#0" expanded="true" />
+                <element signature="e#460#461#0" expanded="true" />
+                <element signature="e#518#519#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Foresee.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/it/unica/foresee/Foresee.java">
+      <file leaf-file-name="DatasetSparseVector.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/DatasetSparseVector.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="212" column="9" selection-start-line="212" selection-start-column="9" selection-end-line="212" selection-end-column="9" />
-              <folding />
+            <state relative-caret-position="263">
+              <caret line="222" column="22" selection-start-line="222" selection-start-column="22" selection-end-line="222" selection-end-column="22" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#6534#6535#0" expanded="true" />
+                <element signature="e#6581#6582#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Interpreter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/it/unica/foresee/core/Interpreter.java">
+      <file leaf-file-name="DatasetVector.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/DatasetVector.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="116" column="0" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Dataset.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/Dataset.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Dataset.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/interfaces/Dataset.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="28" column="11" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Env.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/it/unica/foresee/core/Env.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
-              <folding />
+            <state relative-caret-position="234">
+              <caret line="13" column="1" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -124,7 +298,7 @@
       <file leaf-file-name="FileDatasetLoader.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/interfaces/FileDatasetLoader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state relative-caret-position="468">
               <caret line="27" column="48" selection-start-line="27" selection-start-column="48" selection-end-line="27" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -181,15 +355,12 @@
         <option value="$PROJECT_DIR$/it/unica/foresee/utils/Pair.java" />
         <option value="$PROJECT_DIR$/it/unica/foresee/datasets/interfaces/DatasetElement.java" />
         <option value="$PROJECT_DIR$/it/unica/foresee/datasets/MovieLensElement.java" />
-        <option value="$PROJECT_DIR$/it/unica/foresee/datasets/interfaces/DatasetVector.java" />
-        <option value="$PROJECT_DIR$/it/unica/foresee/datasets/DatasetVector.java" />
         <option value="$PROJECT_DIR$/it/unica/foresee/datasets/interfaces/Dataset.java" />
         <option value="$PROJECT_DIR$/it/unica/foresee/datasets/MovieUserRate.java" />
         <option value="$PROJECT_DIR$/it/unica/foresee/datasets/interfaces/FileDatasetLoader.java" />
         <option value="$PROJECT_DIR$/it/unica/foresee/datasets/interfaces/DatasetLoader.java" />
         <option value="$PROJECT_DIR$/it/unica/foresee/datasets/MovielensLoader.java" />
         <option value="$PROJECT_DIR$/it/unica/foresee/datasets/Dataset.java" />
-        <option value="$PROJECT_DIR$/it/unica/foresee/datasets/MovielensElement.java" />
         <option value="$PROJECT_DIR$/it/unica/foresee/datasets/PairElement.java" />
         <option value="$PROJECT_DIR$/it/unica/foresee/datasets/DatasetElement.java" />
         <option value="$PROJECT_DIR$/it/unica/foresee/datasets/Movielens.java" />
@@ -199,14 +370,21 @@
         <option value="$PROJECT_DIR$/it/unica/foresee/core/Env.java" />
         <option value="$PROJECT_DIR$/it/unica/foresee/core/Interpreter.java" />
         <option value="$PROJECT_DIR$/it/unica/foresee/commandlists/FSCommandList.java" />
+        <option value="$PROJECT_DIR$/it/unica/foresee/datasets/Movielens_deprecated.java" />
+        <option value="$PROJECT_DIR$/it/unica/foresee/datasets/interfaces/DatasetVector.java" />
+        <option value="$PROJECT_DIR$/it/unica/foresee/datasets/DatasetVector.java" />
+        <option value="$PROJECT_DIR$/it/unica/foresee/datasets/IntegerElement.java" />
+        <option value="$PROJECT_DIR$/it/unica/foresee/datasets/DoubleElement.java" />
+        <option value="$PROJECT_DIR$/it/unica/foresee/datasets/MovielensElement.java" />
+        <option value="$PROJECT_DIR$/it/unica/foresee/datasets/DatasetSparseVector.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="66" />
-    <option name="y" value="52" />
-    <option name="width" value="1298" />
-    <option name="height" value="715" />
+    <option name="x" value="65" />
+    <option name="y" value="24" />
+    <option name="width" value="1301" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -233,7 +411,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -263,93 +440,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="libs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Foresee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Foresee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="foresee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Foresee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Foresee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="foresee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="utils" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Foresee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Foresee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="foresee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Foresee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Foresee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="foresee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="predictions" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Foresee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Foresee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="foresee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="interfaces" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -368,114 +459,13 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="datasets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Foresee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Foresee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="foresee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="datasets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="interfaces" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Foresee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Foresee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="foresee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Foresee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Foresee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="foresee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="interfaces" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Foresee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Foresee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="foresee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="commandlists" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Foresee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Foresee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="foresee" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="commandlists" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="interfaces" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -514,31 +504,21 @@
     </configuration>
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
-      <option name="ACTIVITY_CLASS" value="" />
-      <option name="MODE" value="default_activity" />
       <option name="DEPLOY" value="true" />
       <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
       <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
-      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
       <option name="PREFERRED_AVD" value="" />
-      <option name="USE_COMMAND_LINE" value="true" />
-      <option name="COMMAND_LINE" value="" />
-      <option name="WIPE_USER_DATA" value="false" />
-      <option name="DISABLE_BOOT_ANIMATION" value="false" />
-      <option name="NETWORK_SPEED" value="full" />
-      <option name="NETWORK_LATENCY" value="none" />
       <option name="CLEAR_LOGCAT" value="false" />
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
-      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
-      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="0" />
-      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
-      <option name="SELECTED_CLOUD_DEVICE_CONFIGURATION_ID" value="0" />
-      <option name="SELECTED_CLOUD_DEVICE_PROJECT_ID" value="" />
-      <option name="IS_VALID_CLOUD_MATRIX_SELECTION" value="false" />
-      <option name="INVALID_CLOUD_MATRIX_SELECTION_ERROR" value="" />
-      <option name="IS_VALID_CLOUD_DEVICE_SELECTION" value="false" />
-      <option name="INVALID_CLOUD_DEVICE_SELECTION_ERROR" value="" />
-      <option name="CLOUD_DEVICE_SERIAL_NUMBER" value="" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
       <method />
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
@@ -548,27 +528,15 @@
       <option name="METHOD_NAME" value="" />
       <option name="CLASS_NAME" value="" />
       <option name="PACKAGE_NAME" value="" />
+      <option name="EXTRA_OPTIONS" value="" />
       <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
-      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
       <option name="PREFERRED_AVD" value="" />
-      <option name="USE_COMMAND_LINE" value="true" />
-      <option name="COMMAND_LINE" value="" />
-      <option name="WIPE_USER_DATA" value="false" />
-      <option name="DISABLE_BOOT_ANIMATION" value="false" />
-      <option name="NETWORK_SPEED" value="full" />
-      <option name="NETWORK_LATENCY" value="none" />
       <option name="CLEAR_LOGCAT" value="false" />
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
-      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
-      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="0" />
-      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
-      <option name="SELECTED_CLOUD_DEVICE_CONFIGURATION_ID" value="0" />
-      <option name="SELECTED_CLOUD_DEVICE_PROJECT_ID" value="" />
-      <option name="IS_VALID_CLOUD_MATRIX_SELECTION" value="false" />
-      <option name="INVALID_CLOUD_MATRIX_SELECTION_ERROR" value="" />
-      <option name="IS_VALID_CLOUD_DEVICE_SELECTION" value="false" />
-      <option name="INVALID_CLOUD_DEVICE_SELECTION_ERROR" value="" />
-      <option name="CLOUD_DEVICE_SERIAL_NUMBER" value="" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
       <method />
     </configuration>
     <configuration default="true" type="Applet" factoryName="Applet">
@@ -771,7 +739,9 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -780,63 +750,41 @@
       <changelist id="14b9e43c-e387-49bd-8e09-29e40c5b01f2" name="Default" comment="" />
       <created>1455785078675</created>
       <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
       <updated>1455785078675</updated>
     </task>
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="66" y="52" width="1298" height="715" extended-state="4" />
+    <frame x="65" y="24" width="1301" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882884" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23420647" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3294964" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294964" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985073" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-    </layout>
-    <layout-to-restore>
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294964" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3294964" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294964" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23420647" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985073" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2336664" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294964" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3294964" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="combo" />
-    </layout-to-restore>
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985073" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3275862" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+    </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -858,262 +806,156 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/it/unica/foresee/tests/ForeseeTest.java">
+    <entry file="file://$PROJECT_DIR$/it/unica/foresee/Foresee.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="docComment;method#callMain#0;class#ForeseeTest#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="57" column="18" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/it/unica/foresee/tests/InterpreterTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/it/unica/foresee/Foresee.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="57" column="18" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/it/unica/foresee/tests/InterpreterTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
           <caret line="115" column="7" selection-start-line="115" selection-start-column="7" selection-end-line="115" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/it/unica/foresee/tests/InterpreterTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/it/unica/foresee/Foresee.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="57" column="18" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/it/unica/foresee/tests/InterpreterTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/it/unica/foresee/Foresee.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="57" column="18" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/it/unica/foresee/tests/InterpreterTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="115" column="7" selection-start-line="115" selection-start-column="7" selection-end-line="115" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/it/unica/foresee/Foresee.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="57" column="18" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/it/unica/foresee/tests/ForeseeTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="docComment;method#callMain#0;class#ForeseeTest#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/it/unica/foresee/tests/InterpreterTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/it/unica/foresee/Foresee.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="57" column="18" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/it/unica/foresee/tests/InterpreterTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="115" column="7" selection-start-line="115" selection-start-column="7" selection-end-line="115" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/it/unica/foresee/Foresee.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="57" column="18" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/it/unica/foresee/tests/ForeseeTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="docComment;method#callMain#0;class#ForeseeTest#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/copyright/profiles_settings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/it/unica/foresee/tests/MovielensTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="12" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/it/unica/foresee/tests/InterpreterTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="115" column="7" selection-start-line="115" selection-start-column="7" selection-end-line="115" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/package-info.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="3" column="3" selection-start-line="3" selection-start-column="3" selection-end-line="3" selection-end-column="3" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/it/unica/foresee/tests/ForeseeTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="78" column="31" selection-start-line="78" selection-start-column="31" selection-end-line="78" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="docComment;method#callMain#0;class#ForeseeTest#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Makefile">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="129" column="11" selection-start-line="129" selection-start-column="11" selection-end-line="129" selection-end-column="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/it/unica/foresee/modules/interfaces/ModuleLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/it/unica/foresee/Settings.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="3" column="41" selection-start-line="3" selection-start-column="41" selection-end-line="3" selection-end-column="41" />
-          <folding>
-            <element signature="e#883#884#0" expanded="false" />
-            <element signature="e#925#926#0" expanded="false" />
-            <element signature="e#960#961#0" expanded="false" />
-            <element signature="e#991#992#0" expanded="false" />
-            <element signature="e#1036#1037#0" expanded="false" />
-            <element signature="e#1082#1083#0" expanded="false" />
-            <element signature="e#1120#1121#0" expanded="false" />
-            <element signature="e#1154#1155#0" expanded="false" />
-            <element signature="e#1187#1188#0" expanded="false" />
-            <element signature="e#1216#1217#0" expanded="false" />
-            <element signature="e#1250#1251#0" expanded="false" />
-            <element signature="e#1280#1281#0" expanded="false" />
-            <element signature="e#1318#1319#0" expanded="false" />
-            <element signature="e#1352#1353#0" expanded="false" />
-            <element signature="e#1394#1395#0" expanded="false" />
-            <element signature="e#1432#1433#0" expanded="false" />
-            <element signature="e#1527#1528#0" expanded="false" />
-            <element signature="e#1573#1574#0" expanded="false" />
-            <element signature="e#1622#1623#0" expanded="false" />
-            <element signature="e#1662#1663#0" expanded="false" />
-            <element signature="e#1724#1725#0" expanded="false" />
-            <element signature="e#1778#1779#0" expanded="false" />
-            <element signature="e#1833#1834#0" expanded="false" />
-            <element signature="e#1879#1880#0" expanded="false" />
-            <element signature="e#1924#1925#0" expanded="false" />
-            <element signature="e#1960#1961#0" expanded="false" />
-            <element signature="e#2007#2008#0" expanded="false" />
-            <element signature="e#2045#2046#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/it/unica/foresee/core/interfaces/State.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/it/unica/foresee/libraries/interfaces/Library.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/it/unica/foresee/utils/Pair.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="95" column="0" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
           <folding />
         </state>
@@ -1121,204 +963,122 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Manifest.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/drafts/pearson.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.081203006">
+        <state relative-caret-position="0">
           <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/interfaces/SolutionElement.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.40601504">
+        <state relative-caret-position="0">
           <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/it/unica/foresee/utils/Triple.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="129" column="19" selection-start-line="129" selection-start-column="19" selection-end-line="129" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/it/unica/foresee/commandlists/interfaces/Semantic.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/MovieUserRate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="9" column="68" selection-start-line="9" selection-start-column="68" selection-end-line="9" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/interfaces/DatasetLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="13" column="37" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/it/unica/foresee/commandlists/ARTCommandList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/it/unica/foresee/commandlists/interfaces/CommandList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="36" column="37" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/FileDatasetLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="648">
+          <caret line="39" column="38" selection-start-line="39" selection-start-column="38" selection-end-line="39" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/interfaces/DatasetVector.java">
+    <entry file="file://$PROJECT_DIR$/it/unica/foresee/core/interfaces/Core.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+        <state relative-caret-position="144">
+          <caret line="14" column="72" selection-start-line="14" selection-start-column="72" selection-end-line="14" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/it/unica/foresee/core/Core.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/it/unica/foresee/Foresee.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3600">
+          <caret line="212" column="9" selection-start-line="212" selection-start-column="9" selection-end-line="212" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/it/unica/foresee/core/Interpreter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1854">
+          <caret line="116" column="0" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/Movielens_deprecated.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="11" column="73" selection-start-line="11" selection-start-column="55" selection-end-line="11" selection-end-column="73" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/interfaces/DatasetElement.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="612">
           <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/MovieUserRate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="68" selection-start-line="9" selection-start-column="68" selection-end-line="9" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/interfaces/DatasetLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="37" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/DatasetElement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="49" column="7" selection-start-line="49" selection-start-column="7" selection-end-line="49" selection-end-column="7" />
-          <folding>
-            <element signature="e#505#506#0" expanded="true" />
-            <element signature="e#545#546#0" expanded="true" />
-            <element signature="e#625#626#0" expanded="true" />
-            <element signature="e#655#656#0" expanded="true" />
-            <element signature="e#765#766#0" expanded="true" />
-            <element signature="e#803#804#0" expanded="true" />
-            <element signature="e#910#911#0" expanded="true" />
-            <element signature="e#958#959#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/DatasetVector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="51" column="70" selection-start-line="51" selection-start-column="27" selection-end-line="51" selection-end-column="70" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#511#512#0" expanded="true" />
-            <element signature="e#534#535#0" expanded="true" />
-            <element signature="e#634#635#0" expanded="true" />
-            <element signature="e#673#674#0" expanded="true" />
-            <element signature="e#781#782#0" expanded="true" />
-            <element signature="e#816#817#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/MovielensElement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="34" column="41" selection-start-line="34" selection-start-column="41" selection-end-line="34" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/it/unica/foresee/commandlists/ARTCommandList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/it/unica/foresee/commandlists/interfaces/CommandList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="37" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/MovielensLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="42" column="61" selection-start-line="42" selection-start-column="61" selection-end-line="42" selection-end-column="61" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/Movielens.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="62" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="62" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#969#970#0" expanded="true" />
-            <element signature="e#1002#1003#0" expanded="true" />
-            <element signature="e#1035#1036#0" expanded="true" />
-            <element signature="e#1067#1068#0" expanded="true" />
-            <element signature="e#1103#1104#0" expanded="true" />
-            <element signature="e#1138#1139#0" expanded="true" />
-            <element signature="e#1173#1174#0" expanded="true" />
-            <element signature="e#1207#1208#0" expanded="true" />
-            <element signature="e#1253#1254#0" expanded="true" />
-            <element signature="e#1285#1286#0" expanded="true" />
-            <element signature="e#1330#1331#0" expanded="true" />
-            <element signature="e#1361#1362#0" expanded="true" />
-            <element signature="e#1428#1429#0" expanded="true" />
-            <element signature="e#1472#1473#0" expanded="true" />
-            <element signature="e#1519#1520#0" expanded="true" />
-            <element signature="e#1561#1562#0" expanded="true" />
-            <element signature="e#1614#1615#0" expanded="true" />
-            <element signature="e#1662#1663#0" expanded="true" />
-            <element signature="e#1722#1723#0" expanded="true" />
-            <element signature="e#1764#1765#0" expanded="true" />
-            <element signature="e#1815#1816#0" expanded="true" />
-            <element signature="e#1861#1862#0" expanded="true" />
-            <element signature="e#1919#1920#0" expanded="true" />
-            <element signature="e#1959#1960#0" expanded="true" />
-            <element signature="e#2026#2027#0" expanded="true" />
-            <element signature="e#2061#2062#0" expanded="true" />
-            <element signature="e#2107#2108#0" expanded="true" />
-            <element signature="e#2141#2142#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/interfaces/FileDatasetLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="48" selection-start-line="27" selection-start-column="48" selection-end-line="27" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/FileDatasetLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="39" column="38" selection-start-line="39" selection-start-column="38" selection-end-line="39" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/Dataset.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="288">
           <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding />
         </state>
@@ -1326,7 +1086,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/interfaces/Dataset.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="504">
           <caret line="28" column="11" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
           <folding />
         </state>
@@ -1334,49 +1094,113 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/it/unica/foresee/core/Env.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="270">
           <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/it/unica/foresee/core/interfaces/Core.java">
+    <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/interfaces/FileDatasetLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="72" selection-start-line="14" selection-start-column="72" selection-end-line="14" selection-end-column="72" />
-          <folding />
+        <state relative-caret-position="468">
+          <caret line="27" column="48" selection-start-line="27" selection-start-column="48" selection-end-line="27" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/it/unica/foresee/core/Core.java">
+    <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/interfaces/DatasetVector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/it/unica/foresee/Foresee.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="212" column="9" selection-start-line="212" selection-start-column="9" selection-end-line="212" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/it/unica/foresee/core/Interpreter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="116" column="0" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
+        <state relative-caret-position="126">
+          <caret line="7" column="73" selection-start-line="7" selection-start-column="73" selection-end-line="7" selection-end-column="73" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/it/unica/foresee/commandlists/FSCommandList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17565218">
+        <state relative-caret-position="1332">
           <caret line="262" column="0" selection-start-line="262" selection-start-column="0" selection-end-line="262" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/MovielensLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="41" column="11" selection-start-line="41" selection-start-column="11" selection-end-line="41" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/DatasetElement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/IntegerElement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="24" selection-end-column="5" />
+          <folding>
+            <element signature="e#274#275#0" expanded="true" />
+            <element signature="e#308#309#0" expanded="true" />
+            <element signature="e#470#471#0" expanded="true" />
+            <element signature="e#528#529#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/DoubleElement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="19" column="7" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
+          <folding>
+            <element signature="e#267#268#0" expanded="true" />
+            <element signature="e#301#302#0" expanded="true" />
+            <element signature="e#460#461#0" expanded="true" />
+            <element signature="e#518#519#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/DatasetVector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="13" column="1" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/MovielensElement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="73" selection-start-line="12" selection-start-column="73" selection-end-line="12" selection-end-column="73" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#711#712#0" expanded="true" />
+            <element signature="e#767#768#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/it/unica/foresee/datasets/DatasetSparseVector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="222" column="22" selection-start-line="222" selection-start-column="22" selection-end-line="222" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#6534#6535#0" expanded="true" />
+            <element signature="e#6581#6582#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
