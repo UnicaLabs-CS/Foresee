@@ -1,14 +1,16 @@
 package it.unica.foresee.datasets;
 
-import it.unica.foresee.datasets.interfaces.*;
+import it.unica.foresee.datasets.interfaces.DatasetElement;
 
-import java.awt.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.TreeMap;
+import java.util.Random;
 
 /**
  * An efficient data structure for sparse vectors.
  */
-public class DatasetSparseVector<T extends DatasetElement> extends TreeMap<Integer, T> implements it.unica.foresee.datasets.interfaces.DatasetVector<T>, it.unica.foresee.datasets.interfaces.DatasetElement<DatasetSparseVector>
+public class DatasetSparseVector<T extends DatasetElement> extends TreeMap<Integer, T> implements it.unica.foresee.datasets.interfaces.DatasetVector<T>, it.unica.foresee.datasets.interfaces.DatasetElement<DatasetSparseVector<T>>
 {
     /**
      * Mean of the elements means.
@@ -79,13 +81,13 @@ public class DatasetSparseVector<T extends DatasetElement> extends TreeMap<Integ
          * the last is reached.
          * If the last layer is reached, add the element in it without further checks.
          */
-        ArrayList[] layers = new ArrayList[layersAmount];
+        ArrayList<Integer>[] layers = new ArrayList[layersAmount];
 
         /* Initialize the Array */
         for (int i = 0; i < layers.length; i++)
         {
             /* Each layer contains only the keys referring to the element */
-            layers[i] = new ArrayList<Integer>();
+            layers[i] = new ArrayList<>();
         }
 
         /* Stratification loop */
@@ -114,13 +116,13 @@ public class DatasetSparseVector<T extends DatasetElement> extends TreeMap<Integ
         }
 
         /* Fill the k partitions: k folding */
-        DatasetSparseVector[] partitions = new DatasetSparseVector[k];
+        DatasetSparseVector<T>[] partitions = new DatasetSparseVector[k];
         Random randomizer = new Random();
 
         /* Initialize the partitions */
         for (int i = 0; i < partitions.length; i++)
         {
-            partitions[i] = new DatasetSparseVector<T>();
+            partitions[i] = new DatasetSparseVector<>();
         }
 
         /* For each layer add random elements to each partition */
@@ -156,7 +158,7 @@ public class DatasetSparseVector<T extends DatasetElement> extends TreeMap<Integ
      * @return true if the mean value has been set by the user
      */
     public boolean isMeanValueSetByUser() {
-        return meanValueSetByUser;
+        return this.meanValueSetByUser;
     }
 
     /**
@@ -195,7 +197,7 @@ public class DatasetSparseVector<T extends DatasetElement> extends TreeMap<Integ
      * {@inheritDoc}
      */
     @Override
-    public void setElement(DatasetSparseVector e) {
+    public void setElement(DatasetSparseVector<T> e) {
         this.clear();
         this.putAll(e);
         this.meanValueSetByUser = e.isMeanValueSetByUser();

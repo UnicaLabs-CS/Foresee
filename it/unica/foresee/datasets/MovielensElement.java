@@ -13,6 +13,11 @@ import it.unica.foresee.utils.Pair;
 public class MovielensElement extends DatasetSparseVector<IntegerElement>
 {
     /**
+     * Empty constructor.
+     */
+    public MovielensElement(){}
+
+    /**
      * Initializes the element from an Integer.
      * @param key the index of the element
      * @param value the value of the element at the index position
@@ -44,5 +49,18 @@ public class MovielensElement extends DatasetSparseVector<IntegerElement>
      * @param p a Pair of q key and a value
      */
     public MovielensElement(Pair<Integer, Integer> p) {this.put(p.getFst(), new IntegerElement(p.getSnd()));}
+
+    /**
+     * Additional put method to support Integers.
+     * @param key the index
+     * @param value the value at the index
+     * @return the value as an IntegerElement
+     */
+    public IntegerElement put(Integer key, Integer value)
+    {
+        IntegerElement e = new IntegerElement(value);
+        this.put(key, e);
+        return e;
+    }
 
 }

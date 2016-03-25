@@ -36,12 +36,14 @@ public class MovielensLoader extends FileDatasetLoader
      * Each user has at least 20 ratings.
      * The Timestamp is discarded, while userID, movieID and rating are stored
      * in the object itself.
+     * 
+     * @// TODO: 25/03/16 users and movies set could be probably removed
      *
      * @param sourceFile the file from which to load the data
      */
-    public Movielens_deprecated loadDataset(File sourceFile) throws FileNotFoundException
+    public Movielens loadDataset(File sourceFile) throws FileNotFoundException
     {
-        Movielens_deprecated dataset = new Movielens_deprecated();
+        Movielens dataset = new Movielens();
         TreeSet<Integer> usersSet = new TreeSet<>();
         TreeSet<Integer> moviesSet = new TreeSet<>();
 
@@ -55,7 +57,6 @@ public class MovielensLoader extends FileDatasetLoader
         int userID;
         int movieID;
         int rating;
-        double dRating; //rating converted to double
 
         // Read the file line by line
         while (dataSource.hasNextLine()) {
@@ -103,9 +104,7 @@ public class MovielensLoader extends FileDatasetLoader
                 throw new InputMismatchException("rating < 1 at line " + lineNumber);
             }
 
-            MovieUserRate m = new MovieUserRate(userID, movieID, rating);
-
-            dataset.add(new MovielensElement(m));
+            dataset.put(userID, movieID, rating);
             usersSet.add(userID);
             moviesSet.add(movieID);
 
@@ -140,7 +139,7 @@ public class MovielensLoader extends FileDatasetLoader
      * {@inheritDoc}
      */
     @Override
-    public Movielens_deprecated loadDataset() throws FileNotFoundException
+    public Movielens loadDataset() throws FileNotFoundException
     {
         return loadDataset(this.getDatasetFile());
     }

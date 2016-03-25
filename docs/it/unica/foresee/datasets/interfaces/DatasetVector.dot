@@ -29,8 +29,8 @@ digraph G {
 <tr><td align="center" balign="center"> DatasetVector&lt;T extends DatasetElement&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// it.unica.foresee.datasets.DatasetSparseVector<T extends it.unica.foresee.datasets.DatasetElement>
-	c645 [label=<<table title="it.unica.foresee.datasets.DatasetSparseVector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../DatasetSparseVector.html">
+	// it.unica.foresee.datasets.DatasetSparseVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
+	c644 [label=<<table title="it.unica.foresee.datasets.DatasetSparseVector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../DatasetSparseVector.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DatasetSparseVector&lt;T extends DatasetElement&gt; </td></tr>
 		</table></td></tr>
@@ -43,8 +43,8 @@ digraph G {
 	c670:p -> c638:p [dir=back,arrowtail=empty,style=dashed];
 	//it.unica.foresee.datasets.DatasetVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement> implements it.unica.foresee.datasets.interfaces.DatasetVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
 	c634:p -> c640:p [dir=back,arrowtail=empty,style=dashed];
-	//it.unica.foresee.datasets.DatasetSparseVector<T extends it.unica.foresee.datasets.DatasetElement> implements it.unica.foresee.datasets.interfaces.DatasetVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
-	c634:p -> c645:p [dir=back,arrowtail=empty,style=dashed];
+	//it.unica.foresee.datasets.DatasetSparseVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement> implements it.unica.foresee.datasets.interfaces.DatasetVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
+	c634:p -> c644:p [dir=back,arrowtail=empty,style=dashed];
 	// java.lang.Iterable<T>
 	c670 [label=<<table title="java.lang.Iterable" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/Iterable.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">

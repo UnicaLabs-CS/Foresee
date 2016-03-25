@@ -33,34 +33,34 @@ digraph G {
 <tr><td align="center" balign="center"> FileDatasetLoader&lt;T extends Dataset&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// it.unica.foresee.datasets.Movielens_deprecated
-	c91 [label=<<table title="it.unica.foresee.datasets.Movielens_deprecated" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Movielens_deprecated.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> Movielens_deprecated </td></tr>
-		</table></td></tr>
-		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// it.unica.foresee.datasets.DatasetSparseVector<T extends it.unica.foresee.datasets.DatasetElement>
-	c92 [label=<<table title="it.unica.foresee.datasets.DatasetSparseVector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatasetSparseVector.html">
+	// it.unica.foresee.datasets.DatasetSparseVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
+	c91 [label=<<table title="it.unica.foresee.datasets.DatasetSparseVector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatasetSparseVector.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DatasetSparseVector&lt;T extends DatasetElement&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.Dataset<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
-	c93 [label=<<table title="it.unica.foresee.datasets.Dataset" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Dataset.html">
+	c92 [label=<<table title="it.unica.foresee.datasets.Dataset" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Dataset.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> Dataset&lt;T extends DatasetElement&gt; </font></td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.MovielensElement
-	c94 [label=<<table title="it.unica.foresee.datasets.MovielensElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MovielensElement.html">
+	c93 [label=<<table title="it.unica.foresee.datasets.MovielensElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MovielensElement.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MovielensElement </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.MovieUserRate
-	c95 [label=<<table title="it.unica.foresee.datasets.MovieUserRate" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MovieUserRate.html">
+	c94 [label=<<table title="it.unica.foresee.datasets.MovieUserRate" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MovieUserRate.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MovieUserRate </td></tr>
+		</table></td></tr>
+		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// it.unica.foresee.datasets.Movielens
+	c95 [label=<<table title="it.unica.foresee.datasets.Movielens" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Movielens.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> Movielens </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.IntegerElement
@@ -77,10 +77,10 @@ digraph G {
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//it.unica.foresee.datasets.MovielensLoader extends it.unica.foresee.datasets.FileDatasetLoader
 	c90:p -> c88:p [dir=back,arrowtail=empty];
-	//it.unica.foresee.datasets.Movielens_deprecated extends it.unica.foresee.datasets.DatasetVector<it.unica.foresee.datasets.MovielensElement>
-	c87:p -> c91:p [dir=back,arrowtail=empty];
 	//it.unica.foresee.datasets.MovielensElement extends it.unica.foresee.datasets.DatasetSparseVector<it.unica.foresee.datasets.IntegerElement>
-	c92:p -> c94:p [dir=back,arrowtail=empty];
+	c91:p -> c93:p [dir=back,arrowtail=empty];
+	//it.unica.foresee.datasets.Movielens extends it.unica.foresee.datasets.DatasetSparseVector<it.unica.foresee.datasets.MovielensElement>
+	c91:p -> c95:p [dir=back,arrowtail=empty];
 	//it.unica.foresee.datasets.IntegerElement extends it.unica.foresee.datasets.DatasetElement<java.lang.Integer>
 	c89:p -> c96:p [dir=back,arrowtail=empty];
 	//it.unica.foresee.datasets.DoubleElement extends it.unica.foresee.datasets.DatasetElement<java.lang.Double>
