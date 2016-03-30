@@ -42,7 +42,7 @@ clean:
 	for file in "`find -name *.class`"; \
 		do rm -v $$file; \
 	done; \
-	if [ -f $(proj).jar ] ; then rm $(proj).jar; fi;
+	if [ -f $(proj)*.jar ] ; then rm $(proj)*.jar; fi;
 
 # Make the readme inside a body tag
 docs/README.html:
@@ -61,7 +61,7 @@ doc: docs/README.html javadoc-style/stylesheet.css javadoc-style/md-doclet.jar
 
 # Create a jar file
 jar: main Manifest.txt
-	jar -cvfm $(proj).jar Manifest.txt `find -name *.class`;
+	jar -cvfm $(proj)-`date +%Y%m%d`.jar Manifest.txt `find -name *.class`;
 
 # Main
 # ====
