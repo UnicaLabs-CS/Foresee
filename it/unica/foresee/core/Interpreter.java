@@ -16,6 +16,7 @@ import java.util.Scanner;
 import java.util.TreeMap;
 
 /**
+ * @deprecated
  * Class to parse the instructions of the program.
  *
  * This class represents a simple parser for the instructions of the framework. It can be invoked to execute

@@ -10,18 +10,18 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// it.unica.foresee.datasets.DatasetSparseVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
-	c1123 [label=<<table title="it.unica.foresee.datasets.DatasetSparseVector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatasetSparseVector.html">
+	c1029 [label=<<table title="it.unica.foresee.datasets.DatasetSparseVector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatasetSparseVector.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DatasetSparseVector&lt;T extends DatasetElement&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.MovielensElement
-	c1125 [label=<<table title="it.unica.foresee.datasets.MovielensElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MovielensElement.html">
+	c1031 [label=<<table title="it.unica.foresee.datasets.MovielensElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MovielensElement.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MovielensElement </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//it.unica.foresee.datasets.MovielensElement extends it.unica.foresee.datasets.DatasetSparseVector<it.unica.foresee.datasets.IntegerElement>
-	c1123:p -> c1125:p [dir=back,arrowtail=empty];
+	c1029:p -> c1031:p [dir=back,arrowtail=empty];
 }
 

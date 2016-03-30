@@ -1,8 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./DatasetVector.html" title="it.unica.foresee.datasets.interfaces.DatasetVector" alt="" coords="15,115,291,159"/>
-<area shape="rect" id="node2_1" href="./DatasetElement.html" title="it.unica.foresee.datasets.interfaces.DatasetElement" alt="" coords="318,11,458,55"/>
-<area shape="rect" id="node3_2" href="./FileDatasetLoader.html" title="it.unica.foresee.datasets.interfaces.FileDatasetLoader" alt="" coords="493,115,744,159"/>
-<area shape="rect" id="node4_3" href="./SolutionElement.html" title="it.unica.foresee.datasets.interfaces.SolutionElement" alt="" coords="779,11,919,55"/>
-<area shape="rect" id="node5_4" href="./Dataset.html" title="it.unica.foresee.datasets.interfaces.Dataset" alt="" coords="34,11,273,55"/>
-<area shape="rect" id="node6_5" href="./DatasetLoader.html" title="it.unica.foresee.datasets.interfaces.DatasetLoader" alt="" coords="504,11,733,55"/>
+<area shape="rect" id="node1_0" href="./DatasetElement.html" title="it.unica.foresee.datasets.interfaces.DatasetElement" alt="" coords="15,11,155,55"/>
+<area shape="rect" id="node2_1" href="./Dataset.html" title="it.unica.foresee.datasets.interfaces.Dataset" alt="" coords="201,11,439,55"/>
+<area shape="rect" id="node3_2" href="./DatasetVector.html" title="it.unica.foresee.datasets.interfaces.DatasetVector" alt="" coords="182,115,458,159"/>
+<area shape="rect" id="node4_3" href="./FileDatasetLoader.html" title="it.unica.foresee.datasets.interfaces.FileDatasetLoader" alt="" coords="503,115,753,159"/>
+<area shape="rect" id="node5_4" href="./SolutionElement.html" title="it.unica.foresee.datasets.interfaces.SolutionElement" alt="" coords="789,11,929,55"/>
+<area shape="rect" id="node6_5" href="./DatasetLoader.html" title="it.unica.foresee.datasets.interfaces.DatasetLoader" alt="" coords="513,11,743,55"/>
 </map>
