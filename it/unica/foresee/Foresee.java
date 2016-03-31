@@ -1,8 +1,7 @@
 package it.unica.foresee;
 
-import it.unica.foresee.commandlists.ARTCommandList;
-import it.unica.foresee.commandlists.FSCommandList;
-import it.unica.foresee.core.Interpreter;
+import it.unica.foresee.core.Core;
+import it.unica.foresee.utils.Tools;
 
 import static it.unica.foresee.utils.Tools.err;
 import static it.unica.foresee.utils.Tools.warn;
@@ -79,7 +78,7 @@ public class Foresee
                 for (int j = 2; j < args[i].length(); j++)
                 {
                     /* add each character as if it was prefixed by a dash */
-                    argsList.add("-" + args[i].substring(j, 1));
+                    argsList.add("-" + args[i].substring(j, j + 1));
                 }
             }
         }
@@ -154,6 +153,7 @@ public class Foresee
                 if (!s.isVerbose())
                 {
                     s.setVerbose(true);
+                    Tools.setVerbosity(Tools.VERB_ALL);
                     log("Enabling verbose mode: brace yourself");
                 }
                 else
@@ -194,102 +194,87 @@ public class Foresee
     {
         int exitStatus = 0;
         /* Obtain the settings for the application */
-        Settings s;
+        Settings settings;
         /* args like -ivs become -i -v -s */
         args = expandArguments(args);
         try
         {
-            s = parseArguments(args);
+            settings = parseArguments(args);
         }
+        // This happens when the user selects multiple modes that cannot work together
         catch (IllegalStateException e)
         {
             err("Multiple modes selected or missing parameter while parsing argument " + e.getMessage());
             return 1;
         }
+        // This happens if the input arguments are not recognised
         catch (InputMismatchException e)
         {
             err(e.getMessage());
             return 1;
         }
 
-        if (s.isHelpMode())
+        if (settings.isHelpMode())
         {
             help();
             return exitStatus;
         }
 
-        if (s.isInteractive())
-        {
-            if(s.isVerbose()){log("Loading interactive mode...");}
-            return loadInterpreter(s.isLegacy(), s.isVerbose(), null);
-        }
-        else if (s.isInstructionPathSet())
-        {
-            File instructionsFile = new File(s.getInstructionPath());
-
-            /* If the path is a folder make the user
-            select one file in the folder, otherwise just load the file */
-            if (instructionsFile.isDirectory())
-            {
-                /* Returns null if no file is available */
-                instructionsFile = askFileToLoad(s.isVerbose(), instructionsFile);
-            }
-
-            /* Check if a file has actually been selected */
-            if (instructionsFile != null)
-            {
-                /* Call the interpreter */
-                exitStatus = loadInterpreter(s.isLegacy(), s.isVerbose(), instructionsFile);
-            }
-            else
-            {
-                err("Sorry no file found or invalid selection");
-                exitStatus = 1;
-            }
-        }
-        else /* No valid selection has been done */
-        {
-            log("no argument specified, defaulting on interactive mode");
-            if(s.isVerbose()){log("Loading interactive mode...");}
-            return loadInterpreter(s.isLegacy(), s.isVerbose(), null);
-        }
-
-        return exitStatus;
-    }
-
-    /**
-     * Loads the instruction file and runs the interpreter.
-     *
-     * @param legacy flag for legacy interpreter
-     * @param verbose flag for verbose mode
-     * @param instructionsFile file containing the instructions to run
-     * @return the exit status
-     */
-    public static int loadInterpreter(boolean legacy, boolean verbose, File instructionsFile)
-    {
-        int exitStatus;
-        /* Load the interpreter and run the program*/
         try
         {
-            if (legacy)
+            // Interactive mode
+            if (settings.isInteractive())
             {
-                if(verbose){log("Enabling legacy ART compatible mode");}
-                Interpreter i = new Interpreter(instructionsFile, verbose, new ARTCommandList());
-                exitStatus = i.run();
+                log("Loading interactive mode...");
+                return (new Core(settings)).run();
             }
-            else
+            // Instructions file mode
+            else if (settings.isInstructionPathSet())
             {
-                Interpreter i = new Interpreter(instructionsFile, verbose, new FSCommandList());
-                exitStatus = i.run();
+                File instructionsFile = new File(settings.getInstructionPath());
+
+                /* If the path is a folder make the user
+                select one file in the folder, otherwise just load the file */
+                if (instructionsFile.isDirectory())
+                {
+                    /* Returns null if no file is available */
+                    instructionsFile = askFileToLoad(settings.isVerbose(), instructionsFile);
+                }
+
+                /* Check if a file has actually been selected */
+                if (instructionsFile != null)
+                {
+                    /* Call the interpreter */
+                    exitStatus = (new Core(settings, instructionsFile)).run();
+                }
+                else
+                {
+                    err("Sorry no file found or invalid selection");
+                    exitStatus = 1;
+                }
+            }
+            else /* No valid selection has been done, use intercative as fallback */
+            {
+                log("no argument specified, defaulting on interactive mode");
+                settings.setInteractive(true);
+
+                if (settings.isVerbose())
+                {
+                    log("Loading interactive mode...");
+                }
+                return (new Core(settings)).run();
             }
         }
+        // This should have been checked already, but care is needed anyway
         catch (FileNotFoundException e)
         {
             err(e.getMessage());
             exitStatus = 1;
         }
+
         return exitStatus;
     }
+
 
     /**
      * Asks the user which file to load among those in the current path.
@@ -302,7 +287,7 @@ public class Foresee
     {
         File instructionsFile = null;
 
-        if(verbose){log("Path is a directory, loading files...");}
+        log("Path is a directory, loading files...");
 
         /* Anonymous function used to match only the
            files with a particular pattern */

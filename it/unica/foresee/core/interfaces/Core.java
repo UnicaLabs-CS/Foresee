@@ -1,9 +1,9 @@
 package it.unica.foresee.core.interfaces;
 
-import com.sun.istack.internal.NotNull;
 import it.unica.foresee.Settings;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 
 /**
  * Defines the core of the framework, which manages the interaction
@@ -70,6 +70,14 @@ public interface Core
      * @param output the output of the computation
      */
     void saveOutput(Iterable output);
+
+    /**
+     * Parses the given instructions.
+     *
+     * @return the exit status
+     */
+    int run() throws FileNotFoundException;
+
 
     //CommandList loadCommandListModule();
 

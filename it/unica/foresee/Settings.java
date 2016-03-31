@@ -6,6 +6,11 @@ package it.unica.foresee;
 public class Settings
 {
     /**
+     * Enable snapshots.
+     */
+    private boolean activeSnapshooting = true;
+
+    /**
      * Shows an help message.
      */
     private boolean helpMode = false;
@@ -43,6 +48,10 @@ public class Settings
 
     /*----------- Getter -----------*/
 
+    public boolean isActiveSnapshooting() {
+        return activeSnapshooting;
+    }
+
     public boolean isCommandListSet() {
         return commandList != null;
     }
@@ -77,6 +86,10 @@ public class Settings
 
 
     /*----------- Setter -----------*/
+
+    public void setActiveSnapshooting(boolean activeSnapshooting) {
+        this.activeSnapshooting = activeSnapshooting;
+    }
 
     public void setCommandList(String commandList) {
         this.commandList = commandList;

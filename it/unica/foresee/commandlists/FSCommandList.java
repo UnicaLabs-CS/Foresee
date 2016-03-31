@@ -2,7 +2,7 @@ package it.unica.foresee.commandlists;
 
 import it.unica.foresee.commandlists.interfaces.CommandList;
 import it.unica.foresee.commandlists.interfaces.Semantic;
-import it.unica.foresee.core.Env;
+import it.unica.foresee.core.interfaces.Env;
 import it.unica.foresee.datasets.*;
 
 import static it.unica.foresee.utils.Tools.err;
@@ -152,6 +152,11 @@ import java.util.TreeMap;
  */
 public class FSCommandList extends TreeMap<String, Semantic> implements CommandList
 {
+    public FSCommandList()
+    {
+        loadCommandsSemantic();
+    }
+
     /**
      * Initialize the commands.
      */
@@ -173,17 +178,21 @@ public class FSCommandList extends TreeMap<String, Semantic> implements CommandL
                     case 1:
                         try
                         {
-                            env.exit_status = Integer.parseInt(args[0]);
+                            env.setAbnormalExitStatus(Integer.parseInt(args[0]));
                         }
                         catch (NumberFormatException e)
                         {
                             warn("argument is not an integer");
                         }
+                        catch (IllegalArgumentException e)
+                        {
+                            warn("you cannot set exit status to 0");
+                        }
                         /* continue to case 0 */
 
                     case 0:
-                        if(env.verb){log("Calling exit this...");}
-                        env.force_exit = true;
+                        log("Calling exit...");
+                        env.setForceExit(true);
                         log("Goodbye!");
                         break;
 
@@ -234,13 +243,13 @@ public class FSCommandList extends TreeMap<String, Semantic> implements CommandL
                         try
                         {
                             File datasetFile = new File(filePath);
-                            env.dataset = (new FileDatasetLoader(datasetFile)).loadDataset();
-                            if(env.verb){log("dataset " + filePath + " loaded");}
+                            env.setDataset((new FileDatasetLoader(datasetFile)).loadDataset());
+                            log("dataset " + filePath + " loaded");
                         }
                         catch (FileNotFoundException e)
                         {
                             err("dataset file not found: " + filePath);
-                            env.exit_status = 1;
+                            env.setAbnormalExitStatus(1);
                         }
                         catch (InputMismatchException e)
                         {
@@ -290,10 +299,8 @@ public class FSCommandList extends TreeMap<String, Semantic> implements CommandL
                         if (!folder.exists()) {
                             warn("folder does not exist: " + path);
                         } else {
-                            env.work_directory = path;
-                            if (env.verb) {
-                                log("Changed workdir: " + folder.getAbsolutePath());
-                            }
+                            env.setWorkDirectory(path);
+                            log("Changed workdir: " + folder.getAbsolutePath());
                         }
                         break;
 

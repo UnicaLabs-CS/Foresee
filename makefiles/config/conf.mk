@@ -34,6 +34,9 @@ test-libs-link:
 libs-link:
 	cd $(libs_path); make all
 
+# Libraries required by tests
+testlibs = $(junit)
+
 # Generic
 # =======
 all: main
@@ -69,6 +72,6 @@ main: classForesee
 
 # Libs
 # ====
-junit = $(libs_path)/junit-4.jar
-hamcrest = $(libs_path)/hamcrest.jar
-system_rules = $(libs_path)/system-rules.jar
+junit = $(test_libs_path)/junit-4.jar
+hamcrest = $(test_libs_path)/hamcrest.jar
+system_rules = $(test_libs_path)/system-rules.jar
