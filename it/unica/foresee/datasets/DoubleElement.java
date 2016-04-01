@@ -31,4 +31,13 @@ public class DoubleElement extends DatasetElement<Double>
     {
         return this.getElement();
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString()
+    {
+        return Double.toString(this.getElement());
+    }
 }

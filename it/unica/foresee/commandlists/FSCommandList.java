@@ -170,38 +170,7 @@ public class FSCommandList extends TreeMap<String, Semantic> implements CommandL
         this.put("clustering", this::commandNotYetImplemented);
 
         // exit
-        this.put("exit", new Semantic(){
-            public Env exec(String[] args, Env env)
-            {
-                switch (args.length)
-                {
-                    case 1:
-                        try
-                        {
-                            env.setAbnormalExitStatus(Integer.parseInt(args[0]));
-                        }
-                        catch (NumberFormatException e)
-                        {
-                            warn("argument is not an integer");
-                        }
-                        catch (IllegalArgumentException e)
-                        {
-                            warn("you cannot set exit status to 0");
-                        }
-                        /* continue to case 0 */
-
-                    case 0:
-                        log("Calling exit...");
-                        env.setForceExit(true);
-                        log("Goodbye!");
-                        break;
-
-                    default:
-                        warn("too many arguments");
-                }
-                return env;
-            }
-        });
+        this.put("exit", this::exit);
 
         // forcek
         this.put("forcek", this::commandNotYetImplemented);
@@ -219,104 +188,160 @@ public class FSCommandList extends TreeMap<String, Semantic> implements CommandL
         this.put("initnetwork", this::commandNotYetImplemented);
 
         // loaddataset
-        this.put("loaddataset", new Semantic(){
-            /**
-             * Command to load a dataset.
-             *
-             * Syntax: loaddateset \<dataset_file\>
-             *
-             * Arguments:
-             * dataset_file: path to a dataset file
-             *
-             * @param args the command arguments
-             */
-            public Env exec(String[] args, Env env)
-            {
-                switch (args.length)
-                {
-                    case 0:
-                        warn("missing operand: <dataset_file>");
-                        break;
-
-                    case 1:
-                        String filePath = args[0];
-                        try
-                        {
-                            File datasetFile = new File(filePath);
-                            env.setDataset((new FileDatasetLoader(datasetFile)).loadDataset());
-                            log("dataset " + filePath + " loaded");
-                        }
-                        catch (FileNotFoundException e)
-                        {
-                            err("dataset file not found: " + filePath);
-                            env.setAbnormalExitStatus(1);
-                        }
-                        catch (InputMismatchException e)
-                        {
-                            err(e.getMessage() + " in " + filePath);
-                        }
-                        catch (IllegalStateException e)
-                        {
-                            err(e.getMessage() + " in " + filePath);
-                        }
-                        break;
-
-                    default:
-                        warn("too many arguments");
-                        break;
-
-                }
-                return env;
-            }
-        });
+        this.put("loaddataset", this::loaddataset);
 
         // personalpredictions
         this.put("personalpredictions", this::commandNotYetImplemented);
 
         // workdir
-        this.put("workdir", new Semantic(){
-            /**
-             * Command to change the current working directory.
-             *
-             * Syntax: workdir \<directory\>
-             *
-             * Arguments:
-             * directory: path to the new working directory
-             *
-             * @param args the command arguments
-             */
-            public Env exec(String[] args, Env env) {
-                switch (args.length)
-                {
-                    case 0:
-                        warn("missing operand: <directory>");
-                        break;
-
-                    case 1:
-                        String path = args[0];
-
-                        File folder = new File(path);
-                        if (!folder.exists()) {
-                            warn("folder does not exist: " + path);
-                        } else {
-                            env.setWorkDirectory(path);
-                            log("Changed workdir: " + folder.getAbsolutePath());
-                        }
-                        break;
-
-                    default:
-                        warn("too many arguments: " + args[0] + ", " + args[1]);
-                        break;
-                }
-                return env;
-            }
-        });
+        this.put("workdir", this::workdir);
         return this;
     }
 
+    /**
+     * Dummy function for commands yet to implement
+     * but that are accepted by the interpreter.
+     *
+     * @param args the command arguments
+     * @param env the current environment
+     * @return the updated environment
+     */
     public Env commandNotYetImplemented(String[] args, Env env)
     {
         warn("command not yet implemented");
+        return env;
+    }
+
+    /**
+     * Command to exit the shell
+     *
+     * Syntax: exit [status]
+     *
+     * Arguments:
+     * status: an abnormal (non zero) exit status
+     *
+     * @param args the command arguments
+     * @param env the current environment
+     * @return the updated environment
+     */
+    public Env exit(String[] args, Env env)
+    {
+        switch (args.length)
+        {
+            case 1:
+                try
+                {
+                    env.setAbnormalExitStatus(Integer.parseInt(args[0]));
+                }
+                catch (NumberFormatException e)
+                {
+                    warn("argument is not an integer");
+                }
+                catch (IllegalArgumentException e)
+                {
+                    warn("you cannot set exit status to 0");
+                }
+                        /* continue to case 0 */
+
+            case 0:
+                log("Calling exit...");
+                env.setForceExit(true);
+                log("Goodbye!");
+                break;
+
+            default:
+                warn("too many arguments");
+        }
+        return env;
+    }
+
+
+    /**
+     * Command to load a dataset.
+     *
+     * Syntax: loaddateset \<dataset_file\>
+     *
+     * Arguments:
+     * dataset_file: path to a dataset file
+     *
+     * @param args the command arguments
+     * @param env the current environment
+     * @return the updated environment
+     */
+    public Env loaddataset(String[] args, Env env)
+    {
+        switch (args.length)
+        {
+            case 0:
+                warn("missing operand: <dataset_file>");
+                break;
+
+            case 1:
+                String filePath = args[0];
+                try
+                {
+                    File datasetFile = new File(filePath);
+                    env.setDataset((new MovielensLoader()).loadDataset(datasetFile));
+                    log("dataset " + filePath + " loaded");
+                }
+                catch (FileNotFoundException e)
+                {
+                    err("dataset file not found: " + filePath);
+                    env.setAbnormalExitStatus(1);
+                }
+                catch (InputMismatchException e)
+                {
+                    err(e.getMessage() + " in " + filePath);
+                }
+                catch (IllegalStateException e)
+                {
+                    err(e.getMessage() + " in " + filePath);
+                }
+                break;
+
+            default:
+                warn("too many arguments");
+                break;
+
+        }
+        return env;
+    }
+
+    /**
+     * Command to change the current working directory.
+     *
+     * Syntax: workdir \<directory\>
+     *
+     * Arguments:
+     * directory: path to the new working directory
+     *
+     * @param args the command arguments
+     * @param env the current environment
+     * @return the updated environment
+     */
+    public Env workdir(String[] args, Env env) {
+        switch (args.length)
+        {
+            case 0:
+                warn("missing operand: <directory>");
+                break;
+
+            case 1:
+                String path = args[0];
+
+                File folder = new File(path);
+                if (!folder.exists()) {
+                    warn("folder does not exist: " + path);
+                } else {
+                    env.setBuffer("workdir", path);
+                    log("Changed workdir: " + folder.getAbsolutePath());
+                }
+                break;
+
+            default:
+                warn("too many arguments: " + args[0] + ", " + args[1]);
+                break;
+        }
         return env;
     }
 }

@@ -6,6 +6,7 @@ import it.unica.foresee.commandlists.FSCommandList;
 import it.unica.foresee.core.interfaces.Env;
 import it.unica.foresee.core.interfaces.State;
 import it.unica.foresee.Settings;
+import it.unica.foresee.utils.Pair;
 
 import static it.unica.foresee.utils.Tools.err;
 import static it.unica.foresee.utils.Tools.warn;
@@ -27,16 +28,6 @@ public class Core implements it.unica.foresee.core.interfaces.Core
 {
 
     /* Constants */
-
-    /**
-     * Directory where to store the snapshots.
-     */
-    private final String SNAP_DIR = "snapshots" + File.separator;
-
-    /**
-     * Name of the snapshot file.
-     */
-    private final String SNAP_FILE_NAME = "snapshot";
 
     /**
      * The command prompt to display.
@@ -223,7 +214,7 @@ public class Core implements it.unica.foresee.core.interfaces.Core
         try
         {
             // Check the existence of the path
-            File dir = new File(env.getWorkDirectory() + this.SNAP_DIR);
+            File dir = new File(settings.getWorkDirectory() + settings.SNAP_DIR);
             if (!dir.exists())
             {
                 dir.mkdirs();
@@ -235,8 +226,8 @@ public class Core implements it.unica.foresee.core.interfaces.Core
             }
 
             // Set the full path and name of the file (this also updates the snapshot number)
-            String fileName = env.getWorkDirectory() + this.SNAP_DIR +
-                    this.SNAP_FILE_NAME + this.getSnapshotNumber() + ".snap";
+            String fileName = settings.getWorkDirectory() + settings.SNAP_DIR +
+                    settings.SNAP_FILE_NAME + this.getSnapshotNumber() + settings.SNAP_FILE_EXT;
             FileOutputStream snapshotFile = new FileOutputStream(fileName);
             ObjectOutputStream snapshot = new ObjectOutputStream(snapshotFile);
 
@@ -343,13 +334,13 @@ public class Core implements it.unica.foresee.core.interfaces.Core
                 this.execute(statement);
 
                 // Save the current state
-                if(settings.isActiveSnapshooting())
+                if(settings.isSnapshootingEnabled())
                 {
                     saveSnapshot();
                 }
             }
 
-            /* Something triggered the exit command */
+            /* Something triggered the exit command, exit now */
             if (env.isForceExit())
             {
                 log("forcing exit...");
@@ -360,6 +351,7 @@ public class Core implements it.unica.foresee.core.interfaces.Core
             if (env.isAbnormalStatus())
             {
                 err("the system will be closed due to inconsistent state: status " + env.getExitStatus());
+                break;
             }
 
             if (settings.isInteractive())
@@ -370,6 +362,26 @@ public class Core implements it.unica.foresee.core.interfaces.Core
 
         log("Leaving with exit status " + env.getExitStatus());
         return env.getExitStatus();
+    }
+
+    /**
+     * Reads the buffer of the env to allow special operations out of the scope of the {@link Env}
+     *
+     * Currently supported operations:
+     *
+     *   - workdir: update the work directory
+     */
+    private void readBuffer()
+    {
+        Pair<String, String> buffer = this.env.getBuffer();
+        String key = buffer.getFst();
+        String value = buffer.getSnd();
+
+        // Select the thing to do based on the key
+        if (key.equals("workdir"))
+        {
+            this.settings.setWorkDirectory(value);
+        }
     }
 
     /**
@@ -434,8 +446,16 @@ public class Core implements it.unica.foresee.core.interfaces.Core
                         args.add(instructionReader.next());
                     }
                 }
-                /* Convert the ArrayList to a String array before executing it*/
+                /* Convert the ArrayList to a String array before executing it,
+                 * then update the env with the one returned by the command */
                 this.env = this.commandList.get(command).exec(args.toArray(new String[0]), env);
+
+                // Check if there's any special operation to perform
+                if(this.env.isBufferSet())
+                {
+                    // Perform special operations out of the scope of the Env
+                    readBuffer();
+                }
             }
             else
             {

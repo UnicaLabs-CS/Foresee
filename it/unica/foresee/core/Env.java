@@ -1,6 +1,7 @@
 package it.unica.foresee.core;
 
 import it.unica.foresee.datasets.interfaces.Dataset;
+import it.unica.foresee.utils.Pair;
 
 import static it.unica.foresee.utils.Tools.warn;
 
@@ -13,14 +14,9 @@ import java.io.File;
 public class Env implements it.unica.foresee.core.interfaces.Env
 {
     /**
-     * flag to force exit
+     * Buffer to allow a small communication between Env and {@link Core}
      */
-    private boolean forceExit = false;
-
-    /**
-     * exit status
-     */
-    private int exitStatus = 0;
+    private Pair<String, String> buffer;
 
     /**
      * the command in execution or just executed
@@ -33,9 +29,14 @@ public class Env implements it.unica.foresee.core.interfaces.Env
     private Dataset dataset = null;
 
     /**
-     * The work directory is where temporary files, buffers and snapshots are stored.
+     * exit status
      */
-    private String workDirectory = "." + File.separator + "workdir" + File.separator;
+    private int exitStatus = 0;
+
+    /**
+     * flag to force exit
+     */
+    private boolean forceExit = false;
 
     /**
      * Create a default environment.
@@ -43,6 +44,20 @@ public class Env implements it.unica.foresee.core.interfaces.Env
     public Env(){}
 
     /* Getter */
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Pair<String, String> getBuffer()
+    {
+        Pair<String, String> tempBuffer = this.buffer;
+
+        // Deallocate buffer before returning
+        this.buffer = null;
+
+        return tempBuffer;
+    }
 
     /**
      * {@inheritDoc}
@@ -71,17 +86,18 @@ public class Env implements it.unica.foresee.core.interfaces.Env
     /**
      * {@inheritDoc}
      */
-    @Override
-    public String getWorkDirectory() {
-        return workDirectory;
+    public boolean isAbnormalStatus()
+    {
+        return this.exitStatus != 0;
     }
 
     /**
      * {@inheritDoc}
      */
-    public boolean isAbnormalStatus()
+    @Override
+    public boolean isBufferSet()
     {
-        return this.exitStatus != 0;
+        return this.buffer != null;
     }
 
     /**
@@ -120,6 +136,32 @@ public class Env implements it.unica.foresee.core.interfaces.Env
      * {@inheritDoc}
      */
     @Override
+    public void setBuffer(Pair<String, String> buffer)
+    {
+        if (this.buffer == null)
+        {
+            this.buffer = buffer;
+        }
+        else
+        {
+            throw new IllegalStateException("A buffer cannot be set multiple times" +
+                    " within the same command execution");
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setBuffer(String key, String value)
+    {
+        setBuffer(new Pair<>(key, value));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void setCurrentCommand(String currentCommand) {
         this.currentCommand = currentCommand;
     }
@@ -138,14 +180,6 @@ public class Env implements it.unica.foresee.core.interfaces.Env
     @Override
     public void setForceExit(boolean forceExit) {
         this.forceExit = forceExit;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setWorkDirectory(String workDirectory) {
-        this.workDirectory = workDirectory;
     }
 
 }

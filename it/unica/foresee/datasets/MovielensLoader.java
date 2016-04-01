@@ -17,7 +17,30 @@ public class MovielensLoader extends FileDatasetLoader
      */
     public MovielensLoader()
     {
+        super();
         setSeparator("::");
+    }
+
+    /**
+     * Initializes the object with the given value.
+     *
+     * @param datasetFile file containing the dataset
+     */
+    public MovielensLoader(File datasetFile)
+    {
+        super();
+        setSeparator("::");
+    }
+
+    /**
+     * Initializes the object with the given values.
+     *
+     * @param separator symbol separating the files
+     * @param datasetFile file containing the dataset
+     */
+    public MovielensLoader(File datasetFile, String separator)
+    {
+        super(datasetFile, separator);
     }
 
     /**
@@ -62,7 +85,7 @@ public class MovielensLoader extends FileDatasetLoader
         while (dataSource.hasNextLine()) {
 
             Scanner line = new Scanner(dataSource.nextLine());
-            line.useDelimiter("::");
+            line.useDelimiter(getSeparator());
 
             // Extract a single line of data
             if (line.hasNextInt()) {

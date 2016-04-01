@@ -10,18 +10,18 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// it.unica.foresee.commandlists.FSCommandList
-	c1297 [label=<<table title="it.unica.foresee.commandlists.FSCommandList" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FSCommandList.html">
+	c1263 [label=<<table title="it.unica.foresee.commandlists.FSCommandList" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FSCommandList.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> FSCommandList </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.commandlists.ARTCommandList
-	c1298 [label=<<table title="it.unica.foresee.commandlists.ARTCommandList" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ARTCommandList.html">
+	c1264 [label=<<table title="it.unica.foresee.commandlists.ARTCommandList" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ARTCommandList.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ARTCommandList </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//it.unica.foresee.commandlists.ARTCommandList extends it.unica.foresee.commandlists.FSCommandList
-	c1297:p -> c1298:p [dir=back,arrowtail=empty];
+	c1263:p -> c1264:p [dir=back,arrowtail=empty];
 }
 

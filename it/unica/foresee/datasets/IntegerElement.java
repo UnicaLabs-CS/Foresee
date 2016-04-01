@@ -32,4 +32,13 @@ public class IntegerElement extends DatasetElement<Integer>
     {
         return (double) this.getElement();
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString()
+    {
+        return Integer.toString(this.getElement());
+    }
 }

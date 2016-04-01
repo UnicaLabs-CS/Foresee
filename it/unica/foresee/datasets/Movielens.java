@@ -68,7 +68,12 @@ public class Movielens extends DatasetSparseVector<MovielensElement>
      */
     public Integer getElement(Integer userID, Integer movieID)
     {
-        return this.get(userID).get(movieID).getElement();
+        MovielensElement item = this.get(userID);
+        if(item == null){return null;}
+        IntegerElement rating = item.get(movieID);
+        if(item == null){return null;}
+
+        return rating.getElement();
     }
 
     public int getMaxMovieID() {

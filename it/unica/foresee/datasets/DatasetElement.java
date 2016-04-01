@@ -9,8 +9,16 @@ public class DatasetElement<T> implements it.unica.foresee.datasets.interfaces.D
 
     private T element;
 
+    /**
+     * Empty constructor.
+     */
     public DatasetElement(){}
 
+    /**
+     * Initialize the object with the element and the value for the mean
+     * @param el
+     * @param valueForMean
+     */
     public DatasetElement(T el, double valueForMean)
     {
         this.element = el;
@@ -51,5 +59,14 @@ public class DatasetElement<T> implements it.unica.foresee.datasets.interfaces.D
     @Override
     public void setValueForMean(double valueForMean) {
         this.valueForMean = valueForMean;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString()
+    {
+        return Double.toString(this.getValueForMean());
     }
 }

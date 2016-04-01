@@ -1,6 +1,7 @@
 package it.unica.foresee.core.interfaces;
 
 import it.unica.foresee.datasets.interfaces.Dataset;
+import it.unica.foresee.utils.Pair;
 
 /**
  * Represents the environment of execution.
@@ -8,6 +9,15 @@ import it.unica.foresee.datasets.interfaces.Dataset;
 public interface Env
 {
     /* Getter */
+
+    /**
+     * Gets a buffer that allows a small communication between Env and {@link it.unica.foresee.core.Core}.
+     *
+     * Once the buffer is read, it's deleted, to avoid storing personal information.
+     *
+     * @return a key value pair
+     */
+    public Pair<String, String> getBuffer();
 
     /**
      * Gets the current command being executed.
@@ -33,26 +43,23 @@ public interface Env
      int getExitStatus();
 
     /**
-     * Get the current work directory path.
+     * Check if the application is in abnormal state.
      *
-     * The work directory is where temporary files
-     * buffers and snapshots are stored.
-     * @return the path to the work directory
+     * This should is the same as to check if the exit status is still 0.
      */
-     String getWorkDirectory();
+    boolean isAbnormalStatus();
+
+    /**
+     * Check if the buffer is set.
+     * @return true if the buffer is set
+     */
+    boolean isBufferSet();
 
     /**
      * Check if the application is set to exit forcefully.
      * @return true if the application should exit
      */
      boolean isForceExit();
-
-    /**
-     * Check if the application is in abnormal state.
-     *
-     * This should is the same as to check if the exit status is still 0.
-     */
-     boolean isAbnormalStatus();
 
     /* Setter */
 
@@ -65,6 +72,25 @@ public interface Env
      * @param status the abnormal exit status, it cannot be 0
      */
      void setAbnormalExitStatus(int status);
+
+    /**
+     * Sets a buffer that allows a small communication between Env and {@link it.unica.foresee.core.Core}.
+     *
+     * The buffer can only be set once in each command execution.
+     *
+     * @param buffer a key value pair
+     */
+    public void setBuffer(Pair<String, String> buffer);
+
+    /**
+     * Sets a buffer that allows a small communication between Env and {@link it.unica.foresee.core.Core}.
+     *
+     * The buffer can only be set once in each command execution.
+     *
+     * @param key the key of the pair
+     * @param value the value of the pair
+     */
+    public void setBuffer(String key, String value);
 
     /**
      * Sets the current command being executed.
@@ -85,22 +111,5 @@ public interface Env
      * @param forceExit is true if the application should exit forcefully
      */
      void setForceExit(boolean forceExit);
-
-    /**
-     * Sets the current work directory path.
-     *
-     * The work directory is where temporary files
-     * buffers and snapshots are stored.
-     *
-     * @param workDirectory the path to the work directory
-     */
-     void setWorkDirectory(String workDirectory);
-
-
-
-
-
-
-
 
 }

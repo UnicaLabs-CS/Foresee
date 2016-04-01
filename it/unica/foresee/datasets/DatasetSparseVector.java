@@ -49,8 +49,8 @@ public class DatasetSparseVector<T extends DatasetElement> extends TreeMap<Integ
     public DatasetSparseVector[] getKFoldPartitions(int k, int layersAmount)
     {
         /* Initialize the max and min with a reasonable value */
-        double maxMeanValue = this.get(0).getValueForMean();
-        double minMeanValue = this.get(0).getValueForMean();
+        double maxMeanValue = this.get(this.firstKey()).getValueForMean();
+        double minMeanValue = this.get(this.firstKey()).getValueForMean();
 
         /* Fill the array with the number of occurrences. */
         for (T item : this.values())
