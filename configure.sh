@@ -36,6 +36,9 @@ allpackages=''
 # Execution
 echo -e "Generating makefiles for classes and packages..."
 
+# Create the required folder
+mkdir -p $mkfolder
+
 # Clean up
 rm "$mkfolder/"*.mk
 
