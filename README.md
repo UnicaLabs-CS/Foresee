@@ -51,6 +51,6 @@ a selected set of builtin functionalities of wide use.
 - Emanuele Ivaldi <emanuele.ivaldi@gmail.com>
 - Gianluigi Sirigu *email not found*
 
-## Java Porting developer
+## Developer of the new 'Foresee' version
 - Fabio Colella <fcole90@gmail.com>
 
