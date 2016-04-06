@@ -1,5 +1,5 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./Env.html" title="it.unica.foresee.core.Env" alt="" coords="19,16,63,43"/>
-<area shape="rect" id="node2_1" href="./Core.html" title="it.unica.foresee.core.Core" alt="" coords="113,16,162,43"/>
-<area shape="rect" id="node3_2" href="./State.html" title="it.unica.foresee.core.State" alt="" coords="209,16,261,43"/>
+<area shape="rect" id="node1_0" href="./Core.html" title="it.unica.foresee.core.Core" alt="" coords="17,17,65,42"/>
+<area shape="rect" id="node2_1" href="./State.html" title="it.unica.foresee.core.State" alt="" coords="112,17,163,42"/>
+<area shape="rect" id="node3_2" href="./Env.html" title="it.unica.foresee.core.Env" alt="" coords="212,17,255,42"/>
 </map>

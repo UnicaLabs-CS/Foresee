@@ -1,6 +1,7 @@
 package it.unica.foresee.datasets;
 
 import it.unica.foresee.datasets.interfaces.DatasetElement;
+import org.apache.commons.math3.ml.clustering.Clusterable;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -10,7 +11,7 @@ import java.util.Random;
 /**
  * An efficient data structure for sparse vectors.
  */
-public class DatasetSparseVector<T extends DatasetElement> extends TreeMap<Integer, T> implements it.unica.foresee.datasets.interfaces.DatasetVector<T>, it.unica.foresee.datasets.interfaces.DatasetElement<DatasetSparseVector<T>>
+public class DatasetSparseVector<T extends DatasetElement> extends TreeMap<Integer, T> implements it.unica.foresee.datasets.interfaces.DatasetVector<T>, it.unica.foresee.datasets.interfaces.DatasetElement<DatasetSparseVector<T>>, Clusterable
 {
     /**
      * Mean of the elements means.
@@ -153,6 +154,14 @@ public class DatasetSparseVector<T extends DatasetElement> extends TreeMap<Integ
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public double[] getPoint()
+    {
+        return null;
+    }
+
+    /**
      * Checks if the mean value has been set by the user.
      *
      * @return true if the mean value has been set by the user
@@ -227,8 +236,6 @@ public class DatasetSparseVector<T extends DatasetElement> extends TreeMap<Integ
         this.meanValueSetByUser = false;
         this.mean = 0;
     }
-
-
 
     /**
      * {@inheritDoc}

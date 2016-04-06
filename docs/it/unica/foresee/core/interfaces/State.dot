@@ -9,25 +9,25 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
+	// it.unica.foresee.core.State
+	c1137 [label=<<table title="it.unica.foresee.core.State" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../State.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> State </td></tr>
+		</table></td></tr>
+		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.core.interfaces.State
-	c1672 [label=<<table title="it.unica.foresee.core.interfaces.State" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./State.html">
+	c1140 [label=<<table title="it.unica.foresee.core.interfaces.State" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./State.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> State </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// it.unica.foresee.core.State
-	c1675 [label=<<table title="it.unica.foresee.core.State" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../State.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> State </td></tr>
-		</table></td></tr>
-		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	//it.unica.foresee.core.interfaces.State implements java.io.Serializable
-	c1676:p -> c1672:p [dir=back,arrowtail=empty,style=dashed];
 	//it.unica.foresee.core.State implements it.unica.foresee.core.interfaces.State
-	c1672:p -> c1675:p [dir=back,arrowtail=empty,style=dashed];
+	c1140:p -> c1137:p [dir=back,arrowtail=empty,style=dashed];
+	//it.unica.foresee.core.interfaces.State implements java.io.Serializable
+	c1160:p -> c1140:p [dir=back,arrowtail=empty,style=dashed];
 	// java.io.Serializable
-	c1676 [label=<<table title="java.io.Serializable" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/io/Serializable.html">
+	c1160 [label=<<table title="java.io.Serializable" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/io/Serializable.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Serializable </td></tr>

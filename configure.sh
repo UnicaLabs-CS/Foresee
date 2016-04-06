@@ -27,7 +27,7 @@ command="javac -cp"
 options=""
 
 # List of classpaths, add new ones separed by ':'
-libs="."
+libs='.:$(libs_path)/commons-math3.jar'
 
 # List of all the packages
 allpackages=''

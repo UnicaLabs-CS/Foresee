@@ -1,5 +1,5 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./interfaces/FileDatasetLoader.html" title="it.unica.foresee.datasets.interfaces.FileDatasetLoader" alt="" coords="15,11,265,55"/>
-<area shape="rect" id="node3_1" href="./FileDatasetLoader.html" title="it.unica.foresee.datasets.FileDatasetLoader" alt="" coords="15,120,265,147"/>
-<area shape="rect" id="node2_2" href="./MovielensLoader.html" title="it.unica.foresee.datasets.MovielensLoader" alt="" coords="81,216,199,243"/>
+<area shape="rect" id="node1_0" href="./MovielensLoader.html" title="it.unica.foresee.datasets.MovielensLoader" alt="" coords="82,214,199,239"/>
+<area shape="rect" id="node2_1" href="./FileDatasetLoader.html" title="it.unica.foresee.datasets.FileDatasetLoader" alt="" coords="16,118,265,143"/>
+<area shape="rect" id="node3_2" href="./interfaces/FileDatasetLoader.html" title="it.unica.foresee.datasets.interfaces.FileDatasetLoader" alt="" coords="16,11,265,53"/>
 </map>

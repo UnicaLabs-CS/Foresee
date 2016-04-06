@@ -39,7 +39,7 @@ testlibs = $(junit)
 
 # Generic
 # =======
-all: main
+all: libs-link test-libs-link all-packages
 
 clean:
 	for file in "`find -name *.class`"; \

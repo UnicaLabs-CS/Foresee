@@ -9,50 +9,50 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// it.unica.foresee.datasets.interfaces.DatasetElement<K>
-	c919 [label=<<table title="it.unica.foresee.datasets.interfaces.DatasetElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./interfaces/DatasetElement.html">
+	// it.unica.foresee.datasets.DatasetSparseVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
+	c1331 [label=<<table title="it.unica.foresee.datasets.DatasetSparseVector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./DatasetSparseVector.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> DatasetElement&lt;K&gt; </td></tr>
+<tr><td align="center" balign="center"> DatasetSparseVector&lt;T extends DatasetElement&gt; </td></tr>
+		</table></td></tr>
+		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// it.unica.foresee.datasets.Movielens
+	c1336 [label=<<table title="it.unica.foresee.datasets.Movielens" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Movielens.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> Movielens </td></tr>
+		</table></td></tr>
+		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// it.unica.foresee.datasets.MovielensElement
+	c1339 [label=<<table title="it.unica.foresee.datasets.MovielensElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MovielensElement.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> MovielensElement </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.interfaces.DatasetVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
-	c921 [label=<<table title="it.unica.foresee.datasets.interfaces.DatasetVector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./interfaces/DatasetVector.html">
+	c1342 [label=<<table title="it.unica.foresee.datasets.interfaces.DatasetVector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./interfaces/DatasetVector.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> DatasetVector&lt;T extends DatasetElement&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// it.unica.foresee.datasets.DatasetSparseVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
-	c928 [label=<<table title="it.unica.foresee.datasets.DatasetSparseVector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./DatasetSparseVector.html">
+	// it.unica.foresee.datasets.interfaces.DatasetElement<K>
+	c1343 [label=<<table title="it.unica.foresee.datasets.interfaces.DatasetElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./interfaces/DatasetElement.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> DatasetSparseVector&lt;T extends DatasetElement&gt; </td></tr>
-		</table></td></tr>
-		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// it.unica.foresee.datasets.MovielensElement
-	c930 [label=<<table title="it.unica.foresee.datasets.MovielensElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MovielensElement.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> MovielensElement </td></tr>
-		</table></td></tr>
-		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// it.unica.foresee.datasets.Movielens
-	c933 [label=<<table title="it.unica.foresee.datasets.Movielens" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Movielens.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> Movielens </td></tr>
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> DatasetElement&lt;K&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//it.unica.foresee.datasets.DatasetSparseVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement> extends java.util.TreeMap<java.lang.Integer, T>
-	c952:p -> c928:p [dir=back,arrowtail=empty];
+	c1346:p -> c1331:p [dir=back,arrowtail=empty];
 	//it.unica.foresee.datasets.DatasetSparseVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement> implements it.unica.foresee.datasets.interfaces.DatasetVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
-	c921:p -> c928:p [dir=back,arrowtail=empty,style=dashed];
+	c1342:p -> c1331:p [dir=back,arrowtail=empty,style=dashed];
 	//it.unica.foresee.datasets.DatasetSparseVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement> implements it.unica.foresee.datasets.interfaces.DatasetElement<K>
-	c919:p -> c928:p [dir=back,arrowtail=empty,style=dashed];
-	//it.unica.foresee.datasets.MovielensElement extends it.unica.foresee.datasets.DatasetSparseVector<it.unica.foresee.datasets.IntegerElement>
-	c928:p -> c930:p [dir=back,arrowtail=empty];
+	c1343:p -> c1331:p [dir=back,arrowtail=empty,style=dashed];
 	//it.unica.foresee.datasets.Movielens extends it.unica.foresee.datasets.DatasetSparseVector<it.unica.foresee.datasets.MovielensElement>
-	c928:p -> c933:p [dir=back,arrowtail=empty];
+	c1331:p -> c1336:p [dir=back,arrowtail=empty];
+	//it.unica.foresee.datasets.MovielensElement extends it.unica.foresee.datasets.DatasetSparseVector<it.unica.foresee.datasets.IntegerElement>
+	c1331:p -> c1339:p [dir=back,arrowtail=empty];
 	// java.util.TreeMap<K, V>
-	c952 [label=<<table title="java.util.TreeMap" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/TreeMap.html">
+	c1346 [label=<<table title="java.util.TreeMap" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/TreeMap.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> TreeMap&lt;K, V&gt; </td></tr>
 		</table></td></tr>
