@@ -1,12 +1,9 @@
 package it.unica.foresee.core.interfaces;
 
 import it.unica.foresee.Settings;
-import it.unica.foresee.commandlists.interfaces.CommandList;
-import it.unica.foresee.core.Env;
-import it.unica.foresee.datasets.interfaces.DatasetLoader;
-import it.unica.foresee.libraries.interfaces.Library;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 
 /**
  * Defines the core of the framework, which manages the interaction
@@ -20,7 +17,7 @@ public interface Core
      * Makes a snapshot of the current state.
      *
      * The {@link State} includes the Environment, the Settings, the instruction
-     * file and the last executed line from the instruction file.
+     * file and the last executed line (including line number) from the instruction file.
      *
      * @return the created state
      */
@@ -32,16 +29,16 @@ public interface Core
      * @param e the environment
      * @param s the settings
      * @param instructionsFile the instruction file
-     * @param lastExecutedLine the last line executed from the instructions file
+     * @param lineNumber the last line executed from the instructions file
      * @return the created state
      */
-    State makeSnapshot(Env e, Settings s, File instructionsFile, int lastExecutedLine);
+    State makeSnapshot(Env e, Settings s, File instructionsFile, int lineNumber);
 
     /**
-     * Restore a previously saved snapshot from a selected state.
-     *
+     * Restore a previously saved snapshot from a selected file.
+     * @param fileName the snapshot file name (including the path)
      */
-    void restoreSnapshot(State s);
+    void restoreSnapshot(String fileName);
 
     /**
      * Saves a snapshot of the current state.
@@ -73,6 +70,14 @@ public interface Core
      * @param output the output of the computation
      */
     void saveOutput(Iterable output);
+
+    /**
+     * Parses the given instructions.
+     *
+     * @return the exit status
+     */
+    int run() throws FileNotFoundException;
+
 
     //CommandList loadCommandListModule();
 

@@ -1,9 +1,6 @@
 package it.unica.foresee.datasets;
 
 
-import it.unica.foresee.datasets.interfaces.*;
-import it.unica.foresee.datasets.interfaces.Dataset;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.InputMismatchException;
@@ -11,7 +8,7 @@ import java.util.Scanner;
 import java.util.TreeSet;
 
 /**
- * Load a Movielens dataset from a movielens file.
+ * Load a Movielens_deprecated dataset from a movielens file.
  */
 public class MovielensLoader extends FileDatasetLoader
 {
@@ -20,7 +17,30 @@ public class MovielensLoader extends FileDatasetLoader
      */
     public MovielensLoader()
     {
+        super();
         setSeparator("::");
+    }
+
+    /**
+     * Initializes the object with the given value.
+     *
+     * @param datasetFile file containing the dataset
+     */
+    public MovielensLoader(File datasetFile)
+    {
+        super();
+        setSeparator("::");
+    }
+
+    /**
+     * Initializes the object with the given values.
+     *
+     * @param separator symbol separating the files
+     * @param datasetFile file containing the dataset
+     */
+    public MovielensLoader(File datasetFile, String separator)
+    {
+        super(datasetFile, separator);
     }
 
     /**
@@ -39,6 +59,8 @@ public class MovielensLoader extends FileDatasetLoader
      * Each user has at least 20 ratings.
      * The Timestamp is discarded, while userID, movieID and rating are stored
      * in the object itself.
+     * 
+     * @// TODO: 25/03/16 users and movies set could be probably removed
      *
      * @param sourceFile the file from which to load the data
      */
@@ -58,13 +80,12 @@ public class MovielensLoader extends FileDatasetLoader
         int userID;
         int movieID;
         int rating;
-        double dRating; //rating converted to double
 
         // Read the file line by line
         while (dataSource.hasNextLine()) {
 
             Scanner line = new Scanner(dataSource.nextLine());
-            line.useDelimiter("::");
+            line.useDelimiter(getSeparator());
 
             // Extract a single line of data
             if (line.hasNextInt()) {
@@ -106,9 +127,7 @@ public class MovielensLoader extends FileDatasetLoader
                 throw new InputMismatchException("rating < 1 at line " + lineNumber);
             }
 
-            MovieUserRate m = new MovieUserRate(userID, movieID, rating);
-
-            dataset.add(new MovielensElement(m));
+            dataset.put(userID, movieID, rating);
             usersSet.add(userID);
             moviesSet.add(movieID);
 

@@ -1,6 +1,5 @@
 Foresee
 =======
-*This is a Java porting of the original [ART C++ framework](https://bitbucket.org/unicalabs/art) from the University of Cagliari.*
 
 This project is a modular machine learning framework, developed
 by the University of Cagliari.
@@ -8,6 +7,8 @@ by the University of Cagliari.
 The project aims at reusability and extensibility of the code,
 allowing third parties to add new functionalities, yet offering
 a selected set of builtin functionalities of wide use.
+
+*This is a Java porting of the original [ART C++ framework](https://bitbucket.org/unicalabs/art) from the University of Cagliari.*
 
 ## Structure
 
@@ -28,8 +29,16 @@ a selected set of builtin functionalities of wide use.
 |- test-data/
 ```
 
-## Requirements
-- Java JDK (Tested on Oracle Java 8)
+## Requirements for development
+- Java JDK (Tested on Oracle Java 8, 9)
+- GraphViz
+- Apache Commons Math 3
+- JUnit 4
+- Hamcrest
+- Movielens dataset
+
+## Requirements for execution
+- Java JDK 8 or above
 - Movielens dataset
 
 ## Research and improvements

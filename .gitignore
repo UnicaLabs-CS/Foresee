@@ -3,3 +3,5 @@
 foresee.jar
 makefiles/autogen/*.mk
 Makefile
+workdir/*
+out/*

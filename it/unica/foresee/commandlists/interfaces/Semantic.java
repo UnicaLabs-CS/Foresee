@@ -1,6 +1,6 @@
 package it.unica.foresee.commandlists.interfaces;
 
-import it.unica.foresee.core.Env;
+import it.unica.foresee.core.interfaces.Env;
 
 /**
  * Implement this interface to implement the semantic of a command.

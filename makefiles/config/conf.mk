@@ -34,16 +34,18 @@ test-libs-link:
 libs-link:
 	cd $(libs_path); make all
 
+# Libraries required by tests
+testlibs = $(junit)
+
 # Generic
 # =======
-all: main
+all: libs-link test-libs-link all-packages
 
 clean:
 	for file in "`find -name *.class`"; \
 		do rm -v $$file; \
 	done; \
-	if -f $(proj).jar; then rm $(proj).jar; fi; \
-	if -f "Makefile"; then rm "Makefile"; fi;
+	if [ -f $(proj)*.jar ] ; then rm $(proj)*.jar; fi;
 
 # Make the readme inside a body tag
 docs/README.html:
@@ -62,7 +64,7 @@ doc: docs/README.html javadoc-style/stylesheet.css javadoc-style/md-doclet.jar
 
 # Create a jar file
 jar: main Manifest.txt
-	jar -cvfm $(proj).jar Manifest.txt `find -name *.class`;
+	jar -cvfm $(proj)-`date +%Y%m%d`.jar Manifest.txt `find -name *.class`;
 
 # Main
 # ====
@@ -70,6 +72,6 @@ main: classForesee
 
 # Libs
 # ====
-junit = $(libs_path)/junit-4.jar
-hamcrest = $(libs_path)/hamcrest.jar
-system_rules = $(libs_path)/system-rules.jar
+junit = $(test_libs_path)/junit-4.jar
+hamcrest = $(test_libs_path)/hamcrest.jar
+system_rules = $(test_libs_path)/system-rules.jar

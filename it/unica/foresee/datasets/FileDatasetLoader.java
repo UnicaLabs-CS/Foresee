@@ -34,12 +34,20 @@ public class FileDatasetLoader<T extends Dataset> implements it.unica.foresee.da
         this.datasetFile = datasetFile;
     }
 
+    /**
+     * Initializes the object with the given value.
+     *
+     * @param datasetFile file containing the dataset
+     */
     public FileDatasetLoader(File datasetFile)
     {
         this.separator = ",";
         this.datasetFile = datasetFile;
     }
 
+    /**
+     * Initializes the object.
+     */
     public FileDatasetLoader()
     {
         this.separator = ",";

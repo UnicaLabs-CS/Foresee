@@ -1,225 +1,89 @@
 package it.unica.foresee.tests;
 
+import java.io.*;
+
 import it.unica.foresee.datasets.*;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
+
+import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
 
 /**
- * Tests the Movielens class.
- *
- * @author: Fabio Colella
+ * Test Movielens loading
  */
 public class MovielensTest
 {
-    private final boolean VERBOSE = false;
-    /**
-     * Simulates the partitioning of a dataset.
-     * @param k number of partitions
-     * @param layers number of layers
-     */
-    public void partitioning(int k, int layers) throws FileNotFoundException
+    public final double DEVIATION = 0.3;
+    public final String BIG_DATASET = "test-data/ratings.dat";
+    public final String SMALL_DATASET = "test-data/movielens-test-25-users.dat";
+
+    private MovielensLoader mLoader;
+    private File mFile;
+    private Movielens m;
+    private DatasetSparseVector[] dVec;
+
+
+    @Before public void setUp()  throws Exception
     {
-        File testData = new File("test-data/movielens-test-25-users.dat");
-        Movielens ml = new Movielens(testData);
-
-        ArrayList<Dataset.MovieRatesAmountPair>[] partitions = ml.getPartitions(k, layers);
-
-        int sizeFirstPartition = partitions[0].size();
-        double means[] = new double[k];
-        int sumPartitions = 0;
-
-        for (int i = 0; i < partitions.length; i++)
-        {
-            System.out.println("#" + i + ": -----------------------");
-            System.out.println("Partition size: " + partitions[i].size());
-            for (Dataset.MovieRatesAmountPair element : partitions[i])
-            {
-                //Decomment here to have verbose output
-                if (VERBOSE) {System.out.println(element);}
-                means[i] += element.getRatesAmount();
-                assertTrue("Partitions should not have common elements.",
-                        !partitions[(i + 1) % (k - 1)].contains(element)
-                                && !partitions[(i + 2) % (k - 1)].contains(element));
-            }
-
-            means[i] /= partitions[i].size();
-            sumPartitions += partitions[i].size();
-            System.out.println("Mean " + i + ": " + means[i]);
-            System.out.println("---------------------------\n\n");
-
-            assertTrue("The partitions should have a similar size: first(" +
-                    sizeFirstPartition + ") - compared(" + partitions[i].size() + ")",
-                    partitions[i].size() <= sizeFirstPartition + layers
-                            && partitions[i].size() >= sizeFirstPartition - layers);
-        }
-
-        /* Some statistics */
-
-        /* Check the mean of the means of the partitions */
-        double meansMean = 0;
-        for (double mean : means)
-        {
-            meansMean += mean;
-        }
-        meansMean /= k;
-
-        /* Check the variance */
-        double[] variances = new double[k];
-        for (int i = 0; i < k; i++)
-        {
-            variances[i] = Math.pow((meansMean - means[i]), 2.0);
-        }
-
-        double variancesMean = 0;
-        for (double variance : variances)
-        {
-            variancesMean += variance;
-        }
-        variancesMean /= k;
-
-        /* Output the statistics */
-        System.out.println("Statistical data:");
-        for (int i = 0; i < k; i++)
-        {
-            System.out.print("Partition:" + i);
-            System.out.print("\t mean:" + means[i]);
-            System.out.print("  \t variance:" + variances[i] + "\n\n");
-        }
-        System.out.println("Average mean:           \t" + meansMean);
-        System.out.println("Average variance:       \t" + variancesMean);
-        System.out.println("Partitions:             \t" + k);
-        System.out.println("Layers (stratification):\t" + layers + "\n\n\n");
+        mLoader = new MovielensLoader();
+        mFile = new File(SMALL_DATASET);
+        m = mLoader.loadDataset(mFile);
+        dVec = m.getKFoldPartitions(5, 3);
     }
 
     /**
-     * Tests the loading of data from example data and throwing error because of too few users.
+     * Check a value to be in a specified range.
+     * @param min
+     * @param max
+     * @param value the value to check
      */
-    @Test
-    public void toofewUsersTest() throws FileNotFoundException
+    public void assertRange(double min, double max, double value)
     {
-        File testData = new File("test-data/movielens-test-20-users.dat");
-        try
-        {
-            Movielens ml = new Movielens(testData);
-        }
-        catch (IllegalStateException e)
-        {
-            assertEquals("The amount of users is lower than 20.", e.getMessage());
-        }
-    }
-
-    /**
-     * Tests the loading of data from example data and throwing error because of rating lower than one.
-     */
-    @Test
-    public void tooLowerRating() throws FileNotFoundException
-    {
-        File testData = new File("test-data/movielens-test-mismatch-less.dat");
-        try
-        {
-            Movielens ml = new Movielens(testData);
-        }
-        catch (InputMismatchException e)
-        {
-            assertEquals("rating < 1 at line 5", e.getMessage());
-        }
-    }
-
-    /**
-     * Tests the loading of data from example data and throwing error because of malformed line.
-     */
-    @Test
-    public void malformedLine() throws FileNotFoundException
-    {
-        File testData = new File("test-data/movielens-test-mismatch-malformed-line.dat");
-        try
-        {
-            Movielens ml = new Movielens(testData);
-        }
-        catch (InputMismatchException e)
-        {
-            assertEquals("expected rating at line 5", e.getMessage());
-        }
-    }
-
-    /**
-     * Tests the partitioning without layering
-     */
-    @Test
-    public void correctPartitioning() throws FileNotFoundException
-    {
-        int k = 5;
-        int layers = 1;
-        System.out.println("Test #1");
-        partitioning(k, layers);
+        assertTrue("Expected value in range between " + min
+        + " and " + max + ". Found: " + value,
+                min <= value && max >= value);
     }
 
     @Test
-    public void correctPartitioningLayered() throws FileNotFoundException
+    public void loadDataset()
     {
-        int k = 5;
-        int layers = 3;
-        System.out.println("Test #2");
-        partitioning(k, layers);
+        assertNotEquals(m, null);
     }
 
     @Test
-    public void bestPartitioningLayered() throws FileNotFoundException
+    public void kFold()
     {
-        int k = 10;
-        int layers = 3;
-        System.out.println("Test #3");
-        partitioning(k, layers);
+        assertNotEquals(dVec, null);
     }
 
     @Test
-    public void checkItemsAmountNoLayering() throws FileNotFoundException
+    public void usersAmount()
     {
-        File testData = new File("test-data/movielens-test-25-users.dat");
-        Movielens ml = new Movielens(testData);
-        int k = 5;
-        int layers = 1;
+        assertEquals(m.values().size(), m.getUsersAmount());
+    }
 
-        ArrayList<Dataset.MovieRatesAmountPair>[] partitions = ml.getPartitions(k, layers);
-        int totalOfThePartitions = 0;
+    @Test
+    public void getElement()
+    {
+        assertEquals((int) m.getElement(25, 1676), 4);
+    }
 
-        for (ArrayList<Dataset.MovieRatesAmountPair> partition : partitions)
+    @Test
+    public void assureSimilarMeansAmongPartitions()
+    {
+        double mean = dVec[0].getValueForMean();
+        double min = mean - DEVIATION;
+        double max = mean + DEVIATION;
+        for (DatasetSparseVector d : dVec)
         {
-            totalOfThePartitions += partition.size();
+            assertRange(min, max, d.getValueForMean());
         }
-
-        assertEquals("The sum of the partitions should contain all the movies.",
-                ml.getMoviesAmount(),
-                totalOfThePartitions);
-    }
-
-    @Test
-    public void checkItemsAmountWithLayering() throws FileNotFoundException
-    {
-        File testData = new File("test-data/movielens-test-25-users.dat");
-        Movielens ml = new Movielens(testData);
-        int k = 5;
-        int layers = 3;
-
-        ArrayList<Dataset.MovieRatesAmountPair>[] partitions = ml.getPartitions(k, layers);
-        int totalOfThePartitions = 0;
-
-        for (ArrayList<Dataset.MovieRatesAmountPair> partition : partitions)
-        {
-            totalOfThePartitions += partition.size();
-        }
-
-        assertEquals("The sum of the partitions should contain all the movies.",
-                ml.getMoviesAmount(),
-                totalOfThePartitions);
     }
 }
+
+

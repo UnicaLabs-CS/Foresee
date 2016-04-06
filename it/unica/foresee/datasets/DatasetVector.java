@@ -7,12 +7,10 @@ import java.util.Random;
 
 /**
  * Implementation of {@link it.unica.foresee.datasets.interfaces.DatasetVector}
- *
- * {@inheritDoc}
  */
 public class DatasetVector<T extends DatasetElement> extends ArrayList<T> implements it.unica.foresee.datasets.interfaces.DatasetVector<T>
 {
-    DatasetVector[] kFoldPartitions;
+    private DatasetVector[] kFoldPartitions;
 
     /**
      * Empty constructor.

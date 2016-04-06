@@ -2,21 +2,35 @@
 
 # Settings
 project="foresee"
+
+# File extension
 extension=".java"
+
+# SRC dir
 src="it/unica/foresee"
 basedir=`pwd`
+
+# Name of the makefile
 mkfile="Makefile"
 mkfolder_base="makefiles/autogen"
 conffolder_base="makefiles/config"
 mkfolder="$basedir/$mkfolder_base"
 conffolder="$basedir/$conffolder_base"
+
+# List of the dirs under src
 dirs=`find $src -type d` #list the directories under src
 include_base="$mkfolder_base/include.mk"
 include="$mkfolder/include.mk"
+
+# Command to execute
 command="javac -cp"
 options=""
-libs="."
 
+# List of classpaths, add new ones separed by ':'
+libs='.:$(libs_path)/commons-math3.jar'
+
+# List of all the packages
+allpackages=''
 
 
 # Execution
@@ -96,13 +110,19 @@ do
       # List all the class of the package
       filelist="$filelist $type$class"
       
+      # Print the classClassName: dependencies
       echo -e "$type$class: $package_path/$class.class""\n" >> $pkinclude
+      
+      # Print the compile instructions for a specific class
       echo -e "$package_path/$class.class:\n\t$command $pklibs $package_path/$file $options\n\n" >> $pkinclude
       
     done
     
     # The package depends on its containing files
     echo -e "$package:$filelist" >> $pkinclude
+    
+    # Add the package to the list of the packages
+    allpackages="$allpackages $package"
     
     # Useful for interfaces
     oldpackage=$package
@@ -112,6 +132,9 @@ do
     oldpackage=${PWD##*/} 
   fi
 done
+
+# Add a rule to generate all the packages
+echo -e "\nall-packages:$allpackages" >> $include
 
 echo -e "Generation completed. Now you can use the make tool"
 
