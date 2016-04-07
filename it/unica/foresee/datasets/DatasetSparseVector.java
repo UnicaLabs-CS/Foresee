@@ -3,20 +3,22 @@ package it.unica.foresee.datasets;
 import it.unica.foresee.datasets.interfaces.DatasetElement;
 import org.apache.commons.math3.ml.clustering.Clusterable;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.TreeMap;
-import java.util.Random;
+import java.util.*;
 
 /**
  * An efficient data structure for sparse vectors.
  */
-public class DatasetSparseVector<T extends DatasetElement> extends TreeMap<Integer, T> implements it.unica.foresee.datasets.interfaces.DatasetVector<T>, it.unica.foresee.datasets.interfaces.DatasetElement<DatasetSparseVector<T>>, Clusterable
+public class DatasetSparseVector<T extends DatasetElement> extends TreeMap<Integer, T> implements it.unica.foresee.datasets.interfaces.DatasetVector<T>, it.unica.foresee.datasets.interfaces.DatasetElement<DatasetSparseVector<T>>
 {
     /**
      * Mean of the elements means.
      */
     private double mean;
+
+    /**
+     * Max size of the vector
+     */
+    private int vectorSize;
 
     /**
      * Flag to check if the mean value is calculated or user selected.
@@ -154,11 +156,11 @@ public class DatasetSparseVector<T extends DatasetElement> extends TreeMap<Integ
     }
 
     /**
-     * {@inheritDoc}
+     * Get the vector size to create an array
+     * @return the vector size
      */
-    public double[] getPoint()
-    {
-        return null;
+    public int getVectorSize() {
+        return vectorSize;
     }
 
     /**
@@ -225,6 +227,14 @@ public class DatasetSparseVector<T extends DatasetElement> extends TreeMap<Integ
     public void setValueForMean(double v) {
         this.meanValueSetByUser = true;
         this.mean = v;
+    }
+
+    /**
+     * Set the vector size for array creation
+     * @param vectorSize the size of the max vector
+     */
+    public void setVectorSize(int vectorSize) {
+        this.vectorSize = vectorSize;
     }
 
     /**

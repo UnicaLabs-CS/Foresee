@@ -2,6 +2,9 @@ package it.unica.foresee.datasets;
 
 import it.unica.foresee.datasets.interfaces.DatasetElement;
 import it.unica.foresee.utils.Pair;
+import org.apache.commons.math3.ml.clustering.Clusterable;
+
+import java.util.Collection;
 
 /**
  * An element of the Movielens dataset.
@@ -10,12 +13,23 @@ import it.unica.foresee.utils.Pair;
  * by the same user on a set of movies or a vector of ratings on the same movies given by a set of
  * users who rated it.
  */
-public class MovielensElement extends DatasetSparseVector<IntegerElement>
+public class MovielensElement extends DatasetSparseVector<IntegerElement> implements Clusterable
 {
     /**
      * Empty constructor.
      */
     public MovielensElement(){}
+
+    /**
+     * Vector size.
+     * @param vectorSize size of the element vector
+     */
+    public MovielensElement(int vectorSize)
+    {
+        super.setVectorSize(vectorSize);
+    }
+
+
 
     /**
      * Initializes the element from an Integer.
@@ -61,6 +75,28 @@ public class MovielensElement extends DatasetSparseVector<IntegerElement>
         IntegerElement e = new IntegerElement(value);
         this.put(key, e);
         return e;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public double[] getPoint()
+    {
+        // The size of the array is set to the highest key value, so that it can store all the items
+        double[] points = new double[super.getVectorSize()];
+
+        if (this.isEmpty())
+        {
+            return points;
+        }
+
+        // Associate the indexes with the corresponding values
+        for (int k : this.keySet())
+        {
+            points[k] = this.getDatasetElement(k).getElement().doubleValue();
+        }
+
+        return points;
     }
 
 }

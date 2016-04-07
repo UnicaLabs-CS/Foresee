@@ -5,8 +5,6 @@ import it.unica.foresee.utils.Pair;
 
 import static it.unica.foresee.utils.Tools.warn;
 
-import java.io.File;
-
 
 /**
  * Represents the runtime environment.
