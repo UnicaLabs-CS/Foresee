@@ -33,9 +33,18 @@ public class MovielensTest
     private DatasetSparseVector<MovielensElement>[] parts;
     private int numPart;
 
+    @Before public void setUp()  throws Exception
+    {
+        mLoader = new MovielensLoader();
+        mFile = new File(BIG_DATASET);
+        m = mLoader.loadDataset(mFile);
+        numPart = 5;
+        parts = m.getKFoldPartitions(numPart);
+    }
+
     private void clustering()
     {
-        int vectorSize = 4000;
+        int vectorSize = m.getMaxMovieID() + 1;
         System.out.println("Vector size: " + vectorSize);
 
         System.out.println("\n\nclustering:");
@@ -100,15 +109,6 @@ public class MovielensTest
         return keysA.size() + keysB.size();
     }
 
-
-    @Before public void setUp()  throws Exception
-    {
-        mLoader = new MovielensLoader();
-        mFile = new File(SMALL_DATASET);
-        m = mLoader.loadDataset(mFile);
-        numPart = 5;
-        parts = m.getKFoldPartitions(numPart);
-    }
 
     /**
      * Check a value to be in a specified range.
@@ -205,17 +205,18 @@ public class MovielensTest
             diff.removeAll(moviesSets[i]);
             misses = diff.size();
             System.out.println("Movie misses: " + misses + " on " + totalMoviesAmount);
-            System.out.println("Movies of " + i + " not present: " + diff);
+            //System.out.println("Movies of " + i + " not present: " + diff);
         }
 
         assertEquals(m.getMoviesSet(), fullMovieSet);
     }
-
+/*
     @Test
     public void testClustering()
     {
         clustering();
     }
+*/
 }
 
 
