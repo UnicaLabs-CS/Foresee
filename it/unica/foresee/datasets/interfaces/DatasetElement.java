@@ -32,5 +32,4 @@ public interface DatasetElement<K>
      */
     public void setValueForMean(double v);
 
-
 }
