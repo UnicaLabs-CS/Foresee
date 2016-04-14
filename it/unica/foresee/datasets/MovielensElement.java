@@ -13,7 +13,7 @@ import java.util.Collection;
  * by the same user on a set of movies or a vector of ratings on the same movies given by a set of
  * users who rated it.
  */
-public class MovielensElement extends DatasetSparseVector<IntegerElement> implements Clusterable
+public class MovielensElement extends DatasetSparseVector<IntegerElement>
 {
     /**
      * Empty constructor.
@@ -80,6 +80,7 @@ public class MovielensElement extends DatasetSparseVector<IntegerElement> implem
     /**
      * {@inheritDoc}
      */
+    @Override
     public double[] getPoint()
     {
         // The size of the array is set to the highest key value, so that it can store all the items

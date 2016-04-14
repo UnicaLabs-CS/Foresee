@@ -10,80 +10,80 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// it.unica.foresee.datasets.DoubleElement
-	c390 [label=<<table title="it.unica.foresee.datasets.DoubleElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DoubleElement.html">
+	c451 [label=<<table title="it.unica.foresee.datasets.DoubleElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DoubleElement.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DoubleElement </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.MovieUserRate
-	c391 [label=<<table title="it.unica.foresee.datasets.MovieUserRate" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MovieUserRate.html">
+	c452 [label=<<table title="it.unica.foresee.datasets.MovieUserRate" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MovieUserRate.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MovieUserRate </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// it.unica.foresee.datasets.DatasetSparseVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
-	c392 [label=<<table title="it.unica.foresee.datasets.DatasetSparseVector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatasetSparseVector.html">
+	// it.unica.foresee.datasets.DatasetSparseVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement<?>>
+	c453 [label=<<table title="it.unica.foresee.datasets.DatasetSparseVector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatasetSparseVector.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> DatasetSparseVector&lt;T extends DatasetElement&gt; </td></tr>
+<tr><td align="center" balign="center"> DatasetSparseVector&lt;T extends DatasetElement&lt;?&gt;&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.Dataset<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
-	c393 [label=<<table title="it.unica.foresee.datasets.Dataset" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Dataset.html">
+	c454 [label=<<table title="it.unica.foresee.datasets.Dataset" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Dataset.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> Dataset&lt;T extends DatasetElement&gt; </font></td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.MovielensLoader
-	c394 [label=<<table title="it.unica.foresee.datasets.MovielensLoader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MovielensLoader.html">
+	c455 [label=<<table title="it.unica.foresee.datasets.MovielensLoader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MovielensLoader.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MovielensLoader </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.IntegerElement
-	c395 [label=<<table title="it.unica.foresee.datasets.IntegerElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./IntegerElement.html">
+	c456 [label=<<table title="it.unica.foresee.datasets.IntegerElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./IntegerElement.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> IntegerElement </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.DatasetVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
-	c396 [label=<<table title="it.unica.foresee.datasets.DatasetVector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatasetVector.html">
+	c457 [label=<<table title="it.unica.foresee.datasets.DatasetVector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatasetVector.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DatasetVector&lt;T extends DatasetElement&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.Movielens
-	c397 [label=<<table title="it.unica.foresee.datasets.Movielens" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Movielens.html">
+	c458 [label=<<table title="it.unica.foresee.datasets.Movielens" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Movielens.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Movielens </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.DatasetElement<T>
-	c398 [label=<<table title="it.unica.foresee.datasets.DatasetElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatasetElement.html">
+	c459 [label=<<table title="it.unica.foresee.datasets.DatasetElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatasetElement.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DatasetElement&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.FileDatasetLoader<T extends it.unica.foresee.datasets.interfaces.Dataset>
-	c399 [label=<<table title="it.unica.foresee.datasets.FileDatasetLoader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FileDatasetLoader.html">
+	c460 [label=<<table title="it.unica.foresee.datasets.FileDatasetLoader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FileDatasetLoader.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> FileDatasetLoader&lt;T extends Dataset&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.MovielensElement
-	c400 [label=<<table title="it.unica.foresee.datasets.MovielensElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MovielensElement.html">
+	c461 [label=<<table title="it.unica.foresee.datasets.MovielensElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MovielensElement.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MovielensElement </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//it.unica.foresee.datasets.DoubleElement extends it.unica.foresee.datasets.DatasetElement<java.lang.Double>
-	c398:p -> c390:p [dir=back,arrowtail=empty];
+	c459:p -> c451:p [dir=back,arrowtail=empty];
 	//it.unica.foresee.datasets.MovielensLoader extends it.unica.foresee.datasets.FileDatasetLoader
-	c399:p -> c394:p [dir=back,arrowtail=empty];
+	c460:p -> c455:p [dir=back,arrowtail=empty];
 	//it.unica.foresee.datasets.IntegerElement extends it.unica.foresee.datasets.DatasetElement<java.lang.Integer>
-	c398:p -> c395:p [dir=back,arrowtail=empty];
+	c459:p -> c456:p [dir=back,arrowtail=empty];
 	//it.unica.foresee.datasets.Movielens extends it.unica.foresee.datasets.DatasetSparseVector<it.unica.foresee.datasets.MovielensElement>
-	c392:p -> c397:p [dir=back,arrowtail=empty];
+	c453:p -> c458:p [dir=back,arrowtail=empty];
 	//it.unica.foresee.datasets.MovielensElement extends it.unica.foresee.datasets.DatasetSparseVector<it.unica.foresee.datasets.IntegerElement>
-	c392:p -> c400:p [dir=back,arrowtail=empty];
+	c453:p -> c461:p [dir=back,arrowtail=empty];
 }
 

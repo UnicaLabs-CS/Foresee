@@ -8,7 +8,7 @@ import java.util.*;
 /**
  * An efficient data structure for sparse vectors.
  */
-public class DatasetSparseVector<T extends DatasetElement> extends TreeMap<Integer, T> implements it.unica.foresee.datasets.interfaces.DatasetVector<T>, it.unica.foresee.datasets.interfaces.DatasetElement<DatasetSparseVector<T>>
+public class DatasetSparseVector<T extends DatasetElement<?>> extends TreeMap<Integer, T> implements it.unica.foresee.datasets.interfaces.DatasetVector<T>, it.unica.foresee.datasets.interfaces.DatasetElement<DatasetSparseVector<T>>, Clusterable
 {
     /**
      * Mean of the elements means.
@@ -253,5 +253,28 @@ public class DatasetSparseVector<T extends DatasetElement> extends TreeMap<Integ
     @Override
     public Iterator<T> iterator() {
         return this.values().iterator();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public double[] getPoint()
+    {
+        // The size of the array is set to the highest key value, so that it can store all the items
+        double[] points = new double[getVectorSize()];
+
+        if (this.isEmpty())
+        {
+            return points;
+        }
+
+        // Associate the indexes with the corresponding values
+        for (int k : this.keySet())
+        {
+            points[k] = this.getDatasetElement(k).getValueForMean();
+        }
+
+        return points;
     }
 }

@@ -9,28 +9,28 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// it.unica.foresee.datasets.DatasetSparseVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
-	c1782 [label=<<table title="it.unica.foresee.datasets.DatasetSparseVector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../DatasetSparseVector.html">
+	// it.unica.foresee.datasets.DatasetSparseVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement<?>>
+	c1994 [label=<<table title="it.unica.foresee.datasets.DatasetSparseVector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../DatasetSparseVector.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> DatasetSparseVector&lt;T extends DatasetElement&gt; </td></tr>
+<tr><td align="center" balign="center"> DatasetSparseVector&lt;T extends DatasetElement&lt;?&gt;&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.DatasetElement<T>
-	c1788 [label=<<table title="it.unica.foresee.datasets.DatasetElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../DatasetElement.html">
+	c2000 [label=<<table title="it.unica.foresee.datasets.DatasetElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../DatasetElement.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DatasetElement&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.interfaces.DatasetElement<K>
-	c1794 [label=<<table title="it.unica.foresee.datasets.interfaces.DatasetElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./DatasetElement.html">
+	c2006 [label=<<table title="it.unica.foresee.datasets.interfaces.DatasetElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./DatasetElement.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> DatasetElement&lt;K&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	//it.unica.foresee.datasets.DatasetSparseVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement> implements it.unica.foresee.datasets.interfaces.DatasetElement<K>
-	c1794:p -> c1782:p [dir=back,arrowtail=empty,style=dashed];
+	//it.unica.foresee.datasets.DatasetSparseVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement<?>> implements it.unica.foresee.datasets.interfaces.DatasetElement<K>
+	c2006:p -> c1994:p [dir=back,arrowtail=empty,style=dashed];
 	//it.unica.foresee.datasets.DatasetElement<T> implements it.unica.foresee.datasets.interfaces.DatasetElement<K>
-	c1794:p -> c1788:p [dir=back,arrowtail=empty,style=dashed];
+	c2006:p -> c2000:p [dir=back,arrowtail=empty,style=dashed];
 }
 

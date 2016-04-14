@@ -1,18 +1,18 @@
 package it.unica.foresee.libraries;
 
+import static it.unica.foresee.utils.Tools.warn;
+
 import it.unica.foresee.datasets.DatasetSparseVector;
 import it.unica.foresee.datasets.IntegerElement;
-import org.apache.commons.math3.ml.clustering.Clusterable;
 import org.apache.commons.math3.stat.correlation.PearsonsCorrelation;
 import org.apache.commons.math3.util.Pair;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * This class is an implementation of the nearest neighbour algorithm for user similarity.
  */
-public class NearestNeighbour<T extends DatasetSparseVector<it.unica.foresee.datasets.interfaces.DatasetElement<IntegerElement>> & Clusterable>
+public class NearestNeighbour<T extends DatasetSparseVector<? extends IntegerElement>>
 {
     /**
      * The matrix of the users with the ratings.
@@ -20,6 +20,11 @@ public class NearestNeighbour<T extends DatasetSparseVector<it.unica.foresee.dat
      * Elements can be retrieved as dataset[user, item].
      */
     private DatasetSparseVector<T> dataset;
+
+    /**
+     * Maps a userID to it's position in the similarity matrix.
+     */
+    private Integer[] keys;
 
     /**
      * Matrix of the similarity between users.
@@ -47,13 +52,20 @@ public class NearestNeighbour<T extends DatasetSparseVector<it.unica.foresee.dat
             initialiseSimilarityMatrix();
         }
 
-        for (int userID = 0; userID < dataset.size(); userID++)
+        for (int userIndex = 0; userIndex < keys.length; userIndex++)
         {
-            List<Pair<Integer, Double>> nearestNeighbours = getNearestNeighbours(userID, neighboursAmount);
+            // Obtain the nearest neighbours to the current user
+            List<Pair<Integer, Double>> nearestNeighbours = getNearestNeighbours(userIndex, neighboursAmount);
 
-            for (int itemID = 0; itemID < dataset.size(); itemID++)
+            // The current user
+            T currentUser = dataset.get(keys[userIndex]);
+
+            // Array of the keys of the user's items
+            Integer[] itemsKeys= currentUser.keySet().toArray(new Integer[0]);
+
+            for (int itemIndex = 0; itemIndex < itemsKeys.length; itemIndex++)
             {
-                double rating = dataset.getDatasetElement(userID).getDatasetElement(itemID).getElement().getElement();
+                double rating = currentUser.getDatasetElement(itemsKeys[itemIndex]).getElement();
                 if(rating == 0)
                 {
                     // Useful variables to understand what's going on
@@ -63,13 +75,13 @@ public class NearestNeighbour<T extends DatasetSparseVector<it.unica.foresee.dat
                     double neighbourRateOnItem;
 
                     // Set the rating to the average of the ratings of the user
-                    rating = dataset.getDatasetElement(userID).getValueForMean();
+                    rating = dataset.getDatasetElement(userIndex).getValueForMean();
 
                     for (Pair<Integer, Double> neighbour : nearestNeighbours)
                     {
-                        userSimilarity = similarìtyMatrix[userID][neighbour.getFirst()];
+                        userSimilarity = similarìtyMatrix[userIndex][neighbour.getFirst()];
                         neighbourAverage = dataset.getDatasetElement(neighbour.getFirst()).getValueForMean();
-                        neighbourRateOnItem = dataset.getDatasetElement(neighbour.getFirst()).getDatasetElement(itemID).getElement().getElement();
+                        neighbourRateOnItem = dataset.getDatasetElement(neighbour.getFirst()).getDatasetElement(itemIndex).getElement();
 
                         rating += userSimilarity * (neighbourRateOnItem - neighbourAverage);
                         denominator += userSimilarity;
@@ -78,24 +90,30 @@ public class NearestNeighbour<T extends DatasetSparseVector<it.unica.foresee.dat
                     rating /= denominator;
 
                     // Assign the new value casted to int
-                    dataset.getDatasetElement(userID).getDatasetElement(itemID).getElement().setElement((int) rating);
+                    dataset.getDatasetElement(keys[userIndex]).getDatasetElement(itemsKeys[itemIndex]).setElement((int) rating);
                 }
             }
         }
         return this.dataset;
     }
 
-    public List<Pair<Integer, Double>> getNearestNeighbours(int userID, int neighboursAmount)
+    /**
+     * Get the n nearest neighbours to the given user
+     * @param userIndex user index in the similarity matrix
+     * @param neighboursAmount amount of neighbours to check
+     * @return a list of the n nearest neighbours
+     */
+    public List<Pair<Integer, Double>> getNearestNeighbours(int userIndex, int neighboursAmount)
     {
         ArrayList<Pair<Integer, Double>> neighbours = new ArrayList<>();
 
         // neighbour j
-        for (int i = 0; i < similarìtyMatrix[userID].length; i++)
+        for (int i = 0; i < similarìtyMatrix[userIndex].length; i++)
         {
             // Skip the user itself, just add its neighbours
-            if (i != userID)
+            if (i != userIndex)
             {
-                neighbours.add(new Pair<>(i, similarìtyMatrix[userID][i]));
+                neighbours.add(new Pair<>(i, similarìtyMatrix[userIndex][i]));
             }
         }
 
@@ -103,7 +121,12 @@ public class NearestNeighbour<T extends DatasetSparseVector<it.unica.foresee.dat
         neighbours.sort((Pair<Integer, Double> a, Pair<Integer, Double> b)
                 -> - Double.compare(a.getSecond(), b.getSecond()));
 
-        return neighbours.subList(0, neighboursAmount);
+        if (neighbours.size() > neighboursAmount)
+        {
+            neighbours.subList(neighboursAmount - 1, neighbours.size()).clear();
+        }
+
+        return neighbours;
     }
 
     /**
@@ -113,28 +136,45 @@ public class NearestNeighbour<T extends DatasetSparseVector<it.unica.foresee.dat
     {
         similarìtyMatrix = new double[dataset.size()][dataset.size()];
 
+        // Array of the keys of the users
+        this.keys = dataset.keySet().toArray(new Integer[0]);
+
         // user i
-        for (int i = 0; i < dataset.size(); i++)
+        for (int userIndex = 0; userIndex < dataset.size(); userIndex++)
         {
             // neighbour j
-            for (int j = 0; j < dataset.size(); j++)
+            for (int neighbourIndex = 0; neighbourIndex < dataset.size(); neighbourIndex++)
             {
                 // The similarity is symmetric, the lower triangle of the matrix
                 // is equal to the upper.
-                if (similarìtyMatrix[j][i] != 0)
+                if (similarìtyMatrix[neighbourIndex][userIndex] != 0)
                 {
-                    similarìtyMatrix[j][i] = similarìtyMatrix[i][j];
+                    similarìtyMatrix[neighbourIndex][userIndex] = similarìtyMatrix[userIndex][neighbourIndex];
                 }
                 // When user and neighbour are different compute the similarity
-                else if (i != j)
+                else if (keys[userIndex] != keys[neighbourIndex])
                 {
                     // Set the value in the matrix
-                    similarìtyMatrix[i][j] = userSimilarity(dataset.getDatasetElement(i), dataset.getDatasetElement(j));
+                    try
+                    {
+                        double sim = userSimilarity(dataset.get(keys[userIndex]), dataset.get(keys[neighbourIndex]));
+                        // Assign a value of 0 if the similarity is negative
+                        similarìtyMatrix[userIndex][neighbourIndex] = sim > 0 ? sim : 0;
+                    }
+                    catch (IllegalArgumentException e)
+                    {
+                        warn(e + "\n" +
+                        "User " + similarìtyMatrix[userIndex] + " and/or user " + similarìtyMatrix[neighbourIndex] + " don't have enough data in common.\n");
+
+                        // Not having enough data seems enough to put similarity to 0
+                        similarìtyMatrix[userIndex][neighbourIndex] = 0;
+                    }
+
                 }
                 // No need to check the same user
-                else if (i == j)
+                else if (similarìtyMatrix[userIndex] == similarìtyMatrix[neighbourIndex])
                 {
-                    similarìtyMatrix[i][i] = 1;
+                    similarìtyMatrix[userIndex][userIndex] = 1;
                 }
             }
         }
@@ -151,6 +191,12 @@ public class NearestNeighbour<T extends DatasetSparseVector<it.unica.foresee.dat
      */
     public double userSimilarity(double[] user, double[] neighbour)
     {
+        if (user.length < 2 || neighbour.length < 2)
+        {
+            throw new IllegalArgumentException("The arrays are too short, min length is 2.\n" +
+                    "user:\t" + Arrays.toString(user) + "\n" +
+                    "neighbour:\t" + Arrays.toString(neighbour));
+        }
         return new PearsonsCorrelation().correlation(user, neighbour);
     }
 
@@ -181,8 +227,18 @@ public class NearestNeighbour<T extends DatasetSparseVector<it.unica.foresee.dat
         userList = new ArrayList<>();
         neighbourList = new ArrayList<>();
 
+        // Check everything is working well
+        if (user == null)
+        {
+            throw new IllegalStateException("The user pointer should not be null!");
+        }
+        if (neighbour == null)
+        {
+            throw new IllegalStateException("The neighbour pointer should not be null!");
+        }
+
         // Add the common elements between the sets
-        for(Integer item : user.keySet())
+        for(Integer item : user.navigableKeySet())
         {
             if(neighbour.containsKey(item))
             {

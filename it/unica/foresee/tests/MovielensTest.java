@@ -6,11 +6,14 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
+import it.unica.foresee.libraries.NearestNeighbour;
 import org.apache.commons.math3.ml.clustering.KMeansPlusPlusClusterer;
 import org.apache.commons.math3.ml.clustering.CentroidCluster;
 
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -21,6 +24,7 @@ import java.util.TreeSet;
 /**
  * Test Movielens loading
  */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class MovielensTest
 {
     public final double DEVIATION = 0.3;
@@ -36,7 +40,7 @@ public class MovielensTest
     @Before public void setUp()  throws Exception
     {
         mLoader = new MovielensLoader();
-        mFile = new File(BIG_DATASET);
+        mFile = new File(SMALL_DATASET);
         m = mLoader.loadDataset(mFile);
         numPart = 5;
         parts = m.getKFoldPartitions(numPart);
@@ -159,7 +163,7 @@ public class MovielensTest
     @Test
     public void assertEachUserIsRepresented()
     {
-        int misses = 0;
+        int misses;
 
         System.out.println("\nUsers check...");
         for (int i = 1; i < parts.length; i++)
@@ -210,13 +214,13 @@ public class MovielensTest
 
         assertEquals(m.getMoviesSet(), fullMovieSet);
     }
-/*
+
     @Test
     public void testClustering()
     {
         clustering();
     }
-*/
+
 }
 
 
