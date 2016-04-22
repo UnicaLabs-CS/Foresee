@@ -1,6 +1,7 @@
 package it.unica.foresee.datasets;
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Random;
 import java.util.TreeSet;
 
@@ -199,6 +200,39 @@ public class Movielens extends DatasetSparseVector<MovielensElement>
 
         el.put(movieID, rating);
         this.put(userID, el);
+    }
+
+    /**
+     * Special implementation to allow merging already present users.
+     *
+     * If you put an already present user, it's movies get merged.
+     * {@inheritDoc}
+     */
+    @Override
+    public MovielensElement put(Integer integer, MovielensElement t)
+    {
+        if (this.containsKey(integer) && t != null)
+        {
+            this.get(integer).putAll(t);
+            return this.get(integer);
+        }
+        else
+        {
+            return super.put(integer, t);
+        }
+    }
+
+    /**
+     * Special implementation to allow merging already present users.
+     * {@link java.util.TreeMap#putAll(Map)}
+     */
+    public void putAll(Movielens m)
+    {
+        // For each key of m, add it in position key merging its values
+        for(Integer key : m.keySet())
+        {
+            this.put(key, m.get(key));
+        }
     }
 
     public void setMaxMovieID(int maxMovieID) {

@@ -29,7 +29,7 @@ public class NearestNeighbour<T extends DatasetSparseVector<? extends IntegerEle
     /**
      * Matrix of the similarity between users.
      */
-    private double[][] similarìtyMatrix;
+    private double[][] similarityMatrix;
 
     /**
      * Initialise the object with a dataset.
@@ -47,7 +47,7 @@ public class NearestNeighbour<T extends DatasetSparseVector<? extends IntegerEle
      */
     public DatasetSparseVector<T> makePredictions(int neighboursAmount)
     {
-        if(similarìtyMatrix == null)
+        if(similarityMatrix == null)
         {
             initialiseSimilarityMatrix();
         }
@@ -79,7 +79,7 @@ public class NearestNeighbour<T extends DatasetSparseVector<? extends IntegerEle
 
                     for (Pair<Integer, Double> neighbour : nearestNeighbours)
                     {
-                        userSimilarity = similarìtyMatrix[userIndex][neighbour.getFirst()];
+                        userSimilarity = similarityMatrix[userIndex][neighbour.getFirst()];
                         neighbourAverage = dataset.getDatasetElement(neighbour.getFirst()).getValueForMean();
                         neighbourRateOnItem = dataset.getDatasetElement(neighbour.getFirst()).getDatasetElement(itemIndex).getElement();
 
@@ -108,12 +108,12 @@ public class NearestNeighbour<T extends DatasetSparseVector<? extends IntegerEle
         ArrayList<Pair<Integer, Double>> neighbours = new ArrayList<>();
 
         // neighbour j
-        for (int i = 0; i < similarìtyMatrix[userIndex].length; i++)
+        for (int i = 0; i < similarityMatrix[userIndex].length; i++)
         {
             // Skip the user itself, just add its neighbours
             if (i != userIndex)
             {
-                neighbours.add(new Pair<>(i, similarìtyMatrix[userIndex][i]));
+                neighbours.add(new Pair<>(i, similarityMatrix[userIndex][i]));
             }
         }
 
@@ -134,7 +134,7 @@ public class NearestNeighbour<T extends DatasetSparseVector<? extends IntegerEle
      */
     public void initialiseSimilarityMatrix()
     {
-        similarìtyMatrix = new double[dataset.size()][dataset.size()];
+        similarityMatrix = new double[dataset.size()][dataset.size()];
 
         // Array of the keys of the users
         this.keys = dataset.keySet().toArray(new Integer[0]);
@@ -147,9 +147,9 @@ public class NearestNeighbour<T extends DatasetSparseVector<? extends IntegerEle
             {
                 // The similarity is symmetric, the lower triangle of the matrix
                 // is equal to the upper.
-                if (similarìtyMatrix[neighbourIndex][userIndex] != 0)
+                if (similarityMatrix[neighbourIndex][userIndex] != 0)
                 {
-                    similarìtyMatrix[neighbourIndex][userIndex] = similarìtyMatrix[userIndex][neighbourIndex];
+                    similarityMatrix[neighbourIndex][userIndex] = similarityMatrix[userIndex][neighbourIndex];
                 }
                 // When user and neighbour are different compute the similarity
                 else if (keys[userIndex] != keys[neighbourIndex])
@@ -159,22 +159,22 @@ public class NearestNeighbour<T extends DatasetSparseVector<? extends IntegerEle
                     {
                         double sim = userSimilarity(dataset.get(keys[userIndex]), dataset.get(keys[neighbourIndex]));
                         // Assign a value of 0 if the similarity is negative
-                        similarìtyMatrix[userIndex][neighbourIndex] = sim > 0 ? sim : 0;
+                        similarityMatrix[userIndex][neighbourIndex] = sim > 0 ? sim : 0;
                     }
                     catch (IllegalArgumentException e)
                     {
                         warn(e + "\n" +
-                        "User " + similarìtyMatrix[userIndex] + " and/or user " + similarìtyMatrix[neighbourIndex] + " don't have enough data in common.\n");
+                        "User " + similarityMatrix[userIndex] + " and/or user " + similarityMatrix[neighbourIndex] + " don't have enough data in common.\n");
 
                         // Not having enough data seems enough to put similarity to 0
-                        similarìtyMatrix[userIndex][neighbourIndex] = 0;
+                        similarityMatrix[userIndex][neighbourIndex] = 0;
                     }
 
                 }
                 // No need to check the same user
-                else if (similarìtyMatrix[userIndex] == similarìtyMatrix[neighbourIndex])
+                else if (similarityMatrix[userIndex] == similarityMatrix[neighbourIndex])
                 {
-                    similarìtyMatrix[userIndex][userIndex] = 1;
+                    similarityMatrix[userIndex][userIndex] = 1;
                 }
             }
         }

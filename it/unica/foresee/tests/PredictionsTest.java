@@ -5,6 +5,7 @@ import it.unica.foresee.datasets.Movielens;
 import it.unica.foresee.datasets.MovielensElement;
 import it.unica.foresee.datasets.MovielensLoader;
 import it.unica.foresee.libraries.NearestNeighbour;
+import it.unica.foresee.utils.Tools;
 import org.apache.commons.math3.ml.clustering.CentroidCluster;
 import org.apache.commons.math3.ml.clustering.KMeansPlusPlusClusterer;
 import org.junit.Before;
@@ -36,10 +37,11 @@ public class PredictionsTest
     public void setUp()  throws Exception
     {
         mLoader = new MovielensLoader();
-        mFile = new File(SMALL_DATASET);
+        mFile = new File(BIG_DATASET);
         m = mLoader.loadDataset(mFile);
         numPart = 5;
         parts = m.getKFoldPartitions(numPart);
+        Tools.setVerbosity(Tools.VERB_NO_WARN);
     }
 
     @Test
@@ -58,7 +60,7 @@ public class PredictionsTest
     }
 
 
-    private void clustering()
+    private List<CentroidCluster<MovielensElement>> clustering()
     {
         int vectorSize = m.getMaxMovieID() + 1;
         System.out.println("Vector size: " + vectorSize);
@@ -70,7 +72,7 @@ public class PredictionsTest
             ArrayList<MovielensElement> pElements = new ArrayList<>();
             for (Integer key : parts[i].keySet())
             {
-                System.out.println("ArrayList size: " + pElements.size());
+                //System.out.println("ArrayList size: " + pElements.size());
                 while (pElements.size() <= key){pElements.add(new MovielensElement(vectorSize));}
                 parts[i].get(key).setVectorSize(vectorSize);
                 pElements.add(key, parts[i].get(key));
@@ -79,12 +81,14 @@ public class PredictionsTest
             KMeansPlusPlusClusterer<MovielensElement> clusterer = new KMeansPlusPlusClusterer<>(20);
             List<CentroidCluster<MovielensElement>> clusterResults = clusterer.cluster(pElements);
 
+            /*
             System.out.println("\n\npartition " + i);
             for (int j = 0; j < clusterResults.size(); j++)
             {
                 System.out.println("cluster " + j);
                 System.out.println(clusterResults.get(j).getPoints());
             }
+            */
         }
     }
 
@@ -94,5 +98,11 @@ public class PredictionsTest
         NearestNeighbour<MovielensElement> nn = new NearestNeighbour<>(m);
         nn.makePredictions(100);
         clustering();
+    }
+
+    @Test
+    public void testRMSE()
+    {
+
     }
 }
