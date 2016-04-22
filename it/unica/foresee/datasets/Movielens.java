@@ -1,5 +1,8 @@
 package it.unica.foresee.datasets;
 
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.Random;
 import java.util.TreeSet;
 
 /**
@@ -76,6 +79,84 @@ public class Movielens extends DatasetSparseVector<MovielensElement>
         return rating.getElement();
     }
 
+    /**
+     * Similar to {@link DatasetSparseVector#getKFoldPartitions(int, int)} but
+     * obtains partitions where there are representative elements for each user.
+     * @param k
+     * @return
+     */
+    public DatasetSparseVector[] getKFoldPartitions(int k)
+    {
+        /* Initialize the max and min with a reasonable value */
+        double maxMeanValue = this.get(this.firstKey()).getValueForMean();
+        double minMeanValue = this.get(this.firstKey()).getValueForMean();
+
+        /* Fill the array with the number of occurrences. */
+        for (MovielensElement item : this.values())
+        {
+            /* Keep the max mean value for each element */
+            if (item.getValueForMean() > maxMeanValue)
+            {
+                maxMeanValue = item.getValueForMean();
+            }
+
+            /* Keep the min mean value for each element */
+            if (item.getValueForMean() < minMeanValue)
+            {
+                minMeanValue = item.getValueForMean();
+            }
+        }
+
+
+        /* --- Stratification by average of elements by each user. --- */
+
+        /* Amplitude of the range of each layer. */
+        int layersAmount = this.usersAmount;
+        double layerRange = (maxMeanValue - minMeanValue) / (layersAmount);
+
+        /* Fill the k partitions: k folding */
+        Movielens[] partitions = new Movielens[k];
+        Random randomizer = new Random();
+
+        /* Initialize the partitions */
+        for (int i = 0; i < partitions.length; i++)
+        {
+            partitions[i] = new Movielens();
+        }
+
+        int randIndex;
+        Integer randomKey;
+        ArrayList<Integer> userMoviesKeys;
+
+        /* For each user add random elements to each partition */
+        for (Integer userID : this.keySet())
+        {
+            userMoviesKeys = new ArrayList<>(this.get(userID).keySet());
+
+            /* Remove the elements added to the partitions */
+            while (userMoviesKeys.size() > 0)
+            {
+                /* Select a random element and put it in a partition */
+                for (Movielens partition : partitions)
+                {
+                    if (userMoviesKeys.size() <= 0)
+                    {
+                        /* Stop looping when the layer is empty */
+                        break;
+                    }
+                    else
+                    {
+                        randIndex = randomizer.nextInt(userMoviesKeys.size());
+                        randomKey = userMoviesKeys.remove(randIndex);
+                        partition.put(userID, randomKey, this.get(userID, randomKey).getElement());
+                    }
+                }
+            }
+        }
+
+        return partitions;
+    }
+
     public int getMaxMovieID() {
         return maxMovieID;
     }
@@ -119,6 +200,39 @@ public class Movielens extends DatasetSparseVector<MovielensElement>
 
         el.put(movieID, rating);
         this.put(userID, el);
+    }
+
+    /**
+     * Special implementation to allow merging already present users.
+     *
+     * If you put an already present user, it's movies get merged.
+     * {@inheritDoc}
+     */
+    @Override
+    public MovielensElement put(Integer integer, MovielensElement t)
+    {
+        if (this.containsKey(integer) && t != null)
+        {
+            this.get(integer).putAll(t);
+            return this.get(integer);
+        }
+        else
+        {
+            return super.put(integer, t);
+        }
+    }
+
+    /**
+     * Special implementation to allow merging already present users.
+     * {@link java.util.TreeMap#putAll(Map)}
+     */
+    public void putAll(Movielens m)
+    {
+        // For each key of m, add it in position key merging its values
+        for(Integer key : m.keySet())
+        {
+            this.put(key, m.get(key));
+        }
     }
 
     public void setMaxMovieID(int maxMovieID) {

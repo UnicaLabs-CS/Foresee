@@ -9,19 +9,33 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
+<<<<<<< HEAD
 	// it.unica.foresee.datasets.DatasetElement<T>
 	c1174 [label=<<table title="it.unica.foresee.datasets.DatasetElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatasetElement.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> DatasetElement&lt;T&gt; </td></tr>
-		</table></td></tr>
-		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
+=======
 	// it.unica.foresee.datasets.IntegerElement
-	c1183 [label=<<table title="it.unica.foresee.datasets.IntegerElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./IntegerElement.html">
+	c1640 [label=<<table title="it.unica.foresee.datasets.IntegerElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./IntegerElement.html">
+>>>>>>> 861b7d3c908403bcfdace8b9de17c0f55d13b160
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> IntegerElement </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
+<<<<<<< HEAD
+	// it.unica.foresee.datasets.IntegerElement
+	c1183 [label=<<table title="it.unica.foresee.datasets.IntegerElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./IntegerElement.html">
+=======
+	// it.unica.foresee.datasets.DatasetElement<T>
+	c1643 [label=<<table title="it.unica.foresee.datasets.DatasetElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatasetElement.html">
+>>>>>>> 861b7d3c908403bcfdace8b9de17c0f55d13b160
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> DatasetElement&lt;T&gt; </td></tr>
+		</table></td></tr>
+		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//it.unica.foresee.datasets.IntegerElement extends it.unica.foresee.datasets.DatasetElement<java.lang.Integer>
+<<<<<<< HEAD
 	c1174:p -> c1183:p [dir=back,arrowtail=empty];
+=======
+	c1643:p -> c1640:p [dir=back,arrowtail=empty];
+>>>>>>> 861b7d3c908403bcfdace8b9de17c0f55d13b160
 }
 

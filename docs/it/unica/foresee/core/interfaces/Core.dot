@@ -9,20 +9,34 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
+<<<<<<< HEAD
 	// it.unica.foresee.core.interfaces.Core
 	c1717 [label=<<table title="it.unica.foresee.core.interfaces.Core" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Core.html">
+=======
+	// it.unica.foresee.core.Core
+	c1276 [label=<<table title="it.unica.foresee.core.Core" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../Core.html">
+>>>>>>> 861b7d3c908403bcfdace8b9de17c0f55d13b160
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> Core </td></tr>
+		</table></td></tr>
+		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
+<<<<<<< HEAD
+	// it.unica.foresee.core.Core
+	c1720 [label=<<table title="it.unica.foresee.core.Core" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../Core.html">
+=======
+	// it.unica.foresee.core.interfaces.Core
+	c1279 [label=<<table title="it.unica.foresee.core.interfaces.Core" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Core.html">
+>>>>>>> 861b7d3c908403bcfdace8b9de17c0f55d13b160
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Core </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// it.unica.foresee.core.Core
-	c1720 [label=<<table title="it.unica.foresee.core.Core" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../Core.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> Core </td></tr>
-		</table></td></tr>
-		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//it.unica.foresee.core.Core implements it.unica.foresee.core.interfaces.Core
+<<<<<<< HEAD
 	c1717:p -> c1720:p [dir=back,arrowtail=empty,style=dashed];
+=======
+	c1279:p -> c1276:p [dir=back,arrowtail=empty,style=dashed];
+>>>>>>> 861b7d3c908403bcfdace8b9de17c0f55d13b160
 }
 

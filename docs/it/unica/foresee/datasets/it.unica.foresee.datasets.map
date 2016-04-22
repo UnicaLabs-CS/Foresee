@@ -1,13 +1,13 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./DatasetElement.html" title="it.unica.foresee.datasets.DatasetElement" alt="" coords="59,16,197,43"/>
-<area shape="rect" id="node10_1" href="./IntegerElement.html" title="it.unica.foresee.datasets.IntegerElement" alt="" coords="16,112,125,139"/>
-<area shape="rect" id="node11_2" href="./DoubleElement.html" title="it.unica.foresee.datasets.DoubleElement" alt="" coords="171,112,280,139"/>
-<area shape="rect" id="node2_3" href="./MovielensLoader.html" title="it.unica.foresee.datasets.MovielensLoader" alt="" coords="366,112,485,139"/>
-<area shape="rect" id="node3_4" href="./Dataset.html" title="it.unica.foresee.datasets.Dataset" alt="" coords="595,16,834,43"/>
-<area shape="rect" id="node4_5" href="./DatasetSparseVector.html" title="it.unica.foresee.datasets.DatasetSparseVector" alt="" coords="880,16,1197,43"/>
-<area shape="rect" id="node6_6" href="./MovielensElement.html" title="it.unica.foresee.datasets.MovielensElement" alt="" coords="900,112,1028,139"/>
-<area shape="rect" id="node9_7" href="./Movielens.html" title="it.unica.foresee.datasets.Movielens" alt="" coords="1073,112,1153,139"/>
-<area shape="rect" id="node5_8" href="./DatasetVector.html" title="it.unica.foresee.datasets.DatasetVector" alt="" coords="1243,16,1519,43"/>
-<area shape="rect" id="node7_9" href="./MovieUserRate.html" title="it.unica.foresee.datasets.MovieUserRate" alt="" coords="1565,16,1677,43"/>
-<area shape="rect" id="node8_10" href="./FileDatasetLoader.html" title="it.unica.foresee.datasets.FileDatasetLoader" alt="" coords="300,16,551,43"/>
+<area shape="rect" id="node1_0" href="./DoubleElement.html" title="it.unica.foresee.datasets.DoubleElement" alt="" coords="16,113,124,138"/>
+<area shape="rect" id="node2_1" href="./MovieUserRate.html" title="it.unica.foresee.datasets.MovieUserRate" alt="" coords="239,17,349,42"/>
+<area shape="rect" id="node3_2" href="./DatasetSparseVector.html" title="it.unica.foresee.datasets.DatasetSparseVector" alt="" coords="404,17,744,42"/>
+<area shape="rect" id="node8_3" href="./Movielens.html" title="it.unica.foresee.datasets.Movielens" alt="" coords="396,113,475,138"/>
+<area shape="rect" id="node11_4" href="./MovielensElement.html" title="it.unica.foresee.datasets.MovielensElement" alt="" coords="520,113,647,138"/>
+<area shape="rect" id="node4_5" href="./Dataset.html" title="it.unica.foresee.datasets.Dataset" alt="" coords="790,17,1027,42"/>
+<area shape="rect" id="node5_6" href="./MovielensLoader.html" title="it.unica.foresee.datasets.MovielensLoader" alt="" coords="1138,113,1255,138"/>
+<area shape="rect" id="node6_7" href="./IntegerElement.html" title="it.unica.foresee.datasets.IntegerElement" alt="" coords="169,113,277,138"/>
+<area shape="rect" id="node7_8" href="./DatasetVector.html" title="it.unica.foresee.datasets.DatasetVector" alt="" coords="1367,17,1643,42"/>
+<area shape="rect" id="node9_9" href="./DatasetElement.html" title="it.unica.foresee.datasets.DatasetElement" alt="" coords="37,17,175,42"/>
+<area shape="rect" id="node10_10" href="./FileDatasetLoader.html" title="it.unica.foresee.datasets.FileDatasetLoader" alt="" coords="1072,17,1321,42"/>
 </map>

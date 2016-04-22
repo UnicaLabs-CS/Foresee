@@ -9,51 +9,85 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
+<<<<<<< HEAD
 	// it.unica.foresee.datasets.interfaces.DatasetElement<K>
 	c40 [label=<<table title="it.unica.foresee.datasets.interfaces.DatasetElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatasetElement.html">
+=======
+	// it.unica.foresee.datasets.interfaces.DatasetLoader<T extends it.unica.foresee.datasets.interfaces.Dataset>
+	c501 [label=<<table title="it.unica.foresee.datasets.interfaces.DatasetLoader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatasetLoader.html">
+>>>>>>> 861b7d3c908403bcfdace8b9de17c0f55d13b160
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> DatasetElement&lt;K&gt; </td></tr>
+<tr><td align="center" balign="center"> DatasetLoader&lt;T extends Dataset&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.interfaces.Dataset<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
+<<<<<<< HEAD
 	c41 [label=<<table title="it.unica.foresee.datasets.interfaces.Dataset" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Dataset.html">
+=======
+	c502 [label=<<table title="it.unica.foresee.datasets.interfaces.Dataset" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Dataset.html">
+>>>>>>> 861b7d3c908403bcfdace8b9de17c0f55d13b160
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Dataset&lt;T extends DatasetElement&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.interfaces.DatasetVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
+<<<<<<< HEAD
 	c42 [label=<<table title="it.unica.foresee.datasets.interfaces.DatasetVector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatasetVector.html">
+=======
+	c503 [label=<<table title="it.unica.foresee.datasets.interfaces.DatasetVector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatasetVector.html">
+>>>>>>> 861b7d3c908403bcfdace8b9de17c0f55d13b160
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> DatasetVector&lt;T extends DatasetElement&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
+<<<<<<< HEAD
 	// it.unica.foresee.datasets.interfaces.FileDatasetLoader<T extends it.unica.foresee.datasets.interfaces.Dataset>
 	c43 [label=<<table title="it.unica.foresee.datasets.interfaces.FileDatasetLoader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FileDatasetLoader.html">
+=======
+	// it.unica.foresee.datasets.interfaces.DatasetElement<K>
+	c504 [label=<<table title="it.unica.foresee.datasets.interfaces.DatasetElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatasetElement.html">
+>>>>>>> 861b7d3c908403bcfdace8b9de17c0f55d13b160
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> DatasetElement&lt;K&gt; </td></tr>
+		</table></td></tr>
+		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
+<<<<<<< HEAD
+	// it.unica.foresee.datasets.interfaces.SolutionElement<T>
+	c44 [label=<<table title="it.unica.foresee.datasets.interfaces.SolutionElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SolutionElement.html">
+=======
+	// it.unica.foresee.datasets.interfaces.FileDatasetLoader<T extends it.unica.foresee.datasets.interfaces.Dataset>
+	c505 [label=<<table title="it.unica.foresee.datasets.interfaces.FileDatasetLoader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FileDatasetLoader.html">
+>>>>>>> 861b7d3c908403bcfdace8b9de17c0f55d13b160
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> FileDatasetLoader&lt;T extends Dataset&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
+<<<<<<< HEAD
+	// it.unica.foresee.datasets.interfaces.DatasetLoader<T extends it.unica.foresee.datasets.interfaces.Dataset>
+	c45 [label=<<table title="it.unica.foresee.datasets.interfaces.DatasetLoader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatasetLoader.html">
+=======
 	// it.unica.foresee.datasets.interfaces.SolutionElement<T>
-	c44 [label=<<table title="it.unica.foresee.datasets.interfaces.SolutionElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SolutionElement.html">
+	c506 [label=<<table title="it.unica.foresee.datasets.interfaces.SolutionElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SolutionElement.html">
+>>>>>>> 861b7d3c908403bcfdace8b9de17c0f55d13b160
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> SolutionElement&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// it.unica.foresee.datasets.interfaces.DatasetLoader<T extends it.unica.foresee.datasets.interfaces.Dataset>
-	c45 [label=<<table title="it.unica.foresee.datasets.interfaces.DatasetLoader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatasetLoader.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> DatasetLoader&lt;T extends Dataset&gt; </td></tr>
-		</table></td></tr>
-		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//it.unica.foresee.datasets.interfaces.DatasetVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement> implements it.unica.foresee.datasets.interfaces.Dataset<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
+<<<<<<< HEAD
 	c41:p -> c42:p [dir=back,arrowtail=empty,style=dashed];
 	//it.unica.foresee.datasets.interfaces.FileDatasetLoader<T extends it.unica.foresee.datasets.interfaces.Dataset> implements it.unica.foresee.datasets.interfaces.DatasetLoader<T extends it.unica.foresee.datasets.interfaces.Dataset>
 	c45:p -> c43:p [dir=back,arrowtail=empty,style=dashed];
+=======
+	c502:p -> c503:p [dir=back,arrowtail=empty,style=dashed];
+	//it.unica.foresee.datasets.interfaces.FileDatasetLoader<T extends it.unica.foresee.datasets.interfaces.Dataset> implements it.unica.foresee.datasets.interfaces.DatasetLoader<T extends it.unica.foresee.datasets.interfaces.Dataset>
+	c501:p -> c505:p [dir=back,arrowtail=empty,style=dashed];
+>>>>>>> 861b7d3c908403bcfdace8b9de17c0f55d13b160
 }
 

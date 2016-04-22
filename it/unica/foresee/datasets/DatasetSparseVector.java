@@ -1,21 +1,24 @@
 package it.unica.foresee.datasets;
 
 import it.unica.foresee.datasets.interfaces.DatasetElement;
+import org.apache.commons.math3.ml.clustering.Clusterable;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.TreeMap;
-import java.util.Random;
+import java.util.*;
 
 /**
  * An efficient data structure for sparse vectors.
  */
-public class DatasetSparseVector<T extends DatasetElement> extends TreeMap<Integer, T> implements it.unica.foresee.datasets.interfaces.DatasetVector<T>, it.unica.foresee.datasets.interfaces.DatasetElement<DatasetSparseVector<T>>
+public class DatasetSparseVector<T extends DatasetElement<?>> extends TreeMap<Integer, T> implements it.unica.foresee.datasets.interfaces.DatasetVector<T>, it.unica.foresee.datasets.interfaces.DatasetElement<DatasetSparseVector<T>>, Clusterable
 {
     /**
      * Mean of the elements means.
      */
     private double mean;
+
+    /**
+     * Max size of the vector
+     */
+    private int vectorSize;
 
     /**
      * Flag to check if the mean value is calculated or user selected.
@@ -153,6 +156,14 @@ public class DatasetSparseVector<T extends DatasetElement> extends TreeMap<Integ
     }
 
     /**
+     * Get the vector size to create an array
+     * @return the vector size
+     */
+    public int getVectorSize() {
+        return vectorSize;
+    }
+
+    /**
      * Checks if the mean value has been set by the user.
      *
      * @return true if the mean value has been set by the user
@@ -219,6 +230,14 @@ public class DatasetSparseVector<T extends DatasetElement> extends TreeMap<Integ
     }
 
     /**
+     * Set the vector size for array creation
+     * @param vectorSize the size of the max vector
+     */
+    public void setVectorSize(int vectorSize) {
+        this.vectorSize = vectorSize;
+    }
+
+    /**
      * Unsets the mean set by the user. Successive calls of
      * {@link #getValueForMean()} will use the mean of the elements means.
      */
@@ -228,13 +247,34 @@ public class DatasetSparseVector<T extends DatasetElement> extends TreeMap<Integ
         this.mean = 0;
     }
 
-
-
     /**
      * {@inheritDoc}
      */
     @Override
     public Iterator<T> iterator() {
         return this.values().iterator();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public double[] getPoint()
+    {
+        // The size of the array is set to the highest key value, so that it can store all the items
+        double[] points = new double[getVectorSize()];
+
+        if (this.isEmpty())
+        {
+            return points;
+        }
+
+        // Associate the indexes with the corresponding values
+        for (int k : this.keySet())
+        {
+            points[k] = this.getDatasetElement(k).getValueForMean();
+        }
+
+        return points;
     }
 }

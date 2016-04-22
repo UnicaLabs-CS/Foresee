@@ -10,21 +10,21 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// it.unica.foresee.utils.Tools
-	c0 [label=<<table title="it.unica.foresee.utils.Tools" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Tools.html">
+	c285 [label=<<table title="it.unica.foresee.utils.Tools" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Tools.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Tools </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// it.unica.foresee.utils.Pair<T extends java.lang.Comparable<T>, U extends java.lang.Comparable<U>>
-	c1 [label=<<table title="it.unica.foresee.utils.Pair" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Pair.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> Pair&lt;T extends Comparable&lt;T&gt;, U extends Comparable&lt;U&gt;&gt; </td></tr>
-		</table></td></tr>
-		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.utils.Triple<T extends java.lang.Comparable<T>, U extends java.lang.Comparable<U>, V extends java.lang.Comparable<V>>
-	c2 [label=<<table title="it.unica.foresee.utils.Triple" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Triple.html">
+	c286 [label=<<table title="it.unica.foresee.utils.Triple" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Triple.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Triple&lt;T extends Comparable&lt;T&gt;, U extends Comparable&lt;U&gt;, V extends Comparable&lt;V&gt;&gt; </td></tr>
+		</table></td></tr>
+		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// it.unica.foresee.utils.Pair<T extends java.lang.Comparable<T>, U extends java.lang.Comparable<U>>
+	c287 [label=<<table title="it.unica.foresee.utils.Pair" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Pair.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> Pair&lt;T extends Comparable&lt;T&gt;, U extends Comparable&lt;U&gt;&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }

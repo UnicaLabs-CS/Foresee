@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./FSCommandList.html" title="it.unica.foresee.commandlists.FSCommandList" alt="" coords="83,120,202,147"/>
-<area shape="rect" id="node2_1" href="./ARTCommandList.html" title="it.unica.foresee.commandlists.ARTCommandList" alt="" coords="79,216,207,243"/>
-<area shape="rect" id="node3_2" href="./interfaces/CommandList.html" title="it.unica.foresee.commandlists.interfaces.CommandList" alt="" coords="16,11,117,55"/>
-<area shape="rect" id="node4_3" href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/TreeMap.html" title="java.util.TreeMap" alt="" coords="163,20,277,47"/>
+<area shape="rect" id="node1_0" href="./FSCommandList.html" title="it.unica.foresee.commandlists.FSCommandList" alt="" coords="83,118,201,143"/>
+<area shape="rect" id="node2_1" href="./ARTCommandList.html" title="it.unica.foresee.commandlists.ARTCommandList" alt="" coords="78,214,206,239"/>
+<area shape="rect" id="node3_2" href="./interfaces/CommandList.html" title="it.unica.foresee.commandlists.interfaces.CommandList" alt="" coords="16,11,116,53"/>
+<area shape="rect" id="node4_3" href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/TreeMap.html" title="java.util.TreeMap" alt="" coords="162,19,274,45"/>
 </map>
