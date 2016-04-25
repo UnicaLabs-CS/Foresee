@@ -9,28 +9,18 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-<<<<<<< HEAD
 	// it.unica.foresee.commandlists.interfaces.Semantic
-	c170 [label=<<table title="it.unica.foresee.commandlists.interfaces.Semantic" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Semantic.html">
-=======
-	// it.unica.foresee.commandlists.interfaces.CommandList
-	c164 [label=<<table title="it.unica.foresee.commandlists.interfaces.CommandList" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./CommandList.html">
->>>>>>> 861b7d3c908403bcfdace8b9de17c0f55d13b160
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> CommandList </td></tr>
-		</table></td></tr>
-		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
-<<<<<<< HEAD
-	// it.unica.foresee.commandlists.interfaces.CommandList
-	c171 [label=<<table title="it.unica.foresee.commandlists.interfaces.CommandList" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./CommandList.html">
-=======
-	// it.unica.foresee.commandlists.interfaces.Semantic
-	c165 [label=<<table title="it.unica.foresee.commandlists.interfaces.Semantic" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Semantic.html">
->>>>>>> 861b7d3c908403bcfdace8b9de17c0f55d13b160
+	c182 [label=<<table title="it.unica.foresee.commandlists.interfaces.Semantic" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Semantic.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Semantic </td></tr>
+		</table></td></tr>
+		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// it.unica.foresee.commandlists.interfaces.CommandList
+	c183 [label=<<table title="it.unica.foresee.commandlists.interfaces.CommandList" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./CommandList.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> CommandList </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }

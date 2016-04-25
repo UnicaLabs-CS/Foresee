@@ -1,7 +1,7 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../DatasetSparseVector.html" title="it.unica.foresee.datasets.DatasetSparseVector" alt="" coords="16,321,356,346"/>
-<area shape="rect" id="node2_1" href="../DatasetVector.html" title="it.unica.foresee.datasets.DatasetVector" alt="" coords="401,321,677,346"/>
-<area shape="rect" id="node3_2" href="./Dataset.html" title="it.unica.foresee.datasets.interfaces.Dataset" alt="" coords="161,112,398,155"/>
-<area shape="rect" id="node4_3" href="./DatasetVector.html" title="it.unica.foresee.datasets.interfaces.DatasetVector" alt="" coords="224,213,500,256"/>
-<area shape="rect" id="node5_4" href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/Iterable.html" title="java.lang.Iterable" alt="" coords="319,11,405,53"/>
+<area shape="rect" id="node1_0" href="./Dataset.html" title="it.unica.foresee.datasets.interfaces.Dataset" alt="" coords="159,115,398,159"/>
+<area shape="rect" id="node2_1" href="./DatasetVector.html" title="it.unica.foresee.datasets.interfaces.DatasetVector" alt="" coords="223,219,499,263"/>
+<area shape="rect" id="node3_2" href="../DatasetSparseVector.html" title="it.unica.foresee.datasets.DatasetSparseVector" alt="" coords="15,328,355,355"/>
+<area shape="rect" id="node4_3" href="../DatasetVector.html" title="it.unica.foresee.datasets.DatasetVector" alt="" coords="401,328,677,355"/>
+<area shape="rect" id="node5_4" href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/Iterable.html" title="java.lang.Iterable" alt="" coords="317,11,405,55"/>
 </map>

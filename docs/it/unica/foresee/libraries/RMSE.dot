@@ -9,10 +9,10 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// it.unica.foresee.tests.MovielensTest
-	c1932 [label=<<table title="it.unica.foresee.tests.MovielensTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MovielensTest.html">
+	// it.unica.foresee.libraries.RMSE
+	c1768 [label=<<table title="it.unica.foresee.libraries.RMSE" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./RMSE.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> MovielensTest </td></tr>
+<tr><td align="center" balign="center"> RMSE </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }

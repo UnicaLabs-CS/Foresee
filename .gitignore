@@ -1,7 +1,9 @@
 *~
 *.class
-foresee.jar
+foresee-*.jar
 makefiles/autogen/*.mk
 Makefile
 workdir/*
 out/*
+Snappy/*
+!Snappy/snapcraft.yaml

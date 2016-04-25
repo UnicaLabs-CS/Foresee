@@ -9,30 +9,20 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// it.unica.foresee.tests.MovielensTest
-	c81 [label=<<table title="it.unica.foresee.tests.MovielensTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MovielensTest.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> MovielensTest </td></tr>
-		</table></td></tr>
-		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// it.unica.foresee.tests.PredictionsTest
-	c82 [label=<<table title="it.unica.foresee.tests.PredictionsTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./PredictionsTest.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> PredictionsTest </td></tr>
-		</table></td></tr>
-		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.tests.ForeseeTest
-<<<<<<< HEAD
-	c362 [label=<<table title="it.unica.foresee.tests.ForeseeTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ForeseeTest.html">
-=======
-	c83 [label=<<table title="it.unica.foresee.tests.ForeseeTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ForeseeTest.html">
->>>>>>> 861b7d3c908403bcfdace8b9de17c0f55d13b160
+	c431 [label=<<table title="it.unica.foresee.tests.ForeseeTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ForeseeTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ForeseeTest </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// it.unica.foresee.tests.PredictionsTest
+	c432 [label=<<table title="it.unica.foresee.tests.PredictionsTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./PredictionsTest.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> PredictionsTest </td></tr>
+		</table></td></tr>
+		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.tests.MovielensTest
-	c363 [label=<<table title="it.unica.foresee.tests.MovielensTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MovielensTest.html">
+	c433 [label=<<table title="it.unica.foresee.tests.MovielensTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MovielensTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MovielensTest </td></tr>
 		</table></td></tr>

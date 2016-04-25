@@ -9,34 +9,20 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-<<<<<<< HEAD
 	// it.unica.foresee.core.interfaces.State
-	c1867 [label=<<table title="it.unica.foresee.core.interfaces.State" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./interfaces/State.html">
-=======
-	// it.unica.foresee.core.State
-	c1199 [label=<<table title="it.unica.foresee.core.State" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./State.html">
->>>>>>> 861b7d3c908403bcfdace8b9de17c0f55d13b160
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> State </td></tr>
-		</table></td></tr>
-		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
-<<<<<<< HEAD
-	// it.unica.foresee.core.State
-	c1870 [label=<<table title="it.unica.foresee.core.State" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./State.html">
-=======
-	// it.unica.foresee.core.interfaces.State
-	c1202 [label=<<table title="it.unica.foresee.core.interfaces.State" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./interfaces/State.html">
->>>>>>> 861b7d3c908403bcfdace8b9de17c0f55d13b160
+	c2176 [label=<<table title="it.unica.foresee.core.interfaces.State" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./interfaces/State.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> State </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// it.unica.foresee.core.State
+	c2179 [label=<<table title="it.unica.foresee.core.State" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./State.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> State </td></tr>
+		</table></td></tr>
+		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//it.unica.foresee.core.State implements it.unica.foresee.core.interfaces.State
-<<<<<<< HEAD
-	c1867:p -> c1870:p [dir=back,arrowtail=empty,style=dashed];
-=======
-	c1202:p -> c1199:p [dir=back,arrowtail=empty,style=dashed];
->>>>>>> 861b7d3c908403bcfdace8b9de17c0f55d13b160
+	c2176:p -> c2179:p [dir=back,arrowtail=empty,style=dashed];
 }
 

@@ -1,8 +1,10 @@
 name: foresee
 version: 0.1
-summary: A modular machine learning framework, developed by the University of Cagliari.
-description: A modular machine learning framework, developed by the University of Cagliari.
-#icon:  A path to an icon for the package - this is optional.
+summary: A modular machine learning framework.
+
+description: |
+  A modular machine learning framework, developed by the University of Cagliari.
+icon: foresee.png
 
 apps:
   foresee:
@@ -11,7 +13,13 @@ apps:
 parts:
   core:
     plugin: copy
-    source: ../
     files:
-      Linux/foresee: /bin/foresee
-      foresee*.jar: /bin/foresee.jar
+      foresee: /bin/foresee
+      foresee.jar: /bin/foresee.jar
+    stage-packages:
+      - openjdk-8-jdk
+    filesets:
+      core:
+        - bin
+        - lib
+        - usr/lib
