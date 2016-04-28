@@ -5,7 +5,7 @@ package it.unica.foresee.datasets;
  */
 public class DatasetElement<T> implements it.unica.foresee.datasets.interfaces.DatasetElement<T>
 {
-    private double valueForMean;
+    private double doubleValue;
 
     private T element;
 
@@ -17,12 +17,12 @@ public class DatasetElement<T> implements it.unica.foresee.datasets.interfaces.D
     /**
      * Initialize the object with the element and the value for the mean
      * @param el
-     * @param valueForMean
+     * @param doubleValue
      */
-    public DatasetElement(T el, double valueForMean)
+    public DatasetElement(T el, double doubleValue)
     {
         this.element = el;
-        this.valueForMean = valueForMean;
+        this.doubleValue = doubleValue;
     }
 
     /* Getter */
@@ -30,9 +30,9 @@ public class DatasetElement<T> implements it.unica.foresee.datasets.interfaces.D
     /**
      * {@inheritDoc}
      */
-    public double getValueForMean()
+    public double getDoubleValue()
     {
-        return this.valueForMean;
+        return this.doubleValue;
     }
 
     /**
@@ -56,9 +56,8 @@ public class DatasetElement<T> implements it.unica.foresee.datasets.interfaces.D
     /**
      * {@inheritDoc}
      */
-    @Override
-    public void setValueForMean(double valueForMean) {
-        this.valueForMean = valueForMean;
+    public void setDoubleValue(double doubleValue) {
+        this.doubleValue = doubleValue;
     }
 
     /**
@@ -67,6 +66,6 @@ public class DatasetElement<T> implements it.unica.foresee.datasets.interfaces.D
     @Override
     public String toString()
     {
-        return Double.toString(this.getValueForMean());
+        return Double.toString(this.getDoubleValue());
     }
 }

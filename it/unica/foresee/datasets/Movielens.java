@@ -53,62 +53,62 @@ public class Movielens extends DatasetSparseVector<MovielensElement>
     /* Getter */
 
     /**
-     * Get a triple value in one single shot.
+     * Get a rating value by a user on a movie.
      * @param userID the user ID
      * @param movieID the movie ID
      * @return the rating given by the user on that movie
      */
-    public IntegerElement get(Integer userID, Integer movieID)
+    public DoubleElement get(Integer userID, Integer movieID)
     {
         return this.get(userID).get(movieID);
     }
 
     /**
-     * Get a triple value in one single shot.
+     * Get a rating value by a user on a movie.
      * @param userID the user ID
      * @param movieID the movie ID
      * @return the rating given by the user on that movie
      */
-    public Integer getElement(Integer userID, Integer movieID)
+    public Double getElement(Integer userID, Integer movieID)
     {
         MovielensElement item = this.get(userID);
         if(item == null){return null;}
-        IntegerElement rating = item.get(movieID);
-        if(item == null){return null;}
+        DoubleElement rating = item.get(movieID);
+        if(rating == null){return null;}
 
         return rating.getElement();
     }
 
     /**
      * Similar to {@link DatasetSparseVector#getKFoldPartitions(int, int)} but
-     * obtains partitions where there are representative elements for each user.
-     * @param k
-     * @return
+     * obtains partitions where there are elements which are representative of each user.
+     * @param k the amount of partitions, the k value of the k-fold cross validation
+     * @return an array of partitions
      */
     public DatasetSparseVector[] getKFoldPartitions(int k)
     {
         /* Initialize the max and min with a reasonable value */
-        double maxMeanValue = this.get(this.firstKey()).getValueForMean();
-        double minMeanValue = this.get(this.firstKey()).getValueForMean();
+        double maxMeanValue = this.get(this.firstKey()).getDoubleValue();
+        double minMeanValue = this.get(this.firstKey()).getDoubleValue();
 
         /* Fill the array with the number of occurrences. */
         for (MovielensElement item : this.values())
         {
             /* Keep the max mean value for each element */
-            if (item.getValueForMean() > maxMeanValue)
+            if (item.getDoubleValue() > maxMeanValue)
             {
-                maxMeanValue = item.getValueForMean();
+                maxMeanValue = item.getDoubleValue();
             }
 
             /* Keep the min mean value for each element */
-            if (item.getValueForMean() < minMeanValue)
+            if (item.getDoubleValue() < minMeanValue)
             {
-                minMeanValue = item.getValueForMean();
+                minMeanValue = item.getDoubleValue();
             }
         }
 
 
-        /* --- Stratification by average of elements by each user. --- */
+        /* --- Stratification by average of elements per each user. --- */
 
         /* Amplitude of the range of each layer. */
         int layersAmount = this.usersAmount;
@@ -189,7 +189,7 @@ public class Movielens extends DatasetSparseVector<MovielensElement>
      * @param movieID the movie ID
      * @param rating the rating given by the user on that movie
      */
-    public void put(Integer userID, Integer movieID, Integer rating)
+    public void put(Integer userID, Integer movieID, Double rating)
     {
         MovielensElement el = this.get(userID);
 
@@ -203,15 +203,19 @@ public class Movielens extends DatasetSparseVector<MovielensElement>
     }
 
     /**
+     * Insert an element, if it already exists, merge its elements.
+     *
      * Special implementation to allow merging already present users.
      *
      * If you put an already present user, it's movies get merged.
+     *
+     * Note that if a movie is already present for a specific user, it will be overwritten.
      * {@inheritDoc}
      */
     @Override
     public MovielensElement put(Integer integer, MovielensElement t)
     {
-        if (this.containsKey(integer) && t != null)
+        if (t != null && this.containsKey(integer))
         {
             this.get(integer).putAll(t);
             return this.get(integer);
@@ -223,7 +227,9 @@ public class Movielens extends DatasetSparseVector<MovielensElement>
     }
 
     /**
-     * Special implementation to allow merging already present users.
+     * Insert all the given elements, if an element exists merges its elements.
+     *
+     * Special implementation to allow merging already present users instead of overwriting.
      * {@link java.util.TreeMap#putAll(Map)}
      */
     public void putAll(Movielens m)

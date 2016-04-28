@@ -1,9 +1,11 @@
 package it.unica.foresee.datasets;
 
+import it.unica.foresee.datasets.interfaces.NumberElement;
+
 /**
  * Wrapper for integers as datasets elements.
  */
-public class IntegerElement extends DatasetElement<Integer>
+public class IntegerElement extends DatasetElement<Integer> implements NumberElement<Integer>
 {
 
     /**
@@ -21,14 +23,14 @@ public class IntegerElement extends DatasetElement<Integer>
      */
     public IntegerElement(DatasetElement<Integer> d)
     {
-        super(d.getElement(), d.getValueForMean());
+        super(d.getElement(), d.getDoubleValue());
     }
 
     @Override
     /**
      * {@inheritDoc}
      */
-    public double getValueForMean()
+    public double getDoubleValue()
     {
         return (double) this.getElement();
     }

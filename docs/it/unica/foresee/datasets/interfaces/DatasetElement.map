@@ -1,5 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./DatasetElement.html" title="it.unica.foresee.datasets.interfaces.DatasetElement" alt="" coords="158,11,298,55"/>
-<area shape="rect" id="node2_1" href="../DatasetElement.html" title="it.unica.foresee.datasets.DatasetElement" alt="" coords="16,120,155,147"/>
-<area shape="rect" id="node3_2" href="../DatasetSparseVector.html" title="it.unica.foresee.datasets.DatasetSparseVector" alt="" coords="201,120,541,147"/>
+<area shape="rect" id="node1_0" href="./DatasetElement.html" title="it.unica.foresee.datasets.interfaces.DatasetElement" alt="" coords="301,11,440,53"/>
+<area shape="rect" id="node2_1" href="./NumberElement.html" title="it.unica.foresee.datasets.interfaces.NumberElement" alt="" coords="16,112,256,155"/>
+<area shape="rect" id="node3_2" href="../DatasetElement.html" title="it.unica.foresee.datasets.DatasetElement" alt="" coords="302,121,439,146"/>
+<area shape="rect" id="node4_3" href="../DatasetSparseVector.html" title="it.unica.foresee.datasets.DatasetSparseVector" alt="" coords="485,121,832,146"/>
 </map>

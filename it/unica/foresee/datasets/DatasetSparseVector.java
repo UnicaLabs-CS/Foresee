@@ -52,22 +52,22 @@ public class DatasetSparseVector<T extends DatasetElement<?>> extends TreeMap<In
     public DatasetSparseVector[] getKFoldPartitions(int k, int layersAmount)
     {
         /* Initialize the max and min with a reasonable value */
-        double maxMeanValue = this.get(this.firstKey()).getValueForMean();
-        double minMeanValue = this.get(this.firstKey()).getValueForMean();
+        double maxMeanValue = this.get(this.firstKey()).getDoubleValue();
+        double minMeanValue = this.get(this.firstKey()).getDoubleValue();
 
         /* Fill the array with the number of occurrences. */
         for (T item : this.values())
         {
             /* Keep the max mean value for each element */
-            if (item.getValueForMean() > maxMeanValue)
+            if (item.getDoubleValue() > maxMeanValue)
             {
-                maxMeanValue = item.getValueForMean();
+                maxMeanValue = item.getDoubleValue();
             }
 
             /* Keep the min mean value for each element */
-            if (item.getValueForMean() < minMeanValue)
+            if (item.getDoubleValue() < minMeanValue)
             {
-                minMeanValue = item.getValueForMean();
+                minMeanValue = item.getDoubleValue();
             }
         }
 
@@ -107,7 +107,7 @@ public class DatasetSparseVector<T extends DatasetElement<?>> extends TreeMap<In
                     layer.add(key);
                     break; //Do not continue to check for a layer after it has been found
                 }
-                else if (this.get(key).getValueForMean() < highRange)
+                else if (this.get(key).getDoubleValue() < highRange)
                 {
                     layer.add(key);
                     break; //Do not continue to check for a layer after it has been found
@@ -179,7 +179,7 @@ public class DatasetSparseVector<T extends DatasetElement<?>> extends TreeMap<In
      * by the user, it will be used instead.
      */
     @Override
-    public double getValueForMean()
+    public double getDoubleValue()
     {
         if (this.meanValueSetByUser)
             return this.mean;
@@ -188,7 +188,7 @@ public class DatasetSparseVector<T extends DatasetElement<?>> extends TreeMap<In
             double sumOfMeans = 0;
             for (T element : this.values())
             {
-                sumOfMeans += element.getValueForMean();
+                sumOfMeans += element.getDoubleValue();
             }
             return sumOfMeans / this.size();
         }
@@ -214,7 +214,7 @@ public class DatasetSparseVector<T extends DatasetElement<?>> extends TreeMap<In
         this.meanValueSetByUser = e.isMeanValueSetByUser();
         if (this.meanValueSetByUser)
         {
-            this.mean = e.getValueForMean();
+            this.mean = e.getDoubleValue();
         }
     }
 
@@ -223,8 +223,7 @@ public class DatasetSparseVector<T extends DatasetElement<?>> extends TreeMap<In
      *
      * This value overrides the internally calculated mean.
      */
-    @Override
-    public void setValueForMean(double v) {
+    public void setDoubleValue(double v) {
         this.meanValueSetByUser = true;
         this.mean = v;
     }
@@ -239,7 +238,7 @@ public class DatasetSparseVector<T extends DatasetElement<?>> extends TreeMap<In
 
     /**
      * Unsets the mean set by the user. Successive calls of
-     * {@link #getValueForMean()} will use the mean of the elements means.
+     * {@link #getDoubleValue()} will use the mean of the elements means.
      */
     public void unsetMeanValueSetByUser()
     {
@@ -272,7 +271,7 @@ public class DatasetSparseVector<T extends DatasetElement<?>> extends TreeMap<In
         // Associate the indexes with the corresponding values
         for (int k : this.keySet())
         {
-            points[k] = this.getDatasetElement(k).getValueForMean();
+            points[k] = this.getDatasetElement(k).getDoubleValue();
         }
 
         return points;

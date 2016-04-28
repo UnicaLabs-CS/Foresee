@@ -127,7 +127,7 @@ public class MovielensLoader extends FileDatasetLoader
                 throw new InputMismatchException("rating < 1 at line " + lineNumber);
             }
 
-            dataset.put(userID, movieID, rating);
+            dataset.put(userID, movieID, (double) rating);
             usersSet.add(userID);
             moviesSet.add(movieID);
 

@@ -3,7 +3,8 @@ package it.unica.foresee.libraries;
 import static it.unica.foresee.utils.Tools.warn;
 
 import it.unica.foresee.datasets.DatasetSparseVector;
-import it.unica.foresee.datasets.IntegerElement;
+import it.unica.foresee.datasets.interfaces.NumberElement;
+
 import org.apache.commons.math3.stat.correlation.PearsonsCorrelation;
 import org.apache.commons.math3.util.Pair;
 
@@ -12,7 +13,7 @@ import java.util.*;
 /**
  * This class is an implementation of the nearest neighbour algorithm for user similarity.
  */
-public class NearestNeighbour<T extends DatasetSparseVector<? extends IntegerElement>>
+public class NearestNeighbour<T extends DatasetSparseVector<? extends NumberElement>>
 {
     /**
      * The matrix of the users with the ratings.
@@ -65,7 +66,7 @@ public class NearestNeighbour<T extends DatasetSparseVector<? extends IntegerEle
 
             for (int itemIndex = 0; itemIndex < itemsKeys.length; itemIndex++)
             {
-                double rating = currentUser.getDatasetElement(itemsKeys[itemIndex]).getElement();
+                double rating = currentUser.getDatasetElement(itemsKeys[itemIndex]).getDoubleValue();
                 if(rating == 0)
                 {
                     // Useful variables to understand what's going on
@@ -75,13 +76,13 @@ public class NearestNeighbour<T extends DatasetSparseVector<? extends IntegerEle
                     double neighbourRateOnItem;
 
                     // Set the rating to the average of the ratings of the user
-                    rating = dataset.getDatasetElement(userIndex).getValueForMean();
+                    rating = dataset.getDatasetElement(userIndex).getDoubleValue();
 
                     for (Pair<Integer, Double> neighbour : nearestNeighbours)
                     {
                         userSimilarity = similarityMatrix[userIndex][neighbour.getFirst()];
-                        neighbourAverage = dataset.getDatasetElement(neighbour.getFirst()).getValueForMean();
-                        neighbourRateOnItem = dataset.getDatasetElement(neighbour.getFirst()).getDatasetElement(itemIndex).getElement();
+                        neighbourAverage = dataset.getDatasetElement(neighbour.getFirst()).getDoubleValue();
+                        neighbourRateOnItem = dataset.getDatasetElement(neighbour.getFirst()).getDatasetElement(itemIndex).getDoubleValue();
 
                         rating += userSimilarity * (neighbourRateOnItem - neighbourAverage);
                         denominator += userSimilarity;
@@ -242,8 +243,8 @@ public class NearestNeighbour<T extends DatasetSparseVector<? extends IntegerEle
         {
             if(neighbour.containsKey(item))
             {
-                userList.add(user.getDatasetElement(item).getValueForMean());
-                neighbourList.add(neighbour.getDatasetElement(item).getValueForMean());
+                userList.add(user.getDatasetElement(item).getDoubleValue());
+                neighbourList.add(neighbour.getDatasetElement(item).getDoubleValue());
             }
         }
 

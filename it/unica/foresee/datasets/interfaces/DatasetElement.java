@@ -25,11 +25,11 @@ public interface DatasetElement<K>
      *
      * @return a real value of the element, to use for computing the mean.
      */
-    public double getValueForMean();
+    public double getDoubleValue();
 
     /**
      * Set the value of the element to be used computing the mean.
      */
-    public void setValueForMean(double v);
+    public void setDoubleValue(double v);
 
 }

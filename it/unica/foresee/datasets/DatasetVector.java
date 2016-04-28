@@ -63,22 +63,22 @@ public class DatasetVector<T extends DatasetElement> extends ArrayList<T> implem
     public void updateKFoldPartitions(int k, int layersAmount)
     {
         /* Initialize the max and min with a reasonable value */
-        double maxMeanValue = this.get(0).getValueForMean();
-        double minMeanValue = this.get(0).getValueForMean();
+        double maxMeanValue = this.get(0).getDoubleValue();
+        double minMeanValue = this.get(0).getDoubleValue();
 
         /* Fill the array with the number of occurrences. */
         for (DatasetElement item : this)
         {
             /* Keep the max mean value for each element */
-            if (item.getValueForMean() > maxMeanValue)
+            if (item.getDoubleValue() > maxMeanValue)
             {
-                maxMeanValue = item.getValueForMean();
+                maxMeanValue = item.getDoubleValue();
             }
 
             /* Keep the min mean value for each element */
-            if (item.getValueForMean() < minMeanValue)
+            if (item.getDoubleValue() < minMeanValue)
             {
-                minMeanValue = item.getValueForMean();
+                minMeanValue = item.getDoubleValue();
             }
         }
 
@@ -116,7 +116,7 @@ public class DatasetVector<T extends DatasetElement> extends ArrayList<T> implem
                     layer.add(element);
                     break; //Do not continue to check for a layer after it has been found
                 }
-                else if (element.getValueForMean() < highRange)
+                else if (element.getDoubleValue() < highRange)
                 {
                     layer.add(element);
                     break; //Do not continue to check for a layer after it has been found

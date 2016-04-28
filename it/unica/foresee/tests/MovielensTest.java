@@ -157,7 +157,7 @@ public class MovielensTest
     @Test
     public void getElement()
     {
-        assertEquals((int) m.getElement(25, 1676), 4);
+        assertEquals(m.getElement(25, 1676).intValue(), 4);
     }
 
     @Test
