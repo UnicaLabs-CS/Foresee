@@ -25,6 +25,19 @@ public class DatasetSparseVector<T extends DatasetElement<?>> extends TreeMap<In
      */
     private boolean meanValueSetByUser = false;
 
+    /**
+     * Empty constructor.
+     */
+    public DatasetSparseVector(){}
+
+    /**
+     * Vector size.
+     * @param vectorSize size of the element vector
+     */
+    public DatasetSparseVector(int vectorSize)
+    {
+        this.setVectorSize(vectorSize);
+    }
 
     /* Getter */
 
@@ -156,6 +169,29 @@ public class DatasetSparseVector<T extends DatasetElement<?>> extends TreeMap<In
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public double[] getPoint()
+    {
+        // The size of the array is set to the highest key value, so that it can store all the items
+        double[] points = new double[getVectorSize()];
+
+        if (this.isEmpty())
+        {
+            return points;
+        }
+
+        // Associate the indexes with the corresponding values
+        for (int k : this.keySet())
+        {
+            points[k] = this.getDatasetElement(k).getDoubleValue();
+        }
+
+        return points;
+    }
+
+    /**
      * Get the vector size to create an array
      * @return the vector size
      */
@@ -254,26 +290,5 @@ public class DatasetSparseVector<T extends DatasetElement<?>> extends TreeMap<In
         return this.values().iterator();
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public double[] getPoint()
-    {
-        // The size of the array is set to the highest key value, so that it can store all the items
-        double[] points = new double[getVectorSize()];
 
-        if (this.isEmpty())
-        {
-            return points;
-        }
-
-        // Associate the indexes with the corresponding values
-        for (int k : this.keySet())
-        {
-            points[k] = this.getDatasetElement(k).getDoubleValue();
-        }
-
-        return points;
-    }
 }

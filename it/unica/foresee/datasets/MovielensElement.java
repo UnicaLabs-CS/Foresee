@@ -18,12 +18,11 @@ public class MovielensElement extends DatasetSparseVector<DoubleElement>
     public MovielensElement(){}
 
     /**
-     * Vector size.
-     * @param vectorSize size of the element vector
+     * {@inheritDoc}
      */
     public MovielensElement(int vectorSize)
     {
-        super.setVectorSize(vectorSize);
+        super(vectorSize);
     }
 
 
