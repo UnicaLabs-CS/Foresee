@@ -170,6 +170,8 @@ public class DatasetSparseVector<T extends DatasetElement<?>> extends TreeMap<In
 
     /**
      * {@inheritDoc}
+     *
+     * Warning: the indexes are moved back by one position
      */
     @Override
     public double[] getPoint()
@@ -185,7 +187,7 @@ public class DatasetSparseVector<T extends DatasetElement<?>> extends TreeMap<In
         // Associate the indexes with the corresponding values
         for (int k : this.keySet())
         {
-            points[k] = this.getDatasetElement(k).getDoubleValue();
+            points[k - 1] = this.getDatasetElement(k).getDoubleValue();
         }
 
         return points;

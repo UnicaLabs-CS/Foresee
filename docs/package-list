@@ -8,6 +8,5 @@ it.unica.foresee.datasets.interfaces
 it.unica.foresee.libraries
 it.unica.foresee.libraries.interfaces
 it.unica.foresee.modules.interfaces
-it.unica.foresee.predictions
 it.unica.foresee.tests
 it.unica.foresee.utils

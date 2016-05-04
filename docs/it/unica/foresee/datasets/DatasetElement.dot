@@ -10,35 +10,35 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// it.unica.foresee.datasets.interfaces.DatasetElement<K>
-	c1003 [label=<<table title="it.unica.foresee.datasets.interfaces.DatasetElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./interfaces/DatasetElement.html">
+	c1051 [label=<<table title="it.unica.foresee.datasets.interfaces.DatasetElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./interfaces/DatasetElement.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> DatasetElement&lt;K&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.DatasetElement<T>
-	c1010 [label=<<table title="it.unica.foresee.datasets.DatasetElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./DatasetElement.html">
+	c1059 [label=<<table title="it.unica.foresee.datasets.DatasetElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./DatasetElement.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DatasetElement&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.IntegerElement
-	c1019 [label=<<table title="it.unica.foresee.datasets.IntegerElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./IntegerElement.html">
+	c1069 [label=<<table title="it.unica.foresee.datasets.IntegerElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./IntegerElement.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> IntegerElement </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.DoubleElement
-	c1020 [label=<<table title="it.unica.foresee.datasets.DoubleElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DoubleElement.html">
+	c1070 [label=<<table title="it.unica.foresee.datasets.DoubleElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DoubleElement.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DoubleElement </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//it.unica.foresee.datasets.DatasetElement<T> implements it.unica.foresee.datasets.interfaces.DatasetElement<K>
-	c1003:p -> c1010:p [dir=back,arrowtail=empty,style=dashed];
+	c1051:p -> c1059:p [dir=back,arrowtail=empty,style=dashed];
 	//it.unica.foresee.datasets.IntegerElement extends it.unica.foresee.datasets.DatasetElement<java.lang.Integer>
-	c1010:p -> c1019:p [dir=back,arrowtail=empty];
+	c1059:p -> c1069:p [dir=back,arrowtail=empty];
 	//it.unica.foresee.datasets.DoubleElement extends it.unica.foresee.datasets.DatasetElement<java.lang.Double>
-	c1010:p -> c1020:p [dir=back,arrowtail=empty];
+	c1059:p -> c1070:p [dir=back,arrowtail=empty];
 }
 

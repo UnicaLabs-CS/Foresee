@@ -10,19 +10,19 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// it.unica.foresee.core.interfaces.Core
-	c2229 [label=<<table title="it.unica.foresee.core.interfaces.Core" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./interfaces/Core.html">
+	c2380 [label=<<table title="it.unica.foresee.core.interfaces.Core" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./interfaces/Core.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Core </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.core.Core
-	c2232 [label=<<table title="it.unica.foresee.core.Core" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Core.html">
+	c2383 [label=<<table title="it.unica.foresee.core.Core" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Core.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Core </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//it.unica.foresee.core.Core implements it.unica.foresee.core.interfaces.Core
-	c2229:p -> c2232:p [dir=back,arrowtail=empty,style=dashed];
+	c2380:p -> c2383:p [dir=back,arrowtail=empty,style=dashed];
 }
 

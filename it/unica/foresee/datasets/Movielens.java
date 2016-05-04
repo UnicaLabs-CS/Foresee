@@ -196,6 +196,7 @@ public class Movielens extends DatasetSparseVector<MovielensElement>
         if (el == null)
         {
             el = new MovielensElement();
+            el.setId(userID);
         }
 
         el.put(movieID, rating);

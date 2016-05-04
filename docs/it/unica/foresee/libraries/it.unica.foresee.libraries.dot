@@ -10,13 +10,19 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// it.unica.foresee.libraries.NearestNeighbour<T extends it.unica.foresee.datasets.DatasetSparseVector<? extends it.unica.foresee.datasets.interfaces.NumberElement>>
-	c357 [label=<<table title="it.unica.foresee.libraries.NearestNeighbour" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./NearestNeighbour.html">
+	c375 [label=<<table title="it.unica.foresee.libraries.NearestNeighbour" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./NearestNeighbour.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> NearestNeighbour&lt;T extends DatasetSparseVector&lt;? extends NumberElement&gt;&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// it.unica.foresee.libraries.ClusterableElement<T extends it.unica.foresee.datasets.DatasetSparseVector<?>>
+	c376 [label=<<table title="it.unica.foresee.libraries.ClusterableElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ClusterableElement.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> ClusterableElement&lt;T extends DatasetSparseVector&lt;?&gt;&gt; </td></tr>
+		</table></td></tr>
+		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.libraries.RMSE
-	c358 [label=<<table title="it.unica.foresee.libraries.RMSE" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./RMSE.html">
+	c377 [label=<<table title="it.unica.foresee.libraries.RMSE" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./RMSE.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> RMSE </td></tr>
 		</table></td></tr>

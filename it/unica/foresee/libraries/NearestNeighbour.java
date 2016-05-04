@@ -1,6 +1,6 @@
 package it.unica.foresee.libraries;
 
-import static it.unica.foresee.utils.Tools.warn;
+import static it.unica.foresee.utils.Logger.warn;
 
 import it.unica.foresee.datasets.DatasetSparseVector;
 import it.unica.foresee.datasets.interfaces.NumberElement;

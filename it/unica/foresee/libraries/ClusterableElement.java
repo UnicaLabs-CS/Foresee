@@ -1,6 +1,7 @@
 package it.unica.foresee.libraries;
 
 import it.unica.foresee.datasets.DatasetSparseVector;
+import it.unica.foresee.datasets.interfaces.DatasetElement;
 import it.unica.foresee.datasets.interfaces.DatasetNestedSparseVector;
 import org.apache.commons.math3.ml.clustering.CentroidCluster;
 import org.apache.commons.math3.ml.clustering.KMeansPlusPlusClusterer;
@@ -14,7 +15,7 @@ import java.util.List;
 /**
  * Element container whose elements can be clustered.
  */
-public class ClusterableElement<T extends DatasetSparseVector<?>>
+public class ClusterableElement<T extends DatasetSparseVector<? extends DatasetElement>>
 {
 
     /**
@@ -65,55 +66,107 @@ public class ClusterableElement<T extends DatasetSparseVector<?>>
     }
 
     /**
+     * Get the element at the given key and/or with coordinates equal to the given point.
+     *
+     * Retrieves the element corresponding to the given hashcode or, if multiple points
+     * have the same hashcode, the element corresponding to the given hashcode
+     * and which is equal to the given point.
+     *
+     * @param key the hashcode of the point
+     * @param point the point of the element
+     * @throws IllegalStateException if no element corresponding to the given point is
+     *         found at the given hashcode key location
+     * @return the element corresponding to the given hashcode or, if multiple points
+     * have the same hashcode, the element corresponding to the given hashcode
+     * and which is equal to the given point
+     */
+    private T getHashElement(int key, double[] point)
+    {
+        // Null is returned if no element with the given key is found
+        T value = null;
+        ArrayList<T> valueArray = this.hashToElements.get(key);
+
+        // If the hash id unique we have only an element per hashcode
+        if (valueArray.size() == 1)
+        {
+            value = valueArray.get(0);
+        }
+        // If there has been an hash collision check for equality
+        else
+        {
+            for (T element : valueArray)
+            {
+                // Using Arrays utility guarantees the equality of the
+                // contained elements
+                if (Arrays.equals(element.getPoint(), point))
+                {
+                    value = element;
+                    break;
+                }
+            }
+
+            // The key exists but it's not equal to the given point
+            if (value == null)
+            {
+                throw new IllegalStateException("No element corresponding to the given point has been found " +
+                        "at the given hashcode key location");
+            }
+        }
+
+        return value;
+    }
+
+    /**
      * Clusters the given dataset.
      *
      * @param dataset
      * @return
      */
-    public DatasetSparseVector<T>[] cluster(DatasetNestedSparseVector<T> dataset, int centroidsAmount)
+    public List<List<T>> cluster(DatasetNestedSparseVector<T> dataset, int centroidsAmount)
     {
 
-        // Create a list of centroids
-        List<CentroidCluster<DatasetSparseVector<?>>> clusterResults = null;
+        // Create a variable to hold a list of resulting centroids
+        List<CentroidCluster<T>> clusterResults = null;
 
-        // Needed because the position 0 is skipped
-        int vectorSize = dataset.getHighestNestedKey() + 1;
+        // Needed to retrieve the last element
+        int pointDimensions = dataset.getHighestNestedKey();
 
-        // Transform the partition in an ArrayList
-        ArrayList<DatasetSparseVector<?>> partitionElementsArray = new ArrayList<>();
+        // Transform the dataset in an ArrayList
+        ArrayList<T> datasetArray = new ArrayList<>();
 
-        /* Loop thorough every element of the dataset to:
-         * - add it to the partition array
-         * - set its vector size
-         * - get its hashcode for the hashToElements
+        /* Loop throughout the dataset to:
+         * - add each element to the dataset array
+         * - set each element's vector size
+         * - get each element's hashcode for the hashToElements
         */
         for (Integer key : dataset.keySet())
         {
             // This loop adds empty vectors in missing positions
             // and it's required to keep the indexes correct.
-            while (partitionElementsArray.size() <= key){partitionElementsArray.add(new DatasetSparseVector<>(vectorSize));}
+            while (datasetArray.size() <= key)
+            {
+                datasetArray.add((T) new DatasetSparseVector<>(pointDimensions));
+            }
 
-            // Set the vector size of the element
-            dataset.get(key).setVectorSize(vectorSize);
+            // Set the point dimension (array size) of the element
+            dataset.get(key).setVectorSize(pointDimensions);
 
-            // Add the element to the array
-            partitionElementsArray.add(key, dataset.get(key));
+            // Add the element to the array and to the hashmap
+            T element = dataset.get(key);
+            datasetArray.add(key, element);
         }
 
-        KMeansPlusPlusClusterer<DatasetSparseVector<?>> clusterer = new KMeansPlusPlusClusterer<>(centroidsAmount);
-        clusterResults = clusterer.cluster(partitionElementsArray);
+        // Create a clusterer to perform the clustering
+        KMeansPlusPlusClusterer<T> clusterer = new KMeansPlusPlusClusterer<>(centroidsAmount);
+        clusterResults = clusterer.cluster(datasetArray);
 
-        /*
-        System.out.println("\n\npartition " + i);
-        for (int j = 0; j < clusterResults.size(); j++)
+        // Obtain the results as a List of clusters of users
+        List<List<T>> usersClustersList = new ArrayList<>();
+        for (CentroidCluster<T> cluster : clusterResults)
         {
-            System.out.println("cluster " + j);
-            System.out.println(clusterResults.get(j).getPoints());
+            usersClustersList.add(cluster.getPoints());
         }
-        */
 
-        return null;
+        return usersClustersList;
     }
-
-
 }

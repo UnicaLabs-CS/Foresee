@@ -8,9 +8,9 @@ import it.unica.foresee.core.interfaces.State;
 import it.unica.foresee.Settings;
 import it.unica.foresee.utils.Pair;
 
-import static it.unica.foresee.utils.Tools.err;
-import static it.unica.foresee.utils.Tools.warn;
-import static it.unica.foresee.utils.Tools.log;
+import static it.unica.foresee.utils.Logger.err;
+import static it.unica.foresee.utils.Logger.warn;
+import static it.unica.foresee.utils.Logger.log;
 
 import java.io.*;
 import java.util.ArrayList;

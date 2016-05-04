@@ -1,5 +1,6 @@
 package it.unica.foresee.datasets;
 
+import it.unica.foresee.datasets.interfaces.Identifiable;
 import it.unica.foresee.utils.Pair;
 
 
@@ -10,8 +11,13 @@ import it.unica.foresee.utils.Pair;
  * by the same user on a set of movies or a vector of ratings on the same movies given by a set of
  * users who rated it.
  */
-public class MovielensElement extends DatasetSparseVector<DoubleElement>
+public class MovielensElement extends DatasetSparseVector<DoubleElement> implements Identifiable
 {
+    /**
+     * The id of the element.
+     */
+    private int id;
+
     /**
      * Empty constructor.
      */
@@ -89,6 +95,16 @@ public class MovielensElement extends DatasetSparseVector<DoubleElement>
     {
         DoubleElement e = new DoubleElement(value);
         return this.put(key, e);
+    }
+
+    public void setId(int id)
+    {
+        this.id = id;
+    }
+
+    public int getId()
+    {
+        return this.id;
     }
 
 }

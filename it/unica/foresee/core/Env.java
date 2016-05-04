@@ -3,7 +3,7 @@ package it.unica.foresee.core;
 import it.unica.foresee.datasets.interfaces.Dataset;
 import it.unica.foresee.utils.Pair;
 
-import static it.unica.foresee.utils.Tools.warn;
+import static it.unica.foresee.utils.Logger.warn;
 
 
 /**
