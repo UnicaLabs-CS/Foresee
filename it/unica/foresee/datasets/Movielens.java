@@ -5,10 +5,11 @@ import java.util.Map;
 import java.util.Random;
 import java.util.TreeSet;
 
+
 /**
  * Provides methods to use the freely available movielens dataset.
  */
-public class Movielens extends DatasetSparseVector<MovielensElement>
+public class Movielens extends DatasetSparseVector<MovielensElement> implements it.unica.foresee.datasets.interfaces.DatasetNestedSparseVector<MovielensElement>
 {
     /**
      * Amount of movie rates.
@@ -77,6 +78,11 @@ public class Movielens extends DatasetSparseVector<MovielensElement>
         if(rating == null){return null;}
 
         return rating.getElement();
+    }
+
+    @Override
+    public int getHighestNestedKey() {
+        return maxMovieID;
     }
 
     /**

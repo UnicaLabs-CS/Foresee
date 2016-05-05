@@ -2,6 +2,7 @@ package it.unica.foresee.libraries;
 
 import it.unica.foresee.datasets.DatasetSparseVector;
 import it.unica.foresee.datasets.DoubleElement;
+import it.unica.foresee.utils.Logger;
 import org.apache.commons.math3.util.Pair;
 
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ public class RMSE<T extends DatasetSparseVector<? extends DoubleElement>>
                                                         List<T> model,
                                                         Map<Integer, Integer> userToModel)
     {
+
         ArrayList<Double> testArray = new ArrayList<Double>();
         ArrayList<Double> trainArray = new ArrayList<>();
 
@@ -34,14 +36,32 @@ public class RMSE<T extends DatasetSparseVector<? extends DoubleElement>>
         for(int userID : test.keySet())
         {
             T user = test.getDatasetElement(userID);
+
+
+            if (userToModel.get(userID) == null || model.get(userToModel.get(userID)) == null)
+            {
+                Logger.debug("User" + userID + " is present in test set but not in train", this.getClass());
+                continue;
+            }
+
+            T trainUser = model.get(userToModel.get(userID));
+
             for (int movieID : user.keySet())
             {
                 DoubleElement movie = user.getDatasetElement(movieID);
+                DoubleElement trainMovie = trainUser.getDatasetElement(movieID);
+
+                if (trainMovie == null)
+                {
+                    Logger.debug("Movie" + movieID + " of User"
+                            + userID + " is present in test set but not in train", this.getClass());
+                    continue;
+                }
 
                 // Obtain a movie from the testset
                 testArray.add(movie.getDoubleValue());
                 // Obtain the corresponding rating provided by training set
-                trainArray.add(model.get(userToModel.get(userID)).get(movieID).getDoubleValue());
+                trainArray.add(trainMovie.getDoubleValue());
             }
         }
 

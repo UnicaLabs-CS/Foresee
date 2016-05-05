@@ -27,8 +27,9 @@ public class PredictionsTest
 {
 
     public final double DEVIATION = 0.3;
-    public final String BIG_DATASET = "test-data/ratings.dat";
-    public final String SMALL_DATASET = "test-data/movielens-test-25-users.dat";
+    public final String BIG_DATASET = "test-data/big.dat";
+    public final String MEDIUM_DATASET = "test-data/medium.dat";
+    public final String SMALL_DATASET = "test-data/small.dat";
 
     private MovielensLoader mLoader;
     private File mFile;
@@ -42,12 +43,12 @@ public class PredictionsTest
     public void setUp()  throws Exception
     {
         mLoader = new MovielensLoader();
-        mFile = new File(BIG_DATASET);
+        mFile = new File(MEDIUM_DATASET);
         m = mLoader.loadDataset(mFile);
         numPart = 5;
         parts = m.getKFoldPartitions(numPart);
-        Logger.setVerbosity(Logger.VERB_NO_WARN);
         neighboursAmount = 50;
+        Logger.setVerbosity(Logger.VERB_ALL);
     }
 
     @Test
@@ -99,8 +100,6 @@ public class PredictionsTest
         return clusterResults;
     }
 
-
-
     @Test
     public void testRMSE()
     {
@@ -123,15 +122,38 @@ public class PredictionsTest
                 }
                 else
                 {
+                    if(parts[j].keySet().size() == 0)
+                    {
+                        throw new IllegalStateException("The parts cannot be empty.");
+                    }
                     trainingSet.putAll(parts[j]);
+                    if(trainingSet.keySet().size() == 0)
+                    {
+                        throw new IllegalStateException("The training set cannot be empty.");
+                    }
                 }
             }
 
+            if(trainingSet.keySet().size() == 0)
+            {
+                throw new IllegalStateException("The training set cannot be empty. Iteration");
+            }
             predictioner = new NearestNeighbour<>(trainingSet);
             trainingSet = (DatasetNestedSparseVector<MovielensElement>) predictioner.makePredictions(neighboursAmount);
+
+            if(trainingSet.keySet().size() == 0)
+            {
+                throw new IllegalStateException("The training set cannot be empty.");
+            }
+
             List<List<MovielensElement>> clusters = (new ClusterableElement<MovielensElement>()).cluster(trainingSet, 500);
-            GroupModel<MovielensElement> model = new GroupModel<MovielensElement>();
+            GroupModel<MovielensElement> model = new GroupModel<>();
             List<MovielensElement> modelsList = model.averageStrategy(clusters);
+
+            if(modelsList == null)
+            {
+                throw new IllegalStateException("The models list cannot be null.");
+            }
 
             RMSE<MovielensElement> rmseTester = new RMSE();
 
@@ -142,7 +164,6 @@ public class PredictionsTest
             double result = rmseTester.calculate(comparableArrays.getFirst(), comparableArrays.getSecond());
 
             System.out.println("RMSE result: " + result);
-
         }
     }
 }

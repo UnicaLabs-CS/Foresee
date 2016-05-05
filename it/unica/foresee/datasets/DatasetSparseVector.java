@@ -176,8 +176,14 @@ public class DatasetSparseVector<T extends DatasetElement<?>> extends TreeMap<In
     @Override
     public double[] getPoint()
     {
+        if (!this.isEmpty() && this.lastKey() > getVectorSize())
+        {
+            throw new IllegalStateException("The vector size set is incorrect: " +
+                    "vectorSize = " + getVectorSize() + " lastKey = " + lastKey());
+        }
+
         // The size of the array is set to the highest key value, so that it can store all the items
-        double[] points = new double[getVectorSize()];
+        double[] points = new double[getVectorSize() + 1];
 
         if (this.isEmpty())
         {

@@ -106,7 +106,7 @@ public class Logger
     {
         if (verbosity < VERB_NO_ERR)
         {
-            System.out.println("Error: " + msg);
+            System.err.println("Error: " + msg);
         }
     }
 

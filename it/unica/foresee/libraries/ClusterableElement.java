@@ -3,6 +3,7 @@ package it.unica.foresee.libraries;
 import it.unica.foresee.datasets.DatasetSparseVector;
 import it.unica.foresee.datasets.interfaces.DatasetElement;
 import it.unica.foresee.datasets.interfaces.DatasetNestedSparseVector;
+import it.unica.foresee.utils.Logger;
 import org.apache.commons.math3.ml.clustering.CentroidCluster;
 import org.apache.commons.math3.ml.clustering.KMeansPlusPlusClusterer;
 
@@ -122,9 +123,17 @@ public class ClusterableElement<T extends DatasetSparseVector<? extends DatasetE
      * @param dataset
      * @return
      */
-    public List<List<T>> cluster(DatasetNestedSparseVector<T> dataset, int centroidsAmount)
+    public List<List<T>> cluster(DatasetNestedSparseVector<T> dataset, int clustersAmount)
     {
+        if (dataset == null)
+        {
+            throw new IllegalArgumentException("The dataset cannot be null.");
+        }
 
+        if (dataset.keySet().size() == 0)
+        {
+            throw new IllegalArgumentException("The dataset cannot have a size of 0");
+        }
         // Create a variable to hold a list of resulting centroids
         List<CentroidCluster<T>> clusterResults = null;
 
@@ -148,16 +157,18 @@ public class ClusterableElement<T extends DatasetSparseVector<? extends DatasetE
                 datasetArray.add((T) new DatasetSparseVector<>(pointDimensions));
             }
 
-            // Set the point dimension (array size) of the element
-            dataset.get(key).setVectorSize(pointDimensions);
-
             // Add the element to the array and to the hashmap
             T element = dataset.get(key);
+            // Set the point dimension (array size) of the element
+            element.setVectorSize(pointDimensions);
+
             datasetArray.add(key, element);
         }
 
+        //Logger.debug("Array size = " + datasetArray.size(), this.getClass());
+
         // Create a clusterer to perform the clustering
-        KMeansPlusPlusClusterer<T> clusterer = new KMeansPlusPlusClusterer<>(centroidsAmount);
+        KMeansPlusPlusClusterer<T> clusterer = new KMeansPlusPlusClusterer<>(clustersAmount);
         clusterResults = clusterer.cluster(datasetArray);
 
         // Obtain the results as a List of clusters of users

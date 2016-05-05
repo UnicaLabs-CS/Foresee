@@ -20,7 +20,8 @@ public class DatasetNestedSparseVector<T extends DatasetSparseVector<?>> extends
      */
     @Override
     public int getHighestNestedKey() {
-        return 0;
+
+        return internalHighestKey;
     }
 
     /**
@@ -42,6 +43,11 @@ public class DatasetNestedSparseVector<T extends DatasetSparseVector<?>> extends
      */
     @Override
     public void putAll(Map<? extends Integer, ? extends T> map) {
+        if(map.size() == 0)
+        {
+            throw new IllegalArgumentException("The dataset cannot have a size of 0");
+        }
+
         for (T nestedVector : map.values())
         {
             if (nestedVector.lastKey() > this.internalHighestKey)

@@ -38,6 +38,10 @@ public class NearestNeighbour<T extends DatasetSparseVector<? extends NumberElem
      */
     public NearestNeighbour(DatasetSparseVector<T> dataset)
     {
+        if(dataset.keySet().size() == 0)
+        {
+            throw new IllegalStateException("The training set cannot be empty.");
+        }
         this.dataset = dataset;
     }
 
@@ -48,6 +52,8 @@ public class NearestNeighbour<T extends DatasetSparseVector<? extends NumberElem
      */
     public DatasetSparseVector<T> makePredictions(int neighboursAmount)
     {
+        int originalSize = this.dataset.size();
+
         if(similarityMatrix == null)
         {
             initialiseSimilarityMatrix();
@@ -95,7 +101,16 @@ public class NearestNeighbour<T extends DatasetSparseVector<? extends NumberElem
                 }
             }
         }
-        return this.dataset;
+        if(dataset.keySet().size() != originalSize)
+        {
+            throw new IllegalStateException("The dataset should not change size.");
+        }
+
+        if(dataset.keySet().size() == 0)
+        {
+            throw new IllegalStateException("The dataset cannot be empty.");
+        }
+        return dataset;
     }
 
     /**
@@ -164,9 +179,10 @@ public class NearestNeighbour<T extends DatasetSparseVector<? extends NumberElem
                     }
                     catch (IllegalArgumentException e)
                     {
+                        /*
                         warn(e + "\n" +
                         "User " + similarityMatrix[userIndex] + " and/or user " + similarityMatrix[neighbourIndex] + " don't have enough data in common.\n");
-
+                        */
                         // Not having enough data seems enough to put similarity to 0
                         similarityMatrix[userIndex][neighbourIndex] = 0;
                     }

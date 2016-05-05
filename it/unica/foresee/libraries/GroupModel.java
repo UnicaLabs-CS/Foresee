@@ -48,11 +48,10 @@ public class GroupModel<P extends Clusterable & Identifiable>
             double[] modelPoint = new double[model.getVectorSize()];
 
             // Add the values of each user to the model
-            for (int userID = 0; userID < clusterList.size(); userID++)
+            for (int userID = 0; userID < cluster.size(); userID++)
             {
                 double[] point = cluster.get(userID).getPoint();
                 userToModel.put(userID, clusterID);
-
 
                 // Check that every array has the same length
                 if (modelPoint.length != point.length)
