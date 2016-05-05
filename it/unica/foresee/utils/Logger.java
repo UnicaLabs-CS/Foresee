@@ -138,10 +138,10 @@ public class Logger
      * Sets the verbosity level.
      *
      * - -1 show all and debug
-     * - 0 show all logs
-     * - 1 hide logs
-     * - 2 hide wanings and preceding
-     * - 3 hide errors and preceding
+     * -  0 show all logs
+     * -  1 hide logs
+     * -  2 hide wanings and preceding
+     * -  3 hide errors and preceding
      *
      * @param verbosity
      */

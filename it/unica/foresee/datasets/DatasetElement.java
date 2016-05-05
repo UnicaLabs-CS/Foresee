@@ -1,5 +1,7 @@
 package it.unica.foresee.datasets;
 
+import it.unica.foresee.datasets.interfaces.*;
+
 /**
  * Generic dataset element implementation.
  */

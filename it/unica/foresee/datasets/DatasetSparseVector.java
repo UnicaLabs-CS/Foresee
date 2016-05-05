@@ -1,6 +1,8 @@
 package it.unica.foresee.datasets;
 
 import it.unica.foresee.datasets.interfaces.DatasetElement;
+import it.unica.foresee.datasets.interfaces.DeepClonable;
+import it.unica.foresee.datasets.interfaces.Identifiable;
 import org.apache.commons.math3.ml.clustering.Clusterable;
 
 import java.util.*;
@@ -8,8 +10,14 @@ import java.util.*;
 /**
  * An efficient data structure for sparse vectors.
  */
-public class DatasetSparseVector<T extends DatasetElement<?>> extends TreeMap<Integer, T> implements it.unica.foresee.datasets.interfaces.DatasetVector<T>, it.unica.foresee.datasets.interfaces.DatasetElement<DatasetSparseVector<T>>, Clusterable
+public class DatasetSparseVector<T extends DatasetElement<?> & DeepClonable> extends TreeMap<Integer, T> implements it.unica.foresee.datasets.interfaces.DatasetVector<T>, it.unica.foresee.datasets.interfaces.DatasetElement<DatasetSparseVector<T>>, Clusterable,
+        Identifiable
 {
+    /**
+     * The id of the element.
+     */
+    private int id;
+
     /**
      * Mean of the elements means.
      */
@@ -56,6 +64,12 @@ public class DatasetSparseVector<T extends DatasetElement<?>> extends TreeMap<In
     @Override
     public DatasetSparseVector getElement() {
         return this;
+    }
+
+    @Override
+    public int getId()
+    {
+        return this.id;
     }
 
     /**
@@ -272,6 +286,12 @@ public class DatasetSparseVector<T extends DatasetElement<?>> extends TreeMap<In
         this.mean = v;
     }
 
+    @Override
+    public void setId(int id)
+    {
+        this.id = id;
+    }
+
     /**
      * Set the vector size for array creation
      * @param vectorSize the size of the max vector
@@ -298,5 +318,20 @@ public class DatasetSparseVector<T extends DatasetElement<?>> extends TreeMap<In
         return this.values().iterator();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public Object deepClone()
+    {
+        DatasetSparseVector<T> clone = new DatasetSparseVector<>();
 
+        for(int key : this.keySet())
+        {
+            clone.put(key, (T) this.get(key).deepClone());
+        }
+        clone.setId(this.getId());
+        clone.setDoubleValue(this.getDoubleValue());
+        clone.setVectorSize(this.vectorSize);
+        return clone;
+    }
 }

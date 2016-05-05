@@ -3,6 +3,7 @@ package it.unica.foresee.libraries;
 import it.unica.foresee.datasets.DatasetSparseVector;
 import it.unica.foresee.datasets.interfaces.DatasetElement;
 import it.unica.foresee.datasets.interfaces.DatasetNestedSparseVector;
+import it.unica.foresee.datasets.interfaces.DeepClonable;
 import it.unica.foresee.utils.Logger;
 import org.apache.commons.math3.ml.clustering.CentroidCluster;
 import org.apache.commons.math3.ml.clustering.KMeansPlusPlusClusterer;
@@ -16,7 +17,7 @@ import java.util.List;
 /**
  * Element container whose elements can be clustered.
  */
-public class ClusterableElement<T extends DatasetSparseVector<? extends DatasetElement>>
+public class ClusterableElement<T extends DatasetSparseVector<? extends DatasetElement> & DeepClonable>
 {
 
     /**
@@ -123,7 +124,7 @@ public class ClusterableElement<T extends DatasetSparseVector<? extends DatasetE
      * @param dataset
      * @return
      */
-    public List<List<T>> cluster(DatasetNestedSparseVector<T> dataset, int clustersAmount)
+    public List<List<T>> cluster(DatasetNestedSparseVector<T, ?> dataset, int clustersAmount)
     {
         if (dataset == null)
         {

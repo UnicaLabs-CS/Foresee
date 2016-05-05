@@ -1,11 +1,12 @@
 package it.unica.foresee.datasets;
 
+import it.unica.foresee.datasets.interfaces.DeepClonable;
 import it.unica.foresee.datasets.interfaces.NumberElement;
 
 /**
  * Wrapper for integers as datasets elements.
  */
-public class DoubleElement extends DatasetElement<Double> implements NumberElement<Double>
+public class DoubleElement extends DatasetElement<Double> implements NumberElement<Double>, DeepClonable
 {
     /**
      * Constructor from a Double.
@@ -41,5 +42,14 @@ public class DoubleElement extends DatasetElement<Double> implements NumberEleme
     public String toString()
     {
         return Double.toString(this.getElement());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Object deepClone()
+    {
+        return new DoubleElement(new Double(this.getDoubleValue()));
     }
 }

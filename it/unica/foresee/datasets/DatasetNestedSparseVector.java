@@ -1,6 +1,9 @@
 package it.unica.foresee.datasets;
 
+import it.unica.foresee.datasets.interfaces.*;
+
 import java.util.Map;
+import java.util.SortedMap;
 
 /**
  * Implementation of {@link it.unica.foresee.datasets.interfaces.DatasetNestedSparseVector}
@@ -11,7 +14,7 @@ import java.util.Map;
  * to update the its value if the value of a nested element is edited without
  * putting it in again.
  */
-public class DatasetNestedSparseVector<T extends DatasetSparseVector<?>> extends DatasetSparseVector<T> implements it.unica.foresee.datasets.interfaces.DatasetNestedSparseVector<T>
+public class DatasetNestedSparseVector<T extends DatasetSparseVector<?> & DeepClonable> extends DatasetSparseVector<T> implements it.unica.foresee.datasets.interfaces.DatasetNestedSparseVector<T>
 {
     int internalHighestKey;
 
@@ -26,11 +29,22 @@ public class DatasetNestedSparseVector<T extends DatasetSparseVector<?>> extends
 
     /**
      * {@inheritDoc}
+     */
+    @Override
+    public int getVectorSize() {
+
+        return getHighestNestedKey();
+    }
+
+
+
+    /**
+     * {@inheritDoc}
      * This implementation keeps track of the highest key value ever inserted.
      */
     @Override
     public T put(Integer key, T value) {
-        if (key > this.internalHighestKey)
+        if (value.lastKey() > this.internalHighestKey)
         {
             this.internalHighestKey = value.lastKey();
         }
@@ -56,5 +70,14 @@ public class DatasetNestedSparseVector<T extends DatasetSparseVector<?>> extends
             }
         }
         super.putAll(map);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Object deepClone()
+    {
+        return null;
     }
 }

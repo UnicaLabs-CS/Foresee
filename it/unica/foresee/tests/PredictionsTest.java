@@ -1,7 +1,6 @@
 package it.unica.foresee.tests;
 
 import it.unica.foresee.datasets.*;
-import it.unica.foresee.datasets.interfaces.NumberElement;
 import it.unica.foresee.libraries.ClusterableElement;
 import it.unica.foresee.libraries.GroupModel;
 import it.unica.foresee.libraries.NearestNeighbour;
@@ -16,9 +15,10 @@ import org.junit.Test;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Tests the predictions algorithms.
@@ -66,50 +66,18 @@ public class PredictionsTest
         }
     }
 
-    private List<CentroidCluster<MovielensElement>> clusteringAll()
-    {
-        List<CentroidCluster<MovielensElement>> clusterResults = null;
-        int vectorSize = m.getMaxMovieID() + 1;
-        System.out.println("Vector size: " + vectorSize);
-
-        System.out.println("\n\nclustering:");
-        for(int i = 0; i < parts.length; i++)
-        {
-            // Transform the partition in an ArrayList
-            ArrayList<MovielensElement> pElements = new ArrayList<>();
-            for (Integer key : parts[i].keySet())
-            {
-                //System.out.println("ArrayList size: " + pElements.size());
-                while (pElements.size() <= key){pElements.add(new MovielensElement(vectorSize));}
-                parts[i].get(key).setVectorSize(vectorSize);
-                pElements.add(key, parts[i].get(key));
-            }
-
-            KMeansPlusPlusClusterer<MovielensElement> clusterer = new KMeansPlusPlusClusterer<>(20);
-            clusterResults = clusterer.cluster(pElements);
-
-            /*
-            System.out.println("\n\npartition " + i);
-            for (int j = 0; j < clusterResults.size(); j++)
-            {
-                System.out.println("cluster " + j);
-                System.out.println(clusterResults.get(j).getPoints());
-            }
-            */
-        }
-        return clusterResults;
-    }
-
     @Test
     public void testRMSE()
     {
         DatasetSparseVector<MovielensElement> testSet = null;
         DatasetNestedSparseVector<MovielensElement> trainingSet;
+
         NearestNeighbour<MovielensElement> predictioner;
 
         // Run the tests k times
         for (int i = 0; i < numPart; i++)
         {
+            Logger.log("Validation #" + (i + 1));
             // reset the training set
             trainingSet = new DatasetNestedSparseVector<>();
 
@@ -122,38 +90,49 @@ public class PredictionsTest
                 }
                 else
                 {
-                    if(parts[j].keySet().size() == 0)
+                    assertNotEquals("The training set cannot be empty.", 0, parts[j].keySet().size());
+                    for(int k : parts[j].keySet())
                     {
-                        throw new IllegalStateException("The parts cannot be empty.");
+                        trainingSet.put(k, (MovielensElement) parts[j].get(k).deepClone());
                     }
-                    trainingSet.putAll(parts[j]);
-                    if(trainingSet.keySet().size() == 0)
-                    {
-                        throw new IllegalStateException("The training set cannot be empty.");
-                    }
+                    assertNotEquals("The training set cannot be empty.", 0, trainingSet.keySet().size());
                 }
             }
 
-            if(trainingSet.keySet().size() == 0)
-            {
-                throw new IllegalStateException("The training set cannot be empty. Iteration");
-            }
+
+            Logger.log("The sets are ready");
+
+            assertEquals(testSet.keySet(), trainingSet.keySet());
+
+            assertNotEquals("The training set cannot be empty.", 0, trainingSet.keySet().size());
+
+            Logger.log("Starting personal predictions..");
             predictioner = new NearestNeighbour<>(trainingSet);
             trainingSet = (DatasetNestedSparseVector<MovielensElement>) predictioner.makePredictions(neighboursAmount);
+            Logger.log("Predictions complete.");
 
-            if(trainingSet.keySet().size() == 0)
+            // Check that every element has now the same size
+            for (int key: trainingSet.keySet())
             {
-                throw new IllegalStateException("The training set cannot be empty.");
+                int vectorSize = trainingSet.getHighestNestedKey();
+                assertTrue("Expected: " + trainingSet.get(key).lastKey() + " <= " +
+                        vectorSize, trainingSet.get(key).lastKey() <= vectorSize);
             }
 
+            assertNotEquals("The training set cannot be empty.", 0, trainingSet.keySet().size());
+
+            Logger.log("Starting clustering..");
             List<List<MovielensElement>> clusters = (new ClusterableElement<MovielensElement>()).cluster(trainingSet, 500);
+            Logger.log("Clustering complete.");
+
+            Logger.log("Starting modelling..");
             GroupModel<MovielensElement> model = new GroupModel<>();
             List<MovielensElement> modelsList = model.averageStrategy(clusters);
+            Logger.log("Modelling complete.");
 
-            if(modelsList == null)
-            {
-                throw new IllegalStateException("The models list cannot be null.");
-            }
+            assertEquals(trainingSet.keySet(), model.getUserToModelMap().keySet());
+
+            assertNotEquals("The models list cannot be null.", null, modelsList);
 
             RMSE<MovielensElement> rmseTester = new RMSE();
 
@@ -163,7 +142,10 @@ public class PredictionsTest
 
             double result = rmseTester.calculate(comparableArrays.getFirst(), comparableArrays.getSecond());
 
-            System.out.println("RMSE result: " + result);
+            Logger.log("RMSE result #" + (i + 1) + ": " + result);
+
+            trainingSet = null;
+            testSet = null;
         }
     }
 }

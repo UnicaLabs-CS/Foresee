@@ -1,5 +1,7 @@
 package it.unica.foresee.datasets;
 
+import it.unica.foresee.datasets.interfaces.DeepClonable;
+
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
@@ -9,7 +11,7 @@ import java.util.TreeSet;
 /**
  * Provides methods to use the freely available movielens dataset.
  */
-public class Movielens extends DatasetSparseVector<MovielensElement> implements it.unica.foresee.datasets.interfaces.DatasetNestedSparseVector<MovielensElement>
+public class Movielens extends DatasetSparseVector<MovielensElement> implements it.unica.foresee.datasets.interfaces.DatasetNestedSparseVector<MovielensElement, DoubleElement>, DeepClonable
 {
     /**
      * Amount of movie rates.

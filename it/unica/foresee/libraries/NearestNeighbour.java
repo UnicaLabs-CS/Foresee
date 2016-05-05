@@ -1,5 +1,6 @@
 package it.unica.foresee.libraries;
 
+import static it.unica.foresee.utils.Logger.debug;
 import static it.unica.foresee.utils.Logger.warn;
 
 import it.unica.foresee.datasets.DatasetSparseVector;
@@ -179,10 +180,9 @@ public class NearestNeighbour<T extends DatasetSparseVector<? extends NumberElem
                     }
                     catch (IllegalArgumentException e)
                     {
-                        /*
-                        warn(e + "\n" +
+
+                        debug(e + "\n" +
                         "User " + similarityMatrix[userIndex] + " and/or user " + similarityMatrix[neighbourIndex] + " don't have enough data in common.\n");
-                        */
                         // Not having enough data seems enough to put similarity to 0
                         similarityMatrix[userIndex][neighbourIndex] = 0;
                     }

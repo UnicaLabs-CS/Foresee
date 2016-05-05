@@ -48,24 +48,32 @@ public class GroupModel<P extends Clusterable & Identifiable>
             double[] modelPoint = new double[model.getVectorSize()];
 
             // Add the values of each user to the model
-            for (int userID = 0; userID < cluster.size(); userID++)
+            for (int userIndex = 0; userIndex < cluster.size(); userIndex++)
             {
-                double[] point = cluster.get(userID).getPoint();
-                userToModel.put(userID, clusterID);
+                int userID = cluster.get(userIndex).getId();
 
-                // Check that every array has the same length
-                if (modelPoint.length != point.length)
+                // This check ensures that we avoid putting the centroid in the map
+                if (userID != 0)
                 {
-                    throw new IllegalStateException(
-                            "Every element of the dataset needs to have the same size."
-                    );
+                    double[] point = cluster.get(userIndex).getPoint();
+
+                    userToModel.put(userID, clusterID);
+
+                    // Check that every array has the same length
+                    if (modelPoint.length != point.length)
+                    {
+                        throw new IllegalStateException(
+                                "Every element of the dataset needs to have the same size."
+                        );
+                    }
+
+                    // Add the element array to the model array
+                    for (int i = 0; i < point.length; i++)
+                    {
+                        modelPoint[i] += point[i];
+                    }
                 }
 
-                // Add the element array to the model array
-                for (int i = 0; i < point.length; i++)
-                {
-                    modelPoint[i] += point[i];
-                }
             }
 
             // Then average the values and add them to the model
