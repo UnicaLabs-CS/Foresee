@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Element container whose elements can be clustered.
  */
-public class ClusterableElement<T extends DatasetSparseVector<? extends DatasetElement> & DeepClonable>
+public class ClusterableElement<T extends DatasetSparseVector<? extends DatasetElement>>
 {
 
     /**
@@ -124,7 +124,7 @@ public class ClusterableElement<T extends DatasetSparseVector<? extends DatasetE
      * @param dataset
      * @return
      */
-    public List<List<T>> cluster(DatasetNestedSparseVector<T, ?> dataset, int clustersAmount)
+    public List<List<T>> cluster(DatasetNestedSparseVector<T> dataset, int clustersAmount)
     {
         if (dataset == null)
         {

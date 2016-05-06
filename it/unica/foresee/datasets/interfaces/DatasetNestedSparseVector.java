@@ -8,7 +8,7 @@ import java.util.TreeMap;
 /**
  * Defines Sparse Vectors of Sparse Vectors
  */
-public interface DatasetNestedSparseVector<T extends DatasetSparseVector<?>> extends DatasetVector<T>
+public interface DatasetNestedSparseVector<T extends DatasetSparseVector<?>> extends DatasetVector<T>, Map<Integer, T>
 {
     /**
      * Returns the highest of the last keys of the nested elements.

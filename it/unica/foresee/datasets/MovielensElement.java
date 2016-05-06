@@ -12,7 +12,7 @@ import it.unica.foresee.utils.Pair;
  * by the same user on a set of movies or a vector of ratings on the same movies given by a set of
  * users who rated it.
  */
-public class MovielensElement extends DatasetSparseVector<DoubleElement> implements Identifiable, DeepClonable
+public class MovielensElement extends DatasetSparseVector<DoubleElement> implements Identifiable
 {
     /**
      * Empty constructor.
@@ -25,6 +25,17 @@ public class MovielensElement extends DatasetSparseVector<DoubleElement> impleme
     public MovielensElement(int vectorSize)
     {
         super(vectorSize);
+    }
+
+    /**
+     * Constructs an element from a dataset sparse vector.
+     */
+    public MovielensElement(DatasetSparseVector<DoubleElement> dsv)
+    {
+        super(dsv.getVectorSize());
+        this.setId(dsv.getId());
+        this.setDoubleValue(dsv.getDoubleValue());
+        this.putAll(dsv);
     }
 
 

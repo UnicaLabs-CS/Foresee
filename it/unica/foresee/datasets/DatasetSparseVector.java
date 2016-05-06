@@ -10,8 +10,7 @@ import java.util.*;
 /**
  * An efficient data structure for sparse vectors.
  */
-public class DatasetSparseVector<T extends DatasetElement<?> & DeepClonable> extends TreeMap<Integer, T> implements it.unica.foresee.datasets.interfaces.DatasetVector<T>, it.unica.foresee.datasets.interfaces.DatasetElement<DatasetSparseVector<T>>, Clusterable,
-        Identifiable
+public class DatasetSparseVector<T extends DatasetElement<?> & DeepClonable> extends TreeMap<Integer, T> implements it.unica.foresee.datasets.interfaces.DatasetVector<T>, it.unica.foresee.datasets.interfaces.DatasetElement<DatasetSparseVector<T>>, Clusterable, Identifiable, DeepClonable<DatasetSparseVector<T>>
 {
     /**
      * The id of the element.
@@ -321,7 +320,7 @@ public class DatasetSparseVector<T extends DatasetElement<?> & DeepClonable> ext
     /**
      * {@inheritDoc}
      */
-    public Object deepClone()
+    public DatasetSparseVector<T> deepClone()
     {
         DatasetSparseVector<T> clone = new DatasetSparseVector<>();
 

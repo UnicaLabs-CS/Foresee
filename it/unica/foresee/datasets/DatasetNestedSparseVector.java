@@ -14,7 +14,7 @@ import java.util.SortedMap;
  * to update the its value if the value of a nested element is edited without
  * putting it in again.
  */
-public class DatasetNestedSparseVector<T extends DatasetSparseVector<?> & DeepClonable> extends DatasetSparseVector<T> implements it.unica.foresee.datasets.interfaces.DatasetNestedSparseVector<T>
+public class DatasetNestedSparseVector<T extends DatasetSparseVector<?>> extends DatasetSparseVector<T> implements it.unica.foresee.datasets.interfaces.DatasetNestedSparseVector<T>
 {
     int internalHighestKey;
 
@@ -70,14 +70,5 @@ public class DatasetNestedSparseVector<T extends DatasetSparseVector<?> & DeepCl
             }
         }
         super.putAll(map);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Object deepClone()
-    {
-        return null;
     }
 }

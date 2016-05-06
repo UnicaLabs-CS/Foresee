@@ -93,7 +93,7 @@ public class PredictionsTest
                     assertNotEquals("The training set cannot be empty.", 0, parts[j].keySet().size());
                     for(int k : parts[j].keySet())
                     {
-                        trainingSet.put(k, (MovielensElement) parts[j].get(k).deepClone());
+                        trainingSet.put(k, new MovielensElement(parts[j].get(k).deepClone()));
                     }
                     assertNotEquals("The training set cannot be empty.", 0, trainingSet.keySet().size());
                 }
