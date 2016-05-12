@@ -1,20 +1,15 @@
 package it.unica.foresee.tests;
 
 import it.unica.foresee.datasets.*;
-import it.unica.foresee.libraries.ClusterableElement;
-import it.unica.foresee.libraries.GroupModel;
 import it.unica.foresee.libraries.NearestNeighbour;
 import it.unica.foresee.libraries.RMSE;
+import it.unica.foresee.utils.Converter;
 import it.unica.foresee.utils.Logger;
-import org.apache.commons.math3.ml.clustering.CentroidCluster;
-import org.apache.commons.math3.ml.clustering.KMeansPlusPlusClusterer;
 import org.apache.commons.math3.util.Pair;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -48,7 +43,7 @@ public class PredictionsTest
         numPart = 5;
         parts = m.getKFoldPartitions(numPart);
         neighboursAmount = 50;
-        Logger.setVerbosity(Logger.VERB_ALL);
+        Logger.setVerbosity(Logger.VERB_DEBUG);
     }
 
     @Test
@@ -118,7 +113,7 @@ public class PredictionsTest
                 assertTrue("Expected: " + trainingSet.get(key).lastKey() + " <= " +
                         vectorSize, trainingSet.get(key).lastKey() <= vectorSize);
             }
-
+/*
             assertNotEquals("The training set cannot be empty.", 0, trainingSet.keySet().size());
 
             Logger.log("Starting clustering..");
@@ -133,12 +128,16 @@ public class PredictionsTest
             assertEquals(trainingSet.keySet(), model.getUserToModelMap().keySet());
 
             assertNotEquals("The models list cannot be null.", null, modelsList);
-
-            RMSE<MovielensElement> rmseTester = new RMSE();
-
-            Pair<Double[], Double[]> comparableArrays = rmseTester.getComparableArrays(testSet,
+*/
+            RMSE rmseTester = new RMSE();
+            Pair<Double[], Double[]> comparableArrays = (new Converter<MovielensElement>()).getRMSEArrays(testSet,
+                    trainingSet);
+/*
+            Pair<Double[], Double[]> comparableArrays = rmseTester.getRMSEArrays(testSet,
                     modelsList,
                     model.getUserToModelMap());
+*/
+
 
             double result = rmseTester.calculate(comparableArrays.getFirst(), comparableArrays.getSecond());
 

@@ -1,7 +1,5 @@
 package it.unica.foresee.datasets;
 
-import it.unica.foresee.datasets.interfaces.DeepClonable;
-import it.unica.foresee.datasets.interfaces.Identifiable;
 import it.unica.foresee.utils.Pair;
 
 
@@ -12,7 +10,7 @@ import it.unica.foresee.utils.Pair;
  * by the same user on a set of movies or a vector of ratings on the same movies given by a set of
  * users who rated it.
  */
-public class MovielensElement extends DatasetSparseVector<DoubleElement> implements Identifiable
+public class MovielensElement extends DatasetSparseVector<DoubleElement>
 {
     /**
      * Empty constructor.

@@ -9,19 +9,19 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// it.unica.foresee.datasets.DatasetSparseVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement<?>>
-	c1322 [label=<<table title="it.unica.foresee.datasets.DatasetSparseVector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatasetSparseVector.html">
+	// it.unica.foresee.datasets.DatasetSparseVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement<?> & it.unica.foresee.datasets.interfaces.DeepClonable>
+	c1685 [label=<<table title="it.unica.foresee.datasets.DatasetSparseVector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatasetSparseVector.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> DatasetSparseVector&lt;T extends DatasetElement&lt;?&gt;&gt; </td></tr>
+<tr><td align="center" balign="center"> DatasetSparseVector&lt;T extends DatasetElement&lt;?&gt; &amp; DeepClonable&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.MovielensElement
-	c1324 [label=<<table title="it.unica.foresee.datasets.MovielensElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MovielensElement.html">
+	c1687 [label=<<table title="it.unica.foresee.datasets.MovielensElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MovielensElement.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MovielensElement </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//it.unica.foresee.datasets.MovielensElement extends it.unica.foresee.datasets.DatasetSparseVector<it.unica.foresee.datasets.DoubleElement>
-	c1322:p -> c1324:p [dir=back,arrowtail=empty];
+	c1685:p -> c1687:p [dir=back,arrowtail=empty];
 }
 

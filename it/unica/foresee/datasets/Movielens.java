@@ -11,7 +11,7 @@ import java.util.TreeSet;
 /**
  * Provides methods to use the freely available movielens dataset.
  */
-public class Movielens extends DatasetSparseVector<MovielensElement> implements it.unica.foresee.datasets.interfaces.DatasetNestedSparseVector<MovielensElement>
+public class Movielens extends DatasetNestedSparseVector<MovielensElement>
 {
     /**
      * Amount of movie rates.

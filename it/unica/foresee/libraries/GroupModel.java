@@ -80,6 +80,10 @@ public class GroupModel<P extends Clusterable & Identifiable>
             for (int i = 0; i < modelPoint.length; i++)
             {
                 model.setDatasetElement(i, new DoubleElement(modelPoint[i]/modelPoint.length));
+                if(model.getDatasetElement(i).getDoubleValue() < 1 || model.getDatasetElement(i).getDoubleValue() > 5)
+                {
+                    throw new IllegalStateException("The rating is out of bound: " + model.getDatasetElement(i).getDoubleValue());
+                }
             }
 
             // Finally add the model to the list of the models

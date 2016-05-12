@@ -1,5 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./Logger.html" title="it.unica.foresee.utils.Logger" alt="" coords="16,17,79,42"/>
-<area shape="rect" id="node2_1" href="./Pair.html" title="it.unica.foresee.utils.Pair" alt="" coords="125,17,519,42"/>
-<area shape="rect" id="node3_2" href="./Triple.html" title="it.unica.foresee.utils.Triple" alt="" coords="565,17,1141,42"/>
+<area shape="rect" id="node1_0" href="./Converter.html" title="it.unica.foresee.utils.Converter" alt="" coords="16,17,475,42"/>
+<area shape="rect" id="node2_1" href="./Logger.html" title="it.unica.foresee.utils.Logger" alt="" coords="521,17,583,42"/>
+<area shape="rect" id="node3_2" href="./Pair.html" title="it.unica.foresee.utils.Pair" alt="" coords="629,17,1024,42"/>
+<area shape="rect" id="node4_3" href="./Triple.html" title="it.unica.foresee.utils.Triple" alt="" coords="1069,17,1645,42"/>
 </map>

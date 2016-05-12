@@ -1,6 +1,7 @@
 package it.unica.foresee.datasets;
 
 import it.unica.foresee.datasets.interfaces.*;
+import it.unica.foresee.datasets.interfaces.DatasetElement;
 
 import java.util.Map;
 import java.util.SortedMap;
@@ -14,7 +15,7 @@ import java.util.SortedMap;
  * to update the its value if the value of a nested element is edited without
  * putting it in again.
  */
-public class DatasetNestedSparseVector<T extends DatasetSparseVector<?>> extends DatasetSparseVector<T> implements it.unica.foresee.datasets.interfaces.DatasetNestedSparseVector<T>
+public class DatasetNestedSparseVector<T extends DatasetSparseVector<? extends DatasetElement>> extends DatasetSparseVector<T> implements it.unica.foresee.datasets.interfaces.DatasetNestedSparseVector<T>
 {
     int internalHighestKey;
 

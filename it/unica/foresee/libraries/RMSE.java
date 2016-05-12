@@ -1,74 +1,12 @@
 package it.unica.foresee.libraries;
 
-import it.unica.foresee.datasets.DatasetSparseVector;
-import it.unica.foresee.datasets.DoubleElement;
 import it.unica.foresee.utils.Logger;
-import org.apache.commons.math3.util.Pair;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Root mean squared error calculator.
  */
-public class RMSE<T extends DatasetSparseVector<? extends DoubleElement>>
+public class RMSE
 {
-
-    /**
-     * Creates two arrays that can be compared with the RMSE test.
-     *
-     * @param test the test set
-     * @param model the training set
-     * @param userToModel a map to obtain the corresponding user from the model
-     * @return a pair of arrays that can be compared through the RMSE test
-     */
-    public Pair<Double[], Double[]> getComparableArrays(DatasetSparseVector<T> test,
-                                                        List<T> model,
-                                                        Map<Integer, Integer> userToModel)
-    {
-
-        ArrayList<Double> testArray = new ArrayList<Double>();
-        ArrayList<Double> trainArray = new ArrayList<>();
-
-        // Visit each user of the test set, then the corresponding
-        // from the training set
-        for(int userID : test.keySet())
-        {
-            T user = test.getDatasetElement(userID);
-
-
-            if (userToModel.get(userID) == null || model.get(userToModel.get(userID)) == null)
-            {
-                Logger.debug("User" + userID + " is present in test set but not in train", this.getClass());
-                continue;
-            }
-
-            T trainUser = model.get(userToModel.get(userID));
-
-            for (int movieID : user.keySet())
-            {
-                DoubleElement movie = user.getDatasetElement(movieID);
-                DoubleElement trainMovie = trainUser.getDatasetElement(movieID);
-
-                if (trainMovie == null)
-                {
-                    Logger.debug("Movie" + movieID + " of User"
-                            + userID + " is present in test set but not in train", this.getClass());
-                    continue;
-                }
-
-                // Obtain a movie from the testset
-                testArray.add(movie.getDoubleValue());
-                // Obtain the corresponding rating provided by training set
-                trainArray.add(trainMovie.getDoubleValue());
-            }
-        }
-
-        return new Pair<>(trainArray.toArray(new Double[0]),
-                testArray.toArray(new Double[0]));
-    }
-
     /**
      * Performs the RMSE calculation for each item.
      * @param estimator the value that makes an estimate of a parameter
@@ -77,21 +15,22 @@ public class RMSE<T extends DatasetSparseVector<? extends DoubleElement>>
      */
     public double calculate (Double[] estimator, Double[] parameter)
     {
+        double[] rawEstimator = new double[estimator.length];
+        double[] rawParameter = new double[estimator.length];
+
         if (estimator.length != parameter.length)
         {
             throw new IllegalArgumentException("Estimator and parameter arrays need to have the same length");
         }
 
-        double numerator = 0;
-        double diff;
-
+        // Covert to raw type
         for (int i = 0; i < estimator.length; i++)
         {
-            diff = (estimator[i] - parameter[i]);
-            numerator += diff * diff ;
+            rawEstimator[i] = estimator[i];
+            rawParameter[i] = parameter[i];
         }
 
-        return Math.sqrt(numerator / estimator.length);
+        return calculate(rawEstimator, rawParameter);
     }
 
     /**
@@ -107,11 +46,17 @@ public class RMSE<T extends DatasetSparseVector<? extends DoubleElement>>
             throw new IllegalArgumentException("Estimator and parameter arrays need to have the same length");
         }
 
+        if (estimator.length == 0)
+        {
+            throw new IllegalStateException("The arrays cannot be empty");
+        }
+
         double numerator = 0;
         double diff;
 
         for (int i = 0; i < estimator.length; i++)
         {
+            Logger.debug("RMSE: est[" + estimator[i] + "]" + " param[" + parameter[i] + "]");
             diff = (estimator[i] - parameter[i]);
             numerator += diff * diff ;
         }
@@ -127,20 +72,21 @@ public class RMSE<T extends DatasetSparseVector<? extends DoubleElement>>
      */
     public double calculate (int[] estimator, int[] parameter)
     {
+        double[] rawEstimator = new double[estimator.length];
+        double[] rawParameter = new double[estimator.length];
+
         if (estimator.length != parameter.length)
         {
             throw new IllegalArgumentException("Estimator and parameter arrays need to have the same length");
         }
 
-        int numerator = 0;
-        int diff;
-
+        // Covert to raw type
         for (int i = 0; i < estimator.length; i++)
         {
-            diff = (estimator[i] - parameter[i]);
-            numerator += diff * diff ;
+            rawEstimator[i] = (double) estimator[i];
+            rawParameter[i] = (double) parameter[i];
         }
 
-        return Math.sqrt(numerator / estimator.length);
+        return calculate(rawEstimator, rawParameter);
     }
 }

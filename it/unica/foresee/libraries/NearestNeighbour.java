@@ -41,7 +41,7 @@ public class NearestNeighbour<T extends DatasetSparseVector<? extends NumberElem
     {
         if(dataset.keySet().size() == 0)
         {
-            throw new IllegalStateException("The training set cannot be empty.");
+            throw new IllegalStateException("The dataset cannot be empty.");
         }
         this.dataset = dataset;
     }
@@ -74,16 +74,24 @@ public class NearestNeighbour<T extends DatasetSparseVector<? extends NumberElem
             for (int itemIndex = 0; itemIndex < itemsKeys.length; itemIndex++)
             {
                 double rating = currentUser.getDatasetElement(itemsKeys[itemIndex]).getDoubleValue();
+
+                // Make previsions only on missing entries
                 if(rating == 0)
                 {
                     // Useful variables to understand what's going on
                     double denominator = 0;
-                    double userSimilarity;
+                    double userSimilarity = 0;
                     double neighbourAverage;
                     double neighbourRateOnItem;
 
                     // Set the rating to the average of the ratings of the user
                     rating = dataset.getDatasetElement(userIndex).getDoubleValue();
+
+                    // Check that the average is not null
+                    if (rating == 0.0)
+                    {
+                        throw new IllegalStateException("User " + userIndex + "has an average of 0");
+                    }
 
                     for (Pair<Integer, Double> neighbour : nearestNeighbours)
                     {
@@ -97,8 +105,16 @@ public class NearestNeighbour<T extends DatasetSparseVector<? extends NumberElem
 
                     rating /= denominator;
 
-                    // Assign the new value casted to int
-                    dataset.getDatasetElement(keys[userIndex]).getDatasetElement(itemsKeys[itemIndex]).setElement((int) rating);
+                    // Assign the new value
+                    dataset.getDatasetElement(keys[userIndex]).getDatasetElement(itemsKeys[itemIndex]).setElement(rating);
+
+                    // Check that the value is in the bounds
+                    if (rating < 1 || rating > 5)
+                    {
+                        throw new IllegalStateException("The rating is out of bound: " + rating + "\n" +
+                                "user similarity: " + userSimilarity + "\n" +
+                                "denominator: " + denominator);
+                    }
                 }
             }
         }
@@ -180,9 +196,11 @@ public class NearestNeighbour<T extends DatasetSparseVector<? extends NumberElem
                     }
                     catch (IllegalArgumentException e)
                     {
-
+/*
                         debug(e + "\n" +
-                        "User " + similarityMatrix[userIndex] + " and/or user " + similarityMatrix[neighbourIndex] + " don't have enough data in common.\n");
+                        "User " + similarityMatrix[userIndex] + " and/or user "
+                                + similarityMatrix[neighbourIndex] + " don't have enough data in common.\n");
+*/
                         // Not having enough data seems enough to put similarity to 0
                         similarityMatrix[userIndex][neighbourIndex] = 0;
                     }
