@@ -149,7 +149,7 @@ public class NearestNeighboursTest
         };
 
         int elementToCheck = 0;
-        int neighboursAmount = 8;
+        int neighboursAmount = 7;
         int lastNearNeighbour = 7;
 
         Movielens dataset = TestUtils.fillDataset(usersMatrix);
