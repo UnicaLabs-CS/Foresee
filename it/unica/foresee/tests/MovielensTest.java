@@ -234,8 +234,8 @@ public class MovielensTest
         clone.put(clone.firstKey(), -1.0);
 
         // Compare the elements array and then the element itself
-        assertEquals(original.getPoint(), clone.getPoint());
-        assertEquals(original, clone);
+        assertNotEquals(original.values(), clone.values());
+        assertNotEquals(original, clone);
     }
 
 }

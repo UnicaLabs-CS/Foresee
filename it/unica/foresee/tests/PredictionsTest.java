@@ -1,6 +1,8 @@
 package it.unica.foresee.tests;
 
 import it.unica.foresee.datasets.*;
+import it.unica.foresee.libraries.ClusterableElement;
+import it.unica.foresee.libraries.GroupModel;
 import it.unica.foresee.libraries.NearestNeighbour;
 import it.unica.foresee.libraries.RMSE;
 import it.unica.foresee.utils.Converter;
@@ -10,6 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -106,6 +109,9 @@ public class PredictionsTest
             trainingSet = (DatasetNestedSparseVector<MovielensElement>) predictioner.makeForecasts(neighboursAmount);
             Logger.log("Predictions complete.");
 
+            Logger.debug("Test set:\n" + testSet.toString());
+            Logger.debug("Training set:\n" + trainingSet.toString());
+
             // Check that every element has now the same size
             for (int key: trainingSet.keySet())
             {
@@ -113,7 +119,7 @@ public class PredictionsTest
                 assertTrue("Expected: " + trainingSet.get(key).lastKey() + " <= " +
                         vectorSize, trainingSet.get(key).lastKey() <= vectorSize);
             }
-/*
+
             assertNotEquals("The training set cannot be empty.", 0, trainingSet.keySet().size());
 
             Logger.log("Starting clustering..");
@@ -128,16 +134,11 @@ public class PredictionsTest
             assertEquals(trainingSet.keySet(), model.getUserToModelMap().keySet());
 
             assertNotEquals("The models list cannot be null.", null, modelsList);
-*/
+
             RMSE rmseTester = new RMSE();
             Pair<Double[], Double[]> comparableArrays = (new Converter<MovielensElement>()).getRMSEArrays(testSet,
-                    trainingSet);
-/*
-            Pair<Double[], Double[]> comparableArrays = rmseTester.getRMSEArrays(testSet,
                     modelsList,
                     model.getUserToModelMap());
-*/
-
 
             double result = rmseTester.calculate(comparableArrays.getFirst(), comparableArrays.getSecond());
 

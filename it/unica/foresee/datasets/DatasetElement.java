@@ -11,16 +11,28 @@ public class DatasetElement<T> implements it.unica.foresee.datasets.interfaces.D
 
     private T element;
 
+    private DoubleConvertible<T> converter = null;
+
     /**
      * Empty constructor.
      */
     public DatasetElement(){}
 
     /**
+     * Initialize the object with the element and and interface to get its double value.
+     */
+    public DatasetElement(T el, DoubleConvertible<T> converter)
+    {
+        this.element = el;
+        this.converter = converter;
+    }
+
+    /**
      * Initialize the object with the element and the value for the mean
      * @param el
      * @param doubleValue
      */
+    @Deprecated
     public DatasetElement(T el, double doubleValue)
     {
         this.element = el;
@@ -34,7 +46,11 @@ public class DatasetElement<T> implements it.unica.foresee.datasets.interfaces.D
      */
     public double getDoubleValue()
     {
-        return this.doubleValue;
+        if (converter != null)
+        {
+            return converter.getDoubleValue(element);
+        }
+        else return this.doubleValue;
     }
 
     /**
@@ -69,5 +85,25 @@ public class DatasetElement<T> implements it.unica.foresee.datasets.interfaces.D
     public String toString()
     {
         return Double.toString(this.getDoubleValue());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(Object o)
+    {
+        if(o == this) return true;
+
+        if (o == null) return false;
+
+        if ( !(o instanceof DatasetElement) ) return false;
+
+        DatasetElement d = (DatasetElement) o;
+
+        if(!this.getElement().equals(d.getElement()) ||
+                !(this.getDoubleValue() == d.getDoubleValue())) return false;
+
+        return true;
     }
 }

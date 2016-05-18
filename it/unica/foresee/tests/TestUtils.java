@@ -31,6 +31,21 @@ public class TestUtils
     }
 
     /**
+     * Fill a movielens element from an array
+     * @param usersVector an array of values
+     * @return a dataset entry
+     */
+    public static MovielensElement fillDatasetEntry(double[] usersVector)
+    {
+        MovielensElement user = new MovielensElement();
+        for(int j = 0; j < usersVector.length; j++)
+        {
+            user.put(j, usersVector[j]);
+        }
+        return user;
+    }
+
+    /**
      * Fill a movielens dataset from a matrix
      * @param usersMatrix a matrix of values
      * @return a dataset
@@ -38,7 +53,7 @@ public class TestUtils
     public static Movielens fillDataset(double[][] usersMatrix)
     {
         Movielens dataset = new Movielens();
-        DatasetSparseVector<DoubleElement> user = new MovielensElement();
+        MovielensElement user;
 
         // Create a fake dataset
         for(int i = 0; i < usersMatrix.length; i++)
@@ -48,10 +63,10 @@ public class TestUtils
 
             for(int j = 0; j < usersMatrix[i].length; j++)
             {
-                user.put(j, new DoubleElement(usersMatrix[i][j]));
+                user.put(j, usersMatrix[i][j]);
             }
 
-            dataset.put(i, (MovielensElement) user);
+            dataset.put(i, user);
         }
 
         return dataset;

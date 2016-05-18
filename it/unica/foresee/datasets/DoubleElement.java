@@ -6,7 +6,7 @@ import it.unica.foresee.datasets.interfaces.NumberElement;
 /**
  * Wrapper for integers as datasets elements.
  */
-public class DoubleElement extends DatasetElement<Double> implements NumberElement<Double>, DeepClonable
+public class DoubleElement extends DatasetElement<Double> implements NumberElement<Double>, DeepClonable<DoubleElement>
 {
     /**
      * Constructor from a Double.
@@ -23,7 +23,7 @@ public class DoubleElement extends DatasetElement<Double> implements NumberEleme
      */
     public DoubleElement(DatasetElement<Double> d)
     {
-        super(d.getElement(), d.getDoubleValue());
+        super(d.getElement(), (dc)->dc.doubleValue());
     }
 
     @Override
@@ -48,7 +48,7 @@ public class DoubleElement extends DatasetElement<Double> implements NumberEleme
      * {@inheritDoc}
      */
     @Override
-    public Object deepClone()
+    public DoubleElement deepClone()
     {
         return new DoubleElement(new Double(this.getDoubleValue()));
     }

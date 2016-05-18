@@ -1,12 +1,29 @@
 #!/bin/bash
 
-if [ $1 == "-l" ]; then
-    # List the available classes
-	ls -l it/unica/foresee/tests/*.class
-elif [ $1 == "-r" ]; then
-    # Remove to recompile
-    rm -v it/unica/foresee/tests/$2.class
-else
 # Test the given class - Much faster to type than the following!
-java -cp .:test-libs/junit-4.jar:test-libs/hamcrest.jar:libs/commons-math3.jar org.junit.runner.JUnitCore it.unica.foresee.tests.$1
+function run_test()
+{
+  java -cp .:test-libs/junit-4.jar:test-libs/hamcrest.jar:libs/commons-math3.jar org.junit.runner.JUnitCore it.unica.foresee.tests.$1Test
+}
+
+# List the available tests
+function list_test()
+{
+  echo "Available tests:";
+  find it/unica/foresee/tests/ -name *Test.class -exec basename \{} Test.class \;
+}
+
+# Main
+if [ "$1" == "-l" ] || [ -z "$1" ]; then
+    # List the available classes
+	list_test
+elif [ "$1" == "-r" ]; then
+    # Remove to recompile
+    rm -v it/unica/foresee/tests/$2Test.class
+elif [ "$1" == "all"] || [ "$1" == "-a" ]; then
+	for test in list_test; do
+		run_test $test;
+	done;
+else
+run_test $1
 fi
