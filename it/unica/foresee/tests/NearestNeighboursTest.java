@@ -2,43 +2,178 @@ package it.unica.foresee.tests;
 
 import it.unica.foresee.datasets.Movielens;
 import it.unica.foresee.datasets.MovielensElement;
+import it.unica.foresee.libraries.NearestNeighbour;
+
+import it.unica.foresee.utils.Logger;
+import it.unica.foresee.utils.SparseMatrix;
+import org.apache.commons.math3.util.Pair;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
+
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 /**
- * Checks the correct execution of the Nearest Neighbours algorithm
+ * Checks the correct execution of the Nearest Neighbours algorithm.
+ *
+ * Some spreadsheet file are provided to help preparing tests.
  */
 public class NearestNeighboursTest
 {
-    private Movielens dataset;
-    private double[][] usersMatrix;
+    public static double HIGH_ACCURACY = 0.0000001;
+    public static double SMALL_ACCURACY = 0.15;
 
     @Before
     public void setUp()
     {
+        // Set the verbosity to DEBUG level
+        Logger.setVerbosity(Logger.VERB_DEBUG);
+    }
+
+    public void assertCorrectSimilarity(SparseMatrix similarityMatrix, double[][] simResults, double accuracy)
+    {
+        for (int i : similarityMatrix.getInternalMap().keySet())
+        {
+            // Check that the value for the value itself is maximum
+            assertEquals(similarityMatrix.get(i, i), 1.0, HIGH_ACCURACY);
+            for (int j : similarityMatrix.getInternalMap().get(i).keySet())
+            {
+                assertEquals(similarityMatrix.get(i, j), simResults[i][j], accuracy);
+            }
+        }
+    }
+
+    @Test
+    public void similarityMatrixTest1()
+    {
         // Initialize some values
-        double[][] usersMatrix = new double[][]{
-                new double[]{0, 0, 3},
-                new double[]{0, 1, 0},
-                new double[]{5, 0, 0}
+        double[][] usersMatrix1 = new double[][]{
+                new double[]{5, 5, 3},
+                new double[]{5, 5, 3},
+                new double[]{0, 0, 0}
         };
 
-        MovielensElement user;
+        double[][] simResults1 = new double[][]{
+                new double[]{1.0, 1.0, 0.0},
+                new double[]{1.0, 1.0, 0.0},
+                new double[]{0.0, 0.0, 1.0}
+        };
 
-        // Create a fake dataset
-        for(int i = 0; i < usersMatrix.length; i++)
+        Movielens dataset1 = TestUtils.fillDataset(usersMatrix1);
+
+        NearestNeighbour<MovielensElement> nearestNeighbour = new NearestNeighbour<>(dataset1);
+        nearestNeighbour.initialiseSimilarityMatrix();
+        SparseMatrix similarityMatrix = nearestNeighbour.getSimilarityMatrix();
+        Logger.log("Similarity Matrix 1:");
+        TestUtils.printSparseMatrix(similarityMatrix);
+        assertCorrectSimilarity(similarityMatrix, simResults1, HIGH_ACCURACY);
+    }
+
+    @Test
+    public void similarityMatrixTest2()
+    {
+        double[][] usersMatrix2 = new double[][]{
+                new double[]{5, 5, 3},
+                new double[]{5, 5, 2},
+                new double[]{5, 4, 4}
+        };
+
+        double[][] simResults2 = new double[][]{
+                new double[]{1.0, 1.0, 0.5},
+                new double[]{1.0, 1.0, 0.5},
+                new double[]{0.5, 0.5, 1.0}
+        };
+
+        Movielens dataset2 = TestUtils.fillDataset(usersMatrix2);
+
+        NearestNeighbour<MovielensElement> nearestNeighbour = new NearestNeighbour<>(dataset2);
+        nearestNeighbour.initialiseSimilarityMatrix();
+        SparseMatrix similarityMatrix = nearestNeighbour.getSimilarityMatrix();
+        Logger.log("Similarity Matrix 2:");
+        TestUtils.printSparseMatrix(similarityMatrix);
+        assertCorrectSimilarity(similarityMatrix, simResults2, SMALL_ACCURACY);
+    }
+
+    @Test
+    public void similarityMatrixTest3()
+    {
+        double[][] usersMatrix = new double[][]{
+                new double[]{5, 5, 3, 0, 4, 5, 3},
+                new double[]{5, 5, 2, 0, 4, 5, 3},
+                new double[]{5, 4, 4, 0, 3, 5, 3}
+        };
+
+        double[][] simResults = new double[][]{
+                new double[]{1.0, 0.980454, 0.924986},
+                new double[]{0.980454, 1.0, 0.852223},
+                new double[]{0.924986, 0.852223, 1.0}
+        };
+
+        Movielens dataset = TestUtils.fillDataset(usersMatrix);
+
+        NearestNeighbour<MovielensElement> nearestNeighbour = new NearestNeighbour<>(dataset);
+        nearestNeighbour.initialiseSimilarityMatrix();
+        SparseMatrix similarityMatrix = nearestNeighbour.getSimilarityMatrix();
+        Logger.log("Similarity Matrix 3:");
+        TestUtils.printSparseMatrix(similarityMatrix);
+        assertCorrectSimilarity(similarityMatrix, simResults, SMALL_ACCURACY);
+    }
+
+    @Test
+    public void getNearestNeighboursTest()
+    {
+        double[][] usersMatrix = new double[][]{
+                new double[]{5, 5, 3, 0, 4, 5, 3}, // Sample
+                new double[]{5, 5, 2, 0, 4, 5, 3}, // Nearest neighbours
+                new double[]{5, 5, 2, 0, 4, 5, 3},
+                new double[]{5, 5, 2, 0, 4, 5, 3},
+                new double[]{5, 5, 2, 0, 4, 5, 3},
+                new double[]{5, 5, 2, 0, 4, 5, 3},
+                new double[]{5, 5, 2, 0, 4, 5, 3},
+                new double[]{5, 5, 2, 0, 4, 5, 3}, // last near neighbour
+                new double[]{5, 4, 4, 0, 3, 5, 3}, // Far neighbours
+                new double[]{5, 4, 4, 0, 3, 5, 3},
+                new double[]{5, 4, 4, 0, 3, 5, 3},
+                new double[]{5, 4, 4, 0, 3, 5, 3},
+                new double[]{5, 4, 4, 0, 3, 5, 3},
+                new double[]{5, 4, 4, 0, 3, 5, 3}
+        };
+
+        double[][] simResults = new double[][]{
+                new double[]{1.0, 0.980454, 0.924986},
+                new double[]{0.980454, 1.0, 0.852223},
+                new double[]{0.924986, 0.852223, 1.0}
+        };
+
+        int elementToCheck = 0;
+        int neighboursAmount = 8;
+        int lastNearNeighbour = 7;
+
+        Movielens dataset = TestUtils.fillDataset(usersMatrix);
+
+        NearestNeighbour<MovielensElement> nearestNeighbour = new NearestNeighbour<>(dataset);
+        nearestNeighbour.initialiseSimilarityMatrix();
+
+        // Get the nearest neighbours to the element
+        List<Pair<Integer, Double>> nearest = nearestNeighbour.getNearestNeighbours(elementToCheck, neighboursAmount);
+
+        assertEquals(neighboursAmount, nearest.size());
+
+        // Check that the neighbours are those we expect
+        for (Pair<Integer, Double> el : nearest)
         {
-            user = new MovielensElement();
-            user.setId(i);
-
-            for(int j = 0; j < usersMatrix[i].length; j++)
-            {
-                user.put(j, usersMatrix[i][j]);
-            }
-
-            dataset.put(i, user);
+            assertTrue("element " + el.getFirst() + "should be" +
+                    " less than " + lastNearNeighbour, el.getFirst() <= lastNearNeighbour);
         }
     }
 
 
+    @Test
+    public void makePredictionsTest()
+    {
+
+    }
 }

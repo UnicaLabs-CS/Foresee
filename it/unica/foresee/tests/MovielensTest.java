@@ -16,10 +16,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * Test Movielens loading
@@ -214,11 +211,31 @@ public class MovielensTest
 
         assertEquals(m.getMoviesSet(), fullMovieSet);
     }
-
+/*
     @Test
     public void testClustering()
     {
         clustering();
+    }
+*/
+    @Test
+    public void testDeepCloneElement()
+    {
+        MovielensElement original = m.getDatasetElement(m.firstKey());
+        original.setVectorSize(5000);
+        MovielensElement clone = original.deepClone();
+
+        // Compare the elements array and then the element itself
+        assertTrue(Arrays.equals(original.getPoint(), clone.getPoint()));
+        // @// TODO: 17/05/16 why does equals fail when they're actually equal?
+        assertEquals(original, clone);
+
+        // This value cannot be set, so it's safe to assume it different from original
+        clone.put(clone.firstKey(), -1.0);
+
+        // Compare the elements array and then the element itself
+        assertEquals(original.getPoint(), clone.getPoint());
+        assertEquals(original, clone);
     }
 
 }

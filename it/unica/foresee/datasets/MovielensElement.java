@@ -98,8 +98,24 @@ public class MovielensElement extends DatasetSparseVector<DoubleElement>
      */
     public DoubleElement put(Integer key, Double value)
     {
-        DoubleElement e = new DoubleElement(value);
-        return this.put(key, e);
+        return this.put(key, new DoubleElement(value));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public MovielensElement deepClone()
+    {
+        MovielensElement clone = new MovielensElement();
+
+        for(int key : this.keySet())
+        {
+            clone.put(key, (DoubleElement) this.get(key).deepClone());
+        }
+        clone.setId(this.getId());
+        clone.setDoubleValue(this.getDoubleValue());
+        clone.setVectorSize(this.getVectorSize());
+        return clone;
     }
 
 }

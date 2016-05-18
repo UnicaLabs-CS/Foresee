@@ -103,7 +103,7 @@ public class PredictionsTest
 
             Logger.log("Starting personal predictions..");
             predictioner = new NearestNeighbour<>(trainingSet);
-            trainingSet = (DatasetNestedSparseVector<MovielensElement>) predictioner.makePredictions(neighboursAmount);
+            trainingSet = (DatasetNestedSparseVector<MovielensElement>) predictioner.makeForecasts(neighboursAmount);
             Logger.log("Predictions complete.");
 
             // Check that every element has now the same size
