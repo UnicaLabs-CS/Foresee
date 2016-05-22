@@ -2,10 +2,7 @@ package it.unica.foresee.datasets;
 
 import it.unica.foresee.datasets.interfaces.DeepClonable;
 
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.Random;
-import java.util.TreeSet;
+import java.util.*;
 
 
 /**
@@ -42,11 +39,6 @@ public class Movielens extends DatasetNestedSparseVector<MovielensElement>
      * Min rate.
      */
     public final int MIN_RATE = 1;
-
-    /**
-     * List of users.
-     */
-    protected TreeSet<Integer> usersSet;
 
     /**
      * List of movies.
@@ -93,7 +85,7 @@ public class Movielens extends DatasetNestedSparseVector<MovielensElement>
      * @param k the amount of partitions, the k value of the k-fold cross validation
      * @return an array of partitions
      */
-    public DatasetSparseVector[] getKFoldPartitions(int k)
+    public Movielens[] getKFoldPartitions(int k)
     {
         /* Initialize the max and min with a reasonable value */
         double maxMeanValue = this.get(this.firstKey()).getDoubleValue();
@@ -185,8 +177,8 @@ public class Movielens extends DatasetNestedSparseVector<MovielensElement>
         return moviesSet;
     }
 
-    public TreeSet<Integer> getUsersSet() {
-        return usersSet;
+    public Set<Integer> getUsersSet() {
+        return this.keySet();
     }
 
     /* Setter */
@@ -209,6 +201,11 @@ public class Movielens extends DatasetNestedSparseVector<MovielensElement>
 
         el.put(movieID, rating);
         this.put(userID, el);
+
+        if (movieID > this.getMaxMovieID())
+        {
+            this.setMaxMovieID(movieID);
+        }
     }
 
     /**
@@ -226,6 +223,10 @@ public class Movielens extends DatasetNestedSparseVector<MovielensElement>
     {
         if (t != null && this.containsKey(integer))
         {
+            if (t.getVectorSize() > this.getMaxMovieID())
+            {
+                this.setMaxMovieID(t.getVectorSize());
+            }
             this.get(integer).putAll(t);
             return this.get(integer);
         }
@@ -248,6 +249,10 @@ public class Movielens extends DatasetNestedSparseVector<MovielensElement>
         {
             this.put(key, m.get(key));
         }
+        if (m.getMaxMovieID() > this.getMaxMovieID())
+        {
+            this.setMaxMovieID(m.getMaxUserID());
+        }
     }
 
     public void setMaxMovieID(int maxMovieID) {
@@ -268,10 +273,6 @@ public class Movielens extends DatasetNestedSparseVector<MovielensElement>
 
     public void setUsersAmount(int usersAmount) {
         this.usersAmount = usersAmount;
-    }
-
-    public void setUsersSet(TreeSet<Integer> usersSet) {
-        this.usersSet = usersSet;
     }
 
     /* Modifiers */

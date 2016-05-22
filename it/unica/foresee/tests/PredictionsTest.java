@@ -1,10 +1,7 @@
 package it.unica.foresee.tests;
 
 import it.unica.foresee.datasets.*;
-import it.unica.foresee.libraries.ClusterableElement;
-import it.unica.foresee.libraries.GroupModel;
-import it.unica.foresee.libraries.NearestNeighbour;
-import it.unica.foresee.libraries.RMSE;
+import it.unica.foresee.libraries.*;
 import it.unica.foresee.utils.Converter;
 import it.unica.foresee.utils.Logger;
 import org.apache.commons.math3.util.Pair;
@@ -20,6 +17,9 @@ import static org.junit.Assert.assertTrue;
 
 /**
  * Tests the predictions algorithms.
+ *
+ * Note: this is a function test, not a unit test. Assert that
+ * all the unit tests pass before running this.
  */
 public class PredictionsTest
 {
@@ -32,7 +32,7 @@ public class PredictionsTest
     private MovielensLoader mLoader;
     private File mFile;
     private Movielens m;
-    private DatasetSparseVector<MovielensElement>[] parts;
+    private Movielens[] parts;
     private int numPart;
     private int neighboursAmount;
 
@@ -41,7 +41,7 @@ public class PredictionsTest
     public void setUp()  throws Exception
     {
         mLoader = new MovielensLoader();
-        mFile = new File(MEDIUM_DATASET);
+        mFile = new File(BIG_DATASET);
         m = mLoader.loadDataset(mFile);
         numPart = 5;
         parts = m.getKFoldPartitions(numPart);
@@ -67,17 +67,20 @@ public class PredictionsTest
     @Test
     public void testRMSE()
     {
-        DatasetSparseVector<MovielensElement> testSet = null;
-        DatasetNestedSparseVector<MovielensElement> trainingSet;
+        Movielens testSet = null;
+        Movielens trainingSet;
 
         NearestNeighbour<MovielensElement> predictioner;
 
+        int numTests = 1;
+
         // Run the tests k times
-        for (int i = 0; i < numPart; i++)
+        for (int i = 0; i < numTests; i++)
         {
             Logger.log("Validation #" + (i + 1));
             // reset the training set
-            trainingSet = new DatasetNestedSparseVector<>();
+            trainingSet = new Movielens();
+            trainingSet.setMaxMovieID(m.getHighestNestedKey());
 
             // Initialize training and test set
             for (int j = 0; j < numPart; j++)
@@ -85,6 +88,7 @@ public class PredictionsTest
                 if (i == j)
                 {
                     testSet = parts[i];
+                    testSet.setMaxMovieID(m.getHighestNestedKey());
                 }
                 else
                 {
@@ -106,7 +110,7 @@ public class PredictionsTest
 
             Logger.log("Starting personal predictions..");
             predictioner = new NearestNeighbour<>(trainingSet);
-            trainingSet = (DatasetNestedSparseVector<MovielensElement>) predictioner.makeForecasts(neighboursAmount);
+            trainingSet = predictioner.makeForecasts(neighboursAmount);
             Logger.log("Predictions complete.");
 
             Logger.debug("Test set:\n" + testSet.toString());
@@ -129,6 +133,8 @@ public class PredictionsTest
             Logger.log("Starting modelling..");
             GroupModel<MovielensElement> model = new GroupModel<>();
             List<MovielensElement> modelsList = model.averageStrategy(clusters);
+
+            //GroupModelDataset modelDataset = new GroupModelDataset(model.getUserToModelMap(), modelsList, trainingSet);
             Logger.log("Modelling complete.");
 
             assertEquals(trainingSet.keySet(), model.getUserToModelMap().keySet());
@@ -137,8 +143,7 @@ public class PredictionsTest
 
             RMSE rmseTester = new RMSE();
             Pair<Double[], Double[]> comparableArrays = (new Converter<MovielensElement>()).getRMSEArrays(testSet,
-                    modelsList,
-                    model.getUserToModelMap());
+                    modelsList, model.getUserToModelMap());
 
             double result = rmseTester.calculate(comparableArrays.getFirst(), comparableArrays.getSecond());
 

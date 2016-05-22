@@ -1,5 +1,6 @@
 package it.unica.foresee.tests;
 
+import it.unica.foresee.datasets.DatasetSparseVector;
 import it.unica.foresee.datasets.Movielens;
 import it.unica.foresee.datasets.MovielensElement;
 import it.unica.foresee.libraries.NearestNeighbour;
@@ -14,6 +15,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -142,12 +144,6 @@ public class NearestNeighboursTest
                 new double[]{5, 4, 4, 0, 3, 5, 3}
         };
 
-        double[][] simResults = new double[][]{
-                new double[]{1.0, 0.980454, 0.924986},
-                new double[]{0.980454, 1.0, 0.852223},
-                new double[]{0.924986, 0.852223, 1.0}
-        };
-
         int elementToCheck = 0;
         int neighboursAmount = 7;
         int lastNearNeighbour = 7;
@@ -174,6 +170,44 @@ public class NearestNeighboursTest
     @Test
     public void makePredictionsTest()
     {
+        double[][] usersMatrix = new double[][]{
+                new double[]{5, 5, 3, 0, 4, 5, 3}, // Sample 0
+                new double[]{5, 5, 2, 0, 4, 5, 3}, // Nearest neighbours 1
+                new double[]{5, 5, 2, 0, 4, 5, 3}, // 2
+                new double[]{5, 5, 2, 0, 4, 5, 3}, // 3
+                new double[]{5, 5, 2, 0, 4, 5, 3}, // 4
+                new double[]{5, 5, 2, 0, 4, 5, 3}, // 5
+                new double[]{5, 5, 2, 0, 4, 5, 3}, // 6
+                new double[]{5, 5, 2, 0, 4, 5, 3}, // last near neighbour
+                new double[]{5, 4, 4, 0, 3, 5, 3}, // Far neighbours
+                new double[]{5, 4, 4, 0, 3, 5, 3}, // 9
+                new double[]{5, 4, 4, 0, 3, 5, 3}, // 10
+                new double[]{5, 4, 4, 0, 3, 5, 3}, // 11
+                new double[]{5, 4, 4, 0, 3, 5, 3}, // 12
+                new double[]{5, 4, 4, 0, 3, 5, 3}, // 13
+                new double[]{0, 5, 3, 0, 4, 5, 3}  // user to predict 14
+        };
+
+        double[] predictionVector = new double[]{4.416995886951314, 5.0, 3.0, 2.857142857142857, 4.0, 5.0, 3.0};
+
+        int elementToCheck = 14;
+        int neighboursAmount = 100;
+
+        Movielens dataset = TestUtils.fillDataset(usersMatrix);
+        MovielensElement prediction = TestUtils.fillDatasetEntry(predictionVector);
+
+        NearestNeighbour<MovielensElement> nearestNeighbour = new NearestNeighbour<>((Movielens)dataset.deepClone());
+        nearestNeighbour.initialiseSimilarityMatrix();
+
+        DatasetSparseVector<MovielensElement> adulteratedDataset = nearestNeighbour.makeForecasts(neighboursAmount);
+
+        TestUtils.printDataset(adulteratedDataset);
+
+        assertNotEquals(adulteratedDataset.getDatasetElement(elementToCheck),
+                dataset.getDatasetElement(elementToCheck)
+        );
+        assertEquals(prediction, adulteratedDataset.getDatasetElement(elementToCheck));
+
 
     }
 }

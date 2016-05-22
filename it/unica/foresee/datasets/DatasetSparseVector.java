@@ -247,7 +247,7 @@ public class DatasetSparseVector<T extends DatasetElement<?> & DeepClonable> ext
             {
                 sumOfMeans += element.getDoubleValue();
             }
-            return sumOfMeans / this.size();
+            return sumOfMeans / this.getVectorSize();
         }
     }
 

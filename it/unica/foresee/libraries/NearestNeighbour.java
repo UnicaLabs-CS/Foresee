@@ -4,7 +4,10 @@ import static it.unica.foresee.utils.Logger.debug;
 import static it.unica.foresee.utils.Logger.warn;
 
 import it.unica.foresee.datasets.DatasetSparseVector;
+import it.unica.foresee.datasets.Movielens;
+import it.unica.foresee.datasets.MovielensElement;
 import it.unica.foresee.datasets.interfaces.NumberElement;
+import it.unica.foresee.utils.Logger;
 import it.unica.foresee.utils.SparseMatrix;
 
 import org.apache.commons.math3.stat.correlation.PearsonsCorrelation;
@@ -15,15 +18,13 @@ import java.util.*;
 /**
  * This class is an implementation of the nearest neighbour algorithm for user similarity.
  */
-public class NearestNeighbour<T extends DatasetSparseVector<? extends NumberElement>>
+public class NearestNeighbour<T extends MovielensElement>
 {
 
     /**
      * The matrix of the users with the ratings.
-     *
-     * Elements can be retrieved as dataset[user, item].
      */
-    private DatasetSparseVector<T> dataset;
+    private Movielens dataset;
 
     /**
      * Matrix of the similarity between users.
@@ -34,7 +35,7 @@ public class NearestNeighbour<T extends DatasetSparseVector<? extends NumberElem
      * Initialise the object with a dataset.
      * @param dataset
      */
-    public NearestNeighbour(DatasetSparseVector<T> dataset)
+    public NearestNeighbour(Movielens dataset)
     {
         if(dataset.keySet().size() == 0)
         {
@@ -48,7 +49,7 @@ public class NearestNeighbour<T extends DatasetSparseVector<? extends NumberElem
      * for each user in the dataset.
      * @return the updated dataset
      */
-    public DatasetSparseVector<T> makeForecasts(int neighboursAmount)
+    public Movielens makeForecasts(int neighboursAmount)
     {
         int originalSize = this.dataset.size();
 
@@ -59,13 +60,22 @@ public class NearestNeighbour<T extends DatasetSparseVector<? extends NumberElem
 
         for (int userIndex : dataset.keySet())
         {
-            // Obtain the nearest neighbours to the current user
+            // The current user target of the forecasting
+            MovielensElement currentUser = dataset.get(userIndex);
+
+            // Obtain the nearest neighbours (ID, userSim) to the current user
             List<Pair<Integer, Double>> nearestNeighbours = getNearestNeighbours(userIndex, neighboursAmount);
 
-            // The current user
-            T currentUser = dataset.get(userIndex);
+            // Obtain the sum of the userSim of the neighbours
+            double denominator = 0;
+            Logger.debug("User similarities for user: " + userIndex);
+            for(Pair<Integer, Double> neighbour : nearestNeighbours)
+            {
+                Logger.debug(neighbour.getFirst() + ": " + neighbour.getSecond());
+                denominator += neighbour.getSecond();
+            }
 
-            // Check each item of the current user
+            // Search the items of the current user for a non rated item
             for (int itemIndex : currentUser.keySet())
             {
                 double rating = currentUser.getDatasetElement(itemIndex).getDoubleValue();
@@ -74,10 +84,10 @@ public class NearestNeighbour<T extends DatasetSparseVector<? extends NumberElem
                 if (rating == 0)
                 {
                     // Useful variables to understand what's going on
-                    double denominator = 0;
                     double userSimilarity = 0;
-                    double neighbourAverage;
-                    double neighbourRateOnItem;
+                    double neighbourAverage = 0;
+                    double neighbourRateOnItem = 0;
+                    double numerator = 0;
 
                     // Set the rating to the average of the ratings of the user
                     rating = dataset.getDatasetElement(userIndex).getDoubleValue();
@@ -90,24 +100,39 @@ public class NearestNeighbour<T extends DatasetSparseVector<? extends NumberElem
 
                     for (Pair<Integer, Double> neighbour : nearestNeighbours)
                     {
-                        userSimilarity = similarityMatrix.symmetricGet(userIndex, neighbour.getFirst());
+                        userSimilarity = neighbour.getSecond();
                         neighbourAverage = dataset.getDatasetElement(neighbour.getFirst()).getDoubleValue();
+                        Logger.debug("Neighbour average: user " + neighbour.getFirst() + " - " + neighbourAverage);
                         neighbourRateOnItem = dataset.getDatasetElement(neighbour.getFirst()).getDatasetElement(itemIndex).getDoubleValue();
+                        Logger.debug("Neighbour rate: user " + neighbour.getFirst() +
+                                " - item " + itemIndex +
+                                " - rating " + neighbourAverage);
 
-                        rating += userSimilarity * (neighbourRateOnItem - neighbourAverage);
-                        denominator += userSimilarity;
+                        // Skip unrated items
+                        if(neighbourRateOnItem == 0) continue;
+
+                        numerator += userSimilarity * (neighbourRateOnItem - neighbourAverage);
+                        Logger.debug("Numerator: " + numerator);
                     }
 
-                    rating /= denominator;
+                    // Skip impossible results
+                    if (denominator == 0) continue;
+
+                    rating += numerator/denominator;
+
+                    // Do not consider negative values
+                    if (rating < 0) continue;
 
                     // Assign the new value
                     dataset.getDatasetElement(userIndex).getDatasetElement(itemIndex).setElement(rating);
 
                     // Check that the value is in the bounds
-                    if (rating < 1 || rating > 5)
+                    if (rating > 5)
                     {
                         throw new IllegalStateException("The rating is out of bound: " + rating + "\n" +
                                 "user similarity: " + userSimilarity + "\n" +
+                                "neighbour rate: " + neighbourRateOnItem + "\n" +
+                                "neighbour average: " + neighbourAverage + "\n" +
                                 "denominator: " + denominator);
                     }
                 }
@@ -126,10 +151,10 @@ public class NearestNeighbour<T extends DatasetSparseVector<? extends NumberElem
     }
 
     /**
-     * Get the n nearest neighbours to the given user
+     * Get the n nearest neighbours to the given user (ID, userSim).
      * @param userIndex user index in the similarity matrix
      * @param neighboursAmount amount of neighbours to check
-     * @return a list of the n nearest neighbours
+     * @return a list of the n nearest neighbours (ID, userSim)
      */
     public List<Pair<Integer, Double>> getNearestNeighbours(int userIndex, int neighboursAmount)
     {
@@ -180,6 +205,11 @@ public class NearestNeighbour<T extends DatasetSparseVector<? extends NumberElem
                 if (userIndex == neighbourIndex)
                 {
                     similarityMatrix.symmetricPut(userIndex, neighbourIndex, 1.0);
+                }
+                else if(similarityMatrix.symmetricGet(userIndex, neighbourIndex) != null)
+                {
+                    // Skip computing the similarities already known
+                    continue;
                 }
                 // When user and neighbour are different compute the similarity
                 else if (userIndex != neighbourIndex)
@@ -237,7 +267,7 @@ public class NearestNeighbour<T extends DatasetSparseVector<? extends NumberElem
      * @return the Pearson similarity of the items rated by both
      * of the users
      */
-    public double userSimilarity(T user, T neighbour)
+    public double userSimilarity(MovielensElement user, MovielensElement neighbour)
     {
         double[][] subArrays = getSubArrays(user, neighbour);
         return userSimilarity(subArrays[0], subArrays[1]);
@@ -249,7 +279,7 @@ public class NearestNeighbour<T extends DatasetSparseVector<? extends NumberElem
      * @param neighbour a neighbour of the user
      * @return a matrix of user and neighbour common items
      */
-    private double[][] getSubArrays(T user, T neighbour)
+    private double[][] getSubArrays(MovielensElement user, MovielensElement neighbour)
     {
         ArrayList<Double> userList, neighbourList;
         userList = new ArrayList<>();
@@ -274,6 +304,14 @@ public class NearestNeighbour<T extends DatasetSparseVector<? extends NumberElem
                 userList.add(user.getDatasetElement(item).getDoubleValue());
                 neighbourList.add(neighbour.getDatasetElement(item).getDoubleValue());
             }
+        }
+
+        // Fail early
+        if (userList.size() < 2)
+        {
+            throw new IllegalArgumentException("The arrays are too short, min length is 2.\n" +
+                    "user:\t" + userList + "\n" +
+                    "neighbour:\t" + neighbourList);
         }
 
         double[] userArray = new double[userList.size()];

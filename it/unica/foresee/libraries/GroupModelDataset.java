@@ -1,5 +1,6 @@
 package it.unica.foresee.libraries;
 
+import it.unica.foresee.datasets.DatasetSparseVector;
 import it.unica.foresee.datasets.DoubleElement;
 import it.unica.foresee.datasets.Movielens;
 import it.unica.foresee.datasets.MovielensElement;
@@ -16,6 +17,13 @@ public class GroupModelDataset extends Movielens
     List<MovielensElement> modelsList = null;
     int highestNestedKey;
 
+    /**
+     * Creates a new GroupModel dataset.
+     *
+     * @param modelMap the map produced by the {@link GroupModel} class
+     * @param modelsList a list of movielens elements that model the users
+     * @param dataset the original movielens dataset
+     */
     public GroupModelDataset(Map<Integer, Integer> modelMap, List<MovielensElement> modelsList, Movielens dataset)
     {
         this.modelMap = modelMap;
@@ -28,6 +36,11 @@ public class GroupModelDataset extends Movielens
         this.setMoviesAmount(dataset.getMoviesAmount());
         this.setMoviesSet(dataset.getMoviesSet());
         this.highestNestedKey = dataset.getHighestNestedKey();
+
+        for (DatasetSparseVector el : this.modelsList)
+        {
+            el.setVectorSize(highestNestedKey);
+        }
     }
 
     @Override

@@ -38,6 +38,7 @@ public class TestUtils
     public static MovielensElement fillDatasetEntry(double[] usersVector)
     {
         MovielensElement user = new MovielensElement();
+        user.setVectorSize(usersVector.length);
         for(int j = 0; j < usersVector.length; j++)
         {
             user.put(j, usersVector[j]);
@@ -60,6 +61,7 @@ public class TestUtils
         {
             user = new MovielensElement();
             user.setId(i);
+            user.setVectorSize(usersMatrix[i].length);
 
             for(int j = 0; j < usersMatrix[i].length; j++)
             {
@@ -141,7 +143,7 @@ public class TestUtils
      * Print a movielens.
      * @param matrix
      */
-    public static void printSparseMatrix(Movielens matrix)
+    public static void printDataset(DatasetSparseVector<MovielensElement> matrix)
     {
         for(MovielensElement line : matrix.values())
         {

@@ -137,7 +137,6 @@ public class MovielensLoader extends FileDatasetLoader
         dataset.setUsersAmount(usersSet.size());
         dataset.setMoviesAmount(moviesSet.size());
 
-        dataset.setUsersSet(usersSet);
         dataset.setMoviesSet(moviesSet);
 
         if (dataset.getUsersAmount() > lineNumber)
