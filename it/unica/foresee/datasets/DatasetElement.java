@@ -7,8 +7,6 @@ import it.unica.foresee.datasets.interfaces.*;
  */
 public class DatasetElement<T> implements it.unica.foresee.datasets.interfaces.DatasetElement<T>
 {
-    private double doubleValue;
-
     private T element;
 
     private DoubleConvertible<T> converter = null;
@@ -27,18 +25,6 @@ public class DatasetElement<T> implements it.unica.foresee.datasets.interfaces.D
         this.converter = converter;
     }
 
-    /**
-     * Initialize the object with the element and the value for the mean
-     * @param el
-     * @param doubleValue
-     */
-    @Deprecated
-    public DatasetElement(T el, double doubleValue)
-    {
-        this.element = el;
-        this.doubleValue = doubleValue;
-    }
-
     /* Getter */
 
     /**
@@ -46,11 +32,7 @@ public class DatasetElement<T> implements it.unica.foresee.datasets.interfaces.D
      */
     public double getDoubleValue()
     {
-        if (converter != null)
-        {
-            return converter.getDoubleValue(element);
-        }
-        else return this.doubleValue;
+        return converter.getDoubleValue(element);
     }
 
     /**
@@ -71,11 +53,9 @@ public class DatasetElement<T> implements it.unica.foresee.datasets.interfaces.D
         this.element = element;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public void setDoubleValue(double doubleValue) {
-        this.doubleValue = doubleValue;
+    @Override
+    public void setDoubleValueConverter(DoubleConvertible<T> converter) {
+        this.converter = converter;
     }
 
     /**

@@ -2,6 +2,7 @@ package it.unica.foresee.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertArrayEquals;
 
 import it.unica.foresee.datasets.MovielensElement;
 import org.junit.Test;
@@ -33,4 +34,13 @@ public class MovielensElementTest
         assertEquals(original, clone);
         assertNotSame(original, clone);
     }
+
+    @Test
+    public void testGetPoint()
+    {
+        double[] array = {4.0, 5.0, 3.2, 1.2};
+        MovielensElement one = (MovielensElement) TestUtils.fillDatasetEntry(array);
+        assertArrayEquals(array, one.getPoint(), 0.0);
+    }
+
 }

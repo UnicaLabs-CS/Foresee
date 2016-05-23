@@ -23,7 +23,7 @@ public class IntegerElement extends DatasetElement<Integer> implements NumberEle
      */
     public IntegerElement(DatasetElement<Integer> d)
     {
-        super(d.getElement(), d.getDoubleValue());
+        super(d.getElement(), null);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class IntegerElement extends DatasetElement<Integer> implements NumberEle
      */
     public double getDoubleValue()
     {
-        return (double) this.getElement();
+        return this.getElement().doubleValue();
     }
 
     /**
@@ -41,6 +41,6 @@ public class IntegerElement extends DatasetElement<Integer> implements NumberEle
     @Override
     public String toString()
     {
-        return Integer.toString(this.getElement());
+        return this.getElement().toString();
     }
 }

@@ -2,6 +2,7 @@ package it.unica.foresee.datasets;
 
 import it.unica.foresee.datasets.interfaces.DatasetElement;
 import it.unica.foresee.datasets.interfaces.DeepClonable;
+import it.unica.foresee.datasets.interfaces.DoubleConvertible;
 import it.unica.foresee.datasets.interfaces.Identifiable;
 import org.apache.commons.math3.ml.clustering.Clusterable;
 
@@ -18,19 +19,9 @@ public class DatasetSparseVector<T extends DatasetElement<?> & DeepClonable> ext
     private int id;
 
     /**
-     * Mean of the elements means.
-     */
-    private double mean;
-
-    /**
-     * Max size of the vector
+     * Max size of the vector.
      */
     private int vectorSize;
-
-    /**
-     * Flag to check if the mean value is calculated or user selected.
-     */
-    private boolean meanValueSetByUser = false;
 
     /**
      * Empty constructor.
@@ -55,6 +46,14 @@ public class DatasetSparseVector<T extends DatasetElement<?> & DeepClonable> ext
     public T getDatasetElement(int key)
     {
         return this.get(key);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public double getDoubleValue() {
+        return getMean();
     }
 
     /**
@@ -182,22 +181,49 @@ public class DatasetSparseVector<T extends DatasetElement<?> & DeepClonable> ext
     }
 
     /**
+     * The mean is calculated as the mean of the elements values.
+     */
+    public double getMean()
+    {
+        // Sum all the elements values
+        double sumOfValues = 0;
+        for (T element : this.values())
+        {
+            sumOfValues += element.getDoubleValue();
+        }
+
+        // Sanity checks
+        if (this.getVectorSize() == 0 && sumOfValues != 0)
+        {
+            throw new IllegalStateException("Cannot determine the mean of a vector of size" +
+                    "equal to zero. Id: " + this.getId());
+        }
+        else if (sumOfValues == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            return sumOfValues / this.getVectorSize();
+        }
+    }
+
+    /**
      * {@inheritDoc}
-     *
-     * Warning: the indexes are moved back by one position
      */
     @Override
     public double[] getPoint()
     {
-        if (!this.isEmpty() && this.lastKey() > getVectorSize())
+        if (!this.isEmpty() && (this.lastKey() + 1) > getVectorSize())
         {
             throw new IllegalStateException("The vector size set is incorrect: " +
                     "vectorSize = " + getVectorSize() + " lastKey = " + lastKey());
         }
 
         // The size of the array is set to the highest key value, so that it can store all the items
-        double[] points = new double[getVectorSize() + 1];
+        double[] points = new double[getVectorSize()];
 
+        // Returns an empty array if no value is set
         if (this.isEmpty())
         {
             return points;
@@ -206,7 +232,7 @@ public class DatasetSparseVector<T extends DatasetElement<?> & DeepClonable> ext
         // Associate the indexes with the corresponding values
         for (int k : this.keySet())
         {
-            points[k - 1] = this.getDatasetElement(k).getDoubleValue();
+            points[k] = this.getDatasetElement(k).getDoubleValue();
         }
 
         return points;
@@ -225,30 +251,9 @@ public class DatasetSparseVector<T extends DatasetElement<?> & DeepClonable> ext
      *
      * @return true if the mean value has been set by the user
      */
+    @Deprecated
     public boolean isMeanValueSetByUser() {
-        return this.meanValueSetByUser;
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * The mean is calculated internally as the mean of the elements means. If a different value is set
-     * by the user, it will be used instead.
-     */
-    @Override
-    public double getDoubleValue()
-    {
-        if (this.meanValueSetByUser)
-            return this.mean;
-        else
-        {
-            double sumOfMeans = 0;
-            for (T element : this.values())
-            {
-                sumOfMeans += element.getDoubleValue();
-            }
-            return sumOfMeans / this.getVectorSize();
-        }
+        return false;
     }
 
     /* Setter */
@@ -268,21 +273,6 @@ public class DatasetSparseVector<T extends DatasetElement<?> & DeepClonable> ext
     public void setElement(DatasetSparseVector<T> e) {
         this.clear();
         this.putAll(e);
-        this.meanValueSetByUser = e.isMeanValueSetByUser();
-        if (this.meanValueSetByUser)
-        {
-            this.mean = e.getDoubleValue();
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * This value overrides the internally calculated mean.
-     */
-    public void setDoubleValue(double v) {
-        this.meanValueSetByUser = true;
-        this.mean = v;
     }
 
     @Override
@@ -292,21 +282,19 @@ public class DatasetSparseVector<T extends DatasetElement<?> & DeepClonable> ext
     }
 
     /**
+     * This method is implemented for API compatibility but does actually nothing
+     * because an automatic conversion is in place.
+     * @param converter
+     */
+    @Override
+    public void setDoubleValueConverter(DoubleConvertible<DatasetSparseVector<T>> converter) {}
+
+    /**
      * Set the vector size for array creation
      * @param vectorSize the size of the max vector
      */
     public void setVectorSize(int vectorSize) {
         this.vectorSize = vectorSize;
-    }
-
-    /**
-     * Unsets the mean set by the user. Successive calls of
-     * {@link #getDoubleValue()} will use the mean of the elements means.
-     */
-    public void unsetMeanValueSetByUser()
-    {
-        this.meanValueSetByUser = false;
-        this.mean = 0;
     }
 
     /**
@@ -329,7 +317,6 @@ public class DatasetSparseVector<T extends DatasetElement<?> & DeepClonable> ext
             clone.put(key, (T) this.get(key).deepClone());
         }
         clone.setId(this.getId());
-        clone.setDoubleValue(this.getDoubleValue());
         clone.setVectorSize(this.vectorSize);
         return clone;
     }

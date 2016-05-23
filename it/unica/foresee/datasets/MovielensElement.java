@@ -30,9 +30,8 @@ public class MovielensElement extends DatasetSparseVector<DoubleElement>
      */
     public MovielensElement(DatasetSparseVector<DoubleElement> dsv)
     {
-        super(dsv.getVectorSize());
+        this.setVectorSize(dsv.getVectorSize());
         this.setId(dsv.getId());
-        this.setDoubleValue(dsv.getDoubleValue());
         this.putAll(dsv);
     }
 
@@ -113,7 +112,6 @@ public class MovielensElement extends DatasetSparseVector<DoubleElement>
             clone.put(key, (DoubleElement) this.get(key).deepClone());
         }
         clone.setId(this.getId());
-        clone.setDoubleValue(this.getDoubleValue());
         clone.setVectorSize(this.getVectorSize());
         return clone;
     }

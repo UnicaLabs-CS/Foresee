@@ -30,7 +30,6 @@ public class GroupModelDataset extends Movielens
         this.modelsList = modelsList;
         this.setId(dataset.getId());
         this.setVectorSize(dataset.getVectorSize());
-        this.setDoubleValue(dataset.getDoubleValue());
         this.setMaxMovieID(this.getMaxUserID());
         this.setMaxUserID(this.getMaxUserID());
         this.setMoviesAmount(dataset.getMoviesAmount());

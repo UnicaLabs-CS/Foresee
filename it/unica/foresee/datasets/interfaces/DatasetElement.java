@@ -3,19 +3,19 @@ package it.unica.foresee.datasets.interfaces;
 /**
  * Represents an element from a dataset.
  */
-public interface DatasetElement<K>
+public interface DatasetElement<T>
 {
     /**
      * Set the dataset element
      * @param e the dataset element
      */
-    public void setElement(K e);
+    public void setElement(T e);
 
     /**
      * Get the dataset element
      * @return
      */
-    public K getElement();
+    public T getElement();
 
     /**
      * Get a real value of the element, to use for computing the mean.
@@ -28,8 +28,8 @@ public interface DatasetElement<K>
     public double getDoubleValue();
 
     /**
-     * Set the value of the element to be used computing the mean.
+     * Set the converter to an associated double value.
      */
-    public void setDoubleValue(double v);
+    public void setDoubleValueConverter(DoubleConvertible<T> converter);
 
 }

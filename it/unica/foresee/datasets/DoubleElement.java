@@ -23,7 +23,7 @@ public class DoubleElement extends DatasetElement<Double> implements NumberEleme
      */
     public DoubleElement(DatasetElement<Double> d)
     {
-        super(d.getElement(), (dc)->dc.doubleValue());
+        super(d.getElement(), null);
     }
 
     @Override
