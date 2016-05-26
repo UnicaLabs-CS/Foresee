@@ -41,7 +41,7 @@ public class PredictionsTest
     public void setUp()  throws Exception
     {
         mLoader = new MovielensLoader();
-        mFile = new File(BIG_DATASET);
+        mFile = new File(MEDIUM_DATASET);
         m = mLoader.loadDataset(mFile);
         numPart = 5;
         parts = m.getKFoldPartitions(numPart);
@@ -68,9 +68,9 @@ public class PredictionsTest
     public void testRMSE()
     {
         Movielens testSet = null;
-        Movielens trainingSet;
+        DatasetNestedSparseVector<MovielensElement> trainingSet;
 
-        NearestNeighbour<MovielensElement> predictioner;
+        NearestNeighbour<DatasetNestedSparseVector<MovielensElement>> predictioner;
 
         int numTests = 1;
 
@@ -80,7 +80,6 @@ public class PredictionsTest
             Logger.log("Validation #" + (i + 1));
             // reset the training set
             trainingSet = new Movielens();
-            trainingSet.setMaxMovieID(m.getHighestNestedKey());
 
             // Initialize training and test set
             for (int j = 0; j < numPart; j++)
@@ -88,7 +87,6 @@ public class PredictionsTest
                 if (i == j)
                 {
                     testSet = parts[i];
-                    testSet.setMaxMovieID(m.getHighestNestedKey());
                 }
                 else
                 {

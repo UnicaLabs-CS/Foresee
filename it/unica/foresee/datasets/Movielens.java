@@ -11,26 +11,6 @@ import java.util.*;
 public class Movielens extends DatasetNestedSparseVector<MovielensElement>
 {
     /**
-     * Amount of movie rates.
-     */
-    private int moviesAmount;
-
-    /**
-     * Amount of user rates.
-     */
-    private int usersAmount;
-
-    /**
-     * Highest user ID
-     */
-    private int maxUserID;
-
-    /**
-     * Highest movie ID
-     */
-    private int maxMovieID;
-
-    /**
      * Max rate.
      */
     public final int MAX_RATE = 5;
@@ -39,11 +19,6 @@ public class Movielens extends DatasetNestedSparseVector<MovielensElement>
      * Min rate.
      */
     public final int MIN_RATE = 1;
-
-    /**
-     * List of movies.
-     */
-    protected TreeSet<Integer> moviesSet;
 
     /* Getter */
 
@@ -72,11 +47,6 @@ public class Movielens extends DatasetNestedSparseVector<MovielensElement>
         if(rating == null){return null;}
 
         return rating.getElement();
-    }
-
-    @Override
-    public int getHighestNestedKey() {
-        return maxMovieID;
     }
 
     /**
@@ -111,7 +81,7 @@ public class Movielens extends DatasetNestedSparseVector<MovielensElement>
         /* --- Stratification by average of elements per each user. --- */
 
         /* Amplitude of the range of each layer. */
-        int layersAmount = this.usersAmount;
+        int layersAmount = this.size();
         double layerRange = (maxMeanValue - minMeanValue) / (layersAmount);
 
         /* Fill the k partitions: k folding */
@@ -158,27 +128,30 @@ public class Movielens extends DatasetNestedSparseVector<MovielensElement>
     }
 
     public int getMaxMovieID() {
-        return maxMovieID;
+        return this.getMoviesSet().last();
     }
 
     public int getMaxUserID() {
-        return maxUserID;
+        return this.lastKey();
     }
 
-    public int getMoviesAmount() {
-        return moviesAmount;
+    public int getMoviesAmount()
+    {
+        return this.getMoviesSet().size();
+    }
+
+    public SortedSet<Integer> getMoviesSet() {
+        return this.getInternalKeySet();
     }
 
     public int getUsersAmount() {
-        return usersAmount;
+        return this.size();
     }
 
-    public TreeSet<Integer> getMoviesSet() {
-        return moviesSet;
-    }
-
-    public Set<Integer> getUsersSet() {
-        return this.keySet();
+    public SortedSet<Integer> getUsersSet() {
+        TreeSet<Integer> usersSet = new TreeSet<>();
+        usersSet.addAll(this.keySet());
+        return usersSet;
     }
 
     /* Setter */
@@ -201,88 +174,13 @@ public class Movielens extends DatasetNestedSparseVector<MovielensElement>
 
         el.put(movieID, rating);
         this.put(userID, el);
-
-        if (movieID > this.getMaxMovieID())
-        {
-            this.setMaxMovieID(movieID);
-        }
     }
 
-    /**
-     * Insert an element, if it already exists, merge its elements.
-     *
-     * Special implementation to allow merging already present users.
-     *
-     * If you put an already present user, it's movies get merged.
-     *
-     * Note that if a movie is already present for a specific user, it will be overwritten.
-     * {@inheritDoc}
-     */
     @Override
-    public MovielensElement put(Integer integer, MovielensElement t)
-    {
-        if (t != null && this.containsKey(integer))
-        {
-            if (t.getVectorSize() > this.getMaxMovieID())
-            {
-                this.setMaxMovieID(t.getVectorSize());
-            }
-            this.get(integer).putAll(t);
-            return this.get(integer);
-        }
-        else
-        {
-            return super.put(integer, t);
-        }
+    public Movielens deepClone() {
+        Movielens clone = new Movielens();
+        clone.putAll(super.deepClone());
+        return clone;
     }
 
-    /**
-     * Insert all the given elements, if an element exists merges its elements.
-     *
-     * Special implementation to allow merging already present users instead of overwriting.
-     * {@link java.util.TreeMap#putAll(Map)}
-     */
-    public void putAll(Movielens m)
-    {
-        // For each key of m, add it in position key merging its values
-        for(Integer key : m.keySet())
-        {
-            this.put(key, m.get(key));
-        }
-        if (m.getMaxMovieID() > this.getMaxMovieID())
-        {
-            this.setMaxMovieID(m.getMaxUserID());
-        }
-    }
-
-    public void setMaxMovieID(int maxMovieID) {
-        this.maxMovieID = maxMovieID;
-    }
-
-    public void setMaxUserID(int maxUserID) {
-        this.maxUserID = maxUserID;
-    }
-
-    public void setMoviesAmount(int moviesAmount) {
-        this.moviesAmount = moviesAmount;
-    }
-
-    public void setMoviesSet(TreeSet<Integer> moviesSet) {
-        this.moviesSet = moviesSet;
-    }
-
-    public void setUsersAmount(int usersAmount) {
-        this.usersAmount = usersAmount;
-    }
-
-    /* Modifiers */
-    public void incrementMoviesAmount()
-    {
-        this.moviesAmount++;
-    }
-
-    public void incrementUsersAmount()
-    {
-        this.usersAmount++;
-    }
 }

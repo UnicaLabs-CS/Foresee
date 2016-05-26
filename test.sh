@@ -3,7 +3,7 @@
 # Test the given class - Much faster to type than the following!
 function run_test()
 {
-  java -cp .:test-libs/junit-4.jar:test-libs/hamcrest.jar:libs/commons-math3.jar org.junit.runner.JUnitCore it.unica.foresee.tests.$1Test
+  java -Xmx4096m -cp .:test-libs/junit-4.jar:test-libs/hamcrest.jar:libs/commons-math3.jar org.junit.runner.JUnitCore it.unica.foresee.tests.$1Test
 }
 
 # List the available tests
@@ -11,6 +11,7 @@ function list_test()
 {
   find it/unica/foresee/tests/ -name *Test.class -exec basename \{} Test.class \;
 }
+
 
 # Main
 if [ "$1" == "-l" ] || [ -z "$1" ]; then

@@ -41,7 +41,7 @@ public class TestUtils
         user.setVectorSize(usersVector.length);
         for(int j = 0; j < usersVector.length; j++)
         {
-            user.put(j, usersVector[j]);
+            user.put(j + 1, usersVector[j]);
         }
         return user;
     }
@@ -65,7 +65,7 @@ public class TestUtils
 
             for(int j = 0; j < usersMatrix[i].length; j++)
             {
-                user.put(j, usersMatrix[i][j]);
+                user.put(j + 1, usersMatrix[i][j]);
             }
 
             dataset.put(i, user);

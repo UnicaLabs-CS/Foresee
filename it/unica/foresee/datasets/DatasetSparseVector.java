@@ -11,7 +11,7 @@ import java.util.*;
 /**
  * An efficient data structure for sparse vectors.
  */
-public class DatasetSparseVector<T extends DatasetElement<?> & DeepClonable> extends TreeMap<Integer, T> implements it.unica.foresee.datasets.interfaces.DatasetVector<T>, it.unica.foresee.datasets.interfaces.DatasetElement<DatasetSparseVector<T>>, Clusterable, Identifiable, DeepClonable<DatasetSparseVector<T>>
+public class DatasetSparseVector<T extends DatasetElement<?> & DeepClonable> extends TreeMap<Integer, T> implements it.unica.foresee.datasets.interfaces.DatasetVector<T>, it.unica.foresee.datasets.interfaces.ClonableElement<DatasetSparseVector<T>>, Clusterable, Identifiable
 {
     /**
      * The id of the element.
@@ -214,7 +214,7 @@ public class DatasetSparseVector<T extends DatasetElement<?> & DeepClonable> ext
     @Override
     public double[] getPoint()
     {
-        if (!this.isEmpty() && (this.lastKey() + 1) > getVectorSize())
+        if (!this.isEmpty() && (getVectorSize() < this.lastKey()))
         {
             throw new IllegalStateException("The vector size set is incorrect: " +
                     "vectorSize = " + getVectorSize() + " lastKey = " + lastKey());
@@ -232,16 +232,16 @@ public class DatasetSparseVector<T extends DatasetElement<?> & DeepClonable> ext
         // Associate the indexes with the corresponding values
         for (int k : this.keySet())
         {
-            points[k] = this.getDatasetElement(k).getDoubleValue();
+            points[k-1] = this.getDatasetElement(k).getDoubleValue();
         }
 
         return points;
     }
 
     /**
-     * Get the vector size to create an array
-     * @return the vector size
+     * {@inheritDoc}
      */
+    @Override
     public int getVectorSize() {
         return vectorSize;
     }
@@ -256,7 +256,53 @@ public class DatasetSparseVector<T extends DatasetElement<?> & DeepClonable> ext
         return false;
     }
 
+    /**
+     * Checks if the element can be casted to the required type
+     * to be put in the element.
+     *
+     * @param o the object to check
+     * @return if the element can be safely put
+     */
+    public boolean isPuttable(Object o)
+    {
+        if (o instanceof DeepClonable && o instanceof DatasetElement)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     /* Setter */
+
+
+    /**
+     * Special put method with automatic cast of the value.
+     *
+     * {@link #put(Object, Object)}
+     */
+    public T put(Integer key, Object value)
+    {
+        Class<?> cls = null;
+
+        if (!isPuttable(value))
+        {
+            throw new IllegalStateException("The element " + value + " is not of the required type.");
+        }
+
+        try
+        {
+            cls = this.getClass().getMethod("get", Object.class).getReturnType();
+        }
+        catch (NoSuchMethodException e)
+        {
+            throw new IllegalStateException(e);
+        }
+
+        return super.put(key, (T) cls.cast(value));
+    }
 
     /**
      * {@inheritDoc}

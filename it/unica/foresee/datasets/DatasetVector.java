@@ -21,6 +21,12 @@ public class DatasetVector<T extends DatasetElement> extends ArrayList<T> implem
         super();
     }
 
+    @Override
+    public int getVectorSize()
+    {
+        return this.size();
+    }
+
     /**
      * {@inheritDoc}
      */

@@ -66,7 +66,7 @@ public class NearestNeighboursTest
 
         Movielens dataset1 = TestUtils.fillDataset(usersMatrix1);
 
-        NearestNeighbour<MovielensElement> nearestNeighbour = new NearestNeighbour<>(dataset1);
+        NearestNeighbour<Movielens> nearestNeighbour = new NearestNeighbour<>(dataset1);
         nearestNeighbour.initialiseSimilarityMatrix();
         SparseMatrix similarityMatrix = nearestNeighbour.getSimilarityMatrix();
         Logger.log("Similarity Matrix 1:");
@@ -91,7 +91,7 @@ public class NearestNeighboursTest
 
         Movielens dataset2 = TestUtils.fillDataset(usersMatrix2);
 
-        NearestNeighbour<MovielensElement> nearestNeighbour = new NearestNeighbour<>(dataset2);
+        NearestNeighbour<Movielens> nearestNeighbour = new NearestNeighbour<>(dataset2);
         nearestNeighbour.initialiseSimilarityMatrix();
         SparseMatrix similarityMatrix = nearestNeighbour.getSimilarityMatrix();
         Logger.log("Similarity Matrix 2:");
@@ -116,7 +116,7 @@ public class NearestNeighboursTest
 
         Movielens dataset = TestUtils.fillDataset(usersMatrix);
 
-        NearestNeighbour<MovielensElement> nearestNeighbour = new NearestNeighbour<>(dataset);
+        NearestNeighbour<Movielens> nearestNeighbour = new NearestNeighbour<>(dataset);
         nearestNeighbour.initialiseSimilarityMatrix();
         SparseMatrix similarityMatrix = nearestNeighbour.getSimilarityMatrix();
         Logger.log("Similarity Matrix 3:");
@@ -150,7 +150,7 @@ public class NearestNeighboursTest
 
         Movielens dataset = TestUtils.fillDataset(usersMatrix);
 
-        NearestNeighbour<MovielensElement> nearestNeighbour = new NearestNeighbour<>(dataset);
+        NearestNeighbour<Movielens> nearestNeighbour = new NearestNeighbour<>(dataset);
         nearestNeighbour.initialiseSimilarityMatrix();
 
         // Get the nearest neighbours to the element
@@ -171,32 +171,31 @@ public class NearestNeighboursTest
     public void makePredictionsTest()
     {
         double[][] usersMatrix = new double[][]{
-                new double[]{5, 5, 3, 0, 4, 5, 3}, // Sample 0
-                new double[]{5, 5, 2, 0, 4, 5, 3}, // Nearest neighbours 1
-                new double[]{5, 5, 2, 0, 4, 5, 3}, // 2
-                new double[]{5, 5, 2, 0, 4, 5, 3}, // 3
-                new double[]{5, 5, 2, 0, 4, 5, 3}, // 4
-                new double[]{5, 5, 2, 0, 4, 5, 3}, // 5
-                new double[]{5, 5, 2, 0, 4, 5, 3}, // 6
-                new double[]{5, 5, 2, 0, 4, 5, 3}, // last near neighbour
-                new double[]{5, 4, 4, 0, 3, 5, 3}, // Far neighbours
-                new double[]{5, 4, 4, 0, 3, 5, 3}, // 9
-                new double[]{5, 4, 4, 0, 3, 5, 3}, // 10
-                new double[]{5, 4, 4, 0, 3, 5, 3}, // 11
-                new double[]{5, 4, 4, 0, 3, 5, 3}, // 12
-                new double[]{5, 4, 4, 0, 3, 5, 3}, // 13
+                new double[]{5, 5, 3, 1, 4, 5, 3}, // Sample 0
+                new double[]{5, 5, 2, 1, 4, 5, 3}, // Nearest neighbours 1
+                new double[]{5, 5, 2, 1, 4, 5, 3}, // 2
+                new double[]{5, 5, 2, 1, 4, 5, 3}, // 3
+                new double[]{5, 5, 2, 1, 4, 5, 3}, // 4
+                new double[]{5, 5, 2, 1, 4, 5, 3}, // 5
+                new double[]{5, 5, 2, 1, 4, 5, 3}, // 6
+                new double[]{5, 5, 2, 1, 4, 5, 3}, // last near neighbour
+                new double[]{5, 4, 4, 1, 3, 5, 3}, // Far neighbours
+                new double[]{5, 4, 4, 1, 3, 5, 3}, // 9
+                new double[]{5, 4, 4, 1, 3, 5, 3}, // 10
+                new double[]{5, 4, 4, 1, 3, 5, 3}, // 11
+                new double[]{5, 4, 4, 1, 3, 5, 3}, // 12
+                new double[]{5, 4, 4, 1, 3, 5, 3}, // 13
                 new double[]{0, 5, 3, 0, 4, 5, 3}  // user to predict 14
         };
 
-        double[] predictionVector = new double[]{4.416995886951314, 5.0, 3.0, 2.857142857142857, 4.0, 5.0, 3.0};
+        double[] predictionVector = new double[]{4.27, 5.0, 3.0, 0.88, 4.0, 5.0, 3.0};
 
         int elementToCheck = 14;
         int neighboursAmount = 100;
 
         Movielens dataset = TestUtils.fillDataset(usersMatrix);
-        MovielensElement prediction = TestUtils.fillDatasetEntry(predictionVector);
 
-        NearestNeighbour<MovielensElement> nearestNeighbour = new NearestNeighbour<>((Movielens)dataset.deepClone());
+        NearestNeighbour<Movielens> nearestNeighbour = new NearestNeighbour<>(dataset.deepClone());
         nearestNeighbour.initialiseSimilarityMatrix();
 
         DatasetSparseVector<MovielensElement> adulteratedDataset = nearestNeighbour.makeForecasts(neighboursAmount);
@@ -206,8 +205,10 @@ public class NearestNeighboursTest
         assertNotEquals(adulteratedDataset.getDatasetElement(elementToCheck),
                 dataset.getDatasetElement(elementToCheck)
         );
-        assertEquals(prediction, adulteratedDataset.getDatasetElement(elementToCheck));
 
+        assertEquals(dataset.getDatasetElement(elementToCheck).getVectorSize(),
+                adulteratedDataset.getDatasetElement(elementToCheck).getVectorSize());
 
+        assertArrayEquals(predictionVector, adulteratedDataset.getDatasetElement(elementToCheck).getPoint(), 0.2);
     }
 }
