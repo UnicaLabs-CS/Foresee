@@ -195,8 +195,8 @@ public class DatasetSparseVector<T extends DatasetElement<?> & DeepClonable> ext
         // Sanity checks
         if (this.getVectorSize() == 0 && sumOfValues != 0)
         {
-            throw new IllegalStateException("Cannot determine the mean of a vector of size" +
-                    "equal to zero. Id: " + this.getId());
+            throw new IllegalStateException("Cannot determine the mean of a vector of size " +
+                    "equal to zero but not empty. Id: " + this.getId());
         }
         else if (sumOfValues == 0)
         {

@@ -60,6 +60,16 @@ public class NearestNeighbour<T extends DatasetNestedSparseVector<? extends Data
      */
     public T makeForecasts(int neighboursAmount)
     {
+        List<Pair<Integer, Double>> nearestNeighbours = null;
+        DatasetSparseVector<?> currentUser = null;
+        double denominator = 0;
+        double userSimilarity = 0;
+        double neighbourAverage = 0;
+        double neighbourRateOnItem = 0;
+        double numerator = 0;
+
+        int lastItem = dataset.getHighestNestedKey();
+
         int originalSize = this.dataset.size();
 
         if(similarityMatrix == null)
@@ -70,64 +80,83 @@ public class NearestNeighbour<T extends DatasetNestedSparseVector<? extends Data
         for (int userIndex : dataset.keySet())
         {
             // The current user target of the forecasting
-            DatasetSparseVector<?> currentUser = dataset.get(userIndex);
+            currentUser = dataset.get(userIndex);
+
+            if (currentUser == null)
+            {
+                throw new IllegalStateException("User " + userIndex + " is null.");
+            }
+
+            if (currentUser.isEmpty())
+            {
+                throw new IllegalStateException("User " + userIndex + " is empty");
+            }
 
             // Obtain the nearest neighbours (ID, userSim) to the current user
-            List<Pair<Integer, Double>> nearestNeighbours = getNearestNeighbours(userIndex, neighboursAmount);
+            nearestNeighbours = getNearestNeighbours(userIndex, neighboursAmount);
 
-            // Obtain the sum of the userSim of the neighbours
-            double denominator = 0;
-            Logger.debug("User similarities for user: " + userIndex);
-            for(Pair<Integer, Double> neighbour : nearestNeighbours)
+            // Pre-calculate useful data
+            Map<Integer, Double> neighboursMeans = new HashMap<>();
+            for (Pair<Integer, Double> neighSim : nearestNeighbours)
             {
-                Logger.debug(neighbour.getFirst() + ": " + neighbour.getSecond());
-                denominator += neighbour.getSecond();
+                // The denominator is the sum of the neighbours similarities
+                denominator += neighSim.getSecond();
+                // Pre-calculate the means of the neighbours
+                dataset.get(neighSim.getFirst()).setVectorSize(lastItem);
+                neighboursMeans.put(neighSim.getFirst(),
+                        dataset.get(neighSim.getFirst()).getMean());
             }
 
             // Search the items of the current user for a non rated item
-            for (int itemIndex : currentUser.keySet())
+            for (int itemIndex = 1; itemIndex <= lastItem; itemIndex++)
             {
-                double rating = currentUser.getDatasetElement(itemIndex).getDoubleValue();
+                // Create missing entries
+                if(currentUser.get(itemIndex) == null)
+                {
+                    currentUser.put(itemIndex, new DoubleElement(0.0));
+                }
 
                 // Make forecasts only on missing entries (equal to 0)
-                if (rating == 0)
+                if (currentUser.get(itemIndex).getDoubleValue() == 0.0)
                 {
-                    // Useful variables to understand what's going on
-                    double userSimilarity = 0;
-                    double neighbourAverage = 0;
-                    double neighbourRateOnItem = 0;
-                    double numerator = 0;
+
 
                     // Set the rating to the average of the ratings of the user
-                    rating = dataset.getDatasetElement(userIndex).getDoubleValue();
+                    currentUser.setVectorSize(lastItem);
 
                     // Check that the average is not null
-                    if (rating == 0.0)
+                    if (currentUser.getMean() == 0.0)
                     {
-                        throw new IllegalStateException("User " + userIndex + "has an average of 0");
+                        throw new IllegalStateException("User " + userIndex + " has an average of 0 \n" +
+                                currentUser);
                     }
 
-                    for (Pair<Integer, Double> neighbour : nearestNeighbours)
+                    // Useful variables to understand what's going on
+                    numerator = 0;
+                    for (Pair<Integer, Double> neighbourSimilarity : nearestNeighbours)
                     {
-                        userSimilarity = neighbour.getSecond();
-                        neighbourAverage = dataset.getDatasetElement(neighbour.getFirst()).getDoubleValue();
-                        Logger.debug("Neighbour average: user " + neighbour.getFirst() + " - " + neighbourAverage);
-                        neighbourRateOnItem = dataset.getDatasetElement(neighbour.getFirst()).getDatasetElement(itemIndex).getDoubleValue();
-                        Logger.debug("Neighbour rate: user " + neighbour.getFirst() +
-                                " - item " + itemIndex +
-                                " - rating " + neighbourAverage);
+                        DatasetSparseVector<? extends DoubleElement> neighbour = dataset.get(neighbourSimilarity.getFirst());
+                        // Skip unrated items
+                        if (neighbour.get(itemIndex) == null) continue;
+
+                        neighbourRateOnItem = neighbour.get(itemIndex).getDoubleValue();
 
                         // Skip unrated items
                         if(neighbourRateOnItem == 0) continue;
 
+                        userSimilarity = neighbourSimilarity.getSecond();
+
+                        neighbour.setVectorSize(lastItem);
+                        neighbourAverage = neighboursMeans.get(neighbourSimilarity.getFirst());
+
+                        // Formula for the numerator
                         numerator += userSimilarity * (neighbourRateOnItem - neighbourAverage);
-                        Logger.debug("Numerator: " + numerator);
                     }
 
                     // Skip impossible results
                     if (denominator == 0) continue;
 
-                    rating += numerator/denominator;
+                    double rating = currentUser.getMean() + (numerator/denominator);
 
                     // Check that the value is in the bounds
                     if (rating > getMaxValue())
@@ -143,9 +172,9 @@ public class NearestNeighbour<T extends DatasetNestedSparseVector<? extends Data
                     }
 
                     // Assign the new value
-                    dataset.getDatasetElement(userIndex).getDatasetElement(itemIndex).setElement(rating);
-
-
+                    dataset.get(userIndex).get(itemIndex).setElement(rating);
+                    Logger.log("User " + userIndex + " of " + dataset.size() +
+                    ": " + rating);
                 }
             }
         }
@@ -294,10 +323,6 @@ public class NearestNeighbour<T extends DatasetNestedSparseVector<? extends Data
      */
     private double[][] getSubArrays(DatasetSparseVector<?> user, DatasetSparseVector<?> neighbour)
     {
-        ArrayList<Double> userList, neighbourList;
-        userList = new ArrayList<>();
-        neighbourList = new ArrayList<>();
-
         // Check everything is working well
         if (user == null)
         {
@@ -309,32 +334,27 @@ public class NearestNeighbour<T extends DatasetNestedSparseVector<? extends Data
             throw new IllegalArgumentException("The neighbour pointer should not be null!");
         }
 
-        // Add the elements in common between user and neighbour
-        for(int item : user.keySet())
-        {
-            if(neighbour.containsKey(item))
-            {
-                userList.add(user.getDatasetElement(item).getDoubleValue());
-                neighbourList.add(neighbour.getDatasetElement(item).getDoubleValue());
-            }
-        }
+        // Retrieve the common elements between user and neighbour
+        Set<Integer> commonElementsSet = new HashSet<>();
+        commonElementsSet.addAll(user.keySet());
+        commonElementsSet.retainAll(neighbour.keySet());
 
         // Fail early
-        if (userList.size() < 2)
+        if (commonElementsSet.size() < 2)
         {
             throw new IllegalArgumentException("The arrays are too short, min length is 2.\n" +
-                    "user:\t" + userList + "\n" +
-                    "neighbour:\t" + neighbourList);
+                    "Common elements: " + commonElementsSet);
         }
 
-        double[] userArray = new double[userList.size()];
-        double[] neighbourArray = new double[userList.size()];
+        double[] userArray = new double[commonElementsSet.size()];
+        double[] neighbourArray = new double[commonElementsSet.size()];
 
-        // Obtain arrays from the ArrayLists
-        for (int i = 0; i < userArray.length; i++)
+        int i = 0;
+        for(int item : commonElementsSet)
         {
-            userArray[i] = userList.get(i);
-            neighbourArray[i] = neighbourList.get(i);
+            userArray[i] = user.get(item).getDoubleValue();
+            neighbourArray[i] = neighbour.getDatasetElement(item).getDoubleValue();
+            i++;
         }
 
         return new double[][] {userArray, neighbourArray};

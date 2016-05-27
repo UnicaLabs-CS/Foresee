@@ -36,7 +36,7 @@ public class GroupModel<T extends DatasetSparseVector<? extends DoubleElement>>
 
         // Set the size of the model to the value of the first element of the first cluster.
         // This operation assumes that every element has the same size.
-        int modelVectorSize = clusterList.get(1).get(0).getPoint().length;
+        int vectorSize = clusterList.get(0).get(0).getVectorSize();
 
         // Loop through the clusters to make the models
         for(int clusterID = 0; clusterID < clusterList.size(); clusterID++)
@@ -45,8 +45,8 @@ public class GroupModel<T extends DatasetSparseVector<? extends DoubleElement>>
             T model = null;
             try
             {
-                model = (T) clusterList.get(1).get(0).getClass().newInstance();
-                model.setVectorSize(modelVectorSize);
+                model = (T) clusterList.get(0).get(0).getClass().newInstance();
+                model.setVectorSize(vectorSize);
             }
             catch (Exception e)
             {
@@ -56,12 +56,12 @@ public class GroupModel<T extends DatasetSparseVector<? extends DoubleElement>>
             double[] modelPoint = new double[model.getVectorSize()];
             Logger.debug("Determined size of the model: " + model.getVectorSize());
 
-            List<T> cluster = clusterList.get(clusterID);
+            List<T> currentCluster = clusterList.get(clusterID);
 
             // Add the values of each user to the model
-            for (int userIndex = 0; userIndex < cluster.size(); userIndex++)
+            for (int userIndex = 0; userIndex < currentCluster.size(); userIndex++)
             {
-                int userID = cluster.get(userIndex).getId();
+                int userID = currentCluster.get(userIndex).getId();
 
                 // This check ensures that we avoid putting the centroid in the map
                 if (userID == 0)
@@ -72,35 +72,43 @@ public class GroupModel<T extends DatasetSparseVector<? extends DoubleElement>>
                 else
                 {
                     // Get the points of the cluster
-                    double[] point = cluster.get(userIndex).getPoint();
+                    T user = currentCluster.get(userIndex);
 
                     // Link the user to his or her model
                     userToModel.put(userID, clusterID);
 
                     // Check that every array has the same length
-                    if (modelPoint.length != point.length)
+                    if (modelPoint.length != user.size())
                     {
                         throw new IllegalStateException(
-                                "Every element of the dataset needs to have the same size."
+                                "Every element of the dataset needs to have the same size.\n" +
+                                        "List of user: " + user
                         );
                     }
 
                     // Add the element array to the model array
-                    for (int i = 0; i < point.length; i++)
+                    for (int key : user.keySet())
                     {
-                        modelPoint[i] += point[i];
+                        if (user.get(key).getDoubleValue() < 1) throw new IllegalStateException(
+                                "List of user: " + user + "\n" +
+                                        "Element " + userID + ", " + key +
+                                        " has value " + user.get(key).getDoubleValue()
+                                );
+                        modelPoint[key - 1] += user.get(key).getDoubleValue();
                     }
                 }
 
             }
 
             // Then average the values and add them to the model
-            for (int i = 0; i < modelPoint.length; i++)
+            // Warning: the values in the array are off by one to the left
+            // i.e. they start from 0 and not from 1
+            for (int i = 1; i < modelPoint.length + 1; i++)
             {
-                model.put(i, new DoubleElement(modelPoint[i]/model.getVectorSize()));
-                if(model.get(i).getDoubleValue() < 0 || model.get(i).getDoubleValue() > 5)
+                model.put(i, new DoubleElement(modelPoint[i - 1]/currentCluster.size()));
+                if(model.get(i).getDoubleValue() < 1 || model.get(i).getDoubleValue() > 5)
                 {
-                    throw new IllegalStateException("The rating is out of bound: " + model.get(i).getDoubleValue());
+                    Logger.warn("The rating is out of bound: " + model.get(i).getDoubleValue());
                 }
             }
 

@@ -2,7 +2,7 @@
 <area shape="rect" id="node1_0" href="./ForeseeTest.html" title="it.unica.foresee.tests.ForeseeTest" alt="" coords="16,17,111,42"/>
 <area shape="rect" id="node2_1" href="./ConverterTest.html" title="it.unica.foresee.tests.ConverterTest" alt="" coords="156,17,259,42"/>
 <area shape="rect" id="node3_2" href="./RMSETest.html" title="it.unica.foresee.tests.RMSETest" alt="" coords="305,17,385,42"/>
-<area shape="rect" id="node4_3" href="./PredictionsTest.html" title="it.unica.foresee.tests.PredictionsTest" alt="" coords="431,17,541,42"/>
+<area shape="rect" id="node4_3" href="./PredictionsTest.html" title="it.unica.foresee.tests.PredictionsSimulation" alt="" coords="431,17,541,42"/>
 <area shape="rect" id="node5_4" href="./MovielensTest.html" title="it.unica.foresee.tests.MovielensTest" alt="" coords="587,17,692,42"/>
 <area shape="rect" id="node6_5" href="./NearestNeighboursTest.html" title="it.unica.foresee.tests.NearestNeighboursTest" alt="" coords="738,17,898,42"/>
 </map>

@@ -141,6 +141,11 @@ public class ClusterableElement<T extends DatasetSparseVector<? extends DatasetE
         // Needed to retrieve the last element
         int pointDimensions = dataset.getHighestNestedKey();
 
+        if (pointDimensions == 0)
+        {
+            throw new IllegalStateException("The vector size cannot be equal to 0");
+        }
+
         // Transform the dataset in an ArrayList
         ArrayList<T> datasetArray = new ArrayList<>();
 
@@ -149,19 +154,31 @@ public class ClusterableElement<T extends DatasetSparseVector<? extends DatasetE
          * - set each element's vector size
          * - get each element's hashcode for the hashToElements
         */
+
+
+        Class<T> cls = (Class<T>) dataset.get(dataset.firstKey()).getClass();
         for (Integer key : dataset.keySet())
         {
             // This loop adds empty vectors in missing positions
             // and it's required to keep the indexes correct.
             while (datasetArray.size() <= key)
             {
-                datasetArray.add((T) new DatasetSparseVector<>(pointDimensions));
+                try
+                {
+                    T newElement = (T) cls.newInstance();
+                    newElement.setVectorSize(pointDimensions);
+                    datasetArray.add(newElement);
+                }
+                catch (Exception e)
+                {
+                    throw new IllegalStateException(e);
+                }
             }
 
             // Add the element to the array and to the hashmap
             T element = dataset.get(key);
             // Set the point dimension (array size) of the element
-            element.setVectorSize(pointDimensions);
+            //element.setVectorSize(pointDimensions);
 
             datasetArray.add(key, element);
         }

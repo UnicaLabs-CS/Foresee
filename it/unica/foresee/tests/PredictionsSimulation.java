@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -21,7 +22,7 @@ import static org.junit.Assert.assertTrue;
  * Note: this is a function test, not a unit test. Assert that
  * all the unit tests pass before running this.
  */
-public class PredictionsTest
+public class PredictionsSimulation
 {
 
     public final double DEVIATION = 0.3;
@@ -41,14 +42,14 @@ public class PredictionsTest
     public void setUp()  throws Exception
     {
         mLoader = new MovielensLoader();
-        mFile = new File(MEDIUM_DATASET);
+        mFile = new File(SMALL_DATASET);
         m = mLoader.loadDataset(mFile);
         numPart = 5;
         parts = m.getKFoldPartitions(numPart);
         neighboursAmount = 50;
         Logger.setVerbosity(Logger.VERB_DEBUG);
     }
-
+/*
     @Test
     public void loadDataset()
     {
@@ -63,10 +64,11 @@ public class PredictionsTest
             assertNotEquals(e, null);
         }
     }
-
+*/
     @Test
     public void testRMSE()
     {
+        //Logger.setVerbosity(Logger.VERB_NO_LOG);
         Movielens testSet = null;
         DatasetNestedSparseVector<MovielensElement> trainingSet;
 
@@ -123,9 +125,18 @@ public class PredictionsTest
             }
 
             assertNotEquals("The training set cannot be empty.", 0, trainingSet.keySet().size());
-
+            Logger.setVerbosity(Logger.VERB_DEBUG);
             Logger.log("Starting clustering..");
-            List<List<MovielensElement>> clusters = (new ClusterableElement<MovielensElement>()).cluster(trainingSet, 500);
+            List<List<MovielensElement>> clusters = (new ClusterableElement<MovielensElement>()).cluster(trainingSet, 25);
+
+            // Skip clustering
+            //List<List<MovielensElement>> clusters = new ArrayList<>();
+            //clusters.add(new ArrayList<>(trainingSet.values()));
+            int maxMovieID = m.getMaxMovieID();
+            for (MovielensElement me : trainingSet.values())
+            {
+                me.setVectorSize(maxMovieID);
+            }
             Logger.log("Clustering complete.");
 
             Logger.log("Starting modelling..");

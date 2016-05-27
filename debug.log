@@ -20285,10 +20285,10 @@ Warning: Movie2058 of User669 is present in test set but not in train
 E.
 Time: 10.458
 There was 1 failure:
-1) testRMSE(it.unica.foresee.tests.PredictionsTest)
+1) testRMSE(it.unica.foresee.tests.PredictionsSimulation)
 java.lang.IllegalStateException: The arrays should not be empty
 	at it.unica.foresee.libraries.RMSE.getComparableArrays(RMSE.java:141)
-	at it.unica.foresee.tests.PredictionsTest.testRMSE(PredictionsTest.java:138)
+	at it.unica.foresee.tests.PredictionsSimulation.testRMSE(PredictionsTest.java:138)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
