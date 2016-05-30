@@ -1,0 +1,7 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./GroupModel.html" title="it.unica.foresee.libraries.GroupModel" alt="" coords="16,17,491,42"/>
+<area shape="rect" id="node2_1" href="./NearestNeighbour.html" title="it.unica.foresee.libraries.NearestNeighbour" alt="" coords="536,17,1296,42"/>
+<area shape="rect" id="node3_2" href="./ClusterableElement.html" title="it.unica.foresee.libraries.ClusterableElement" alt="" coords="1341,17,1861,42"/>
+<area shape="rect" id="node4_3" href="./RMSE.html" title="it.unica.foresee.libraries.RMSE" alt="" coords="1907,17,1963,42"/>
+<area shape="rect" id="node5_4" href="./GroupModelDataset.html" title="it.unica.foresee.libraries.GroupModelDataset" alt="" coords="2009,17,2557,42"/>
+</map>

@@ -1,0 +1,14 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./DatasetElement.html" title="it.unica.foresee.datasets.interfaces.DatasetElement" alt="" coords="97,11,234,53"/>
+<area shape="rect" id="node6_1" href="./NumberElement.html" title="it.unica.foresee.datasets.interfaces.NumberElement" alt="" coords="16,112,256,155"/>
+<area shape="rect" id="node12_2" href="./ClonableElement.html" title="it.unica.foresee.datasets.interfaces.ClonableElement" alt="" coords="301,112,446,155"/>
+<area shape="rect" id="node2_3" href="./DeepClonable.html" title="it.unica.foresee.datasets.interfaces.DeepClonable" alt="" coords="307,11,439,53"/>
+<area shape="rect" id="node3_4" href="./DoubleConvertible.html" title="it.unica.foresee.datasets.interfaces.DoubleConvertible" alt="" coords="485,11,641,53"/>
+<area shape="rect" id="node4_5" href="./Dataset.html" title="it.unica.foresee.datasets.interfaces.Dataset" alt="" coords="687,11,927,53"/>
+<area shape="rect" id="node7_6" href="./DatasetVector.html" title="it.unica.foresee.datasets.interfaces.DatasetVector" alt="" coords="667,112,946,155"/>
+<area shape="rect" id="node5_7" href="./DatasetNestedSparseVector.html" title="it.unica.foresee.datasets.interfaces.DatasetNestedSparseVector" alt="" coords="595,213,1019,256"/>
+<area shape="rect" id="node8_8" href="./FileDatasetLoader.html" title="it.unica.foresee.datasets.interfaces.FileDatasetLoader" alt="" coords="991,112,1249,155"/>
+<area shape="rect" id="node9_9" href="./SolutionElement.html" title="it.unica.foresee.datasets.interfaces.SolutionElement" alt="" coords="1284,11,1423,53"/>
+<area shape="rect" id="node10_10" href="./Identifiable.html" title="it.unica.foresee.datasets.interfaces.Identifiable" alt="" coords="1469,11,1555,53"/>
+<area shape="rect" id="node11_11" href="./DatasetLoader.html" title="it.unica.foresee.datasets.interfaces.DatasetLoader" alt="" coords="1002,11,1238,53"/>
+</map>
