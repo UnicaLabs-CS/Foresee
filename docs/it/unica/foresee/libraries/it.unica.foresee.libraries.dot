@@ -9,28 +9,34 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// it.unica.foresee.libraries.GroupModel<P extends Clusterable & it.unica.foresee.datasets.interfaces.Identifiable>
-	c434 [label=<<table title="it.unica.foresee.libraries.GroupModel" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./GroupModel.html">
+	// it.unica.foresee.libraries.GroupModel<T extends it.unica.foresee.datasets.DatasetSparseVector<? extends it.unica.foresee.datasets.DoubleElement>>
+	c509 [label=<<table title="it.unica.foresee.libraries.GroupModel" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./GroupModel.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> GroupModel&lt;P extends Clusterable &amp; Identifiable&gt; </td></tr>
+<tr><td align="center" balign="center"> GroupModel&lt;T extends DatasetSparseVector&lt;? extends DoubleElement&gt;&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// it.unica.foresee.libraries.NearestNeighbour<T extends it.unica.foresee.datasets.DatasetSparseVector<? extends it.unica.foresee.datasets.interfaces.NumberElement>>
-	c435 [label=<<table title="it.unica.foresee.libraries.NearestNeighbour" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./NearestNeighbour.html">
+	// it.unica.foresee.libraries.NearestNeighbour<T extends it.unica.foresee.datasets.DatasetNestedSparseVector<? extends it.unica.foresee.datasets.DatasetSparseVector<? extends it.unica.foresee.datasets.DoubleElement>>>
+	c510 [label=<<table title="it.unica.foresee.libraries.NearestNeighbour" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./NearestNeighbour.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> NearestNeighbour&lt;T extends DatasetSparseVector&lt;? extends NumberElement&gt;&gt; </td></tr>
+<tr><td align="center" balign="center"> NearestNeighbour&lt;T extends DatasetNestedSparseVector&lt;? extends DatasetSparseVector&lt;? extends DoubleElement&gt;&gt;&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.libraries.ClusterableElement<T extends it.unica.foresee.datasets.DatasetSparseVector<? extends it.unica.foresee.datasets.interfaces.DatasetElement>>
-	c436 [label=<<table title="it.unica.foresee.libraries.ClusterableElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ClusterableElement.html">
+	c511 [label=<<table title="it.unica.foresee.libraries.ClusterableElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ClusterableElement.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ClusterableElement&lt;T extends DatasetSparseVector&lt;? extends DatasetElement&gt;&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.libraries.RMSE
-	c437 [label=<<table title="it.unica.foresee.libraries.RMSE" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./RMSE.html">
+	c512 [label=<<table title="it.unica.foresee.libraries.RMSE" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./RMSE.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> RMSE </td></tr>
+		</table></td></tr>
+		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// it.unica.foresee.libraries.GroupModelDataset<T extends it.unica.foresee.datasets.DatasetSparseVector<? extends it.unica.foresee.datasets.interfaces.DatasetElement<?>>>
+	c513 [label=<<table title="it.unica.foresee.libraries.GroupModelDataset" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./GroupModelDataset.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> GroupModelDataset&lt;T extends DatasetSparseVector&lt;? extends DatasetElement&lt;?&gt;&gt;&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }

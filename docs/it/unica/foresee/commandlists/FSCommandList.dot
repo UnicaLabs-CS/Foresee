@@ -10,32 +10,32 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// it.unica.foresee.commandlists.FSCommandList
-	c1993 [label=<<table title="it.unica.foresee.commandlists.FSCommandList" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./FSCommandList.html">
+	c2525 [label=<<table title="it.unica.foresee.commandlists.FSCommandList" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./FSCommandList.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> FSCommandList </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.commandlists.ARTCommandList
-	c1994 [label=<<table title="it.unica.foresee.commandlists.ARTCommandList" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ARTCommandList.html">
+	c2526 [label=<<table title="it.unica.foresee.commandlists.ARTCommandList" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ARTCommandList.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ARTCommandList </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.commandlists.interfaces.CommandList
-	c1996 [label=<<table title="it.unica.foresee.commandlists.interfaces.CommandList" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./interfaces/CommandList.html">
+	c2528 [label=<<table title="it.unica.foresee.commandlists.interfaces.CommandList" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./interfaces/CommandList.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> CommandList </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//it.unica.foresee.commandlists.FSCommandList extends java.util.TreeMap<java.lang.String, it.unica.foresee.commandlists.interfaces.Semantic>
-	c2017:p -> c1993:p [dir=back,arrowtail=empty];
+	c2555:p -> c2525:p [dir=back,arrowtail=empty];
 	//it.unica.foresee.commandlists.FSCommandList implements it.unica.foresee.commandlists.interfaces.CommandList
-	c1996:p -> c1993:p [dir=back,arrowtail=empty,style=dashed];
+	c2528:p -> c2525:p [dir=back,arrowtail=empty,style=dashed];
 	//it.unica.foresee.commandlists.ARTCommandList extends it.unica.foresee.commandlists.FSCommandList
-	c1993:p -> c1994:p [dir=back,arrowtail=empty];
+	c2525:p -> c2526:p [dir=back,arrowtail=empty];
 	// java.util.TreeMap<K, V>
-	c2017 [label=<<table title="java.util.TreeMap" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/TreeMap.html">
+	c2555 [label=<<table title="java.util.TreeMap" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/TreeMap.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> TreeMap&lt;K, V&gt; </td></tr>
 		</table></td></tr>

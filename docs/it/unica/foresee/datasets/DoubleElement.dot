@@ -10,36 +10,36 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// it.unica.foresee.datasets.interfaces.DeepClonable<T>
-	c1922 [label=<<table title="it.unica.foresee.datasets.interfaces.DeepClonable" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./interfaces/DeepClonable.html">
+	c2443 [label=<<table title="it.unica.foresee.datasets.interfaces.DeepClonable" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./interfaces/DeepClonable.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> DeepClonable&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.interfaces.NumberElement<T extends java.lang.Number>
-	c1925 [label=<<table title="it.unica.foresee.datasets.interfaces.NumberElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./interfaces/NumberElement.html">
+	c2447 [label=<<table title="it.unica.foresee.datasets.interfaces.NumberElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./interfaces/NumberElement.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> NumberElement&lt;T extends Number&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.DatasetElement<T>
-	c1931 [label=<<table title="it.unica.foresee.datasets.DatasetElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatasetElement.html">
+	c2454 [label=<<table title="it.unica.foresee.datasets.DatasetElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatasetElement.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DatasetElement&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.DoubleElement
-	c1942 [label=<<table title="it.unica.foresee.datasets.DoubleElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./DoubleElement.html">
+	c2465 [label=<<table title="it.unica.foresee.datasets.DoubleElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./DoubleElement.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DoubleElement </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//it.unica.foresee.datasets.DoubleElement extends it.unica.foresee.datasets.DatasetElement<java.lang.Double>
-	c1931:p -> c1942:p [dir=back,arrowtail=empty];
+	c2454:p -> c2465:p [dir=back,arrowtail=empty];
 	//it.unica.foresee.datasets.DoubleElement implements it.unica.foresee.datasets.interfaces.NumberElement<T extends java.lang.Number>
-	c1925:p -> c1942:p [dir=back,arrowtail=empty,style=dashed];
+	c2447:p -> c2465:p [dir=back,arrowtail=empty,style=dashed];
 	//it.unica.foresee.datasets.DoubleElement implements it.unica.foresee.datasets.interfaces.DeepClonable<T>
-	c1922:p -> c1942:p [dir=back,arrowtail=empty,style=dashed];
+	c2443:p -> c2465:p [dir=back,arrowtail=empty,style=dashed];
 }
 

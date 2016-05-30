@@ -42,7 +42,7 @@ public class PredictionsSimulation
     public void setUp()  throws Exception
     {
         mLoader = new MovielensLoader();
-        mFile = new File(SMALL_DATASET);
+        mFile = new File(BIG_DATASET);
         m = mLoader.loadDataset(mFile);
         numPart = 5;
         parts = m.getKFoldPartitions(numPart);
