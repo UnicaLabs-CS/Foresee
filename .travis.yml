@@ -4,7 +4,6 @@ jdk:
   - oraclejdk8
 
 before_script: 
-  - jdk_switcher use oraclejdk8
   - configure.sh
   - make all
 
