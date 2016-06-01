@@ -111,16 +111,11 @@ public class NearestNeighbour<T extends DatasetNestedSparseVector<? extends Data
             for (int itemIndex = 1; itemIndex <= lastItem; itemIndex++)
             {
                 // Create missing entries
-                if(currentUser.get(itemIndex) == null)
-                {
-                    currentUser.put(itemIndex, new DoubleElement(0.0));
-                }
+                if(currentUser.get(itemIndex) == null) currentUser.put(itemIndex, new DoubleElement(0.0));
 
                 // Make forecasts only on missing entries (equal to 0)
                 if (currentUser.get(itemIndex).getDoubleValue() == 0.0)
                 {
-
-
                     // Set the rating to the average of the ratings of the user
                     currentUser.setVectorSize(lastItem);
 
