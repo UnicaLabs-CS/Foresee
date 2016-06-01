@@ -8,9 +8,9 @@ before_install:
   - sudo apt-get install openjdk-8-jdk -y
 
 before_script: 
-  - ./configure.sh
+  - configure.sh
   - make all
 
-script: ./test.sh all
+script: test.sh all
 
 
