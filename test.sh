@@ -3,7 +3,7 @@
 # Test the given class - Much faster to type than the following!
 function run_test()
 {
-  java -Xmx4096m -cp .:test-libs/junit-4.jar:test-libs/hamcrest.jar:libs/commons-math3.jar org.junit.runner.JUnitCore it.unica.foresee.tests.$1$2
+  java -Xmx10g -cp .:test-libs/junit-4.jar:test-libs/hamcrest.jar:libs/commons-math3.jar org.junit.runner.JUnitCore it.unica.foresee.tests.$1$2
 }
 
 # List the available tests

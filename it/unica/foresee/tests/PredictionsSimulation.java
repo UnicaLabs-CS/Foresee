@@ -41,10 +41,12 @@ public class PredictionsSimulation
     @Before
     public void setUp()  throws Exception
     {
+        Logger.log("Loadind dataset...");
         mLoader = new MovielensLoader();
         mFile = new File(BIG_DATASET);
         m = mLoader.loadDataset(mFile);
         numPart = 5;
+        Logger.log("Partitioning...");
         parts = m.getKFoldPartitions(numPart);
         neighboursAmount = 50;
         Logger.setVerbosity(Logger.VERB_DEBUG);
