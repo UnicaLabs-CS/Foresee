@@ -185,10 +185,10 @@ public class NearestNeighboursTest
                 new double[]{5, 4, 4, 1, 3, 5, 3}, // 11
                 new double[]{5, 4, 4, 1, 3, 5, 3}, // 12
                 new double[]{5, 4, 4, 1, 3, 5, 3}, // 13
-                new double[]{0, 5, 3, 0, 4, 5, 3}  // user to predict 14
+                new double[]{5, 5, 3, 0, 4, 5, 3}  // user to predict 14
         };
 
-        double[] predictionVector = new double[]{4.27, 5.0, 3.0, 0.88, 4.0, 5.0, 3.0};
+        double[] predictionVector = new double[]{5, 5.0, 3.0, 0.88, 4.0, 5.0, 3.0};
 
         int elementToCheck = 14;
         int neighboursAmount = 100;

@@ -46,7 +46,7 @@ elif [ "$1" == "-r" ]; then
 elif [ "$1" == "all" ] || [ "$1" == "-a" ]; then
 	for test in `list_test`; do
 		run_test $test "Test";
-		if [ $? -ne 0 ]; then break; fi; 
+		if [ $? -ne 0 ]; then exit $?; fi; 
 	done;
 else
 run_test $1 "Test"
