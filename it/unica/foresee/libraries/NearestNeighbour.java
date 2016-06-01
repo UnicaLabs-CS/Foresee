@@ -81,6 +81,7 @@ public class NearestNeighbour<T extends DatasetNestedSparseVector<? extends Data
         {
             // The current user target of the forecasting
             currentUser = dataset.get(userIndex);
+            denominator = 0;
 
             if (currentUser == null)
             {
@@ -95,21 +96,30 @@ public class NearestNeighbour<T extends DatasetNestedSparseVector<? extends Data
             // Obtain the nearest neighbours (ID, userSim) to the current user
             nearestNeighbours = getNearestNeighbours(userIndex, neighboursAmount);
 
-            // Pre-calculate useful data
-            Map<Integer, Double> neighboursMeans = new HashMap<>();
-            for (Pair<Integer, Double> neighSim : nearestNeighbours)
-            {
-                // The denominator is the sum of the neighbours similarities
-                denominator += neighSim.getSecond();
-                // Pre-calculate the means of the neighbours
-                dataset.get(neighSim.getFirst()).setVectorSize(lastItem);
-                neighboursMeans.put(neighSim.getFirst(),
-                        dataset.get(neighSim.getFirst()).getMean());
-            }
+            debug("NearestNeighbours amount: " + nearestNeighbours.size());
+
+            // Initialise to null for each user
+            Map<Integer, Double> neighboursMeans = null;
 
             // Search the items of the current user for a non rated item
             for (int itemIndex = 1; itemIndex <= lastItem; itemIndex++)
             {
+                // Make this computation only once per user and only if required
+                if (neighboursMeans == null)
+                {
+                    neighboursMeans = new HashMap<>();
+                    for (Pair<Integer, Double> neighSim : nearestNeighbours)
+                    {
+                        // The denominator is the sum of the neighbours similarities
+                        denominator += neighSim.getSecond();
+                        debug("denominator inremented by: " + neighSim.getSecond() + " = " + denominator);
+                        // Pre-calculate the means of the neighbours
+                        dataset.get(neighSim.getFirst()).setVectorSize(lastItem);
+                        neighboursMeans.put(neighSim.getFirst(),
+                                dataset.get(neighSim.getFirst()).getMean());
+                    }
+                }
+
                 // Create missing entries
                 if(currentUser.get(itemIndex) == null) currentUser.put(itemIndex, new DoubleElement(0.0));
 
@@ -146,7 +156,17 @@ public class NearestNeighbour<T extends DatasetNestedSparseVector<? extends Data
 
                         // Formula for the numerator
                         numerator += userSimilarity * (neighbourRateOnItem - neighbourAverage);
+
+                        debug("\t\t\t" + userSimilarity + " * (" + neighbourRateOnItem + " -  " + neighbourAverage + ")");
+                        debug(currentUser.getMean() + " +  -----------------------------------");
+                        debug("\t\t\t" + userSimilarity + "\n");
+
+                        debug("r_ni – mean r_n * uSim - " + neighbourSimilarity.getFirst() + ": " +
+                                userSimilarity * (neighbourRateOnItem - neighbourAverage));
                     }
+
+                    debug("numerator: " + numerator);
+                    debug("denominator: " + denominator);
 
                     // Skip impossible results
                     if (denominator == 0) continue;

@@ -30,7 +30,7 @@ public class GroupModelTest
     @Test
     public void testAverageStrategy()
     {
-        double[] testVector = new double[]{0, 1, 2, 3, 4};
+        double[] testVector = new double[]{1, 2, 3, 4, 5};
         int listWidth = 10;
 
         List<List<DatasetSparseVector<DoubleElement>>> clustersList = new ArrayList<>();
