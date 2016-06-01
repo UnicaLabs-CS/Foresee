@@ -7,6 +7,6 @@ before_script:
   - bash configure.sh
   - make all
 
-script: test.sh all
+script: bash test.sh all
 
 
