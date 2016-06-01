@@ -2,16 +2,11 @@ sudo: required
 
 language: java
 
-before_install:
-  - sudo add-apt-repository ppa:openjdk-r/ppa -y
-  - sudo apt-get update
-  - sudo apt-get install openjdk-8-jdk -y
-
 jdk:
   - openjdk8
 
 before_script: 
-  - jdk_switcher use openjdk8
+  - jdk_switcher use oraclejdk8
   - configure.sh
   - make all
 
