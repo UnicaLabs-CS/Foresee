@@ -1,28 +1,41 @@
 package it.unica.foresee.datasets;
 
 import it.unica.foresee.datasets.interfaces.DatasetElement;
+import it.unica.foresee.datasets.interfaces.DeepClonable;
+import it.unica.foresee.datasets.interfaces.DoubleConvertible;
+import it.unica.foresee.datasets.interfaces.Identifiable;
 import org.apache.commons.math3.ml.clustering.Clusterable;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.TreeMap;
-import java.util.Random;
+import java.util.*;
 
 /**
  * An efficient data structure for sparse vectors.
  */
-public class DatasetSparseVector<T extends DatasetElement> extends TreeMap<Integer, T> implements it.unica.foresee.datasets.interfaces.DatasetVector<T>, it.unica.foresee.datasets.interfaces.DatasetElement<DatasetSparseVector<T>>, Clusterable
+public class DatasetSparseVector<T extends DatasetElement<?> & DeepClonable> extends TreeMap<Integer, T> implements it.unica.foresee.datasets.interfaces.DatasetVector<T>, it.unica.foresee.datasets.interfaces.ClonableElement<DatasetSparseVector<T>>, Clusterable, Identifiable
 {
     /**
-     * Mean of the elements means.
+     * The id of the element.
      */
-    private double mean;
+    private int id;
 
     /**
-     * Flag to check if the mean value is calculated or user selected.
+     * Max size of the vector.
      */
-    private boolean meanValueSetByUser = false;
+    private int vectorSize;
 
+    /**
+     * Empty constructor.
+     */
+    public DatasetSparseVector(){}
+
+    /**
+     * Vector size.
+     * @param vectorSize size of the element vector
+     */
+    public DatasetSparseVector(int vectorSize)
+    {
+        this.setVectorSize(vectorSize);
+    }
 
     /* Getter */
 
@@ -39,8 +52,22 @@ public class DatasetSparseVector<T extends DatasetElement> extends TreeMap<Integ
      * {@inheritDoc}
      */
     @Override
+    public double getDoubleValue() {
+        return getMean();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public DatasetSparseVector getElement() {
         return this;
+    }
+
+    @Override
+    public int getId()
+    {
+        return this.id;
     }
 
     /**
@@ -50,22 +77,22 @@ public class DatasetSparseVector<T extends DatasetElement> extends TreeMap<Integ
     public DatasetSparseVector[] getKFoldPartitions(int k, int layersAmount)
     {
         /* Initialize the max and min with a reasonable value */
-        double maxMeanValue = this.get(this.firstKey()).getValueForMean();
-        double minMeanValue = this.get(this.firstKey()).getValueForMean();
+        double maxMeanValue = this.get(this.firstKey()).getDoubleValue();
+        double minMeanValue = this.get(this.firstKey()).getDoubleValue();
 
         /* Fill the array with the number of occurrences. */
         for (T item : this.values())
         {
             /* Keep the max mean value for each element */
-            if (item.getValueForMean() > maxMeanValue)
+            if (item.getDoubleValue() > maxMeanValue)
             {
-                maxMeanValue = item.getValueForMean();
+                maxMeanValue = item.getDoubleValue();
             }
 
             /* Keep the min mean value for each element */
-            if (item.getValueForMean() < minMeanValue)
+            if (item.getDoubleValue() < minMeanValue)
             {
-                minMeanValue = item.getValueForMean();
+                minMeanValue = item.getDoubleValue();
             }
         }
 
@@ -105,7 +132,7 @@ public class DatasetSparseVector<T extends DatasetElement> extends TreeMap<Integ
                     layer.add(key);
                     break; //Do not continue to check for a layer after it has been found
                 }
-                else if (this.get(key).getValueForMean() < highRange)
+                else if (this.get(key).getDoubleValue() < highRange)
                 {
                     layer.add(key);
                     break; //Do not continue to check for a layer after it has been found
@@ -154,11 +181,69 @@ public class DatasetSparseVector<T extends DatasetElement> extends TreeMap<Integ
     }
 
     /**
+     * The mean is calculated as the mean of the elements values.
+     */
+    public double getMean()
+    {
+        // Sum all the elements values
+        double sumOfValues = 0;
+        for (T element : this.values())
+        {
+            sumOfValues += element.getDoubleValue();
+        }
+
+        // Sanity checks
+        if (this.getVectorSize() == 0 && sumOfValues != 0)
+        {
+            throw new IllegalStateException("Cannot determine the mean of a vector of size " +
+                    "equal to zero but not empty. Id: " + this.getId());
+        }
+        else if (sumOfValues == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            return sumOfValues / this.getVectorSize();
+        }
+    }
+
+    /**
      * {@inheritDoc}
      */
+    @Override
     public double[] getPoint()
     {
-        return null;
+        if (!this.isEmpty() && (getVectorSize() < this.lastKey()))
+        {
+            throw new IllegalStateException("The vector size set is incorrect: " +
+                    "vectorSize = " + getVectorSize() + " lastKey = " + lastKey());
+        }
+
+        // The size of the array is set to the highest key value, so that it can store all the items
+        double[] points = new double[getVectorSize()];
+
+        // Returns an empty array if no value is set
+        if (this.isEmpty())
+        {
+            return points;
+        }
+
+        // Associate the indexes with the corresponding values
+        for (int k : this.keySet())
+        {
+            points[k-1] = this.getDatasetElement(k).getDoubleValue();
+        }
+
+        return points;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getVectorSize() {
+        return vectorSize;
     }
 
     /**
@@ -166,33 +251,58 @@ public class DatasetSparseVector<T extends DatasetElement> extends TreeMap<Integ
      *
      * @return true if the mean value has been set by the user
      */
+    @Deprecated
     public boolean isMeanValueSetByUser() {
-        return this.meanValueSetByUser;
+        return false;
     }
 
     /**
-     * {@inheritDoc}
+     * Checks if the element can be casted to the required type
+     * to be put in the element.
      *
-     * The mean is calculated internally as the mean of the elements means. If a different value is set
-     * by the user, it will be used instead.
+     * @param o the object to check
+     * @return if the element can be safely put
      */
-    @Override
-    public double getValueForMean()
+    public boolean isPuttable(Object o)
     {
-        if (this.meanValueSetByUser)
-            return this.mean;
+        if (o instanceof DeepClonable && o instanceof DatasetElement)
+        {
+            return true;
+        }
         else
         {
-            double sumOfMeans = 0;
-            for (T element : this.values())
-            {
-                sumOfMeans += element.getValueForMean();
-            }
-            return sumOfMeans / this.size();
+            return false;
         }
     }
 
     /* Setter */
+
+
+    /**
+     * Special put method with automatic cast of the value.
+     *
+     * {@link #put(Object, Object)}
+     */
+    public T put(Integer key, Object value)
+    {
+        Class<?> cls = null;
+
+        if (!isPuttable(value))
+        {
+            throw new IllegalStateException("The element " + value + " is not of the required type.");
+        }
+
+        try
+        {
+            cls = this.getClass().getMethod("get", Object.class).getReturnType();
+        }
+        catch (NoSuchMethodException e)
+        {
+            throw new IllegalStateException(e);
+        }
+
+        return super.put(key, (T) cls.cast(value));
+    }
 
     /**
      * {@inheritDoc}
@@ -209,32 +319,28 @@ public class DatasetSparseVector<T extends DatasetElement> extends TreeMap<Integ
     public void setElement(DatasetSparseVector<T> e) {
         this.clear();
         this.putAll(e);
-        this.meanValueSetByUser = e.isMeanValueSetByUser();
-        if (this.meanValueSetByUser)
-        {
-            this.mean = e.getValueForMean();
-        }
+    }
+
+    @Override
+    public void setId(int id)
+    {
+        this.id = id;
     }
 
     /**
-     * {@inheritDoc}
-     *
-     * This value overrides the internally calculated mean.
+     * This method is implemented for API compatibility but does actually nothing
+     * because an automatic conversion is in place.
+     * @param converter
      */
     @Override
-    public void setValueForMean(double v) {
-        this.meanValueSetByUser = true;
-        this.mean = v;
-    }
+    public void setDoubleValueConverter(DoubleConvertible<DatasetSparseVector<T>> converter) {}
 
     /**
-     * Unsets the mean set by the user. Successive calls of
-     * {@link #getValueForMean()} will use the mean of the elements means.
+     * Set the vector size for array creation
+     * @param vectorSize the size of the max vector
      */
-    public void unsetMeanValueSetByUser()
-    {
-        this.meanValueSetByUser = false;
-        this.mean = 0;
+    public void setVectorSize(int vectorSize) {
+        this.vectorSize = vectorSize;
     }
 
     /**
@@ -243,5 +349,21 @@ public class DatasetSparseVector<T extends DatasetElement> extends TreeMap<Integ
     @Override
     public Iterator<T> iterator() {
         return this.values().iterator();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public DatasetSparseVector<T> deepClone()
+    {
+        DatasetSparseVector<T> clone = new DatasetSparseVector<>();
+
+        for(int key : this.keySet())
+        {
+            clone.put(key, (T) this.get(key).deepClone());
+        }
+        clone.setId(this.getId());
+        clone.setVectorSize(this.vectorSize);
+        return clone;
     }
 }

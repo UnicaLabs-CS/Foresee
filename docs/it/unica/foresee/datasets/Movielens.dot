@@ -9,19 +9,19 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// it.unica.foresee.datasets.DatasetSparseVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
-	c1521 [label=<<table title="it.unica.foresee.datasets.DatasetSparseVector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatasetSparseVector.html">
+	// it.unica.foresee.datasets.DatasetNestedSparseVector<T extends it.unica.foresee.datasets.DatasetSparseVector<? extends it.unica.foresee.datasets.interfaces.DatasetElement<?>>>
+	c2339 [label=<<table title="it.unica.foresee.datasets.DatasetNestedSparseVector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatasetNestedSparseVector.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> DatasetSparseVector&lt;T extends DatasetElement&gt; </td></tr>
+<tr><td align="center" balign="center"> DatasetNestedSparseVector&lt;T extends DatasetSparseVector&lt;? extends DatasetElement&lt;?&gt;&gt;&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.Movielens
-	c1526 [label=<<table title="it.unica.foresee.datasets.Movielens" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Movielens.html">
+	c2345 [label=<<table title="it.unica.foresee.datasets.Movielens" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Movielens.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Movielens </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	//it.unica.foresee.datasets.Movielens extends it.unica.foresee.datasets.DatasetSparseVector<it.unica.foresee.datasets.MovielensElement>
-	c1521:p -> c1526:p [dir=back,arrowtail=empty];
+	//it.unica.foresee.datasets.Movielens extends it.unica.foresee.datasets.DatasetNestedSparseVector<it.unica.foresee.datasets.MovielensElement>
+	c2339:p -> c2345:p [dir=back,arrowtail=empty];
 }
 

@@ -3,9 +3,7 @@ package it.unica.foresee.core;
 import it.unica.foresee.datasets.interfaces.Dataset;
 import it.unica.foresee.utils.Pair;
 
-import static it.unica.foresee.utils.Tools.warn;
-
-import java.io.File;
+import static it.unica.foresee.utils.Logger.warn;
 
 
 /**

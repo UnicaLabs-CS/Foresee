@@ -1,4 +1,13 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./MovielensTest.html" title="it.unica.foresee.tests.MovielensTest" alt="" coords="16,17,120,42"/>
-<area shape="rect" id="node2_1" href="./ForeseeTest.html" title="it.unica.foresee.tests.ForeseeTest" alt="" coords="166,17,258,42"/>
+<area shape="rect" id="node1_0" href="./DatasetElementTest.html" title="it.unica.foresee.tests.DatasetElementTest" alt="" coords="16,17,155,42"/>
+<area shape="rect" id="node2_1" href="./GroupModelTest.html" title="it.unica.foresee.tests.GroupModelTest" alt="" coords="201,17,319,42"/>
+<area shape="rect" id="node3_2" href="./DoubleElementTest.html" title="it.unica.foresee.tests.DoubleElementTest" alt="" coords="365,17,501,42"/>
+<area shape="rect" id="node4_3" href="./MovielensElementTest.html" title="it.unica.foresee.tests.MovielensElementTest" alt="" coords="547,17,701,42"/>
+<area shape="rect" id="node5_4" href="./ForeseeTest.html" title="it.unica.foresee.tests.ForeseeTest" alt="" coords="746,17,841,42"/>
+<area shape="rect" id="node6_5" href="./ConverterTest.html" title="it.unica.foresee.tests.ConverterTest" alt="" coords="886,17,989,42"/>
+<area shape="rect" id="node7_6" href="./RMSETest.html" title="it.unica.foresee.tests.RMSETest" alt="" coords="1035,17,1115,42"/>
+<area shape="rect" id="node8_7" href="./MovielensTest.html" title="it.unica.foresee.tests.MovielensTest" alt="" coords="1161,17,1266,42"/>
+<area shape="rect" id="node9_8" href="./TestUtils.html" title="it.unica.foresee.tests.TestUtils" alt="" coords="1311,17,1379,42"/>
+<area shape="rect" id="node10_9" href="./NearestNeighboursTest.html" title="it.unica.foresee.tests.NearestNeighboursTest" alt="" coords="1425,17,1585,42"/>
+<area shape="rect" id="node11_10" href="./PredictionsSimulation.html" title="it.unica.foresee.tests.PredictionsSimulation" alt="" coords="1631,17,1779,42"/>
 </map>

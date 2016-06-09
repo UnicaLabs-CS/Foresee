@@ -1,11 +1,13 @@
 package it.unica.foresee;
 
 import it.unica.foresee.core.Core;
-import it.unica.foresee.utils.Tools;
+import it.unica.foresee.utils.Logger;
 
-import static it.unica.foresee.utils.Tools.err;
-import static it.unica.foresee.utils.Tools.warn;
-import static it.unica.foresee.utils.Tools.log;
+import static it.unica.foresee.utils.Logger.err;
+import static it.unica.foresee.utils.Logger.debug;
+import static it.unica.foresee.utils.Logger.log;
+import static it.unica.foresee.utils.Logger.warn;
+
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -25,6 +27,7 @@ import java.util.Scanner;
  *             Options:
  *             <ul>
  *              <li>-v --verbose: Enable verbose output</li>
+ *              <li>-D --debug: Enable debug output</li>
  *              <li>-l --legacy: Enable the legacy ART parser</li>
  *             </ul>
  * <p>
@@ -100,8 +103,22 @@ public class Foresee
         /* Loop to parse the arguments */
         for (int i = 0; i < args.length; i++)
         {
-            /* Help */
-            if (args[i].equals("-h")  || args[i].equals("--help"))
+            /* Debug */
+            if (args[i].equals("-D")  || args[i].equals("--debug"))
+            {
+                if (!s.isVerbose())
+                {
+                    s.setVerbose(true);
+                    Logger.setVerbosity(Logger.VERB_DEBUG);
+                    debug("Debug mode enabled.",
+                            Foresee.class);
+                }
+                else
+                {
+                    throw new IllegalStateException(args[i]);
+                }
+            }/* Help */
+            else if (args[i].equals("-h")  || args[i].equals("--help"))
             {
                 if (!modeHasBeenSelected)
                 {
@@ -153,7 +170,7 @@ public class Foresee
                 if (!s.isVerbose())
                 {
                     s.setVerbose(true);
-                    Tools.setVerbosity(Tools.VERB_ALL);
+                    Logger.setVerbosity(Logger.VERB_ALL);
                     log("Enabling verbose mode: brace yourself");
                 }
                 else
@@ -355,11 +372,12 @@ public class Foresee
         System.out.println("" +
                 "Usage: foresee -iv|-h|-pv <path>" +
                 "\n" +
-                "\n-i, --interactive \tRun in interactive mode (default)." +
                 "\n-h, --help        \tShow this help message." +
+                "\n-i, --interactive \tRun in interactive mode (default)." +
                 "\n-p, --path <path> \tUse <path> as the path to an instruction file or a folder" +
                 "\n\nOptions:" +
                 "\n-v, --verbose     \tEnable verbose output." +
+                "\n-D, --debug       \tEnable debug output." +
                 "\n-l, --legacy      \tEnable the legacy mode, backwards compatible with ART framework.");
     }
 

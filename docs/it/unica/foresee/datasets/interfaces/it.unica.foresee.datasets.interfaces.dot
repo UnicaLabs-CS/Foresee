@@ -9,51 +9,101 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// it.unica.foresee.datasets.interfaces.DatasetLoader<T extends it.unica.foresee.datasets.interfaces.Dataset>
-	c438 [label=<<table title="it.unica.foresee.datasets.interfaces.DatasetLoader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatasetLoader.html">
+	// it.unica.foresee.datasets.interfaces.DatasetElement<T>
+	c64 [label=<<table title="it.unica.foresee.datasets.interfaces.DatasetElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatasetElement.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> DatasetLoader&lt;T extends Dataset&gt; </td></tr>
+<tr><td align="center" balign="center"> DatasetElement&lt;T&gt; </td></tr>
+		</table></td></tr>
+		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// it.unica.foresee.datasets.interfaces.DeepClonable<T>
+	c65 [label=<<table title="it.unica.foresee.datasets.interfaces.DeepClonable" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DeepClonable.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> DeepClonable&lt;T&gt; </td></tr>
+		</table></td></tr>
+		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// it.unica.foresee.datasets.interfaces.DoubleConvertible<T>
+	c66 [label=<<table title="it.unica.foresee.datasets.interfaces.DoubleConvertible" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DoubleConvertible.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> DoubleConvertible&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.interfaces.Dataset<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
-	c439 [label=<<table title="it.unica.foresee.datasets.interfaces.Dataset" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Dataset.html">
+	c67 [label=<<table title="it.unica.foresee.datasets.interfaces.Dataset" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Dataset.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Dataset&lt;T extends DatasetElement&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// it.unica.foresee.datasets.interfaces.DatasetNestedSparseVector<T extends it.unica.foresee.datasets.DatasetSparseVector<?>>
+	c68 [label=<<table title="it.unica.foresee.datasets.interfaces.DatasetNestedSparseVector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatasetNestedSparseVector.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> DatasetNestedSparseVector&lt;T extends DatasetSparseVector&lt;?&gt;&gt; </td></tr>
+		</table></td></tr>
+		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// it.unica.foresee.datasets.interfaces.NumberElement<T extends java.lang.Number>
+	c69 [label=<<table title="it.unica.foresee.datasets.interfaces.NumberElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./NumberElement.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> NumberElement&lt;T extends Number&gt; </td></tr>
+		</table></td></tr>
+		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.interfaces.DatasetVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
-	c440 [label=<<table title="it.unica.foresee.datasets.interfaces.DatasetVector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatasetVector.html">
+	c70 [label=<<table title="it.unica.foresee.datasets.interfaces.DatasetVector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatasetVector.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> DatasetVector&lt;T extends DatasetElement&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// it.unica.foresee.datasets.interfaces.DatasetElement<K>
-	c441 [label=<<table title="it.unica.foresee.datasets.interfaces.DatasetElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatasetElement.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> DatasetElement&lt;K&gt; </td></tr>
-		</table></td></tr>
-		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.interfaces.FileDatasetLoader<T extends it.unica.foresee.datasets.interfaces.Dataset>
-	c442 [label=<<table title="it.unica.foresee.datasets.interfaces.FileDatasetLoader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FileDatasetLoader.html">
+	c71 [label=<<table title="it.unica.foresee.datasets.interfaces.FileDatasetLoader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FileDatasetLoader.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> FileDatasetLoader&lt;T extends Dataset&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.interfaces.SolutionElement<T>
-	c443 [label=<<table title="it.unica.foresee.datasets.interfaces.SolutionElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SolutionElement.html">
+	c72 [label=<<table title="it.unica.foresee.datasets.interfaces.SolutionElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SolutionElement.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> SolutionElement&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// it.unica.foresee.datasets.interfaces.Identifiable
+	c73 [label=<<table title="it.unica.foresee.datasets.interfaces.Identifiable" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Identifiable.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> Identifiable </td></tr>
+		</table></td></tr>
+		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// it.unica.foresee.datasets.interfaces.DatasetLoader<T extends it.unica.foresee.datasets.interfaces.Dataset>
+	c74 [label=<<table title="it.unica.foresee.datasets.interfaces.DatasetLoader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatasetLoader.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> DatasetLoader&lt;T extends Dataset&gt; </td></tr>
+		</table></td></tr>
+		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// it.unica.foresee.datasets.interfaces.ClonableElement<T>
+	c75 [label=<<table title="it.unica.foresee.datasets.interfaces.ClonableElement" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ClonableElement.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> ClonableElement&lt;T&gt; </td></tr>
+		</table></td></tr>
+		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	//it.unica.foresee.datasets.interfaces.DatasetNestedSparseVector<T extends it.unica.foresee.datasets.DatasetSparseVector<?>> implements it.unica.foresee.datasets.interfaces.DatasetVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
+	c70:p -> c68:p [dir=back,arrowtail=empty,style=dashed];
+	//it.unica.foresee.datasets.interfaces.NumberElement<T extends java.lang.Number> implements it.unica.foresee.datasets.interfaces.DatasetElement<T>
+	c64:p -> c69:p [dir=back,arrowtail=empty,style=dashed];
 	//it.unica.foresee.datasets.interfaces.DatasetVector<T extends it.unica.foresee.datasets.interfaces.DatasetElement> implements it.unica.foresee.datasets.interfaces.Dataset<T extends it.unica.foresee.datasets.interfaces.DatasetElement>
-	c439:p -> c440:p [dir=back,arrowtail=empty,style=dashed];
+	c67:p -> c70:p [dir=back,arrowtail=empty,style=dashed];
 	//it.unica.foresee.datasets.interfaces.FileDatasetLoader<T extends it.unica.foresee.datasets.interfaces.Dataset> implements it.unica.foresee.datasets.interfaces.DatasetLoader<T extends it.unica.foresee.datasets.interfaces.Dataset>
-	c438:p -> c442:p [dir=back,arrowtail=empty,style=dashed];
+	c74:p -> c71:p [dir=back,arrowtail=empty,style=dashed];
+	//it.unica.foresee.datasets.interfaces.ClonableElement<T> implements it.unica.foresee.datasets.interfaces.DatasetElement<T>
+	c64:p -> c75:p [dir=back,arrowtail=empty,style=dashed];
+	//it.unica.foresee.datasets.interfaces.ClonableElement<T> implements it.unica.foresee.datasets.interfaces.DeepClonable<T>
+	c65:p -> c75:p [dir=back,arrowtail=empty,style=dashed];
 }
 

@@ -1,5 +1,5 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../FSCommandList.html" title="it.unica.foresee.commandlists.FSCommandList" alt="" coords="16,219,133,245"/>
-<area shape="rect" id="node2_1" href="./CommandList.html" title="it.unica.foresee.commandlists.interfaces.CommandList" alt="" coords="25,112,125,155"/>
-<area shape="rect" id="node3_2" href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/Map.html" title="java.util.Map" alt="" coords="31,11,118,53"/>
+<area shape="rect" id="node1_0" href="../FSCommandList.html" title="it.unica.foresee.commandlists.FSCommandList" alt="" coords="16,219,136,245"/>
+<area shape="rect" id="node2_1" href="./CommandList.html" title="it.unica.foresee.commandlists.interfaces.CommandList" alt="" coords="25,112,127,155"/>
+<area shape="rect" id="node3_2" href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/Map.html" title="java.util.Map" alt="" coords="33,11,119,53"/>
 </map>

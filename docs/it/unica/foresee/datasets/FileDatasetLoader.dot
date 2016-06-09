@@ -9,28 +9,28 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// it.unica.foresee.datasets.MovielensLoader
-	c1597 [label=<<table title="it.unica.foresee.datasets.MovielensLoader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MovielensLoader.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> MovielensLoader </td></tr>
-		</table></td></tr>
-		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// it.unica.foresee.datasets.FileDatasetLoader<T extends it.unica.foresee.datasets.interfaces.Dataset>
-	c1602 [label=<<table title="it.unica.foresee.datasets.FileDatasetLoader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./FileDatasetLoader.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> FileDatasetLoader&lt;T extends Dataset&gt; </td></tr>
-		</table></td></tr>
-		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// it.unica.foresee.datasets.interfaces.FileDatasetLoader<T extends it.unica.foresee.datasets.interfaces.Dataset>
-	c1608 [label=<<table title="it.unica.foresee.datasets.interfaces.FileDatasetLoader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./interfaces/FileDatasetLoader.html">
+	c2272 [label=<<table title="it.unica.foresee.datasets.interfaces.FileDatasetLoader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./interfaces/FileDatasetLoader.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> FileDatasetLoader&lt;T extends Dataset&gt; </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// it.unica.foresee.datasets.MovielensLoader
+	c2278 [label=<<table title="it.unica.foresee.datasets.MovielensLoader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MovielensLoader.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> MovielensLoader </td></tr>
+		</table></td></tr>
+		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// it.unica.foresee.datasets.FileDatasetLoader<T extends it.unica.foresee.datasets.interfaces.Dataset>
+	c2285 [label=<<table title="it.unica.foresee.datasets.FileDatasetLoader" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./FileDatasetLoader.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> FileDatasetLoader&lt;T extends Dataset&gt; </td></tr>
+		</table></td></tr>
+		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//it.unica.foresee.datasets.MovielensLoader extends it.unica.foresee.datasets.FileDatasetLoader
-	c1602:p -> c1597:p [dir=back,arrowtail=empty];
+	c2285:p -> c2278:p [dir=back,arrowtail=empty];
 	//it.unica.foresee.datasets.FileDatasetLoader<T extends it.unica.foresee.datasets.interfaces.Dataset> implements it.unica.foresee.datasets.interfaces.FileDatasetLoader<T extends it.unica.foresee.datasets.interfaces.Dataset>
-	c1608:p -> c1602:p [dir=back,arrowtail=empty,style=dashed];
+	c2272:p -> c2285:p [dir=back,arrowtail=empty,style=dashed];
 }
 

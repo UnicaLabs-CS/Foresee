@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# This script manages the makefile generation
+
 # Settings
 project="foresee"
 
@@ -48,6 +50,7 @@ touch $include
 # Main makefile
 touch "$mkfile"
 
+# Give useful instructions
 echo -e "#To edit the makefile look in the $conffolder_base folder\n" > $mkfile
 echo -e "include $include_base" >> $mkfile
 echo -e "include $conffolder_base/conf.mk" >> $mkfile
@@ -63,7 +66,7 @@ do
     #Get package name
     package=${PWD##*/}
     
-    # Interfaces packages need more care
+    # Interfaces packages need to go under their interface folder
     if [ "$package" = "interfaces" ]
     then
       package_path="$src/$oldpackage/$package"
@@ -71,7 +74,7 @@ do
       type="interface"
     else
       package_path="$src/$package"
-      # If it's not an interface it's a class
+      # If it's not an interface assume it's a class
       type="class"
     fi
     
@@ -124,7 +127,7 @@ do
     # Add the package to the list of the packages
     allpackages="$allpackages $package"
     
-    # Useful for interfaces
+    # Useful for interfaces: previous package contains the classes of the relative package
     oldpackage=$package
 
   else

@@ -1,13 +1,15 @@
 package it.unica.foresee.datasets;
 
+import it.unica.foresee.datasets.interfaces.*;
+
 /**
  * Generic dataset element implementation.
  */
 public class DatasetElement<T> implements it.unica.foresee.datasets.interfaces.DatasetElement<T>
 {
-    private double valueForMean;
-
     private T element;
+
+    private DoubleConvertible<T> converter = null;
 
     /**
      * Empty constructor.
@@ -15,14 +17,12 @@ public class DatasetElement<T> implements it.unica.foresee.datasets.interfaces.D
     public DatasetElement(){}
 
     /**
-     * Initialize the object with the element and the value for the mean
-     * @param el
-     * @param valueForMean
+     * Initialize the object with the element and and interface to get its double value.
      */
-    public DatasetElement(T el, double valueForMean)
+    public DatasetElement(T el, DoubleConvertible<T> converter)
     {
         this.element = el;
-        this.valueForMean = valueForMean;
+        this.converter = converter;
     }
 
     /* Getter */
@@ -30,9 +30,9 @@ public class DatasetElement<T> implements it.unica.foresee.datasets.interfaces.D
     /**
      * {@inheritDoc}
      */
-    public double getValueForMean()
+    public double getDoubleValue()
     {
-        return this.valueForMean;
+        return converter.getDoubleValue(element);
     }
 
     /**
@@ -53,12 +53,9 @@ public class DatasetElement<T> implements it.unica.foresee.datasets.interfaces.D
         this.element = element;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public void setValueForMean(double valueForMean) {
-        this.valueForMean = valueForMean;
+    public void setDoubleValueConverter(DoubleConvertible<T> converter) {
+        this.converter = converter;
     }
 
     /**
@@ -67,6 +64,26 @@ public class DatasetElement<T> implements it.unica.foresee.datasets.interfaces.D
     @Override
     public String toString()
     {
-        return Double.toString(this.getValueForMean());
+        return Double.toString(this.getDoubleValue());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(Object o)
+    {
+        if(o == this) return true;
+
+        if (o == null) return false;
+
+        if ( !(o instanceof DatasetElement) ) return false;
+
+        DatasetElement d = (DatasetElement) o;
+
+        if(!this.getElement().equals(d.getElement()) ||
+                !(this.getDoubleValue() == d.getDoubleValue())) return false;
+
+        return true;
     }
 }

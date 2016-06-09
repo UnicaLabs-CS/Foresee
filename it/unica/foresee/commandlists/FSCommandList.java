@@ -5,9 +5,9 @@ import it.unica.foresee.commandlists.interfaces.Semantic;
 import it.unica.foresee.core.interfaces.Env;
 import it.unica.foresee.datasets.*;
 
-import static it.unica.foresee.utils.Tools.err;
-import static it.unica.foresee.utils.Tools.log;
-import static it.unica.foresee.utils.Tools.warn;
+import static it.unica.foresee.utils.Logger.err;
+import static it.unica.foresee.utils.Logger.log;
+import static it.unica.foresee.utils.Logger.warn;
 
 import java.io.File;
 import java.io.FileNotFoundException;

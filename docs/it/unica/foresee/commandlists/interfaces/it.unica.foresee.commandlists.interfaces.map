@@ -1,4 +1,4 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./CommandList.html" title="it.unica.foresee.commandlists.interfaces.CommandList" alt="" coords="16,11,116,53"/>
-<area shape="rect" id="node2_1" href="./Semantic.html" title="it.unica.foresee.commandlists.interfaces.Semantic" alt="" coords="161,11,245,53"/>
+<area shape="rect" id="node1_0" href="./Semantic.html" title="it.unica.foresee.commandlists.interfaces.Semantic" alt="" coords="16,11,103,53"/>
+<area shape="rect" id="node2_1" href="./CommandList.html" title="it.unica.foresee.commandlists.interfaces.CommandList" alt="" coords="148,11,251,53"/>
 </map>

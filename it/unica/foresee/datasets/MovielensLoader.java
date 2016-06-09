@@ -67,12 +67,9 @@ public class MovielensLoader extends FileDatasetLoader
     public Movielens loadDataset(File sourceFile) throws FileNotFoundException
     {
         Movielens dataset = new Movielens();
-        TreeSet<Integer> usersSet = new TreeSet<>();
-        TreeSet<Integer> moviesSet = new TreeSet<>();
 
         // Initial values
-        dataset.setMaxMovieID(0);
-        dataset.setMaxUserID(0);
+        int highestMovieID = 0;
 
         Scanner dataSource = new Scanner(sourceFile);
 
@@ -90,19 +87,15 @@ public class MovielensLoader extends FileDatasetLoader
             // Extract a single line of data
             if (line.hasNextInt()) {
                 userID = line.nextInt();
-                if (userID > dataset.getMaxUserID())
-                {
-                    dataset.setMaxUserID(userID);
-                }
             } else {
                 throw new InputMismatchException("expected userID at line " + lineNumber);
             }
 
             if (line.hasNextInt()) {
                 movieID = line.nextInt();
-                if (movieID > dataset.getMaxMovieID())
+                if (movieID > highestMovieID)
                 {
-                    dataset.setMaxMovieID(movieID);
+                    highestMovieID = movieID;
                 }
             } else {
                 throw new InputMismatchException("expected movieID at line " + lineNumber);
@@ -127,18 +120,10 @@ public class MovielensLoader extends FileDatasetLoader
                 throw new InputMismatchException("rating < 1 at line " + lineNumber);
             }
 
-            dataset.put(userID, movieID, rating);
-            usersSet.add(userID);
-            moviesSet.add(movieID);
+            dataset.put(userID, movieID, (double) rating);
 
             lineNumber++;
         }
-
-        dataset.setUsersAmount(usersSet.size());
-        dataset.setMoviesAmount(moviesSet.size());
-
-        dataset.setUsersSet(usersSet);
-        dataset.setMoviesSet(moviesSet);
 
         if (dataset.getUsersAmount() > lineNumber)
         {
@@ -153,6 +138,13 @@ public class MovielensLoader extends FileDatasetLoader
         if (dataset.getUsersAmount() < 20)
         {
             throw new IllegalStateException("The amount of users is lower than 20.");
+        }
+
+        // Set the vector size for every element
+        dataset.setInternalVectorSize(highestMovieID);
+        for (MovielensElement el : dataset.values())
+        {
+            el.setVectorSize(highestMovieID);
         }
 
         return dataset;
