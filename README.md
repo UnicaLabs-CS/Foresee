@@ -1,6 +1,8 @@
 Foresee
 =======
 
+[![Build Status](https://travis-ci.com/fcole90/Foresee.svg?token=UkBJfRLfsyWEXjq7ZwwU&branch=devel)](https://travis-ci.com/fcole90/Foresee)
+
 This project is a modular machine learning framework, developed
 by the University of Cagliari.
 
@@ -41,6 +43,9 @@ a selected set of builtin functionalities of wide use.
 - Java JDK 8 or above
 - Movielens dataset
 
+## Developer of the new 'Foresee' version
+- Fabio Colella <fcole90@gmail.com>
+
 ## Research and improvements
 - Ludovico Boratto <ludovico.boratto@unica.it>
 - Salvatore Carta <salvatore@unica.it>
@@ -50,7 +55,4 @@ a selected set of builtin functionalities of wide use.
 - Mattia Cadeddu <mattia.cadeddu@gmail.com>
 - Emanuele Ivaldi <emanuele.ivaldi@gmail.com>
 - Gianluigi Sirigu *email not found*
-
-## Developer of the new 'Foresee' version
-- Fabio Colella <fcole90@gmail.com>
 
