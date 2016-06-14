@@ -1,7 +1,8 @@
 Foresee
 =======
 
-[![Build Status](https://travis-ci.com/fcole90/Foresee.svg?token=UkBJfRLfsyWEXjq7ZwwU&branch=devel)](https://travis-ci.com/fcole90/Foresee)
+[![Build Status](https://travis-ci.org/UnicaLabs-CS/foresee.svg?branch=master)](https://travis-ci.org/UnicaLabs-CS/foresee)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://github.com/UnicaLabs-CS/foresee/blob/master/Licence.md)
 
 This project is a modular machine learning framework, developed
 by the University of Cagliari.
